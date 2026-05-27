@@ -1,0 +1,754 @@
+---
+const projects = [
+  {
+    title: "Velle Yogurt Campaign",
+    year: "2022",
+    category: "Food & Beverage",
+    image: "/projects/prokha-velle.png",
+    url: "https://www.edimdoma.ru/2022/velle",
+    description:
+      "Kampagnenseite zur Produkteinfuehrung mit Rezeptinspiration, Markenkommunikation und Aktionsmechanik.",
+  },
+  {
+    title: "Maslenitsa Campaign",
+    year: "2022",
+    category: "Saisonale Kampagne",
+    image: "/projects/prokha-maslenitsa.png",
+    url: "https://www.edimdoma.ru/2022/maslenica",
+    description:
+      "Saisonale Kampagnenseite mit Rezepten, Food-Visuals und interaktiven Inhalten.",
+  },
+  {
+    title: "Parmalat Campaign",
+    year: "2021",
+    category: "Food & Beverage",
+    image: "/projects/prokha-parmalat.png",
+    url: "https://www.edimdoma.ru/2021/parmalat",
+    description:
+      "Branded Landing Page mit Fokus auf Produktkommunikation und content-orientierte Struktur.",
+  },
+  {
+    title: "Kenwood Campaign",
+    year: "2019",
+    category: "Kuechengeraete",
+    image: "/projects/prokha-kenwood.png",
+    url: "https://www.edimdoma.ru/2019/kenwood",
+    description:
+      "Kampagnenseite fuer Kuechengeraete mit Rezeptintegration und visueller Produktpraesentation.",
+  },
+  {
+    title: "Panasonic Campaign",
+    year: "2021",
+    category: "Kuechengeraete",
+    image: "/projects/prokha-panasonic.png",
+    url: "https://www.edimdoma.ru/2021/panasonic",
+    description:
+      "Produktorientierte Kampagnenseite mit cleaner visueller Richtung und Rezeptkontext.",
+  },
+  {
+    title: "Hochland Campaign",
+    year: "2020",
+    category: "Food & Beverage",
+    image: "/projects/prokha-hochland.png",
+    url: "https://www.edimdoma.ru/2020/hochland",
+    description:
+      "Branded Food-Kampagne mit saisonalem Storytelling, Rezeptinhalten und Markeninszenierung.",
+  },
+  {
+    title: "Luminarc Campaign",
+    year: "2020",
+    category: "Lifestyle",
+    image: "/projects/prokha-luminarc.png",
+    url: "https://www.edimdoma.ru/2020/luminarc",
+    description:
+      "Lifestyle-orientierte Kampagnenseite mit Fokus auf Produktaesthetik und saisonale Inspiration.",
+  },
+  {
+    title: "Dr. Oetker Campaign",
+    year: "2017",
+    category: "Food & Beverage",
+    image: "/projects/prokha-oetker.png",
+    url: "https://www.edimdoma.ru/2017/oetker",
+    description:
+      "Rezept- und Backkampagne mit emotionaler Food-Inszenierung und klarer Inhaltsstruktur.",
+  },
+];
+
+const brands = [
+  "Panasonic",
+  "KENWOOD",
+  "Hochland",
+  "Parmalat",
+  "Luminarc",
+  "MAKFA",
+  "Dr. Oetker",
+  "BRITA",
+  "Scotch-Brite",
+  "Faberlic",
+];
+
+const competencies = [
+  ["Digital Campaign Design", "Landing Pages und Special Projects fuer Marken, Produkte und saisonale Kampagnen."],
+  ["Web Design", "Responsive Websites und Kampagnenseiten mit klarer Struktur und visueller Konsistenz."],
+  ["Visual Design", "Starke visuelle Konzepte, Bildwelten, Layouts und Marketing-Grafiken."],
+  ["Responsive Layouts", "Desktop- und Mobile-Layouts fuer content-heavy Kampagnenseiten."],
+  ["Prototyping", "Interaktive Prototypen, Wireframes und Layout-Konzepte in Figma."],
+  ["Developer Handoff", "Saubere Uebergabe, Abstimmung mit Entwicklern und produktionsnahe Umsetzung."],
+];
+
+const process = [
+  ["Verstehen", "Ziele, Zielgruppe, Marke und Projektanforderungen klaeren."],
+  ["Konzept", "Seitenstruktur, visuelle Richtung und zentrale Inhalte definieren."],
+  ["Design", "Responsive Layouts, Kampagnenmodule und visuelle Assets gestalten."],
+  ["Uebergabe", "Designs, Assets und Spezifikationen fuer Entwickler vorbereiten."],
+  ["Launch & Support", "Umsetzung begleiten, pruefen und bei Optimierungen unterstuetzen."],
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Andrii Prokhorovych - Web Designer und Digital Campaign Designer in Ulm, Deutschland." />
+    <meta name="generator" content={Astro.generator} />
+    <title>Andrii Prokhorovych - Web Designer</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Startseite">PROKHA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="#projects">Projekte</a>
+        <a href="#about">Ueber mich</a>
+        <a href="#process">Prozess</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+      <a class="button dark small" href="#contact">CV herunterladen</a>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy">
+          <p class="eyebrow">Hallo, ich bin</p>
+          <h1>Andrii Prokhorovych</h1>
+          <p class="role">Web Designer & Digital Campaign Designer</p>
+          <p class="lead">
+            Ich gestalte branded Landing Pages, responsive Websites und digitale Kampagnen fuer Produkte,
+            Marken und Content-Plattformen.
+          </p>
+          <p class="lead muted">
+            Mit ueber 10 Jahren Erfahrung in kommerzieller Webproduktion habe ich an 70+ digitalen Kampagnen
+            und Promo-Projekten fuer Food-, Lifestyle-, Home- und Consumer-Brands gearbeitet.
+          </p>
+          <div class="actions">
+            <a class="button dark" href="#projects">Projekte ansehen</a>
+            <a class="button light" href="#about">Ueber mich</a>
+          </div>
+        </div>
+        <div class="portrait-wrap">
+          <img src="/avatar.png" alt="Portrait von Andrii Prokhorovych" />
+        </div>
+        <div class="stats" aria-label="Erfahrung in Zahlen">
+          <div><strong>10+</strong><span>Jahre Erfahrung</span></div>
+          <div><strong>70+</strong><span>Kampagnen & Projekte</span></div>
+          <div><strong>40+</strong><span>Marken</span></div>
+          <div><strong>Design-to-Launch</strong><span>Zusammenarbeit mit Entwicklern</span></div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Ausgewaehlte Projekte</p>
+            <h2>Digitale Kampagnen fuer starke Marken</h2>
+          </div>
+          <p>
+            Eine kuratierte Auswahl kommerzieller Landing Pages, Kampagnenseiten und Webprojekte fuer bekannte
+            Food-, Lifestyle-, Home- und Consumer-Brands.
+          </p>
+        </div>
+
+        <div class="filters" aria-label="Projektkategorien">
+          <span>Alle</span>
+          <span>Food & Beverage</span>
+          <span>Lifestyle</span>
+          <span>Kuechengeraete</span>
+          <span>Saisonale Kampagnen</span>
+        </div>
+
+        <div class="project-grid">
+          {projects.map((project) => (
+            <article class="project-card">
+              <a href={project.url} target="_blank" rel="noreferrer">
+                <img src={project.image} alt={`${project.title} Vorschau`} loading="lazy" />
+                <div class="project-body">
+                  <p class="meta">{project.year} · {project.category}</p>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <span>Live ansehen</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div class="brand-strip" aria-label="Marken">
+          <p>Brands, fuer die ich gearbeitet habe</p>
+          <div>
+            {brands.map((brand) => <span>{brand}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div>
+          <p class="eyebrow">Ueber mich</p>
+          <h2>Webdesign fuer Marken, Kampagnen und digitale Kommunikation</h2>
+          <p>
+            Seit ueber 10 Jahren entwerfe ich digitale Kampagnen, Landing Pages und responsive Websites fuer
+            Marken und Content-Plattformen.
+          </p>
+          <p>
+            Mein Schwerpunkt liegt auf kommerzieller Webproduktion: klare Seitenstrukturen, starke visuelle
+            Konzepte, responsive Layouts und saubere Uebergabe an Entwickler.
+          </p>
+        </div>
+        <div class="competencies">
+          {competencies.map(([title, text]) => (
+            <article>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="process" class="section process">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Mein Prozess</p>
+            <h2>Strukturiert vom Konzept bis zum Launch</h2>
+          </div>
+          <p>
+            Ein klarer Ablauf, enge Zusammenarbeit und Liebe zum Detail bilden die Basis fuer erfolgreiche
+            digitale Projekte.
+          </p>
+        </div>
+        <div class="process-grid">
+          {process.map(([title, text], index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div>
+          <p class="eyebrow">Kontakt</p>
+          <h2>Lassen Sie uns gemeinsam Ihr naechstes Projekt umsetzen</h2>
+          <p>Ich freue mich auf Ihre Anfrage und eine erfolgreiche Zusammenarbeit.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:prohorovichandrey@gmail.com">prohorovichandrey@gmail.com</a>
+          <a href="https://www.linkedin.com/in/andrii-prokhorovych-216846204" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://prokha.webflow.io/" target="_blank" rel="noreferrer">Altes Portfolio</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f7f7f5;
+    --paper: #ffffff;
+    --ink: #080808;
+    --muted: #5f5f5f;
+    --line: #dededb;
+    --soft: #eeeeeb;
+    --radius: 8px;
+    font-family:
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  p,
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .site-header {
+    align-items: center;
+    background: rgba(247, 247, 245, 0.88);
+    border-bottom: 1px solid rgba(222, 222, 219, 0.7);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    left: 0;
+    padding: 20px clamp(20px, 4vw, 72px);
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(18px);
+  }
+
+  .brand {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0;
+  }
+
+  nav {
+    display: flex;
+    gap: 34px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .button {
+    align-items: center;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+  }
+
+  .button.dark {
+    background: var(--ink);
+    color: white;
+  }
+
+  .button.light {
+    background: transparent;
+  }
+
+  .button.small {
+    justify-self: end;
+    min-height: 42px;
+  }
+
+  .section {
+    border-bottom: 1px solid var(--line);
+    padding: clamp(56px, 7vw, 96px) clamp(20px, 4vw, 72px);
+  }
+
+  .hero {
+    display: grid;
+    gap: 44px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+    min-height: 640px;
+    padding-top: 64px;
+    position: relative;
+  }
+
+  .eyebrow {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: clamp(44px, 6vw, 84px);
+    line-height: 0.98;
+    max-width: 820px;
+  }
+
+  h2 {
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.05;
+    max-width: 760px;
+  }
+
+  .role {
+    font-size: clamp(20px, 2vw, 28px);
+    margin-top: 20px;
+  }
+
+  .lead {
+    color: #303030;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 28px;
+    max-width: 700px;
+  }
+
+  .muted {
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 18px;
+    margin-top: 38px;
+  }
+
+  .portrait-wrap {
+    align-self: end;
+    filter: grayscale(1);
+    justify-self: center;
+    max-width: 420px;
+    opacity: 0.78;
+  }
+
+  .portrait-wrap img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .stats {
+    align-self: end;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 26px;
+  }
+
+  .stats div {
+    border-right: 1px solid var(--line);
+    padding: 0 24px;
+  }
+
+  .stats div:last-child {
+    border-right: 0;
+  }
+
+  .stats strong {
+    display: block;
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .stats span {
+    color: var(--muted);
+    display: block;
+    font-size: 14px;
+    line-height: 1.45;
+    margin-top: 8px;
+  }
+
+  .section-head {
+    align-items: end;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr minmax(280px, 520px);
+    margin-bottom: 34px;
+  }
+
+  .section-head p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .filters span {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 800;
+    padding: 12px 18px;
+  }
+
+  .filters span:first-child {
+    background: var(--ink);
+    color: white;
+  }
+
+  .project-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .project-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .project-card img {
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid var(--line);
+    object-fit: cover;
+    object-position: top center;
+    width: 100%;
+  }
+
+  .project-body {
+    min-height: 210px;
+    padding: 20px;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .project-body h3,
+  .competencies h3,
+  .process-grid h3 {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  .project-body p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 12px;
+  }
+
+  .project-body span {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 900;
+    margin-top: 22px;
+  }
+
+  .brand-strip {
+    align-items: center;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 180px 1fr;
+    margin-top: 42px;
+    padding-top: 28px;
+  }
+
+  .brand-strip p {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .brand-strip div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+  }
+
+  .brand-strip span {
+    color: #858585;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .about {
+    display: grid;
+    gap: 56px;
+    grid-template-columns: minmax(280px, 0.8fr) 1.2fr;
+  }
+
+  .about > div > p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.75;
+    margin-top: 24px;
+    max-width: 620px;
+  }
+
+  .competencies {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .competencies article,
+  .process-grid article {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+
+  .competencies p,
+  .process-grid p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.65;
+    margin-top: 10px;
+  }
+
+  .process-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .process-grid span {
+    color: var(--muted);
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+    margin-bottom: 44px;
+  }
+
+  .contact {
+    align-items: center;
+    background: var(--ink);
+    color: white;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr auto;
+  }
+
+  .contact .eyebrow,
+  .contact p {
+    color: #c7c7c7;
+  }
+
+  .contact p:not(.eyebrow) {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-top: 18px;
+  }
+
+  .contact-links {
+    display: grid;
+    gap: 12px;
+    min-width: 280px;
+  }
+
+  .contact-links a {
+    background: white;
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-weight: 900;
+    padding: 16px 18px;
+  }
+
+  @media (max-width: 1100px) {
+    .site-header {
+      grid-template-columns: 1fr auto;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .project-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 780px) {
+    .section,
+    .hero {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    .hero,
+    .section-head,
+    .about,
+    .contact {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: auto;
+      padding-top: 48px;
+    }
+
+    .portrait-wrap {
+      justify-self: start;
+      max-width: 240px;
+    }
+
+    .stats {
+      grid-template-columns: 1fr;
+      padding: 0;
+    }
+
+    .stats div {
+      border-bottom: 1px solid var(--line);
+      border-right: 0;
+      padding: 20px;
+    }
+
+    .stats div:last-child {
+      border-bottom: 0;
+    }
+
+    .project-grid,
+    .competencies,
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .button.small {
+      display: none;
+    }
+  }
+</style>

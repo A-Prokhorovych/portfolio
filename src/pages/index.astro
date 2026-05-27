@@ -1,10 +1,12 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const projects = [
   {
     title: "Velle Yogurt Campaign",
     year: "2022",
     category: "Food & Beverage",
-    image: "/projects/prokha-velle.png",
+    image: `${base}projects/prokha-velle.png`,
     url: "https://www.edimdoma.ru/2022/velle",
     description:
       "Kampagnenseite zur Produkteinfuehrung mit Rezeptinspiration, Markenkommunikation und Aktionsmechanik.",
@@ -13,7 +15,7 @@ const projects = [
     title: "Maslenitsa Campaign",
     year: "2022",
     category: "Saisonale Kampagne",
-    image: "/projects/prokha-maslenitsa.png",
+    image: `${base}projects/prokha-maslenitsa.png`,
     url: "https://www.edimdoma.ru/2022/maslenica",
     description:
       "Saisonale Kampagnenseite mit Rezepten, Food-Visuals und interaktiven Inhalten.",
@@ -22,7 +24,7 @@ const projects = [
     title: "Parmalat Campaign",
     year: "2021",
     category: "Food & Beverage",
-    image: "/projects/prokha-parmalat.png",
+    image: `${base}projects/prokha-parmalat.png`,
     url: "https://www.edimdoma.ru/2021/parmalat",
     description:
       "Branded Landing Page mit Fokus auf Produktkommunikation und content-orientierte Struktur.",
@@ -31,7 +33,7 @@ const projects = [
     title: "Kenwood Campaign",
     year: "2019",
     category: "Kuechengeraete",
-    image: "/projects/prokha-kenwood.png",
+    image: `${base}projects/prokha-kenwood.png`,
     url: "https://www.edimdoma.ru/2019/kenwood",
     description:
       "Kampagnenseite fuer Kuechengeraete mit Rezeptintegration und visueller Produktpraesentation.",
@@ -40,7 +42,7 @@ const projects = [
     title: "Panasonic Campaign",
     year: "2021",
     category: "Kuechengeraete",
-    image: "/projects/prokha-panasonic.png",
+    image: `${base}projects/prokha-panasonic.png`,
     url: "https://www.edimdoma.ru/2021/panasonic",
     description:
       "Produktorientierte Kampagnenseite mit cleaner visueller Richtung und Rezeptkontext.",
@@ -49,7 +51,7 @@ const projects = [
     title: "Hochland Campaign",
     year: "2020",
     category: "Food & Beverage",
-    image: "/projects/prokha-hochland.png",
+    image: `${base}projects/prokha-hochland.png`,
     url: "https://www.edimdoma.ru/2020/hochland",
     description:
       "Branded Food-Kampagne mit saisonalem Storytelling, Rezeptinhalten und Markeninszenierung.",
@@ -58,7 +60,7 @@ const projects = [
     title: "Luminarc Campaign",
     year: "2020",
     category: "Lifestyle",
-    image: "/projects/prokha-luminarc.png",
+    image: `${base}projects/prokha-luminarc.png`,
     url: "https://www.edimdoma.ru/2020/luminarc",
     description:
       "Lifestyle-orientierte Kampagnenseite mit Fokus auf Produktaesthetik und saisonale Inspiration.",
@@ -67,7 +69,7 @@ const projects = [
     title: "Dr. Oetker Campaign",
     year: "2017",
     category: "Food & Beverage",
-    image: "/projects/prokha-oetker.png",
+    image: `${base}projects/prokha-oetker.png`,
     url: "https://www.edimdoma.ru/2017/oetker",
     description:
       "Rezept- und Backkampagne mit emotionaler Food-Inszenierung und klarer Inhaltsstruktur.",
@@ -108,8 +110,8 @@ const process = [
 <html lang="de">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="icon" href={`${base}favicon.ico`} />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="Andrii Prokhorovych - Web Designer und Digital Campaign Designer in Ulm, Deutschland." />
     <meta name="generator" content={Astro.generator} />
@@ -147,7 +149,7 @@ const process = [
           </div>
         </div>
         <div class="portrait-wrap">
-          <img src="/avatar.png" alt="Portrait von Andrii Prokhorovych" />
+          <img src={`${base}avatar.png`} alt="Portrait von Andrii Prokhorovych" />
         </div>
         <div class="stats" aria-label="Erfahrung in Zahlen">
           <div><strong>10+</strong><span>Jahre Erfahrung</span></div>

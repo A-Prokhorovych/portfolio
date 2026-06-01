@@ -1,5 +1,15 @@
 ---
 const base = import.meta.env.BASE_URL;
+const campaignCover = (url) => {
+  const slug = url
+    .replace("https://www.edimdoma.ru/", "")
+    .replace(/#.*$/, "")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .toLowerCase();
+
+  return `${base}projects/covers/${slug}.jpg`;
+};
 
 const featuredProjects = [
   {
@@ -87,8 +97,8 @@ const featuredProjects = [
     title: "Velle Yogurt Campaign",
     year: "2022",
     category: "Food & Beverage",
-    image: `${base}projects/prokha-velle.png`,
     url: "https://www.edimdoma.ru/2022/velle",
+    image: campaignCover("https://www.edimdoma.ru/2022/velle"),
     description:
       "Kampagnenseite zur Produkteinfuehrung mit Rezeptinspiration, Markenkommunikation und Aktionsmechanik.",
   },
@@ -96,8 +106,8 @@ const featuredProjects = [
     title: "Maslenitsa Campaign",
     year: "2022",
     category: "Saisonale Kampagne",
-    image: `${base}projects/prokha-maslenitsa.png`,
     url: "https://www.edimdoma.ru/2022/maslenica",
+    image: campaignCover("https://www.edimdoma.ru/2022/maslenica"),
     description:
       "Saisonale Kampagnenseite mit Rezepten, Food-Visuals und interaktiven Inhalten.",
   },
@@ -105,8 +115,8 @@ const featuredProjects = [
     title: "Parmalat Campaign",
     year: "2021",
     category: "Food & Beverage",
-    image: `${base}projects/prokha-parmalat.png`,
     url: "https://www.edimdoma.ru/2021/parmalat",
+    image: campaignCover("https://www.edimdoma.ru/2021/parmalat"),
     description:
       "Branded Landing Page mit Fokus auf Produktkommunikation und content-orientierte Struktur.",
   },
@@ -114,8 +124,8 @@ const featuredProjects = [
     title: "Kenwood Campaign",
     year: "2019",
     category: "Kuechengeraete",
-    image: `${base}projects/prokha-kenwood.png`,
     url: "https://www.edimdoma.ru/2019/kenwood",
+    image: campaignCover("https://www.edimdoma.ru/2019/kenwood"),
     description:
       "Kampagnenseite fuer Kuechengeraete mit Rezeptintegration und visueller Produktpraesentation.",
   },
@@ -123,8 +133,8 @@ const featuredProjects = [
     title: "Panasonic Campaign",
     year: "2021",
     category: "Kuechengeraete",
-    image: `${base}projects/prokha-panasonic.png`,
     url: "https://www.edimdoma.ru/2021/panasonic",
+    image: campaignCover("https://www.edimdoma.ru/2021/panasonic"),
     description:
       "Produktorientierte Kampagnenseite mit cleaner visueller Richtung und Rezeptkontext.",
   },
@@ -132,8 +142,8 @@ const featuredProjects = [
     title: "Hochland Campaign",
     year: "2020",
     category: "Food & Beverage",
-    image: `${base}projects/prokha-hochland.png`,
     url: "https://www.edimdoma.ru/2020/hochland",
+    image: campaignCover("https://www.edimdoma.ru/2020/hochland"),
     description:
       "Branded Food-Kampagne mit saisonalem Storytelling, Rezeptinhalten und Markeninszenierung.",
   },
@@ -141,8 +151,8 @@ const featuredProjects = [
     title: "Luminarc Campaign",
     year: "2020",
     category: "Lifestyle",
-    image: `${base}projects/prokha-luminarc.png`,
     url: "https://www.edimdoma.ru/2020/luminarc",
+    image: campaignCover("https://www.edimdoma.ru/2020/luminarc"),
     description:
       "Lifestyle-orientierte Kampagnenseite mit Fokus auf Produktaesthetik und saisonale Inspiration.",
   },
@@ -150,8 +160,8 @@ const featuredProjects = [
     title: "Dr. Oetker Campaign",
     year: "2017",
     category: "Food & Beverage",
-    image: `${base}projects/prokha-oetker.png`,
     url: "https://www.edimdoma.ru/2017/oetker",
+    image: campaignCover("https://www.edimdoma.ru/2017/oetker"),
     description:
       "Rezept- und Backkampagne mit emotionaler Food-Inszenierung und klarer Inhaltsstruktur.",
   },
@@ -232,11 +242,11 @@ const campaignArchive = [
   ["Agrivolga Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/agrivolga", "prokha-hochland.png"],
   ["Candy Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/candy3", "prokha-oetker.png"],
   ["Pomidorka Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/pomidorka", "prokha-parmalat.png"],
-].map(([title, year, category, url, image]) => ({
+].map(([title, year, category, url]) => ({
   title,
   year,
   category,
-  image: `${base}projects/${image}`,
+  image: campaignCover(url),
   url,
   description:
     "Kommerzielle Kampagnenseite fuer eine Marke auf einer grossen Food- und Lifestyle-Plattform.",

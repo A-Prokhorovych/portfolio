@@ -1,7 +1,7 @@
 ---
 const base = import.meta.env.BASE_URL;
 
-const projects = [
+const featuredProjects = [
   {
     title: "Zahnarztpraxis Website",
     year: "2025",
@@ -157,6 +157,91 @@ const projects = [
   },
 ];
 
+const campaignArchive = [
+  ["Calendar Special Project", "2021", "Editorial Campaign", "https://www.edimdoma.ru/2021/calendar", "prokha-maslenitsa.png"],
+  ["Pomidorka Campaign", "2021", "Food & Beverage", "https://www.edimdoma.ru/2021/pm", "prokha-parmalat.png"],
+  ["Nasha Ptichka Campaign", "2021", "Food & Beverage", "https://www.edimdoma.ru/2021/nashaptichka", "prokha-velle.png"],
+  ["Fish & More Campaign", "2021", "Food & Beverage", "https://www.edimdoma.ru/2021/fishandmore", "old-seafood.jpg"],
+  ["Luminarc Summer Campaign", "2021", "Lifestyle", "https://www.edimdoma.ru/2021/leto/luminarc", "prokha-luminarc.png"],
+  ["Golden Rooster Campaign", "2021", "Food & Beverage", "https://www.edimdoma.ru/2021/GR", "prokha-hochland.png"],
+  ["Domik v Derevne Campaign", "2021", "Food & Beverage", "https://www.edimdoma.ru/2021/dv", "prokha-parmalat.png"],
+  ["Hill's Campaign", "2020", "Lifestyle", "https://www.edimdoma.ru/2020/hills", "old-abundance-cove.png"],
+  ["Agama Winter Campaign", "2020", "Food & Beverage", "https://www.edimdoma.ru/2020/zima/agama", "old-seafood.jpg"],
+  ["National Campaign", "2020", "Kuechengeraete", "https://www.edimdoma.ru/2020/osen/national", "prokha-kenwood.png"],
+  ["Agama Autumn Campaign", "2020", "Food & Beverage", "https://www.edimdoma.ru/2020/osen/agama", "old-seafood.jpg"],
+  ["National Campaign", "2019", "Kuechengeraete", "https://www.edimdoma.ru/2019/national", "prokha-panasonic.png"],
+  ["Provancal Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/provancal", "prokha-oetker.png"],
+  ["Makfa Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/makfa", "prokha-maslenitsa.png"],
+  ["Frau Marta Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/fraumarta2", "prokha-parmalat.png"],
+  ["Vitamin Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/vitamin", "prokha-velle.png"],
+  ["National Travel Campaign", "2018", "Kuechengeraete", "https://www.edimdoma.ru/2018/nationaltravel", "prokha-panasonic.png"],
+  ["Faberlic Campaign", "2018", "Lifestyle", "https://www.edimdoma.ru/2018/faberlic", "old-abundance-cove.png"],
+  ["Udarnitsa Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/udarnitsa", "prokha-oetker.png"],
+  ["Semushka Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/semushka", "prokha-velle.png"],
+  ["Maguro Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/maguro", "old-seafood.jpg"],
+  ["Synergetic Campaign", "2018", "Lifestyle", "https://www.edimdoma.ru/2018/synergetic", "old-abundance-cove.png"],
+  ["Biotta Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/biotta", "prokha-velle.png"],
+  ["Scotch-Brite Campaign", "2017", "Lifestyle", "https://www.edimdoma.ru/2017/scotch-brite", "old-abundance-cove.png"],
+  ["Maheev Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/maheev", "prokha-oetker.png"],
+  ["Brita Campaign", "2017", "Lifestyle", "https://www.edimdoma.ru/2017/brita4", "prokha-luminarc.png"],
+  ["SAF Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/saf", "prokha-maslenitsa.png"],
+  ["Ochakovo Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/ochakovo", "prokha-parmalat.png"],
+  ["Ezidri Campaign", "2017", "Kuechengeraete", "https://www.edimdoma.ru/2017/ezidri", "prokha-kenwood.png"],
+  ["Tojiro Campaign", "2017", "Kuechengeraete", "https://www.edimdoma.ru/2017/tojiro", "prokha-kenwood.png"],
+  ["Forester Campaign", "2017", "Lifestyle", "https://www.edimdoma.ru/2017/forester", "old-abundance-cove.png"],
+  ["Leonardo Campaign", "2016", "Lifestyle", "https://www.edimdoma.ru/leonardo", "prokha-luminarc.png"],
+  ["Sloboda Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/sloboda", "prokha-oetker.png"],
+  ["Hot Drinks Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/hotdrinks", "prokha-parmalat.png"],
+  ["Kitchen Special Project", "2016", "Kuechengeraete", "https://www.edimdoma.ru/kitchen", "prokha-kenwood.png"],
+  ["Cherkizovo Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/cherkizovo", "prokha-hochland.png"],
+  ["Kenwood Campaign", "2021", "Kuechengeraete", "https://www.edimdoma.ru/2021/kenwood", "prokha-kenwood.png"],
+  ["Nasha Ptichka Campaign", "2020", "Food & Beverage", "https://www.edimdoma.ru/2020/nashaptichka", "prokha-velle.png"],
+  ["Hochland Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/hochland", "prokha-hochland.png"],
+  ["Luminarc Campaign", "2019", "Lifestyle", "https://www.edimdoma.ru/2019/luminarc", "prokha-luminarc.png"],
+  ["Maheev New Year Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/maheevNY", "prokha-oetker.png"],
+  ["Petruha Gotovo Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhagotovo", "prokha-hochland.png"],
+  ["Petruha Master Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhamaster#info", "prokha-hochland.png"],
+  ["Astra Tomat Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/astratomat#1", "prokha-parmalat.png"],
+  ["Petruha Prosto Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhaprosto", "prokha-hochland.png"],
+  ["Picnic Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/picnic", "prokha-velle.png"],
+  ["Kapitan Vkusov Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/kapitan-vkusov2", "old-seafood.jpg"],
+  ["Schedroe Leto Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/shedroeleto", "prokha-oetker.png"],
+  ["Vivid Campaign", "2019", "Lifestyle", "https://www.edimdoma.ru/2019/vivid", "old-abundance-cove.png"],
+  ["Kapitan Vkusov Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/kapitan-vkusov", "old-seafood.jpg"],
+  ["M-Znak Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/m-znak", "prokha-maslenitsa.png"],
+  ["Olala Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/olala", "prokha-oetker.png"],
+  ["Football Campaign", "2018", "Saisonale Kampagne", "https://www.edimdoma.ru/2018/football", "old-abundance-cove.png"],
+  ["Schedroe Leto Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/shedroeleto", "prokha-oetker.png"],
+  ["Kenwood Campaign", "2018", "Kuechengeraete", "https://www.edimdoma.ru/2018/kenwood", "prokha-kenwood.png"],
+  ["Frau Marta Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/fraumarta", "prokha-parmalat.png"],
+  ["National Campaign", "2018", "Kuechengeraete", "https://www.edimdoma.ru/2018/national", "prokha-panasonic.png"],
+  ["Hochland Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/hochland", "prokha-hochland.png"],
+  ["Kenwood Campaign", "2017", "Kuechengeraete", "https://www.edimdoma.ru/2017/kenwood", "prokha-kenwood.png"],
+  ["Brita Campaign", "2017", "Lifestyle", "https://www.edimdoma.ru/2017/brita", "prokha-luminarc.png"],
+  ["Lito Campaign", "2017", "Saisonale Kampagne", "https://www.edimdoma.ru/2017/lito", "prokha-maslenitsa.png"],
+  ["Macho Gazpacho Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/machogazpacho", "prokha-parmalat.png"],
+  ["Biolio Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/biolio", "prokha-oetker.png"],
+  ["Grovo Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/grovo", "prokha-velle.png"],
+  ["Yablokov Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/yablokov", "prokha-maslenitsa.png"],
+  ["Domik v Derevne Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/domikvderevne", "prokha-parmalat.png"],
+  ["National Campaign", "2016", "Kuechengeraete", "https://www.edimdoma.ru/national", "prokha-panasonic.png"],
+  ["Biolio New Year Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/biolionewyear", "prokha-oetker.png"],
+  ["Agrivolga Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/agrivolga", "prokha-hochland.png"],
+  ["Candy Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/candy3", "prokha-oetker.png"],
+  ["Pomidorka Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/pomidorka", "prokha-parmalat.png"],
+].map(([title, year, category, url, image]) => ({
+  title,
+  year,
+  category,
+  image: `${base}projects/${image}`,
+  url,
+  description:
+    "Kommerzielle Kampagnenseite fuer eine Marke auf einer grossen Food- und Lifestyle-Plattform.",
+}));
+
+const projects = [...featuredProjects, ...campaignArchive];
+const visibleProjectCount = 8;
+
 const brands = [
   "Panasonic",
   "KENWOOD",
@@ -263,8 +348,8 @@ const process = [
         </div>
 
         <div class="project-grid">
-          {projects.map((project) => (
-            <article class="project-card">
+          {projects.map((project, index) => (
+            <article class={`project-card ${index >= visibleProjectCount ? "is-hidden" : ""}`} data-project-card>
               <a href={project.url} target="_blank" rel="noreferrer">
                 <img src={project.image} alt={`${project.title} Vorschau`} loading="lazy" />
                 <div class="project-body">
@@ -276,6 +361,12 @@ const process = [
               </a>
             </article>
           ))}
+        </div>
+
+        <div class="show-more-wrap">
+          <button class="button light show-more-button" type="button" data-show-projects data-visible-count={visibleProjectCount}>
+            Mehr Projekte anzeigen
+          </button>
         </div>
 
         <div class="brand-strip" aria-label="Marken">
@@ -344,6 +435,29 @@ const process = [
         </div>
       </section>
     </main>
+    <script>
+      const showProjectsButton = document.querySelector("[data-show-projects]");
+      const projectCards = Array.from(document.querySelectorAll("[data-project-card]"));
+      const revealStep = Number(showProjectsButton?.getAttribute("data-visible-count") || 8);
+      let visibleProjects = revealStep;
+
+      function updateProjects() {
+        projectCards.forEach((card, index) => {
+          card.classList.toggle("is-hidden", index >= visibleProjects);
+        });
+
+        if (showProjectsButton && visibleProjects >= projectCards.length) {
+          showProjectsButton.hidden = true;
+        }
+      }
+
+      showProjectsButton?.addEventListener("click", () => {
+        visibleProjects += revealStep;
+        updateProjects();
+      });
+
+      updateProjects();
+    </script>
   </body>
 </html>
 
@@ -605,6 +719,10 @@ const process = [
     overflow: hidden;
   }
 
+  .project-card.is-hidden {
+    display: none;
+  }
+
   .project-card img {
     aspect-ratio: 16 / 9;
     border-bottom: 1px solid var(--line);
@@ -644,6 +762,16 @@ const process = [
     font-size: 14px;
     font-weight: 900;
     margin-top: 22px;
+  }
+
+  .show-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 34px;
+  }
+
+  .show-more-button {
+    min-width: 220px;
   }
 
   .brand-strip {

@@ -454,9 +454,9 @@ const process = [
 
   .hero {
     display: grid;
-    gap: 44px;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-    min-height: 640px;
+    gap: 52px;
+    grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+    min-height: 720px;
     padding-top: 64px;
     position: relative;
   }
@@ -509,16 +509,18 @@ const process = [
   .portrait-wrap {
     align-self: end;
     filter: grayscale(1);
-    justify-self: center;
-    max-width: 400px;
+    justify-self: end;
+    max-width: min(660px, 48vw);
     mix-blend-mode: multiply;
     opacity: 0.82;
+    width: 100%;
   }
 
   .portrait-wrap img {
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     object-position: top center;
+    width: 100%;
   }
 
   .stats {
@@ -792,12 +794,23 @@ const process = [
 
     .hero {
       min-height: auto;
-      padding-top: 48px;
+      padding-top: 0;
     }
 
     .portrait-wrap {
-      justify-self: start;
-      max-width: 240px;
+      justify-self: center;
+      margin-left: -18px;
+      margin-right: -18px;
+      max-width: none;
+      order: -1;
+      width: calc(100% + 36px);
+    }
+
+    .portrait-wrap img {
+      height: auto;
+      object-fit: contain;
+      object-position: center top;
+      width: 100%;
     }
 
     .stats {

@@ -255,17 +255,48 @@ const campaignArchive = [
 const projects = [...featuredProjects, ...campaignArchive];
 const visibleProjectCount = 8;
 
-const brands = [
-  "Panasonic",
-  "KENWOOD",
-  "Hochland",
-  "Parmalat",
-  "Luminarc",
-  "MAKFA",
-  "Dr. Oetker",
-  "BRITA",
-  "Scotch-Brite",
-  "Faberlic",
+const brandLogos = [
+  ["petruha.svg", "Petruha"],
+  ["frau marta.svg", "Frau Marta"],
+  ["biotta.svg", "Biotta"],
+  ["nasha ptichka.svg", "Nasha Ptichka"],
+  ["semushka.svg", "Semushka"],
+  ["hills.svg", "Hill's"],
+  ["biolio.svg", "Biolio"],
+  ["faberlic.svg", "Faberlic"],
+  ["luminarc.svg", "Luminarc"],
+  ["gribnaja raduga.svg", "Gribnaja Raduga"],
+  ["shedroeleto.svg", "Shedroe Leto"],
+  ["udarniza.svg", "Udarniza"],
+  ["ugleche pole.svg", "Ugleche Pole"],
+  ["tojiro.svg", "Tojiro"],
+  ["mjagkij znak.svg", "Mjagkij Znak"],
+  ["edim doma.svg", "Edim Doma"],
+  ["panasonic.svg", "Panasonic"],
+  ["hochland.svg", "Hochland"],
+  ["grovo.svg", "Grovo"],
+  ["maheev.svg", "Maheev"],
+  ["velle.svg", "Velle"],
+  ["scotch-brite.svg", "Scotch-Brite"],
+  ["cherkizovo.svg", "Cherkizovo"],
+  ["dr.oetker.svg", "Dr. Oetker"],
+  ["fish and more.svg", "Fish and More"],
+  ["ezidri.svg", "Ezidri"],
+  ["agama.svg", "Agama"],
+  ["vivid.svg", "Vivid"],
+  ["kenwood.svg", "Kenwood"],
+  ["brita.svg", "Brita"],
+  ["ochakovo.svg", "Ochakovo"],
+  ["makfa.svg", "Makfa"],
+  ["parmalat.svg", "Parmalat"],
+  ["moskowskij provansal.svg", "Moskowskij Provansal"],
+  ["Vitamin Planet.svg", "Vitamin Planet"],
+  ["djadja vanja.svg", "Djadja Vanja"],
+  ["lesaffre.svg", "Lesaffre"],
+  ["synergetic.svg", "Synergetic"],
+  ["kapitan vkusov.svg", "Kapitan Vkusov"],
+  ["national.svg", "National"],
+  ["green ray.svg", "Green Ray"],
 ];
 
 const competencies = [
@@ -384,8 +415,23 @@ const process = [
 
         <div class="brand-strip" aria-label="Marken">
           <p>Brands, fuer die ich gearbeitet habe</p>
-          <div>
-            {brands.map((brand) => <span>{brand}</span>)}
+          <div class="brand-marquee">
+            <div class="brand-marquee-track">
+              <div class="brand-logo-group">
+                {brandLogos.map(([file, name]) => (
+                  <span class="brand-logo">
+                    <img src={`${base}brands/logotypes/${encodeURIComponent(file)}`} alt={name} loading="lazy" />
+                  </span>
+                ))}
+              </div>
+              <div class="brand-logo-group" aria-hidden="true">
+                {brandLogos.map(([file, name]) => (
+                  <span class="brand-logo">
+                    <img src={`${base}brands/logotypes/${encodeURIComponent(file)}`} alt="" loading="lazy" />
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -804,16 +850,61 @@ const process = [
     text-transform: uppercase;
   }
 
-  .brand-strip div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 26px;
+  .brand-marquee {
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 18%, rgba(255, 255, 255, 0) 82%, rgba(255, 255, 255, 0.9)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(245, 245, 245, 0.2));
+    mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%);
+    overflow: hidden;
+    padding: 10px 0;
+    position: relative;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%);
   }
 
-  .brand-strip span {
-    color: #858585;
-    font-size: 18px;
-    font-weight: 900;
+  .brand-marquee-track {
+    animation: logo-marquee 42s linear infinite;
+    display: flex;
+    width: max-content;
+  }
+
+  .brand-logo-group {
+    align-items: center;
+    display: flex;
+    gap: 44px;
+    padding-right: 44px;
+  }
+
+  .brand-logo {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 54px;
+    justify-content: center;
+    min-width: 118px;
+  }
+
+  .brand-logo img {
+    display: block;
+    max-height: 42px;
+    max-width: 128px;
+    object-fit: contain;
+    opacity: 0.9;
+  }
+
+  @keyframes logo-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-marquee-track {
+      animation: none;
+    }
   }
 
   .about {

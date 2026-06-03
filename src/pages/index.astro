@@ -11,6 +11,15 @@ const campaignCover = (url) => {
   return `${base}projects/covers/${slug}.jpg`;
 };
 
+const slugify = (value) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+const compactSlug = (value) => slugify(value).replace(/-/g, "");
+
 const featuredProjects = [
   {
     title: "Zahnarztpraxis Website",
@@ -297,7 +306,12 @@ const brandLogos = [
   ["kapitan vkusov.svg", "Kapitan Vkusov"],
   ["national.svg", "National"],
   ["green ray.svg", "Green Ray"],
-];
+].map(([file, name]) => ({
+  file,
+  name,
+  slug: slugify(file.replace(/\.svg$/i, "")),
+  compact: compactSlug(file.replace(/\.svg$/i, "")),
+}));
 
 const competencies = [
   ["Digital Campaign Design", "Landing Pages und Special Projects fuer Marken, Produkte und saisonale Kampagnen."],
@@ -370,6 +384,41 @@ const process = [
       </section>
 
       <section id="projects" class="section projects">
+        <div class="brand-strip" aria-label="Marken" data-brand-strip>
+          <p>
+            <span>Marken, fuer die ich</span>
+            <span>gearbeitet habe</span>
+          </p>
+          <div class="brand-marquee">
+            <div class="brand-marquee-track">
+              <div class="brand-logo-group">
+                {brandLogos.map((brand) => (
+                  <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                    <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="lazy" />
+                  </button>
+                ))}
+              </div>
+              <div class="brand-logo-group" aria-hidden="true">
+                {brandLogos.map((brand) => (
+                  <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`}>
+                    <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt="" loading="lazy" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div class="brand-logo-panel" data-brand-panel>
+            {brandLogos.map((brand) => (
+              <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="lazy" />
+              </button>
+            ))}
+          </div>
+          <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
+            Alle Marken
+          </button>
+        </div>
+
         <div class="section-head">
           <div>
             <p class="eyebrow">Ausgewaehlte Projekte</p>
@@ -382,18 +431,25 @@ const process = [
         </div>
 
         <div class="filters" aria-label="Projektkategorien">
-          <span>Alle</span>
-          <span>Web Design</span>
-          <span>Healthcare</span>
-          <span>Food & Beverage</span>
-          <span>Lifestyle</span>
-          <span>Kuechengeraete</span>
-          <span>Saisonale Kampagnen</span>
+          <button class="filter-button is-active" type="button" data-category-filter="all">Alle</button>
+          <button class="filter-button" type="button" data-category-filter="web-design">Web Design</button>
+          <button class="filter-button" type="button" data-category-filter="healthcare">Healthcare</button>
+          <button class="filter-button" type="button" data-category-filter="food-beverage">Food & Beverage</button>
+          <button class="filter-button" type="button" data-category-filter="lifestyle">Lifestyle</button>
+          <button class="filter-button" type="button" data-category-filter="kuechengeraete">Kuechengeraete</button>
+          <button class="filter-button" type="button" data-category-filter="saisonale-kampagne">Saisonale Kampagnen</button>
+        </div>
+
+        <div class="active-brand-filter" data-active-brand hidden>
+          <span>Aktiver Markenfilter</span>
+          <img src="" alt="" data-active-brand-logo />
+          <strong data-active-brand-name></strong>
+          <button type="button" data-clear-brand-filter aria-label="Markenfilter entfernen">×</button>
         </div>
 
         <div class="project-grid">
           {projects.map((project, index) => (
-            <article class={`project-card ${index >= visibleProjectCount ? "is-hidden" : ""}`} data-project-card>
+            <article class={`project-card ${index >= visibleProjectCount ? "is-hidden" : ""}`} data-project-card data-project-category={slugify(project.category)} data-project-search={slugify(`${project.title} ${project.category} ${project.url}`)} data-project-compact={compactSlug(`${project.title} ${project.category} ${project.url}`)}>
               <a href={project.url} target="_blank" rel="noreferrer">
                 <img src={project.image} alt={`${project.title} Vorschau`} loading="lazy" />
                 <div class="project-body">
@@ -410,41 +466,6 @@ const process = [
         <div class="show-more-wrap">
           <button class="button light show-more-button" type="button" data-show-projects data-visible-count={visibleProjectCount}>
             Mehr Projekte anzeigen
-          </button>
-        </div>
-
-        <div class="brand-strip" aria-label="Marken" data-brand-strip>
-          <p>
-            <span>Marken, fuer die ich</span>
-            <span>gearbeitet habe</span>
-          </p>
-          <div class="brand-marquee">
-            <div class="brand-marquee-track">
-              <div class="brand-logo-group">
-                {brandLogos.map(([file, name]) => (
-                  <span class="brand-logo">
-                    <img src={`${base}brands/logotypes/${encodeURIComponent(file)}`} alt={name} loading="lazy" />
-                  </span>
-                ))}
-              </div>
-              <div class="brand-logo-group" aria-hidden="true">
-                {brandLogos.map(([file, name]) => (
-                  <span class="brand-logo">
-                    <img src={`${base}brands/logotypes/${encodeURIComponent(file)}`} alt="" loading="lazy" />
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div class="brand-logo-panel" data-brand-panel>
-            {brandLogos.map(([file, name]) => (
-              <span class="brand-logo static">
-                <img src={`${base}brands/logotypes/${encodeURIComponent(file)}`} alt={name} loading="lazy" />
-              </span>
-            ))}
-          </div>
-          <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
-            Alle Marken
           </button>
         </div>
       </section>
@@ -510,13 +531,40 @@ const process = [
     <script>
       const showProjectsButton = document.querySelector("[data-show-projects]");
       const projectCards = Array.from(document.querySelectorAll("[data-project-card]"));
+      const categoryButtons = Array.from(document.querySelectorAll("[data-category-filter]"));
       const brandToggle = document.querySelector("[data-toggle-brands]");
       const brandPanel = document.querySelector("[data-brand-panel]");
       const brandStrip = document.querySelector("[data-brand-strip]");
+      const brandFilterButtons = Array.from(document.querySelectorAll("[data-brand-filter]"));
+      const activeBrand = document.querySelector("[data-active-brand]");
+      const activeBrandLogo = document.querySelector("[data-active-brand-logo]");
+      const activeBrandName = document.querySelector("[data-active-brand-name]");
+      const clearBrandFilter = document.querySelector("[data-clear-brand-filter]");
       const revealStep = Number(showProjectsButton?.getAttribute("data-visible-count") || 8);
       let visibleProjects = revealStep;
+      let currentBrand = null;
+      let currentCategory = "all";
 
       function updateProjects() {
+        const hasActiveFilter = Boolean(currentBrand) || currentCategory !== "all";
+
+        if (hasActiveFilter) {
+          projectCards.forEach((card) => {
+            const search = card.getAttribute("data-project-search") || "";
+            const compact = card.getAttribute("data-project-compact") || "";
+            const category = card.getAttribute("data-project-category") || "";
+            const matchesBrand = !currentBrand || search.includes(currentBrand.slug) || compact.includes(currentBrand.compact);
+            const matchesCategory = currentCategory === "all" || category === currentCategory;
+            card.classList.toggle("is-hidden", !(matchesBrand && matchesCategory));
+          });
+
+          if (showProjectsButton) {
+            showProjectsButton.hidden = true;
+          }
+
+          return;
+        }
+
         projectCards.forEach((card, index) => {
           card.classList.toggle("is-hidden", index >= visibleProjects);
         });
@@ -526,10 +574,57 @@ const process = [
         }
       }
 
+      function setBrandFilter(button) {
+        currentBrand = {
+          slug: button.getAttribute("data-brand-filter") || "",
+          compact: button.getAttribute("data-brand-compact") || "",
+          name: button.getAttribute("data-brand-name") || "",
+          logo: button.getAttribute("data-brand-logo") || "",
+        };
+
+        if (activeBrand && activeBrandLogo && activeBrandName) {
+          activeBrand.hidden = false;
+          activeBrandLogo.setAttribute("src", currentBrand.logo);
+          activeBrandLogo.setAttribute("alt", currentBrand.name);
+          activeBrandName.textContent = currentBrand.name;
+        }
+
+        updateProjects();
+        document.querySelector("#projects")?.scrollIntoView({ block: "start" });
+      }
+
+      function resetBrandFilter() {
+        currentBrand = null;
+
+        if (activeBrand) {
+          activeBrand.hidden = true;
+        }
+
+        if (showProjectsButton) {
+          showProjectsButton.hidden = visibleProjects >= projectCards.length;
+        }
+
+        updateProjects();
+      }
+
       showProjectsButton?.addEventListener("click", () => {
         visibleProjects += revealStep;
         updateProjects();
       });
+
+      categoryButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          currentCategory = button.getAttribute("data-category-filter") || "all";
+          categoryButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+          updateProjects();
+        });
+      });
+
+      brandFilterButtons.forEach((button) => {
+        button.addEventListener("click", () => setBrandFilter(button));
+      });
+
+      clearBrandFilter?.addEventListener("click", resetBrandFilter);
 
       brandToggle?.addEventListener("click", () => {
         const isOpen = brandPanel?.classList.toggle("is-open");
@@ -773,16 +868,19 @@ const process = [
     margin-bottom: 32px;
   }
 
-  .filters span {
+  .filter-button {
+    appearance: none;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
+    color: var(--ink);
+    cursor: pointer;
     font-size: 13px;
     font-weight: 800;
     padding: 12px 18px;
   }
 
-  .filters span:first-child {
+  .filter-button.is-active {
     background: var(--ink);
     color: white;
   }
@@ -860,7 +958,7 @@ const process = [
     display: flex;
     flex-direction: column;
     gap: 22px;
-    margin-top: 42px;
+    margin-bottom: 56px;
     padding-top: 28px;
   }
 
@@ -899,25 +997,37 @@ const process = [
   .brand-logo-group {
     align-items: center;
     display: flex;
-    gap: 72px;
-    padding-right: 72px;
+    gap: 112px;
+    padding-right: 112px;
   }
 
   .brand-logo {
     align-items: center;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
     display: inline-flex;
     flex: 0 0 auto;
-    height: 117px;
+    height: 264px;
     justify-content: center;
-    min-width: 252px;
+    min-width: 520px;
+    padding: 0;
   }
 
   .brand-logo img {
     display: block;
-    max-height: 93px;
-    max-width: 282px;
+    max-height: 210px;
+    max-width: 560px;
     object-fit: contain;
     opacity: 0.9;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .brand-logo:hover img,
+  .brand-logo:focus-visible img {
+    opacity: 1;
+    transform: scale(1.03);
   }
 
   .brand-toggle {
@@ -927,8 +1037,8 @@ const process = [
 
   .brand-logo-panel {
     display: none;
-    gap: 34px 42px;
-    grid-template-columns: repeat(4, minmax(180px, 1fr));
+    gap: 52px 64px;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
     padding-top: 10px;
     width: 100%;
   }
@@ -938,8 +1048,58 @@ const process = [
   }
 
   .brand-logo.static {
-    height: 123px;
+    height: 278px;
     min-width: 0;
+  }
+
+  .active-brand-filter {
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    display: inline-flex;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding: 12px 14px 12px 16px;
+    width: fit-content;
+  }
+
+  .active-brand-filter[hidden] {
+    display: none;
+  }
+
+  .active-brand-filter span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .active-brand-filter img {
+    max-height: 42px;
+    max-width: 130px;
+    object-fit: contain;
+  }
+
+  .active-brand-filter strong {
+    font-size: 15px;
+  }
+
+  .active-brand-filter button {
+    align-items: center;
+    appearance: none;
+    background: var(--ink);
+    border: 0;
+    border-radius: 999px;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 28px;
+    font-weight: 600;
+    height: 38px;
+    justify-content: center;
+    line-height: 1;
+    width: 38px;
   }
 
   @keyframes logo-marquee {
@@ -1060,7 +1220,7 @@ const process = [
     }
 
     .brand-logo-panel {
-      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
     }
   }
 
@@ -1125,13 +1285,13 @@ const process = [
     }
 
     .brand-logo {
-      height: 102px;
-      min-width: 207px;
+      height: 156px;
+      min-width: 260px;
     }
 
     .brand-logo img {
-      max-height: 78px;
-      max-width: 231px;
+      max-height: 120px;
+      max-width: 280px;
     }
 
     .brand-logo-panel {
@@ -1139,7 +1299,13 @@ const process = [
     }
 
     .brand-logo.static {
-      height: 102px;
+      height: 156px;
+    }
+
+    .active-brand-filter {
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
     }
 
     .actions {

@@ -419,7 +419,7 @@ const process = [
           </button>
         </div>
 
-        <div class="section-head">
+        <div class="section-head" data-project-results>
           <div>
             <p class="eyebrow">Ausgewaehlte Projekte</p>
             <h2>Websites und digitale Kampagnen fuer starke Marken</h2>
@@ -590,7 +590,7 @@ const process = [
         }
 
         updateProjects();
-        document.querySelector("#projects")?.scrollIntoView({ block: "start" });
+        document.querySelector("[data-project-results]")?.scrollIntoView({ block: "start" });
       }
 
       function resetBrandFilter() {
@@ -997,8 +997,8 @@ const process = [
   .brand-logo-group {
     align-items: center;
     display: flex;
-    gap: 112px;
-    padding-right: 112px;
+    gap: 100px;
+    padding-right: 100px;
   }
 
   .brand-logo {
@@ -1009,19 +1009,21 @@ const process = [
     cursor: pointer;
     display: inline-flex;
     flex: 0 0 auto;
-    height: 264px;
+    height: 220px;
     justify-content: center;
-    min-width: 520px;
+    min-width: 340px;
     padding: 0;
   }
 
   .brand-logo img {
     display: block;
-    max-height: 210px;
-    max-width: 560px;
+    height: auto;
+    max-height: 180px;
+    max-width: 100%;
     object-fit: contain;
     opacity: 0.9;
     transition: opacity 180ms ease, transform 180ms ease;
+    width: 100%;
   }
 
   .brand-logo:hover img,
@@ -1037,8 +1039,8 @@ const process = [
 
   .brand-logo-panel {
     display: none;
-    gap: 52px 64px;
-    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 44px 52px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     padding-top: 10px;
     width: 100%;
   }
@@ -1048,7 +1050,7 @@ const process = [
   }
 
   .brand-logo.static {
-    height: 278px;
+    height: 180px;
     min-width: 0;
   }
 
@@ -1220,7 +1222,7 @@ const process = [
     }
 
     .brand-logo-panel {
-      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
@@ -1285,13 +1287,12 @@ const process = [
     }
 
     .brand-logo {
-      height: 156px;
+      height: 170px;
       min-width: 260px;
     }
 
     .brand-logo img {
-      max-height: 120px;
-      max-width: 280px;
+      max-height: 140px;
     }
 
     .brand-logo-panel {

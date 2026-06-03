@@ -413,8 +413,11 @@ const process = [
           </button>
         </div>
 
-        <div class="brand-strip" aria-label="Marken">
-          <p>Marken, fuer die ich gearbeitet habe</p>
+        <div class="brand-strip" aria-label="Marken" data-brand-strip>
+          <p>
+            <span>Marken, fuer die ich</span>
+            <span>gearbeitet habe</span>
+          </p>
           <div class="brand-marquee">
             <div class="brand-marquee-track">
               <div class="brand-logo-group">
@@ -433,9 +436,6 @@ const process = [
               </div>
             </div>
           </div>
-          <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
-            Alle Marken
-          </button>
           <div class="brand-logo-panel" data-brand-panel>
             {brandLogos.map(([file, name]) => (
               <span class="brand-logo static">
@@ -443,6 +443,9 @@ const process = [
               </span>
             ))}
           </div>
+          <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
+            Alle Marken
+          </button>
         </div>
       </section>
 
@@ -509,6 +512,7 @@ const process = [
       const projectCards = Array.from(document.querySelectorAll("[data-project-card]"));
       const brandToggle = document.querySelector("[data-toggle-brands]");
       const brandPanel = document.querySelector("[data-brand-panel]");
+      const brandStrip = document.querySelector("[data-brand-strip]");
       const revealStep = Number(showProjectsButton?.getAttribute("data-visible-count") || 8);
       let visibleProjects = revealStep;
 
@@ -529,6 +533,7 @@ const process = [
 
       brandToggle?.addEventListener("click", () => {
         const isOpen = brandPanel?.classList.toggle("is-open");
+        brandStrip?.classList.toggle("is-expanded", Boolean(isOpen));
         brandToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
         brandToggle.textContent = isOpen ? "Marken ausblenden" : "Alle Marken";
       });
@@ -864,7 +869,12 @@ const process = [
     font-size: 12px;
     font-weight: 900;
     letter-spacing: 0.08em;
+    line-height: 1.35;
     text-transform: uppercase;
+  }
+
+  .brand-strip p span {
+    display: block;
   }
 
   .brand-marquee {
@@ -876,6 +886,10 @@ const process = [
     width: 100%;
   }
 
+  .brand-strip.is-expanded .brand-marquee {
+    display: none;
+  }
+
   .brand-marquee-track {
     animation: logo-marquee 82s linear infinite;
     display: flex;
@@ -885,23 +899,23 @@ const process = [
   .brand-logo-group {
     align-items: center;
     display: flex;
-    gap: 58px;
-    padding-right: 58px;
+    gap: 72px;
+    padding-right: 72px;
   }
 
   .brand-logo {
     align-items: center;
     display: inline-flex;
     flex: 0 0 auto;
-    height: 78px;
+    height: 117px;
     justify-content: center;
-    min-width: 168px;
+    min-width: 252px;
   }
 
   .brand-logo img {
     display: block;
-    max-height: 62px;
-    max-width: 188px;
+    max-height: 93px;
+    max-width: 282px;
     object-fit: contain;
     opacity: 0.9;
   }
@@ -913,8 +927,8 @@ const process = [
 
   .brand-logo-panel {
     display: none;
-    gap: 28px 34px;
-    grid-template-columns: repeat(6, minmax(120px, 1fr));
+    gap: 34px 42px;
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
     padding-top: 10px;
     width: 100%;
   }
@@ -924,7 +938,7 @@ const process = [
   }
 
   .brand-logo.static {
-    height: 82px;
+    height: 123px;
     min-width: 0;
   }
 
@@ -1046,7 +1060,7 @@ const process = [
     }
 
     .brand-logo-panel {
-      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
     }
   }
 
@@ -1111,17 +1125,21 @@ const process = [
     }
 
     .brand-logo {
-      height: 68px;
-      min-width: 138px;
+      height: 102px;
+      min-width: 207px;
     }
 
     .brand-logo img {
-      max-height: 52px;
-      max-width: 154px;
+      max-height: 78px;
+      max-width: 231px;
     }
 
     .brand-logo-panel {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .brand-logo.static {
+      height: 102px;
     }
 
     .actions {

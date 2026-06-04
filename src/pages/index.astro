@@ -394,14 +394,14 @@ const process = [
               <div class="brand-logo-group">
                 {brandLogos.map((brand) => (
                   <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
-                    <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="lazy" />
+                    <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="eager" decoding="async" />
                   </button>
                 ))}
               </div>
               <div class="brand-logo-group" aria-hidden="true">
                 {brandLogos.map((brand) => (
                   <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`}>
-                    <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt="" loading="lazy" />
+                    <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt="" loading="eager" decoding="async" />
                   </button>
                 ))}
               </div>
@@ -991,6 +991,7 @@ const process = [
   .brand-marquee-track {
     animation: logo-marquee 82s linear infinite;
     display: flex;
+    will-change: transform;
     width: max-content;
   }
 
@@ -1050,8 +1051,10 @@ const process = [
   }
 
   .brand-logo.static {
-    height: 80px;
-    min-width: 0;
+    height: 98px;
+    justify-self: center;
+    min-width: 151px;
+    width: 151px;
   }
 
   .active-brand-filter {
@@ -1300,7 +1303,9 @@ const process = [
     }
 
     .brand-logo.static {
-      height: 69px;
+      height: 75px;
+      min-width: 115px;
+      width: 115px;
     }
 
     .active-brand-filter {

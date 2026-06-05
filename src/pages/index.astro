@@ -265,7 +265,7 @@ const projects = [...featuredProjects, ...campaignArchive];
 const visibleProjectCount = 8;
 
 const brandLogos = [
-  ["ugleche pole.svg", "Ugleche Pole"],
+  ["ugleche pole.svg", "Ugleche Pole", "https://www.edimdoma.ru/agrivolga"],
   ["panasonic.svg", "Panasonic"],
   ["petruha.svg", "Petruha"],
   ["luminarc.svg", "Luminarc"],
@@ -273,27 +273,27 @@ const brandLogos = [
   ["kenwood.svg", "Kenwood"],
   ["frau marta.svg", "Frau Marta"],
   ["brita.svg", "Brita"],
-  ["gribnaja raduga.svg", "Gribnaja Raduga"],
+  ["gribnaja raduga.svg", "Gribnaja Raduga", "https://www.edimdoma.ru/2021/GR"],
   ["faberlic.svg", "Faberlic"],
   ["hills.svg", "Hill's"],
   ["tojiro.svg", "Tojiro"],
-  ["djadja vanja.svg", "Djadja Vanja"],
+  ["djadja vanja.svg", "Djadja Vanja", "https://www.edimdoma.ru/2021/dv"],
   ["agama.svg", "Agama"],
   ["velle.svg", "Velle"],
-  ["ochakovo.svg", "Ochakovo"],
-  ["Vitamin Planet.svg", "Vitamin Planet"],
+  ["ochakovo.svg", "Ochakovo", "https://www.edimdoma.ru/2017/machogazpacho"],
+  ["Vitamin Planet.svg", "Vitamin Planet", "https://www.edimdoma.ru/2018/vitamin"],
   ["ezidri.svg", "Ezidri"],
   ["grovo.svg", "Grovo"],
   ["biotta.svg", "Biotta"],
   ["kapitan vkusov.svg", "Kapitan Vkusov"],
   ["makfa.svg", "Makfa"],
   ["dr.oetker.svg", "Dr. Oetker"],
-  ["moskowskij provansal.svg", "Moskowskij Provansal"],
+  ["moskowskij provansal.svg", "Moskowskij Provansal", "https://www.edimdoma.ru/2019/provancal"],
   ["fish and more.svg", "Fish and More"],
   ["national.svg", "National"],
-  ["mjagkij znak.svg", "Mjagkij Znak"],
+  ["mjagkij znak.svg", "Mjagkij Znak", "https://www.edimdoma.ru/2018/m-znak"],
   ["maheev.svg", "Maheev"],
-  ["lesaffre.svg", "Lesaffre"],
+  ["lesaffre.svg", "Lesaffre", "https://www.edimdoma.ru/2017/saf"],
   ["biolio.svg", "Biolio"],
   ["scotch-brite.svg", "Scotch-Brite"],
   ["semushka.svg", "Semushka"],
@@ -302,15 +302,21 @@ const brandLogos = [
   ["shedroeleto.svg", "Shedroe Leto"],
   ["parmalat.svg", "Parmalat"],
   ["synergetic.svg", "Synergetic"],
-  ["green ray.svg", "Green Ray"],
+  ["green ray.svg", "Green Ray", "https://www.edimdoma.ru/2019/astratomat#1"],
   ["vivid.svg", "Vivid"],
   ["hochland.svg", "Hochland"],
-  ["udarniza.svg", "Udarniza"],
-].map(([file, name]) => ({
+  ["udarniza.svg", "Udarniza", "https://www.edimdoma.ru/2018/udarnitsa"],
+  ["biokor.svg", "Biokor", "https://www.edimdoma.ru/2017/lito"],
+  ["leonardo.svg", "Leonardo", "https://www.edimdoma.ru/leonardo"],
+  ["pomidorka.svg", "Pomidorka", "https://www.edimdoma.ru/pomidorka"],
+  ["sloboda.svg", "Sloboda", "https://www.edimdoma.ru/sloboda"],
+].map(([file, name, projectUrl = ""]) => ({
   file,
   name,
   slug: slugify(file.replace(/\.svg$/i, "")),
   compact: compactSlug(file.replace(/\.svg$/i, "")),
+  projectSlug: slugify(projectUrl),
+  projectCompact: compactSlug(projectUrl),
 }));
 
 const competencies = [
@@ -393,14 +399,14 @@ const process = [
             <div class="brand-marquee-track">
               <div class="brand-logo-group">
                 {brandLogos.map((brand) => (
-                  <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                  <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slug={brand.projectSlug} data-brand-project-compact={brand.projectCompact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
                     <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="eager" decoding="async" />
                   </button>
                 ))}
               </div>
               <div class="brand-logo-group" aria-hidden="true">
                 {brandLogos.map((brand) => (
-                  <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`}>
+                  <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slug={brand.projectSlug} data-brand-project-compact={brand.projectCompact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`}>
                     <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt="" loading="eager" decoding="async" />
                   </button>
                 ))}
@@ -415,7 +421,7 @@ const process = [
             </div>
             <div class="brand-logo-panel" data-brand-panel>
               {brandLogos.map((brand) => (
-                <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slug={brand.projectSlug} data-brand-project-compact={brand.projectCompact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
                   <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="lazy" />
                 </button>
               ))}
@@ -557,7 +563,10 @@ const process = [
             const search = card.getAttribute("data-project-search") || "";
             const compact = card.getAttribute("data-project-compact") || "";
             const category = card.getAttribute("data-project-category") || "";
-            const matchesBrand = !currentBrand || search.includes(currentBrand.slug) || compact.includes(currentBrand.compact);
+            const matchesBrand = !currentBrand ||
+              (currentBrand.projectSlug
+                ? search.includes(currentBrand.projectSlug) || compact.includes(currentBrand.projectCompact)
+                : search.includes(currentBrand.slug) || compact.includes(currentBrand.compact));
             const matchesCategory = currentCategory === "all" || category === currentCategory;
             card.classList.toggle("is-hidden", !(matchesBrand && matchesCategory));
           });
@@ -582,6 +591,8 @@ const process = [
         currentBrand = {
           slug: button.getAttribute("data-brand-filter") || "",
           compact: button.getAttribute("data-brand-compact") || "",
+          projectSlug: button.getAttribute("data-brand-project-slug") || "",
+          projectCompact: button.getAttribute("data-brand-project-compact") || "",
           name: button.getAttribute("data-brand-name") || "",
           logo: button.getAttribute("data-brand-logo") || "",
         };

@@ -1044,6 +1044,24 @@ const process = [
     align-self: center;
   }
 
+  .brand-strip.is-expanded .brand-toggle-dock {
+    background: linear-gradient(to top, var(--bg) 0%, rgba(247, 247, 245, 0.96) 42%, rgba(247, 247, 245, 0) 100%);
+    padding: 52px clamp(18px, 4vw, 48px) max(16px, env(safe-area-inset-bottom));
+    position: sticky;
+    top: calc(100dvh - 116px);
+    width: 100%;
+    z-index: 9;
+  }
+
+  .brand-strip.is-expanded .brand-toggle {
+    background: var(--ink);
+    color: #fff;
+    margin: 0;
+    max-width: none;
+    pointer-events: auto;
+    width: 100%;
+  }
+
   .brand-logo-panel {
     display: none;
     gap: 44px 52px;
@@ -1054,6 +1072,10 @@ const process = [
 
   .brand-logo-panel.is-open {
     display: grid;
+  }
+
+  .brand-strip.is-expanded .brand-logo-panel {
+    padding-bottom: 112px;
   }
 
   .brand-logo.static {
@@ -1235,31 +1257,9 @@ const process = [
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .brand-strip.is-expanded .brand-logo-panel {
-      padding-bottom: 112px;
-    }
-
     .brand-logo.static {
       min-width: 0;
       width: min(151px, 100%);
-    }
-
-    .brand-strip.is-expanded .brand-toggle-dock {
-      background: linear-gradient(to top, var(--bg) 0%, rgba(247, 247, 245, 0.96) 42%, rgba(247, 247, 245, 0) 100%);
-      padding: 52px clamp(18px, 4vw, 48px) max(16px, env(safe-area-inset-bottom));
-      position: sticky;
-      top: calc(100dvh - 116px);
-      width: 100%;
-      z-index: 9;
-    }
-
-    .brand-strip.is-expanded .brand-toggle {
-      background: var(--ink);
-      color: #fff;
-      margin: 0;
-      max-width: none;
-      pointer-events: auto;
-      width: 100%;
     }
   }
 

@@ -1231,7 +1231,36 @@ const process = [
     }
 
     .brand-logo-panel {
+      gap: 36px 32px;
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .brand-strip.is-expanded .brand-logo-panel {
+      padding-bottom: 112px;
+    }
+
+    .brand-logo.static {
+      min-width: 0;
+      width: min(151px, 100%);
+    }
+
+    .brand-strip.is-expanded .brand-toggle-dock {
+      background: linear-gradient(to top, var(--bg) 0%, rgba(247, 247, 245, 0.96) 42%, rgba(247, 247, 245, 0) 100%);
+      bottom: 0;
+      left: 0;
+      padding: 52px clamp(18px, 4vw, 48px) max(16px, env(safe-area-inset-bottom));
+      position: fixed;
+      right: 0;
+      z-index: 9;
+    }
+
+    .brand-strip.is-expanded .brand-toggle {
+      background: var(--ink);
+      color: #fff;
+      margin: 0;
+      max-width: none;
+      pointer-events: auto;
+      width: 100%;
     }
   }
 
@@ -1305,35 +1334,14 @@ const process = [
     }
 
     .brand-logo-panel {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .brand-strip.is-expanded .brand-logo-panel {
-      padding-bottom: 112px;
+      gap: 28px 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .brand-logo.static {
       height: 75px;
-      min-width: 115px;
-      width: 115px;
-    }
-
-    .brand-strip.is-expanded .brand-toggle-dock {
-      background: linear-gradient(to top, var(--bg) 0%, rgba(247, 247, 245, 0.96) 42%, rgba(247, 247, 245, 0) 100%);
-      bottom: 0;
-      left: 0;
-      padding: 52px 18px max(16px, env(safe-area-inset-bottom));
-      position: fixed;
-      right: 0;
-      z-index: 9;
-    }
-
-    .brand-strip.is-expanded .brand-toggle {
-      background: var(--ink);
-      color: #fff;
-      margin: 0 auto;
-      max-width: 420px;
-      pointer-events: auto;
+      min-width: 0;
+      width: min(115px, 100%);
     }
 
     .active-brand-filter {

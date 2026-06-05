@@ -414,9 +414,11 @@ const process = [
               </button>
             ))}
           </div>
-          <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
-            Alle Marken
-          </button>
+          <div class="brand-toggle-dock">
+            <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
+              Alle Marken
+            </button>
+          </div>
         </div>
 
         <div class="section-head" data-project-results>
@@ -1038,6 +1040,10 @@ const process = [
     min-width: 180px;
   }
 
+  .brand-toggle-dock {
+    align-self: center;
+  }
+
   .brand-logo-panel {
     display: none;
     gap: 44px 52px;
@@ -1302,10 +1308,32 @@ const process = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .brand-strip.is-expanded .brand-logo-panel {
+      padding-bottom: 112px;
+    }
+
     .brand-logo.static {
       height: 75px;
       min-width: 115px;
       width: 115px;
+    }
+
+    .brand-strip.is-expanded .brand-toggle-dock {
+      background: linear-gradient(to top, var(--bg) 0%, rgba(247, 247, 245, 0.96) 42%, rgba(247, 247, 245, 0) 100%);
+      bottom: 0;
+      left: 0;
+      padding: 52px 18px max(16px, env(safe-area-inset-bottom));
+      position: fixed;
+      right: 0;
+      z-index: 9;
+    }
+
+    .brand-strip.is-expanded .brand-toggle {
+      background: var(--ink);
+      color: #fff;
+      margin: 0 auto;
+      max-width: 420px;
+      pointer-events: auto;
     }
 
     .active-brand-filter {

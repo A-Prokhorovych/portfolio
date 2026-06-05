@@ -407,17 +407,19 @@ const process = [
               </div>
             </div>
           </div>
-          <div class="brand-toggle-dock">
-            <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
-              Alle Marken
-            </button>
-          </div>
-          <div class="brand-logo-panel" data-brand-panel>
-            {brandLogos.map((brand) => (
-              <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
-                <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="lazy" />
+          <div class="brand-expanded-content">
+            <div class="brand-toggle-dock">
+              <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
+                Alle Marken
               </button>
-            ))}
+            </div>
+            <div class="brand-logo-panel" data-brand-panel>
+              {brandLogos.map((brand) => (
+                <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                  <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="lazy" />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -1044,9 +1046,22 @@ const process = [
     align-self: center;
   }
 
+  .brand-expanded-content {
+    display: contents;
+  }
+
+  .brand-strip.is-expanded .brand-expanded-content {
+    display: grid;
+    position: relative;
+  }
+
   .brand-strip.is-expanded .brand-toggle-dock {
+    align-self: start;
     background: linear-gradient(to top, var(--bg) 0%, rgba(247, 247, 245, 0.96) 42%, rgba(247, 247, 245, 0) 100%);
-    margin-bottom: -116px;
+    display: flex;
+    grid-area: 1 / 1;
+    height: 116px;
+    justify-content: center;
     padding: 52px clamp(18px, 4vw, 48px) max(16px, env(safe-area-inset-bottom));
     position: sticky;
     top: calc(100dvh - 116px);
@@ -1072,6 +1087,10 @@ const process = [
 
   .brand-logo-panel.is-open {
     display: grid;
+  }
+
+  .brand-strip.is-expanded .brand-logo-panel {
+    grid-area: 1 / 1;
   }
 
   .brand-strip.is-expanded .brand-logo-panel {

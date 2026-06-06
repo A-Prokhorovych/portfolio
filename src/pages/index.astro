@@ -280,7 +280,7 @@ const brandLogos = [
   ["djadja vanja.svg", "Djadja Vanja", "https://www.edimdoma.ru/2021/dv"],
   ["agama.svg", "Agama"],
   ["velle.svg", "Velle"],
-  ["ochakovo.svg", "Ochakovo", "https://www.edimdoma.ru/2017/machogazpacho"],
+  ["ochakovo.svg", "Ochakovo", ["https://www.edimdoma.ru/2017/machogazpacho", "https://www.edimdoma.ru/2017/ochakovo"]],
   ["Vitamin Planet.svg", "Vitamin Planet", "https://www.edimdoma.ru/2018/vitamin"],
   ["ezidri.svg", "Ezidri"],
   ["grovo.svg", "Grovo"],
@@ -310,14 +310,18 @@ const brandLogos = [
   ["leonardo.svg", "Leonardo", "https://www.edimdoma.ru/leonardo"],
   ["pomidorka.svg", "Pomidorka", "https://www.edimdoma.ru/pomidorka"],
   ["sloboda.svg", "Sloboda", "https://www.edimdoma.ru/sloboda"],
-].map(([file, name, projectUrl = ""]) => ({
-  file,
-  name,
-  slug: slugify(file.replace(/\.svg$/i, "")),
-  compact: compactSlug(file.replace(/\.svg$/i, "")),
-  projectSlug: slugify(projectUrl),
-  projectCompact: compactSlug(projectUrl),
-}));
+].map(([file, name, projectUrl = ""]) => {
+  const projectUrls = Array.isArray(projectUrl) ? projectUrl : projectUrl ? [projectUrl] : [];
+
+  return {
+    file,
+    name,
+    slug: slugify(file.replace(/\.svg$/i, "")),
+    compact: compactSlug(file.replace(/\.svg$/i, "")),
+    projectSlugs: projectUrls.map(slugify).join("|"),
+    projectCompacts: projectUrls.map(compactSlug).join("|"),
+  };
+});
 
 const competencies = [
   ["Digital Campaign Design", "Landing Pages und Special Projects fuer Marken, Produkte und saisonale Kampagnen."],
@@ -399,14 +403,14 @@ const process = [
             <div class="brand-marquee-track">
               <div class="brand-logo-group">
                 {brandLogos.map((brand) => (
-                  <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slug={brand.projectSlug} data-brand-project-compact={brand.projectCompact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                  <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
                     <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="eager" decoding="async" />
                   </button>
                 ))}
               </div>
               <div class="brand-logo-group" aria-hidden="true">
                 {brandLogos.map((brand) => (
-                  <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slug={brand.projectSlug} data-brand-project-compact={brand.projectCompact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`}>
+                  <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`}>
                     <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt="" loading="eager" decoding="async" />
                   </button>
                 ))}
@@ -421,7 +425,7 @@ const process = [
             </div>
             <div class="brand-logo-panel" data-brand-panel>
               {brandLogos.map((brand) => (
-                <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slug={brand.projectSlug} data-brand-project-compact={brand.projectCompact} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
                   <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="lazy" />
                 </button>
               ))}
@@ -564,8 +568,9 @@ const process = [
             const compact = card.getAttribute("data-project-compact") || "";
             const category = card.getAttribute("data-project-category") || "";
             const matchesBrand = !currentBrand ||
-              (currentBrand.projectSlug
-                ? search.includes(currentBrand.projectSlug) || compact.includes(currentBrand.projectCompact)
+              (currentBrand.projectSlugs.length
+                ? currentBrand.projectSlugs.some((slug) => search.includes(slug)) ||
+                  currentBrand.projectCompacts.some((projectCompact) => compact.includes(projectCompact))
                 : search.includes(currentBrand.slug) || compact.includes(currentBrand.compact));
             const matchesCategory = currentCategory === "all" || category === currentCategory;
             card.classList.toggle("is-hidden", !(matchesBrand && matchesCategory));
@@ -591,8 +596,8 @@ const process = [
         currentBrand = {
           slug: button.getAttribute("data-brand-filter") || "",
           compact: button.getAttribute("data-brand-compact") || "",
-          projectSlug: button.getAttribute("data-brand-project-slug") || "",
-          projectCompact: button.getAttribute("data-brand-project-compact") || "",
+          projectSlugs: (button.getAttribute("data-brand-project-slugs") || "").split("|").filter(Boolean),
+          projectCompacts: (button.getAttribute("data-brand-project-compacts") || "").split("|").filter(Boolean),
           name: button.getAttribute("data-brand-name") || "",
           logo: button.getAttribute("data-brand-logo") || "",
         };

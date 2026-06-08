@@ -423,6 +423,56 @@ const process = [
       </section>
 
       <section id="projects" class="section projects">
+        <div class="section-head" data-project-results>
+          <div>
+            <p class="eyebrow">Ausgewaehlte Projekte</p>
+            <h2>Websites und digitale Kampagnen fuer starke Marken</h2>
+          </div>
+          <p>
+            Eine kuratierte Auswahl aus Webdesign-Projekten, Landing Pages, Kampagnenseiten und kommerziellen
+            Special Projects fuer deutsche Kunden und bekannte Marken.
+          </p>
+        </div>
+
+        <div class="filters" aria-label="Projektkategorien">
+          <button class="filter-button is-active" type="button" data-category-filter="all">Alle</button>
+          <button class="filter-button" type="button" data-category-filter="web-design">Web Design</button>
+          <button class="filter-button" type="button" data-category-filter="healthcare">Healthcare</button>
+          <button class="filter-button" type="button" data-category-filter="food-and-beverage">Food & Beverage</button>
+          <button class="filter-button" type="button" data-category-filter="lifestyle">Lifestyle</button>
+          <button class="filter-button" type="button" data-category-filter="kuechengeraete">Kuechengeraete</button>
+          <button class="filter-button" type="button" data-category-filter="saisonale-kampagne">Saisonale Kampagnen</button>
+        </div>
+
+        <div class="active-brand-filter" data-active-brand hidden>
+          <span>Aktiver Markenfilter</span>
+          <img src="" alt="" data-active-brand-logo />
+          <strong data-active-brand-name></strong>
+          <button type="button" data-clear-brand-filter aria-label="Markenfilter entfernen">×</button>
+        </div>
+
+        <div class="project-grid">
+          {projects.map((project, index) => (
+            <article class={`project-card ${index >= visibleProjectCount ? "is-hidden" : ""}`} data-project-card data-project-year={project.year} data-project-category={slugify(project.category)} data-project-search={slugify(`${project.title} ${project.category} ${project.url}`)} data-project-compact={compactSlug(`${project.title} ${project.category} ${project.url}`)}>
+              <a href={project.url} target="_blank" rel="noreferrer">
+                <img src={project.image} alt={`${project.title} Vorschau`} loading="lazy" />
+                <div class="project-body">
+                  <p class="meta">{project.year} · {project.category}</p>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <span>Live ansehen</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div class="show-more-wrap">
+          <button class="button light show-more-button" type="button" data-show-projects data-visible-count={visibleProjectCount}>
+            Mehr Projekte anzeigen
+          </button>
+        </div>
+
         <div class="brand-strip" aria-label="Marken" data-brand-strip>
           <p>
             <span>Marken, fuer die ich</span>
@@ -460,56 +510,6 @@ const process = [
               ))}
             </div>
           </div>
-        </div>
-
-        <div class="section-head" data-project-results>
-          <div>
-            <p class="eyebrow">Ausgewaehlte Projekte</p>
-            <h2>Websites und digitale Kampagnen fuer starke Marken</h2>
-          </div>
-          <p>
-            Eine kuratierte Auswahl aus Webdesign-Projekten, Landing Pages, Kampagnenseiten und kommerziellen
-            Special Projects fuer deutsche Kunden und bekannte Marken.
-          </p>
-        </div>
-
-        <div class="filters" aria-label="Projektkategorien">
-          <button class="filter-button is-active" type="button" data-category-filter="all">Alle</button>
-          <button class="filter-button" type="button" data-category-filter="web-design">Web Design</button>
-          <button class="filter-button" type="button" data-category-filter="healthcare">Healthcare</button>
-          <button class="filter-button" type="button" data-category-filter="food-beverage">Food & Beverage</button>
-          <button class="filter-button" type="button" data-category-filter="lifestyle">Lifestyle</button>
-          <button class="filter-button" type="button" data-category-filter="kuechengeraete">Kuechengeraete</button>
-          <button class="filter-button" type="button" data-category-filter="saisonale-kampagne">Saisonale Kampagnen</button>
-        </div>
-
-        <div class="active-brand-filter" data-active-brand hidden>
-          <span>Aktiver Markenfilter</span>
-          <img src="" alt="" data-active-brand-logo />
-          <strong data-active-brand-name></strong>
-          <button type="button" data-clear-brand-filter aria-label="Markenfilter entfernen">×</button>
-        </div>
-
-        <div class="project-grid">
-          {projects.map((project, index) => (
-            <article class={`project-card ${index >= visibleProjectCount ? "is-hidden" : ""}`} data-project-card data-project-category={slugify(project.category)} data-project-search={slugify(`${project.title} ${project.category} ${project.url}`)} data-project-compact={compactSlug(`${project.title} ${project.category} ${project.url}`)}>
-              <a href={project.url} target="_blank" rel="noreferrer">
-                <img src={project.image} alt={`${project.title} Vorschau`} loading="lazy" />
-                <div class="project-body">
-                  <p class="meta">{project.year} · {project.category}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <span>Live ansehen</span>
-                </div>
-              </a>
-            </article>
-          ))}
-        </div>
-
-        <div class="show-more-wrap">
-          <button class="button light show-more-button" type="button" data-show-projects data-visible-count={visibleProjectCount}>
-            Mehr Projekte anzeigen
-          </button>
         </div>
       </section>
 
@@ -587,11 +587,42 @@ const process = [
       let visibleProjects = revealStep;
       let currentBrand = null;
       let currentCategory = "all";
+      const projectGrid = document.querySelector(".project-grid");
+      const randomProjectOrder = [...projectCards];
+
+      for (let index = randomProjectOrder.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [randomProjectOrder[index], randomProjectOrder[randomIndex]] = [randomProjectOrder[randomIndex], randomProjectOrder[index]];
+      }
+
+      function orderProjectCards(cards) {
+        cards.forEach((card) => projectGrid?.append(card));
+      }
+
+      function resetAllFilters() {
+        currentBrand = null;
+        currentCategory = "all";
+        visibleProjects = projectCards.length;
+
+        if (activeBrand) {
+          activeBrand.hidden = true;
+        }
+
+        categoryButtons.forEach((button) => {
+          button.classList.toggle("is-active", button.getAttribute("data-category-filter") === "all");
+        });
+
+        updateProjects();
+      }
 
       function updateProjects() {
         const hasActiveFilter = Boolean(currentBrand) || currentCategory !== "all";
 
         if (hasActiveFilter) {
+          orderProjectCards([...projectCards].sort((a, b) =>
+            Number(b.getAttribute("data-project-year") || 0) - Number(a.getAttribute("data-project-year") || 0)
+          ));
+
           projectCards.forEach((card) => {
             const search = card.getAttribute("data-project-search") || "";
             const compact = card.getAttribute("data-project-compact") || "";
@@ -606,18 +637,22 @@ const process = [
           });
 
           if (showProjectsButton) {
-            showProjectsButton.hidden = true;
+            showProjectsButton.hidden = false;
+            showProjectsButton.textContent = "Alle Projekte anzeigen";
           }
 
           return;
         }
 
-        projectCards.forEach((card, index) => {
+        orderProjectCards(randomProjectOrder);
+
+        randomProjectOrder.forEach((card, index) => {
           card.classList.toggle("is-hidden", index >= visibleProjects);
         });
 
-        if (showProjectsButton && visibleProjects >= projectCards.length) {
-          showProjectsButton.hidden = true;
+        if (showProjectsButton) {
+          showProjectsButton.textContent = "Mehr Projekte anzeigen";
+          showProjectsButton.hidden = visibleProjects >= projectCards.length;
         }
       }
 
@@ -649,14 +684,15 @@ const process = [
           activeBrand.hidden = true;
         }
 
-        if (showProjectsButton) {
-          showProjectsButton.hidden = visibleProjects >= projectCards.length;
-        }
-
         updateProjects();
       }
 
       showProjectsButton?.addEventListener("click", () => {
+        if (currentBrand || currentCategory !== "all") {
+          resetAllFilters();
+          return;
+        }
+
         visibleProjects += revealStep;
         updateProjects();
       });
@@ -1019,7 +1055,7 @@ const process = [
     display: flex;
     flex-direction: column;
     gap: 22px;
-    margin-bottom: 56px;
+    margin-top: 64px;
     padding-top: 28px;
   }
 
@@ -1309,6 +1345,14 @@ const process = [
     color: var(--ink);
     font-weight: 900;
     padding: 16px 18px;
+  }
+
+  @media (min-width: 1101px) {
+    .eyebrow,
+    .section-head .eyebrow,
+    .brand-strip p {
+      font-size: 14px;
+    }
   }
 
   @media (max-width: 1100px) {

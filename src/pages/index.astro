@@ -679,6 +679,10 @@ const process = [
 
       function setBrandFilter(button) {
         visibleFilteredProjects = getFilteredRevealStep();
+        currentCategory = "all";
+        categoryButtons.forEach((item) => {
+          item.classList.toggle("is-active", item.getAttribute("data-category-filter") === "all");
+        });
         currentBrand = {
           slug: button.getAttribute("data-brand-filter") || "",
           compact: button.getAttribute("data-brand-compact") || "",

@@ -593,12 +593,12 @@ const process = [
 
       function animateCounter(counter) {
         const target = Number(counter.getAttribute("data-count-target") || 0);
-        const duration = 1400;
+        const duration = 3600;
         const startTime = performance.now();
 
         function updateCounter(currentTime) {
           const progress = Math.min((currentTime - startTime) / duration, 1);
-          const easedProgress = 1 - Math.pow(1 - progress, 3);
+          const easedProgress = progress * progress * (3 - 2 * progress);
           counter.textContent = `${Math.round(target * easedProgress)}+`;
 
           if (progress < 1) {
@@ -721,7 +721,7 @@ const process = [
         visibleFilteredProjects = getFilteredRevealStep();
         currentCategory = "all";
         categoryButtons.forEach((item) => {
-          item.classList.toggle("is-active", item.getAttribute("data-category-filter") === "all");
+          item.classList.remove("is-active");
         });
         currentBrand = {
           slug: button.getAttribute("data-brand-filter") || "",
@@ -744,14 +744,7 @@ const process = [
       }
 
       function resetBrandFilter() {
-        currentBrand = null;
-        visibleFilteredProjects = getFilteredRevealStep();
-
-        if (activeBrand) {
-          activeBrand.hidden = true;
-        }
-
-        updateProjects();
+        resetAllFilters(false);
       }
 
       showProjectsButton?.addEventListener("click", () => {
@@ -776,6 +769,11 @@ const process = [
           if (currentCategory === "all") {
             resetAllFilters(false);
             return;
+          }
+
+          currentBrand = null;
+          if (activeBrand) {
+            activeBrand.hidden = true;
           }
 
           visibleFilteredProjects = getFilteredRevealStep();

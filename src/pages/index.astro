@@ -583,8 +583,7 @@ const process = [
       const activeBrandLogo = document.querySelector("[data-active-brand-logo]");
       const activeBrandName = document.querySelector("[data-active-brand-name]");
       const clearBrandFilter = document.querySelector("[data-clear-brand-filter]");
-      const revealStep = Number(showProjectsButton?.getAttribute("data-visible-count") || 8);
-      let visibleProjects = revealStep;
+      let visibleProjects = getFilteredRevealStep();
       let visibleFilteredProjects = getFilteredRevealStep();
       let currentBrand = null;
       let currentCategory = "all";
@@ -612,10 +611,10 @@ const process = [
         return 8;
       }
 
-      function resetAllFilters() {
+      function resetAllFilters(showAllProjects = true) {
         currentBrand = null;
         currentCategory = "all";
-        visibleProjects = projectCards.length;
+        visibleProjects = showAllProjects ? projectCards.length : getFilteredRevealStep();
         visibleFilteredProjects = getFilteredRevealStep();
 
         if (activeBrand) {
@@ -722,14 +721,20 @@ const process = [
           return;
         }
 
-        visibleProjects += revealStep;
+        visibleProjects += getFilteredRevealStep();
         updateProjects();
       });
 
       categoryButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          visibleFilteredProjects = getFilteredRevealStep();
           currentCategory = button.getAttribute("data-category-filter") || "all";
+
+          if (currentCategory === "all") {
+            resetAllFilters(false);
+            return;
+          }
+
+          visibleFilteredProjects = getFilteredRevealStep();
           categoryButtons.forEach((item) => item.classList.toggle("is-active", item === button));
           updateProjects();
         });
@@ -744,8 +749,11 @@ const process = [
       window.addEventListener("resize", () => {
         if (currentBrand || currentCategory !== "all") {
           visibleFilteredProjects = getFilteredRevealStep();
-          updateProjects();
+        } else {
+          visibleProjects = getFilteredRevealStep();
         }
+
+        updateProjects();
       });
 
       brandToggle?.addEventListener("click", () => {

@@ -585,6 +585,7 @@ const process = [
       const clearBrandFilter = document.querySelector("[data-clear-brand-filter]");
       const revealStep = Number(showProjectsButton?.getAttribute("data-visible-count") || 8);
       let visibleProjects = revealStep;
+      let visibleFilteredProjects = getFilteredRevealStep();
       let currentBrand = null;
       let currentCategory = "all";
       const projectGrid = document.querySelector(".project-grid");
@@ -599,10 +600,23 @@ const process = [
         cards.forEach((card) => projectGrid?.append(card));
       }
 
+      function getFilteredRevealStep() {
+        if (window.matchMedia("(max-width: 780px)").matches) {
+          return 2;
+        }
+
+        if (window.matchMedia("(max-width: 1100px)").matches) {
+          return 4;
+        }
+
+        return 8;
+      }
+
       function resetAllFilters() {
         currentBrand = null;
         currentCategory = "all";
         visibleProjects = projectCards.length;
+        visibleFilteredProjects = getFilteredRevealStep();
 
         if (activeBrand) {
           activeBrand.hidden = true;
@@ -619,11 +633,12 @@ const process = [
         const hasActiveFilter = Boolean(currentBrand) || currentCategory !== "all";
 
         if (hasActiveFilter) {
-          orderProjectCards([...projectCards].sort((a, b) =>
+          const sortedProjects = [...projectCards].sort((a, b) =>
             Number(b.getAttribute("data-project-year") || 0) - Number(a.getAttribute("data-project-year") || 0)
-          ));
+          );
+          orderProjectCards(sortedProjects);
 
-          projectCards.forEach((card) => {
+          const matchingProjects = sortedProjects.filter((card) => {
             const search = card.getAttribute("data-project-search") || "";
             const compact = card.getAttribute("data-project-compact") || "";
             const category = card.getAttribute("data-project-category") || "";
@@ -633,12 +648,19 @@ const process = [
                   currentBrand.projectCompacts.some((projectCompact) => compact.includes(projectCompact))
                 : search.includes(currentBrand.slug) || compact.includes(currentBrand.compact));
             const matchesCategory = currentCategory === "all" || category === currentCategory;
-            card.classList.toggle("is-hidden", !(matchesBrand && matchesCategory));
+            return matchesBrand && matchesCategory;
+          });
+
+          sortedProjects.forEach((card) => {
+            const matchingIndex = matchingProjects.indexOf(card);
+            card.classList.toggle("is-hidden", matchingIndex < 0 || matchingIndex >= visibleFilteredProjects);
           });
 
           if (showProjectsButton) {
             showProjectsButton.hidden = false;
-            showProjectsButton.textContent = "Alle Projekte anzeigen";
+            showProjectsButton.textContent = visibleFilteredProjects < matchingProjects.length
+              ? "Mehr Projekte anzeigen"
+              : "Alle Projekte anzeigen";
           }
 
           return;
@@ -657,6 +679,7 @@ const process = [
       }
 
       function setBrandFilter(button) {
+        visibleFilteredProjects = getFilteredRevealStep();
         currentBrand = {
           slug: button.getAttribute("data-brand-filter") || "",
           compact: button.getAttribute("data-brand-compact") || "",
@@ -679,6 +702,7 @@ const process = [
 
       function resetBrandFilter() {
         currentBrand = null;
+        visibleFilteredProjects = getFilteredRevealStep();
 
         if (activeBrand) {
           activeBrand.hidden = true;
@@ -689,7 +713,12 @@ const process = [
 
       showProjectsButton?.addEventListener("click", () => {
         if (currentBrand || currentCategory !== "all") {
-          resetAllFilters();
+          if (showProjectsButton.textContent?.trim() === "Alle Projekte anzeigen") {
+            resetAllFilters();
+          } else {
+            visibleFilteredProjects += getFilteredRevealStep();
+            updateProjects();
+          }
           return;
         }
 
@@ -699,6 +728,7 @@ const process = [
 
       categoryButtons.forEach((button) => {
         button.addEventListener("click", () => {
+          visibleFilteredProjects = getFilteredRevealStep();
           currentCategory = button.getAttribute("data-category-filter") || "all";
           categoryButtons.forEach((item) => item.classList.toggle("is-active", item === button));
           updateProjects();
@@ -710,6 +740,13 @@ const process = [
       });
 
       clearBrandFilter?.addEventListener("click", resetBrandFilter);
+
+      window.addEventListener("resize", () => {
+        if (currentBrand || currentCategory !== "all") {
+          visibleFilteredProjects = getFilteredRevealStep();
+          updateProjects();
+        }
+      });
 
       brandToggle?.addEventListener("click", () => {
         const isOpen = brandPanel?.classList.toggle("is-open");

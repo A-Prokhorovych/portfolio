@@ -1,0 +1,109 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="robots" content="noindex" />
+  <title>Редактор проектов · PROKHA</title>
+</head>
+<body>
+  <header class="toolbar">
+    <a href={base}>PROKHA</a>
+    <div>
+      <button data-import>Импорт JSON</button>
+      <button data-reset>Новый проект</button>
+      <button data-html>Скачать HTML</button>
+      <button class="primary" data-export>Скачать JSON</button>
+    </div>
+    <input data-import-file hidden type="file" accept=".json,application/json" />
+  </header>
+  <p class="notice">Нажмите <b>Редактировать</b> возле нужного блока. Черновик сохраняется автоматически.</p>
+  <main data-preview></main>
+
+  <dialog data-dialog>
+    <form data-form>
+      <header>
+        <div><small>Редактирование</small><h2 data-dialog-title></h2></div>
+        <button class="close" type="button" data-close>×</button>
+      </header>
+      <label data-text-wrap>Текст<textarea data-text rows="7"></textarea></label>
+      <div data-media-wrap hidden>
+        <label>Ссылка на изображение или видео<input data-url type="url" placeholder="https://..." /></label>
+        <p class="or">или</p>
+        <label class="drop">Выбрать файл<input data-file type="file" accept="image/*,video/*" /></label>
+        <small>Для видео лучше использовать ссылку, иначе JSON может стать слишком большим.</small>
+      </div>
+      <footer><button type="button" data-close>Отмена</button><button class="primary">Сохранить</button></footer>
+    </form>
+  </dialog>
+
+  <script define:vars={{ base }}>
+    const key = "prokha-editor-v1";
+    const defaults = {
+      slug:"new-project", year:"2026", client:"Название клиента", platform:"Платформа", role:"Web & Campaign Design",
+      logo:`${base}projects/djadja-vanja/logo.svg`, sidebarTitle:"Заголовок проекта",
+      sidebarText:"Короткое описание проекта: задача, идея и главная особенность.",
+      category:"Категория · Тип проекта", heroTitle:"Главная идея проекта",
+      heroText:"Расскажите, для кого создавался проект и какую задачу он решает.",
+      heroImage:`${base}projects/djadja-vanja/hero.jpg`, conceptTitle:"Концепция и визуальный подход",
+      conceptText:"Опишите выбранное решение, структуру страницы и визуальную идею.",
+      quote:"Короткая яркая мысль о проекте.", videoTitle:"Проект в движении",
+      video:"https://www.edimdoma.ru/ads//backgrounds/video/uncle_vanya/uncle_vanya_720.mp4",
+      h1t:"Первое преимущество", h1p:"Что особенно хорошо получилось в этом проекте.",
+      h2t:"Второе преимущество", h2p:"Как решение помогло пользователю или бренду.",
+      h3t:"Третье преимущество", h3p:"Интересная деталь дизайна или реализации.",
+      gallery1:`${base}projects/djadja-vanja/recipe-01.jpg`, gallery2:`${base}projects/djadja-vanja/recipe-02.jpg`,
+      gallery3:`${base}projects/djadja-vanja/recipe-03.jpg`, resultTitle:"Результат проекта",
+      resultText:"Подведите итог: что было создано и почему проект получился сильным."
+    };
+    let state = load(), active = "", type = "text";
+    const q = (s) => document.querySelector(s), preview = q("[data-preview]"), dialog = q("[data-dialog]");
+    const esc = (v) => String(v || "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+    function load(){ try{return {...defaults,...JSON.parse(localStorage.getItem(key)||"{}")}}catch{return {...defaults}} }
+    function save(){ try{localStorage.setItem(key,JSON.stringify(state))}catch{alert("Файл слишком большой для автосохранения. Скачайте JSON.")} }
+    const edit = (k,l,t="text") => `<button class="edit" data-edit="${k}" data-label="${l}" data-type="${t}">Редактировать</button>`;
+    const text = (k,l,tag="p",cls="") => `<div class="editable">${edit(k,l)}<${tag} class="${cls}">${esc(state[k])}</${tag}></div>`;
+    const media = (k,l,cls="") => `<div class="media ${cls}"><img src="${esc(state[k])}" alt="">${edit(k,l,"media")}</div>`;
+    const fact = (k,l) => `<div class="editable">${edit(k,l)}<dt>${l}</dt><dd>${esc(state[k])}</dd></div>`;
+    const highlight = (n) => `<article><span>0${n}</span>${text(`h${n}t`,`Заголовок преимущества ${n}`,"h3")}${text(`h${n}p`,`Описание преимущества ${n}`)}</article>`;
+    function render(){
+      preview.innerHTML = `<aside>
+        <div><p class="eyebrow">Case Study · ${esc(state.year)}</p>${media("logo","Логотип","logo")}
+        ${text("sidebarTitle","Заголовок в сайдбаре","h1")}${text("sidebarText","Описание в сайдбаре","p","intro")}</div>
+        <dl>${fact("client","Клиент")}${fact("platform","Платформа")}${fact("year","Год")}${fact("role","Роль")}</dl>
+      </aside><article class="content">
+        <section class="hero"><div class="hero-copy">${text("category","Категория","p","eyebrow")}${text("heroTitle","Главный заголовок","h2")}${text("heroText","Главное описание")}</div>${media("heroImage","Главное изображение","hero-image")}</section>
+        <section class="two"><b>02</b><div><p class="eyebrow">Концепция</p>${text("conceptTitle","Заголовок концепции","h2")}${text("conceptText","Описание концепции","p","body-text")}</div><div class="quote">${text("quote","Цитата")}</div></section>
+        <section class="video"><div>${text("videoTitle","Заголовок видео","h2")}</div><div class="media video-frame"><video controls muted loop src="${esc(state.video)}"></video>${edit("video","Видео","media")}</div></section>
+        <section class="two"><b>03</b><div><p class="eyebrow">Основные моменты</p><h2>Что делает проект особенным</h2></div><div class="highlights">${highlight(1)}${highlight(2)}${highlight(3)}</div></section>
+        <section class="gallery">${media("gallery1","Большой скриншот","large")}${media("gallery2","Второй скриншот")}${media("gallery3","Третий скриншот")}</section>
+        <section class="two result"><b>04</b><div><p class="eyebrow">Результат</p>${text("resultTitle","Заголовок результата","h2")}${text("resultText","Описание результата","p","body-text")}</div></section>
+      </article>`;
+    }
+    preview.addEventListener("click",(e)=>{const b=e.target.closest("[data-edit]");if(!b)return;active=b.dataset.edit;type=b.dataset.type;q("[data-dialog-title]").textContent=b.dataset.label;q("[data-text-wrap]").hidden=type==="media";q("[data-media-wrap]").hidden=type!=="media";q("[data-text]").value=type==="text"?state[active]:"";q("[data-url]").value=type==="media"&&!String(state[active]).startsWith("data:")?state[active]:"";q("[data-file]").value="";dialog.showModal()});
+    document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>dialog.close()));
+    q("[data-form]").addEventListener("submit",async(e)=>{e.preventDefault();if(type==="text")state[active]=q("[data-text]").value.trim();else if(q("[data-file]").files[0])state[active]=await read(q("[data-file]").files[0]);else if(q("[data-url]").value.trim())state[active]=q("[data-url]").value.trim();save();render();dialog.close()});
+    const read = (file) => new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=no;r.readAsDataURL(file)});
+    q("[data-export]").addEventListener("click",()=>{const s=prompt("Адрес проекта латиницей:",state.slug)||state.slug;state.slug=s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"project";save();const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:"application/json"}));a.download=`${state.slug}.json`;a.click();URL.revokeObjectURL(a.href)});
+    q("[data-html]").addEventListener("click",async()=>{const copy=document.documentElement.cloneNode(true);copy.querySelector(".toolbar")?.remove();copy.querySelector(".notice")?.remove();copy.querySelector("dialog")?.remove();copy.querySelectorAll("script,.edit,link[rel=stylesheet]").forEach(el=>el.remove());copy.querySelector("title").textContent=state.sidebarTitle;copy.querySelector("body").className="published-case";const css=(await Promise.all([...document.styleSheets].map(s=>s.href?fetch(s.href).then(r=>r.text()):""))).join("\n");const style=document.createElement("style");style.textContent=css+".published-case main{display:grid}.published-case .editable:hover,.published-case .media:hover{outline:0}";copy.querySelector("head").append(style);const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["<!DOCTYPE html>"+copy.outerHTML],{type:"text/html"}));a.download="index.html";a.click();URL.revokeObjectURL(a.href)});
+    q("[data-import]").addEventListener("click",()=>q("[data-import-file]").click());
+    q("[data-import-file]").addEventListener("change",async(e)=>{if(!e.target.files[0])return;state={...defaults,...JSON.parse(await e.target.files[0].text())};save();render()});
+    q("[data-reset]").addEventListener("click",()=>{if(confirm("Очистить черновик и начать новый проект?")){state={...defaults};save();render()}});
+    render();
+  </script>
+</body>
+</html>
+
+<style>
+  :root{--bg:#f7f7f5;--paper:#fff;--ink:#080808;--muted:#5f5f5f;--line:#dededb;--accent:#173e36;--yellow:#ffdd57;--radius:8px;font-family:Inter,system-ui,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink)}button,input,textarea{font:inherit}p,h1,h2,h3,dl,dd{margin:0}img,video{display:block;max-width:100%}
+  .toolbar{align-items:center;background:#111;color:#fff;display:flex;gap:18px;justify-content:space-between;padding:14px clamp(18px,4vw,64px);position:sticky;top:0;z-index:30}.toolbar a{color:#fff;font-size:24px;font-weight:900;text-decoration:none}.toolbar div{display:flex;gap:8px}.toolbar button,dialog button{background:#fff;border:1px solid #777;border-radius:7px;cursor:pointer;font-size:13px;font-weight:800;min-height:40px;padding:0 15px}.primary{background:var(--yellow)!important;border-color:var(--yellow)!important}.notice{background:var(--yellow);font-size:13px;padding:10px;text-align:center}
+  main{display:grid;grid-template-columns:minmax(280px,25vw) minmax(0,1fr)}aside{align-content:space-between;background:var(--paper);border-right:1px solid var(--line);display:grid;gap:44px;height:calc(100vh - 111px);padding:clamp(36px,4vw,64px) clamp(24px,3vw,48px);position:sticky;top:111px}.eyebrow{color:var(--muted);font-size:12px;font-weight:900;letter-spacing:.08em;margin-bottom:16px;text-transform:uppercase}h1{font-size:clamp(28px,3vw,48px);line-height:1.02}h2{font-size:clamp(32px,4.5vw,68px);line-height:1.02}.intro,.body-text{color:var(--muted);font-size:16px;line-height:1.7;margin-top:22px}dl{border-top:1px solid var(--line)}dl>div{border-bottom:1px solid var(--line);display:flex;justify-content:space-between;padding:11px 0}dt{color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase}dd{font-size:13px;font-weight:800;text-align:right}
+  .content>section{border-bottom:1px solid var(--line);padding:clamp(56px,7vw,110px) clamp(24px,6vw,100px)}.hero-copy{display:grid;gap:28px;grid-template-columns:1fr minmax(260px,420px);margin-bottom:58px}.hero-copy>:first-child{grid-column:1/-1}.hero-copy p:last-child{align-self:end;color:var(--muted);font-size:17px;line-height:1.7}.media{border-radius:var(--radius);overflow:hidden;position:relative}.hero-image img{aspect-ratio:16/9;object-fit:cover;width:100%}.logo{height:90px;margin-bottom:30px;overflow:visible;width:120px}.logo img{height:100%;object-fit:contain;object-position:left;width:100%}.two{display:grid;gap:36px;grid-template-columns:70px minmax(0,1fr)}.two>b{color:var(--muted);font-size:13px}.quote{background:var(--accent);border-radius:var(--radius);color:#fff;font-size:clamp(26px,4vw,52px);font-weight:800;grid-column:2;line-height:1.12;padding:clamp(28px,5vw,70px)}.video{background:#111;color:#fff}.video-frame{border:1px solid #333;margin-top:48px}.video-frame video{aspect-ratio:16/9;background:#000;object-fit:cover;width:100%}
+  .highlights{display:grid;gap:18px;grid-column:2;grid-template-columns:repeat(3,1fr)}.highlights article{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);min-height:270px;padding:26px}.highlights span{color:var(--muted);font-size:12px;font-weight:900}.highlights h3{font-size:20px;margin-top:52px}.highlights p{color:var(--muted);font-size:14px;line-height:1.6;margin-top:14px}.gallery{display:grid;gap:18px;grid-template-columns:1fr 1fr}.gallery .large{grid-column:1/-1}.gallery img{aspect-ratio:16/10;object-fit:cover;width:100%}.gallery .large img{aspect-ratio:16/8}.result{background:var(--accent);color:#fff}.result .eyebrow,.result .body-text{color:#c6d1ce}
+  .editable,.media{position:relative}.edit{background:var(--yellow);border:0;border-radius:6px;cursor:pointer;font-size:11px;font-weight:900;opacity:0;padding:7px 9px;position:absolute;right:8px;top:8px;transition:.15s;z-index:5}.editable:hover>.edit,.media:hover>.edit,.edit:focus{opacity:1}.editable:hover,.media:hover{outline:2px dashed var(--yellow);outline-offset:5px}
+  dialog{border:0;border-radius:12px;max-width:620px;padding:0;width:calc(100% - 32px)}dialog::backdrop{background:#000a}form{padding:26px}form header,form footer{align-items:center;display:flex;gap:16px;justify-content:space-between}form small{color:var(--muted);line-height:1.5}.close{background:transparent;border:0;font-size:30px}label{display:grid;font-size:13px;font-weight:800;gap:8px;margin-top:24px}textarea,input[type=url]{border:1px solid #bbb;border-radius:8px;padding:12px;width:100%}.drop{background:var(--bg);border:2px dashed #bbb;border-radius:10px;padding:28px;text-align:center}.or{color:var(--muted);font-size:12px;margin-top:18px;text-align:center}form footer{border-top:1px solid var(--line);margin-top:26px;padding-top:20px}
+  @media(max-width:1000px){main{grid-template-columns:1fr}aside{height:auto;position:static}.hero-copy,.two{grid-template-columns:1fr}.hero-copy>:first-child,.quote,.highlights{grid-column:1}}@media(max-width:700px){.toolbar{align-items:flex-start;flex-direction:column}.toolbar div{width:100%}.toolbar button{flex:1}.content>section,aside{padding-left:18px;padding-right:18px}.highlights,.gallery{grid-template-columns:1fr}.gallery .large{grid-column:1}.two>b{display:none}.edit{opacity:1;position:static;margin-bottom:10px}}
+</style>

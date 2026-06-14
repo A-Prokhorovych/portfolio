@@ -10,6 +10,9 @@ const base = import.meta.env.BASE_URL;
   <title>Редактор проектов · PROKHA</title>
 </head>
 <body>
+  <script define:vars={{ base }}>
+    if (localStorage.getItem("prokha-owner-mode") !== "1") location.replace(base);
+  </script>
   <header class="toolbar">
     <a href={base}>PROKHA</a>
     <div>

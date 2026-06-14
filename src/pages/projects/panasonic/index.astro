@@ -32,7 +32,7 @@ const highlights = [
         Zurueck zu den Projekten
       </a>
       <div class="header-actions">
-        <a class="button light small edit-page" href={`${base}editor/?project=panasonic`}>Редактировать</a>
+        <a class="button light small edit-page" data-owner-only hidden href={`${base}editor/?project=panasonic`}>Редактировать</a>
         <a class="button dark small" href="https://www.edimdoma.ru/2021/panasonic" target="_blank" rel="noreferrer">Original ansehen</a>
       </div>
     </header>
@@ -160,6 +160,16 @@ const highlights = [
     </main>
   </body>
 </html>
+
+<script>
+  const ownerParam = new URLSearchParams(location.search).get("owner");
+  if (ownerParam === "1") localStorage.setItem("prokha-owner-mode", "1");
+  if (ownerParam === "0") localStorage.removeItem("prokha-owner-mode");
+  const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
+  document.querySelectorAll("[data-owner-only]").forEach((element) => {
+    element.hidden = !isOwner;
+  });
+</script>
 
 <style>
   :root {

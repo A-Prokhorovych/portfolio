@@ -31,7 +31,10 @@ const highlights = [
         <span aria-hidden="true">←</span>
         Zurueck zu den Projekten
       </a>
-      <a class="button dark small" href="https://www.edimdoma.ru/2021/dv" target="_blank" rel="noreferrer">Original ansehen</a>
+      <div class="header-actions">
+        <a class="button light small edit-page" href={`${base}editor/?project=djadja-vanja`}>Редактировать</a>
+        <a class="button dark small" href="https://www.edimdoma.ru/2021/dv" target="_blank" rel="noreferrer">Original ansehen</a>
+      </div>
     </header>
 
     <main>
@@ -211,6 +214,8 @@ const highlights = [
   .button.dark { background: var(--ink); color: #fff; }
   .button.light { background: transparent; }
   .button.small { justify-self: end; min-height: 42px; }
+  .header-actions { display: flex; gap: 8px; justify-self: end; }
+  .edit-page { background: #ffdd57 !important; }
 
   main { display: grid; grid-template-columns: minmax(280px, 25vw) minmax(0, 1fr); }
   .case-sidebar {
@@ -309,6 +314,7 @@ const highlights = [
     .site-header { padding: 14px 18px; }
     .brand { font-size: 20px; }
     .button.small { font-size: 11px; min-height: 38px; padding: 0 10px; }
+    .header-actions { gap: 5px; }
     .case-sidebar { padding: 36px 18px; }
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }

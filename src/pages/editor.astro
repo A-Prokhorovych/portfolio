@@ -13,6 +13,7 @@ const base = import.meta.env.BASE_URL;
   <header class="toolbar">
     <a href={base}>PROKHA</a>
     <div>
+      <a class="toolbar-link" data-project-view hidden>Открыть страницу</a>
       <button data-import>Импорт JSON</button>
       <button data-reset>Новый проект</button>
       <button data-html>Скачать HTML</button>
@@ -53,7 +54,8 @@ const base = import.meta.env.BASE_URL;
   </dialog>
 
   <script define:vars={{ base }}>
-    const key = "prokha-editor-v1";
+    const projectSlug = new URLSearchParams(location.search).get("project") || "new-project";
+    const key = `prokha-editor-v2-${projectSlug}`;
     const defaults = {
       slug:"new-project", year:"2026", client:"Название клиента", platform:"Платформа", role:"Web & Campaign Design",
       logo:`${base}projects/djadja-vanja/logo.svg`, sidebarTitle:"Заголовок проекта",
@@ -71,10 +73,17 @@ const base = import.meta.env.BASE_URL;
       gallery3:`${base}projects/djadja-vanja/recipe-03.jpg`, resultTitle:"Результат проекта",
       resultText:"Подведите итог: что было создано и почему проект получился сильным.", customBlocks:[]
     };
-    let state = load(), active = "", type = "text", insertAt = 0;
+    let state = {...defaults}, preset = {...defaults}, active = "", type = "text", insertAt = 0;
     const q = (s) => document.querySelector(s), preview = q("[data-preview]"), dialog = q("[data-dialog]"), addDialog = q("[data-add-dialog]");
     const esc = (v) => String(v || "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
-    function load(){ try{const value={...defaults,...JSON.parse(localStorage.getItem(key)||"{}")};value.customBlocks=Array.isArray(value.customBlocks)?value.customBlocks:[];return value}catch{return {...defaults,customBlocks:[]}} }
+    async function load(){
+      let project = {};
+      if(projectSlug !== "new-project"){
+        try{project=await fetch(`${base}projects/${projectSlug}/project.json`).then(response=>response.ok?response.json():{})}catch{}
+      }
+      preset={...defaults,...project,slug:projectSlug};
+      try{const value={...preset,...JSON.parse(localStorage.getItem(key)||"{}")};value.customBlocks=Array.isArray(value.customBlocks)?value.customBlocks:[];return value}catch{return {...preset,customBlocks:[]}}
+    }
     function save(){ try{localStorage.setItem(key,JSON.stringify(state))}catch{alert("Файл слишком большой для автосохранения. Скачайте JSON.")} }
     const edit = (k,l,t="text") => `<button class="edit" data-edit="${k}" data-label="${l}" data-type="${t}">Редактировать</button>`;
     const text = (k,l,tag="p",cls="") => `<div class="editable">${edit(k,l)}<${tag} class="${cls}">${esc(state[k])}</${tag}></div>`;
@@ -119,17 +128,22 @@ const base = import.meta.env.BASE_URL;
     q("[data-html]").addEventListener("click",async()=>{const copy=document.documentElement.cloneNode(true);copy.querySelector(".toolbar")?.remove();copy.querySelector(".notice")?.remove();copy.querySelectorAll("dialog")?.forEach(el=>el.remove());copy.querySelectorAll("script,.edit,.add-block,.block-controls,link[rel=stylesheet]").forEach(el=>el.remove());copy.querySelector("title").textContent=state.sidebarTitle;copy.querySelector("body").className="published-case";const css=(await Promise.all([...document.styleSheets].map(s=>s.href?fetch(s.href).then(r=>r.text()):""))).join("\n");const style=document.createElement("style");style.textContent=css+".published-case main{display:grid}.published-case .editable:hover,.published-case .media:hover{outline:0}";copy.querySelector("head").append(style);const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["<!DOCTYPE html>"+copy.outerHTML],{type:"text/html"}));a.download="index.html";a.click();URL.revokeObjectURL(a.href)});
     q("[data-import]").addEventListener("click",()=>q("[data-import-file]").click());
     q("[data-import-file]").addEventListener("change",async(e)=>{if(!e.target.files[0])return;state={...defaults,...JSON.parse(await e.target.files[0].text())};state.customBlocks=Array.isArray(state.customBlocks)?state.customBlocks:[];save();render()});
-    q("[data-reset]").addEventListener("click",()=>{if(confirm("Очистить черновик и начать новый проект?")){state={...defaults,customBlocks:[]};save();render()}});
+    q("[data-reset]").addEventListener("click",()=>{if(confirm("Удалить ваши изменения и вернуть опубликованную версию проекта?")){state={...preset,customBlocks:Array.isArray(preset.customBlocks)?structuredClone(preset.customBlocks):[]};save();render()}});
     q("[data-add-close]").addEventListener("click",()=>addDialog.close());
     document.querySelectorAll("[data-add-type]").forEach(button=>button.addEventListener("click",()=>{const blockType=button.dataset.addType;state.customBlocks.splice(insertAt,0,{id:Date.now(),type:blockType,title:blockType==="text"?"Новый текстовый блок":"",content:blockType==="text"?"Введите текст блока":""});save();render();addDialog.close();const newIndex=insertAt;active=`custom:${newIndex}`;openEditor("Новый блок",blockType==="text"?"Новый текстовый блок\n\nВведите текст блока":"",blockType==="text"?"text":"media")}));
-    render();
+    load().then(value=>{
+      state=value;
+      const view=q("[data-project-view]");
+      if(projectSlug!=="new-project"){view.hidden=false;view.href=`${base}projects/${projectSlug}/`}
+      render();
+    });
   </script>
 </body>
 </html>
 
 <style>
   :root{--bg:#f7f7f5;--paper:#fff;--ink:#080808;--muted:#5f5f5f;--line:#dededb;--accent:#173e36;--yellow:#ffdd57;--radius:8px;font-family:Inter,system-ui,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink)}button,input,textarea{font:inherit}p,h1,h2,h3,dl,dd{margin:0}img,video{display:block;max-width:100%}
-  .toolbar{align-items:center;background:#111;color:#fff;display:flex;gap:18px;justify-content:space-between;padding:14px clamp(18px,4vw,64px);position:sticky;top:0;z-index:30}.toolbar a{color:#fff;font-size:24px;font-weight:900;text-decoration:none}.toolbar div{display:flex;gap:8px}.toolbar button,dialog button{background:#fff;border:1px solid #777;border-radius:7px;cursor:pointer;font-size:13px;font-weight:800;min-height:40px;padding:0 15px}.primary{background:var(--yellow)!important;border-color:var(--yellow)!important}.notice{background:var(--yellow);font-size:13px;padding:10px;text-align:center}
+  .toolbar{align-items:center;background:#111;color:#fff;display:flex;gap:18px;justify-content:space-between;padding:14px clamp(18px,4vw,64px);position:sticky;top:0;z-index:30}.toolbar>a{color:#fff;font-size:24px;font-weight:900;text-decoration:none}.toolbar div{display:flex;gap:8px}.toolbar button,dialog button,.toolbar-link{background:#fff;border:1px solid #777;border-radius:7px;color:#111;cursor:pointer;font-size:13px;font-weight:800;min-height:40px;padding:0 15px}.toolbar-link{align-items:center;display:inline-flex;text-decoration:none}.primary{background:var(--yellow)!important;border-color:var(--yellow)!important}.notice{background:var(--yellow);font-size:13px;padding:10px;text-align:center}
   main{display:grid;grid-template-columns:minmax(280px,25vw) minmax(0,1fr)}aside{align-content:space-between;background:var(--paper);border-right:1px solid var(--line);display:grid;gap:44px;height:calc(100vh - 111px);padding:clamp(36px,4vw,64px) clamp(24px,3vw,48px);position:sticky;top:111px}.eyebrow{color:var(--muted);font-size:12px;font-weight:900;letter-spacing:.08em;margin-bottom:16px;text-transform:uppercase}h1{font-size:clamp(28px,3vw,48px);line-height:1.02}h2{font-size:clamp(32px,4.5vw,68px);line-height:1.02}.intro,.body-text{color:var(--muted);font-size:16px;line-height:1.7;margin-top:22px}dl{border-top:1px solid var(--line)}dl>div{border-bottom:1px solid var(--line);display:flex;justify-content:space-between;padding:11px 0}dt{color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase}dd{font-size:13px;font-weight:800;text-align:right}
   .content>section{border-bottom:1px solid var(--line);padding:clamp(56px,7vw,110px) clamp(24px,6vw,100px)}.hero-copy{display:grid;gap:28px;grid-template-columns:1fr minmax(260px,420px);margin-bottom:58px}.hero-copy>:first-child{grid-column:1/-1}.hero-copy p:last-child{align-self:end;color:var(--muted);font-size:17px;line-height:1.7}.media{border-radius:var(--radius);overflow:hidden;position:relative}.hero-image img{aspect-ratio:16/9;object-fit:cover;width:100%}.logo{height:90px;margin-bottom:30px;overflow:visible;width:120px}.logo img{height:100%;object-fit:contain;object-position:left;width:100%}.two{display:grid;gap:36px;grid-template-columns:70px minmax(0,1fr)}.two>b{color:var(--muted);font-size:13px}.quote{background:var(--accent);border-radius:var(--radius);color:#fff;font-size:clamp(26px,4vw,52px);font-weight:800;grid-column:2;line-height:1.12;padding:clamp(28px,5vw,70px)}.video{background:#111;color:#fff}.video-frame{border:1px solid #333;margin-top:48px}.video-frame video{aspect-ratio:16/9;background:#000;object-fit:cover;width:100%}
   .highlights{display:grid;gap:18px;grid-column:2;grid-template-columns:repeat(3,1fr)}.highlights article{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);min-height:270px;padding:26px}.highlights span{color:var(--muted);font-size:12px;font-weight:900}.highlights h3{font-size:20px;margin-top:52px}.highlights p{color:var(--muted);font-size:14px;line-height:1.6;margin-top:14px}.gallery{display:grid;gap:18px;grid-template-columns:1fr 1fr}.gallery .large{grid-column:1/-1}.gallery img{aspect-ratio:16/10;object-fit:cover;width:100%}.gallery .large img{aspect-ratio:16/8}.result{background:var(--accent);color:#fff}.result .eyebrow,.result .body-text{color:#c6d1ce}

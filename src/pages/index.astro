@@ -152,10 +152,11 @@ const featuredProjects = [
     title: "Panasonic Campaign",
     year: "2021",
     category: "Kuechengeraete",
-    url: "https://www.edimdoma.ru/2021/panasonic",
+    url: `${base}projects/panasonic/`,
     image: campaignCover("https://www.edimdoma.ru/2021/panasonic"),
     description:
       "Produktorientierte Kampagnenseite mit cleaner visueller Richtung und Rezeptkontext.",
+    internal: true,
   },
   {
     title: "Hochland Campaign",
@@ -275,7 +276,7 @@ const visibleProjectCount = 8;
 
 const brandLogos = [
   ["ugleche pole.svg", "Ugleche Pole", "https://www.edimdoma.ru/agrivolga"],
-  ["panasonic.svg", "Panasonic"],
+  ["panasonic.svg", "Panasonic", ["https://www.edimdoma.ru/2021/panasonic", `${base}projects/panasonic/`]],
   ["petruha.svg", "Petruha"],
   ["luminarc.svg", "Luminarc"],
   ["nasha ptichka.svg", "Nasha Ptichka"],

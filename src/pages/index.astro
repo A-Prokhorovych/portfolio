@@ -126,10 +126,11 @@ const featuredProjects = [
     title: "Maslenitsa Campaign",
     year: "2022",
     category: "Saisonale Kampagne",
-    url: "https://www.edimdoma.ru/2022/maslenica",
+    url: `${base}projects/hochland/`,
     image: campaignCover("https://www.edimdoma.ru/2022/maslenica"),
     description:
       "Saisonale Kampagnenseite mit Rezepten, Food-Visuals und interaktiven Inhalten.",
+    internal: true,
   },
   {
     title: "Kapitan Vkusov Special Project",
@@ -170,13 +171,14 @@ const featuredProjects = [
     internal: true,
   },
   {
-    title: "Hochland Campaign",
+    title: "Hochland Seasonal Campaigns",
     year: "2020",
     category: "Food & Beverage",
-    url: "https://www.edimdoma.ru/2020/hochland",
+    url: `${base}projects/hochland/`,
     image: campaignCover("https://www.edimdoma.ru/2020/hochland"),
     description:
       "Branded Food-Kampagne mit saisonalem Storytelling, Rezeptinhalten und Markeninszenierung.",
+    internal: true,
   },
   {
     title: "Luminarc Campaign",
@@ -325,7 +327,7 @@ const brandLogos = [
   ["synergetic.svg", "Synergetic"],
   ["green ray.svg", "Green Ray", "https://www.edimdoma.ru/2019/astratomat#1"],
   ["vivid.svg", "Vivid"],
-  ["hochland.svg", "Hochland"],
+  ["hochland.svg", "Hochland", ["https://www.edimdoma.ru/2022/maslenica", "https://www.edimdoma.ru/2020/hochland", `${base}projects/hochland/`]],
   ["udarniza.svg", "Udarniza", "https://www.edimdoma.ru/2018/udarnitsa"],
   ["biokor.svg", "Biokor", "https://www.edimdoma.ru/2017/lito"],
   ["leonardo.svg", "Leonardo", "https://www.edimdoma.ru/leonardo"],

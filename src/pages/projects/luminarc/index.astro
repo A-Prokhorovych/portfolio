@@ -1,0 +1,334 @@
+---
+const base = import.meta.env.BASE_URL;
+const media = `${base}projects/luminarc`;
+
+const facts = [
+  ["Kunde", "Luminarc"],
+  ["Plattform", "Edim Doma"],
+  ["Jahr", "2020–2021"],
+  ["Rolle", "Web & Campaign Design"],
+];
+
+const highlights = [
+  ["Atmosphaere als Einstieg", "Grossformatige Bildwelten setzen sofort eine Stimmung und machen die Marke emotional erlebbar."],
+  ["Produkt im Nutzungskontext", "Rezepte, Servierideen und Videoformate zeigen Geschirr als Teil besonderer Momente."],
+  ["Flexible saisonale Sprache", "Winterliche Inszenierung und leichter Sommerauftritt bleiben klar als Luminarc erkennbar."],
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Luminarc Seasonal Campaigns - Case Study von Andrii Prokhorovych." />
+    <title>Luminarc Seasonal Campaigns - Andrii Prokhorovych</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={base}>PROKHA</a>
+      <a class="back-link" href={`${base}#projects`}>
+        <span aria-hidden="true">←</span>
+        Zurueck zu den Projekten
+      </a>
+      <div class="header-actions">
+        <a class="button light small edit-page" data-owner-only hidden href={`${base}editor/?project=luminarc`}>Редактировать</a>
+        <a class="button dark small" data-owner-only hidden href="https://www.edimdoma.ru/2020/luminarc" target="_blank" rel="noreferrer">Original ansehen</a>
+      </div>
+    </header>
+
+    <main>
+      <aside class="case-sidebar">
+        <div>
+          <p class="eyebrow">Case Study · 2020–2021</p>
+          <img class="client-logo" src={`${media}/logo.svg`} alt="Luminarc" />
+          <h1>Tischkultur als saisonales Erlebnis</h1>
+          <p class="intro">
+            Zwei Lifestyle-Kampagnen, die Geschirr, Rezepte und Servierideen in
+            atmosphaerische saisonale Markenwelten verwandeln.
+          </p>
+        </div>
+
+        <dl>
+          {facts.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <nav aria-label="Case-Study-Navigation">
+          <a href="#ueberblick">01 Überblick</a>
+          <a href="#konzept">02 Konzept</a>
+          <a href="#highlights">03 Highlights</a>
+          <a href="#ergebnis">04 Ergebnis</a>
+        </nav>
+      </aside>
+
+      <article class="case-content">
+        <section id="ueberblick" class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Food & Beverage · Digital Campaign</p>
+            <h2>Festliche Inspiration mit Charakter</h2>
+            <p>
+              Fuer Luminarc entstand eine winterliche Kampagnenseite rund um Rezepte,
+              festliche Servierung und Inspiration. Die Produkte werden als Teil einer
+              emotionalen Festtagswelt praesentiert.
+            </p>
+          </div>
+          <div class="hero-media">
+            <img src={`${media}/hero.jpg`} alt="Luminarc Winterkampagne" />
+            <span>Startseite · Desktop</span>
+          </div>
+        </section>
+
+        <section id="konzept" class="story-section">
+          <div class="section-number">02</div>
+          <div class="section-copy">
+            <p class="eyebrow">Konzept</p>
+            <h2>Produkte werden Teil der Inszenierung</h2>
+            <p>
+              Grossflaechige Lifestyle-Bilder treffen auf dekorative saisonale Elemente.
+              Rezepte, Serviertipps und Wettbewerbe schaffen praktische Einstiege und zeigen
+              die Produkte in echten Nutzungssituationen.
+            </p>
+          </div>
+          <div class="quote">
+            <p>„Gute Tischkultur beginnt lange vor dem ersten gedeckten Teller.“</p>
+          </div>
+        </section>
+
+        <section class="video-section" aria-labelledby="video-title">
+          <div class="section-copy">
+            <p class="eyebrow">Zweite Saison</p>
+            <h2 id="video-title">Ein leichter Auftritt fuer den Sommer</h2>
+          </div>
+          <div class="video-frame">
+            <img src={`${media}/summer.jpg`} alt="Luminarc Sommerkampagne" loading="lazy" />
+          </div>
+        </section>
+
+        <section id="highlights" class="highlights">
+          <div class="section-number">03</div>
+          <div class="section-copy">
+            <p class="eyebrow">Highlights</p>
+            <h2>Was den Auftritt besonders macht</h2>
+          </div>
+          <div class="highlight-grid">
+            {highlights.map(([title, text], index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="gallery" aria-label="Rezeptauswahl">
+          <figure class="large">
+            <img src={`${media}/hero.jpg`} alt="Luminarc Winterkampagnenstartseite" loading="lazy" />
+            <figcaption>Festliche Atmosphaere als Markenbuehne</figcaption>
+          </figure>
+          <figure>
+            <img src={`${media}/winter-detail.jpg`} alt="Detailansicht der Luminarc Winterkampagne" loading="lazy" />
+          </figure>
+          <figure>
+            <img src={`${media}/summer.jpg`} alt="Detailansicht der Luminarc Sommerkampagne" loading="lazy" />
+          </figure>
+        </section>
+
+        <section id="ergebnis" class="result">
+          <div class="section-number">04</div>
+          <div class="result-copy">
+            <p class="eyebrow">Ergebnis</p>
+            <h2>Eine vielseitige digitale Lifestyle-Welt</h2>
+            <p>
+              Die Kampagnen zeigen Luminarc als inspirierende Lifestyle-Marke fuer verschiedene
+              Anlaesse. Flexible Bildwelten und klare Content-Module verbinden Produkt,
+              Anwendung und saisonale Stimmung.
+            </p>
+            <a class="button light" data-owner-only hidden href="https://www.edimdoma.ru/2020/luminarc" target="_blank" rel="noreferrer">
+              Originalprojekt oeffnen
+            </a>
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+
+<script>
+  const ownerParam = new URLSearchParams(location.search).get("owner");
+  if (ownerParam === "1") localStorage.setItem("prokha-owner-mode", "1");
+  if (ownerParam === "0") localStorage.removeItem("prokha-owner-mode");
+  const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
+  document.querySelectorAll("[data-owner-only]").forEach((element) => {
+    element.hidden = !isOwner;
+  });
+</script>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f7f7f5;
+    --paper: #fff;
+    --ink: #080808;
+    --muted: #5f5f5f;
+    --line: #dededb;
+    --accent: #e84f92;
+    --radius: 8px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  p, h1, h2, h3, dl, dd, figure { margin: 0; }
+  img, video { display: block; max-width: 100%; }
+
+  .site-header {
+    align-items: center;
+    background: rgba(247, 247, 245, .9);
+    border-bottom: 1px solid rgba(222, 222, 219, .75);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    left: 0;
+    padding: 20px clamp(20px, 4vw, 72px);
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(18px);
+  }
+
+  .brand { font-size: 28px; font-weight: 900; }
+  .back-link { font-size: 14px; font-weight: 800; }
+  .back-link span { margin-right: 8px; }
+  .button {
+    align-items: center;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+  }
+  .button.dark { background: var(--ink); color: #fff; }
+  .button.light { background: transparent; }
+  .button.small { justify-self: end; min-height: 42px; }
+  .header-actions { display: flex; gap: 8px; justify-self: end; }
+  .edit-page { background: #ffdd57 !important; }
+
+  main { display: grid; grid-template-columns: minmax(280px, 25vw) minmax(0, 1fr); }
+  .case-sidebar {
+    align-content: space-between;
+    background: var(--paper);
+    border-right: 1px solid var(--line);
+    display: grid;
+    gap: 44px;
+    height: calc(100vh - 83px);
+    padding: clamp(36px, 4vw, 64px) clamp(24px, 3vw, 48px);
+    position: sticky;
+    top: 83px;
+  }
+  .eyebrow {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .client-logo { height: 70px; margin-bottom: 32px; object-fit: contain; object-position: left center; width: 100px; }
+  h1 { font-size: clamp(28px, 3vw, 48px); line-height: 1.02; }
+  h2 { font-size: clamp(32px, 4.5vw, 68px); line-height: 1.02; max-width: 900px; }
+  .intro, .section-copy > p:last-child, .result-copy > p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 22px;
+  }
+  dl { border-top: 1px solid var(--line); }
+  dl div { border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; padding: 11px 0; }
+  dt { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  dd { font-size: 13px; font-weight: 800; text-align: right; }
+  nav { display: grid; gap: 10px; }
+  nav a { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  nav a:hover { color: var(--ink); }
+
+  .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
+  .hero { min-height: calc(100vh - 83px); }
+  .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
+  .hero-copy .eyebrow { grid-column: 1 / -1; }
+  .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
+  .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; }
+  .hero-media img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+
+  .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
+  .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
+  .section-copy { max-width: 850px; }
+  .quote {
+    background: var(--accent);
+    border-radius: var(--radius);
+    color: #fff;
+    font-size: clamp(26px, 4vw, 52px);
+    font-weight: 800;
+    grid-column: 2;
+    line-height: 1.12;
+    margin-top: 28px;
+    padding: clamp(28px, 5vw, 70px);
+  }
+
+  .video-section { background: #111; color: #fff; }
+  .video-section .eyebrow { color: #aaa; }
+  .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
+  .video-frame img, .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
+
+  .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
+  .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
+  .highlight-grid span { color: var(--muted); font-size: 12px; font-weight: 900; }
+  .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
+  .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .gallery { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
+  .gallery figure { background: var(--paper); border-radius: var(--radius); overflow: hidden; }
+  .gallery .large { grid-column: 1 / -1; }
+  .gallery img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+  .gallery .large img { aspect-ratio: 16 / 8; }
+  figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
+
+  .result { background: var(--accent); color: #fff; }
+  .result .eyebrow, .result-copy > p { color: #c6d1ce; }
+  .result-copy { max-width: 900px; }
+  .result .button { border-color: #fff; margin-top: 34px; }
+
+  @media (max-width: 1100px) {
+    .site-header { grid-template-columns: 1fr auto; }
+    .back-link { display: none; }
+    main { grid-template-columns: 1fr; }
+    .case-sidebar { height: auto; position: static; }
+    .case-sidebar nav { display: none; }
+    .hero { min-height: auto; }
+  }
+
+  @media (max-width: 720px) {
+    .site-header { padding: 14px 18px; }
+    .brand { font-size: 20px; }
+    .button.small { font-size: 11px; min-height: 38px; padding: 0 10px; }
+    .header-actions { gap: 5px; }
+    .case-sidebar { padding: 36px 18px; }
+    .case-content > section { padding-left: 18px; padding-right: 18px; }
+    .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
+    .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
+    .highlight-grid, .gallery { grid-template-columns: 1fr; }
+    .gallery .large { grid-column: 1; }
+    .section-number { display: none; }
+  }
+</style>

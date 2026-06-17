@@ -213,6 +213,16 @@ const featuredProjects = [
     internal: true,
   },
   {
+    title: "Pomidorka Product Campaign",
+    year: "2016",
+    category: "Food & Beverage",
+    url: `${base}projects/pomidorka/`,
+    image: campaignCover("https://www.edimdoma.ru/pomidorka"),
+    description:
+      "Warme Produktkampagne mit klarer Sortimentspraesentation, Markenfigur und rustikaler Food-Aesthetik.",
+    internal: true,
+  },
+  {
     title: "Kenwood Campaign Platform",
     year: "2019",
     category: "Kuechengeraete",
@@ -265,7 +275,7 @@ const featuredProjects = [
 
 const campaignArchive = [
   ["Calendar Special Project", "2021", "Editorial Campaign", "https://www.edimdoma.ru/2021/calendar", "prokha-maslenitsa.png"],
-  ["Pomidorka Campaign", "2021", "Food & Beverage", "https://www.edimdoma.ru/2021/pm", "prokha-parmalat.png"],
+  ["Palm Oil Campaign", "2021", "Food & Beverage", "https://www.edimdoma.ru/2021/pm", "prokha-parmalat.png"],
   ["Nasha Ptichka Campaign", "2021", "Food & Beverage", `${base}projects/nasha-ptichka/`, "prokha-velle.png"],
   ["Fish & More Campaign", "2021", "Food & Beverage", `${base}projects/fish-and-more/`, "old-seafood.jpg"],
   ["Luminarc Summer Campaign", "2021", "Lifestyle", `${base}projects/luminarc/`, "prokha-luminarc.png"],
@@ -336,7 +346,7 @@ const campaignArchive = [
   ["Maguro Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/maguro", "old-seafood.jpg"],
   ["Agrivolga Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/agrivolga", "prokha-hochland.png"],
   ["Candy Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/candy3", "prokha-oetker.png"],
-  ["Pomidorka Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/pomidorka", "prokha-parmalat.png"],
+  ["Pomidorka Campaign", "2016", "Food & Beverage", `${base}projects/pomidorka/`, "prokha-parmalat.png"],
 ].map(([title, year, category, url]) => ({
   title,
   year,
@@ -395,7 +405,7 @@ const brandLogos = [
   ["udarniza.svg", "Udarniza", "https://www.edimdoma.ru/2018/udarnitsa"],
   ["biokor.svg", "Biokor", "https://www.edimdoma.ru/2017/lito"],
   ["leonardo.svg", "Leonardo", "https://www.edimdoma.ru/leonardo"],
-  ["pomidorka.svg", "Pomidorka", "https://www.edimdoma.ru/pomidorka"],
+  ["pomidorka.svg", "Pomidorka", ["https://www.edimdoma.ru/pomidorka", `${base}projects/pomidorka/`]],
   ["sloboda.svg", "Sloboda", "https://www.edimdoma.ru/sloboda"],
 ].map(([file, name, projectUrl = ""]) => {
   const projectUrls = Array.isArray(projectUrl) ? projectUrl : projectUrl ? [projectUrl] : [];

@@ -14,6 +14,19 @@ const highlights = [
   ["Editoriale Navigation", "Die Themenbereiche verbinden Produktwissen, Rezepte und Markenstory in einer klaren Dramaturgie."],
   ["Food Storytelling", "Grosszuegige Rezeptbilder machen die Produktanwendung unmittelbar und appetitlich erlebbar."],
 ];
+
+const productSlides = [
+  ["jar-01.png", "jar-01-hover.png", "Bulgur nach Samarkand-Art"],
+  ["jar-02.png", "jar-02-hover.png", "Gebackene Bohnen nach Hausart"],
+  ["jar-03.png", "jar-03-hover.png", "Letscho nach Transkarpatien-Art"],
+  ["jar-04.png", "jar-04-hover.png", "Lobio Alt-Tiflis"],
+  ["jar-05.png", "jar-05-hover.png", "Ungarischer Gemuesesnack"],
+  ["jar-06.png", "jar-06-hover.png", "Auberginenkaviar nach Balkan-Art"],
+  ["jar-07.png", "jar-07-hover.png", "Zucchinikaviar"],
+  ["jar-08.png", "jar-08-hover.png", "Zucchini in Adjika"],
+  ["jar-09.png", "jar-09-hover.png", "Melitopoler Gemuesesnack"],
+  ["jar-10.png", "jar-10-hover.png", "Toskanischer Bohnensnack"],
+];
 ---
 
 <html lang="de">
@@ -111,6 +124,51 @@ const highlights = [
           </div>
         </section>
 
+        <section class="products-section" aria-labelledby="products-title">
+          <div class="section-copy">
+            <p class="eyebrow">Interaktive Produktwelt</p>
+            <h2 id="products-title">Jede Zutat wird beim Hover sichtbar</h2>
+            <p>
+              Die zehn Produktglaeser wechseln automatisch. Beim Ueberfahren verwandelt sich
+              jedes Glas in seine individuelle Zutatenkomposition aus dem Originalprojekt.
+            </p>
+          </div>
+          <div class="product-slider" data-product-slider>
+            <button class="product-arrow previous" type="button" aria-label="Vorheriges Produkt" data-product-previous>←</button>
+            <div class="product-stage">
+              {productSlides.map(([regular, hover, label], index) => (
+                <figure
+                  class:list={["product-slide", { "is-active": index === 0 }]}
+                  aria-hidden={index === 0 ? "false" : "true"}
+                  data-label={label}
+                  data-product-slide
+                  tabindex={index === 0 ? "0" : "-1"}
+                >
+                  <div class="product-visual">
+                    <img class="product-regular" src={`${media}/${regular}`} alt={`Djadja Vanja: ${label}`} loading={index === 0 ? "eager" : "lazy"} />
+                    <img class="product-hover" src={`${media}/${hover}`} alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                </figure>
+              ))}
+            </div>
+            <button class="product-arrow next" type="button" aria-label="Naechstes Produkt" data-product-next>→</button>
+            <div class="product-slider-footer">
+              <span data-product-caption>{productSlides[0][2]}</span>
+              <div class="product-dots" aria-label="Produkt auswaehlen">
+                {productSlides.map(([, , label], index) => (
+                  <button
+                    class:list={{ "is-active": index === 0 }}
+                    type="button"
+                    aria-label={label}
+                    aria-current={index === 0 ? "true" : "false"}
+                    data-product-dot
+                  ></button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="highlights" class="highlights">
           <div class="section-number">03</div>
           <div class="section-copy">
@@ -169,6 +227,61 @@ const highlights = [
   document.querySelectorAll("[data-owner-only]").forEach((element) => {
     element.hidden = !isOwner;
   });
+
+  const productSlider = document.querySelector("[data-product-slider]");
+  const productSlides = Array.from(document.querySelectorAll("[data-product-slide]"));
+  const productDots = Array.from(document.querySelectorAll("[data-product-dot]"));
+  const productCaption = document.querySelector("[data-product-caption]");
+  const previousProduct = document.querySelector("[data-product-previous]");
+  const nextProduct = document.querySelector("[data-product-next]");
+
+  if (productSlider && productSlides.length > 1) {
+    let activeProduct = 0;
+    let autoplay;
+
+    const showProduct = (nextIndex) => {
+      productSlides[activeProduct].classList.remove("is-active");
+      productSlides[activeProduct].setAttribute("aria-hidden", "true");
+      productSlides[activeProduct].setAttribute("tabindex", "-1");
+      productDots[activeProduct]?.classList.remove("is-active");
+      productDots[activeProduct]?.setAttribute("aria-current", "false");
+
+      activeProduct = (nextIndex + productSlides.length) % productSlides.length;
+      const activeSlide = productSlides[activeProduct];
+      activeSlide.classList.add("is-active");
+      activeSlide.setAttribute("aria-hidden", "false");
+      activeSlide.setAttribute("tabindex", "0");
+      productDots[activeProduct]?.classList.add("is-active");
+      productDots[activeProduct]?.setAttribute("aria-current", "true");
+      if (productCaption) productCaption.textContent = activeSlide.dataset.label || "";
+    };
+
+    const stopAutoplay = () => clearInterval(autoplay);
+    const startAutoplay = () => {
+      stopAutoplay();
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        autoplay = setInterval(() => showProduct(activeProduct + 1), 3200);
+      }
+    };
+
+    previousProduct?.addEventListener("click", () => {
+      showProduct(activeProduct - 1);
+      startAutoplay();
+    });
+    nextProduct?.addEventListener("click", () => {
+      showProduct(activeProduct + 1);
+      startAutoplay();
+    });
+    productDots.forEach((dot, index) => dot.addEventListener("click", () => {
+      showProduct(index);
+      startAutoplay();
+    }));
+    productSlider.addEventListener("pointerenter", stopAutoplay);
+    productSlider.addEventListener("pointerleave", startAutoplay);
+    productSlider.addEventListener("focusin", stopAutoplay);
+    productSlider.addEventListener("focusout", startAutoplay);
+    startAutoplay();
+  }
 </script>
 
 <style>
@@ -294,6 +407,85 @@ const highlights = [
   .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
   .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
 
+  .products-section { background: #e9e3d4; }
+  .products-section .section-copy > p:last-child { max-width: 700px; }
+  .product-slider {
+    background: #173e36;
+    border-radius: var(--radius);
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr) 68px;
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .product-stage { min-height: 590px; position: relative; }
+  .product-slide {
+    align-items: center;
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(24px);
+    transition: opacity .55s ease, transform .55s ease;
+    visibility: hidden;
+  }
+  .product-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    visibility: visible;
+  }
+  .product-visual { height: 530px; position: relative; width: 324px; }
+  .product-visual img {
+    height: 100%;
+    inset: 0;
+    object-fit: contain;
+    position: absolute;
+    transition: opacity .35s ease, transform .45s cubic-bezier(.2, .8, .2, 1);
+    width: 100%;
+  }
+  .product-hover { opacity: 0; transform: scale(.96); }
+  .product-slide:hover .product-regular,
+  .product-slide:focus-visible .product-regular { opacity: 0; transform: scale(1.04); }
+  .product-slide:hover .product-hover,
+  .product-slide:focus-visible .product-hover { opacity: 1; transform: scale(1); }
+  .product-slide:focus-visible { outline: 2px solid #fff; outline-offset: -8px; }
+  .product-arrow {
+    background: transparent;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 30px;
+    transition: background .2s ease;
+    z-index: 2;
+  }
+  .product-arrow:hover { background: rgba(255, 255, 255, .08); }
+  .product-slider-footer {
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, .18);
+    color: #fff;
+    display: flex;
+    font-size: 13px;
+    font-weight: 800;
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    min-height: 62px;
+    padding: 12px 22px;
+  }
+  .product-dots { display: flex; gap: 7px; }
+  .product-dots button {
+    background: rgba(255, 255, 255, .32);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    height: 7px;
+    padding: 0;
+    transition: background .2s ease, width .2s ease;
+    width: 7px;
+  }
+  .product-dots button.is-active { background: #fff; width: 22px; }
+
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
   .highlight-grid span { color: var(--muted); font-size: 12px; font-weight: 900; }
@@ -333,5 +525,10 @@ const highlights = [
     .highlight-grid, .gallery { grid-template-columns: 1fr; }
     .gallery .large { grid-column: 1; }
     .section-number { display: none; }
+    .product-slider { grid-template-columns: 46px minmax(0, 1fr) 46px; }
+    .product-stage { min-height: 470px; }
+    .product-visual { height: 420px; width: 257px; }
+    .product-slider-footer { align-items: flex-start; flex-direction: column; gap: 12px; }
+    .product-dots { flex-wrap: wrap; }
   }
 </style>

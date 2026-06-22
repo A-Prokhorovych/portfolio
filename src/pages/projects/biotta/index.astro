@@ -14,6 +14,14 @@ const highlights = [
   ["Transparente Produktinformation", "Zusammensetzung, Nährwerte, funktionale Vorteile und Hinweise für Diabetiker stehen direkt neben der emotionalen Bildwelt."],
   ["Rezepte erweitern den Gebrauch", "Smoothies, Cocktails und Wintergetränke zeigen organische Säfte als vielseitige Zutat statt nur als fertiges Getränk."],
 ];
+
+const campaignSlides = [
+  ["slide-lingonberry.jpg", "Preiselbeer Bio-Nektar"],
+  ["slide-exotic.jpg", "Exotischer Bio-Saft"],
+  ["slide-carrot.jpg", "Karotten Bio-Saft"],
+  ["slide-pomegranate.jpg", "Granatapfel Bio-Nektar"],
+  ["slide-tomato.jpg", "Tomaten Bio-Saft"],
+];
 ---
 
 <html lang="de">
@@ -104,8 +112,27 @@ const highlights = [
             <p class="eyebrow">Kampagnenansicht</p>
             <h2 id="video-title">Vom Bio-Saft bis zum eigenen Winterdrink</h2>
           </div>
-          <div class="video-frame">
-            <img src={`${media}/hero.jpg`} alt="Startansicht der Biotta Kampagne" loading="lazy" />
+          <div class="video-frame campaign-slider" data-campaign-slider aria-label="Automatische Kampagnenansichten">
+            <div class="campaign-slides">
+              {campaignSlides.map(([file, label], index) => (
+                <img
+                  class:list={["campaign-slide", { "is-active": index === 0 }]}
+                  src={`${media}/${file}`}
+                  alt={`Biotta Kampagne: ${label}`}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  aria-hidden={index === 0 ? "false" : "true"}
+                  data-campaign-slide
+                />
+              ))}
+            </div>
+            <div class="campaign-slider-footer">
+              <span data-campaign-caption>{campaignSlides[0][1]}</span>
+              <div class="campaign-dots" aria-hidden="true">
+                {campaignSlides.map((_, index) => (
+                  <i class:list={{ "is-active": index === 0 }} data-campaign-dot></i>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -167,6 +194,32 @@ const highlights = [
   document.querySelectorAll("[data-owner-only]").forEach((element) => {
     element.hidden = !isOwner;
   });
+
+  const campaignSlider = document.querySelector("[data-campaign-slider]");
+  const campaignSlides = Array.from(document.querySelectorAll("[data-campaign-slide]"));
+  const campaignDots = Array.from(document.querySelectorAll("[data-campaign-dot]"));
+  const campaignCaption = document.querySelector("[data-campaign-caption]");
+  const campaignLabels = [
+    "Preiselbeer Bio-Nektar",
+    "Exotischer Bio-Saft",
+    "Karotten Bio-Saft",
+    "Granatapfel Bio-Nektar",
+    "Tomaten Bio-Saft",
+  ];
+
+  if (campaignSlider && campaignSlides.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let activeSlide = 0;
+    setInterval(() => {
+      campaignSlides[activeSlide].classList.remove("is-active");
+      campaignSlides[activeSlide].setAttribute("aria-hidden", "true");
+      campaignDots[activeSlide]?.classList.remove("is-active");
+      activeSlide = (activeSlide + 1) % campaignSlides.length;
+      campaignSlides[activeSlide].classList.add("is-active");
+      campaignSlides[activeSlide].setAttribute("aria-hidden", "false");
+      campaignDots[activeSlide]?.classList.add("is-active");
+      if (campaignCaption) campaignCaption.textContent = campaignLabels[activeSlide];
+    }, 2800);
+  }
 </script>
 
 <style>
@@ -291,6 +344,42 @@ const highlights = [
   .video-section .eyebrow { color: #aaa; }
   .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
   .video-frame img, .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
+  .campaign-slides { aspect-ratio: 1920 / 924; background: #eee; position: relative; }
+  .campaign-slide {
+    height: 100%;
+    inset: 0;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 900ms ease;
+  }
+  .campaign-slide.is-active { opacity: 1; z-index: 1; }
+  .campaign-slider-footer {
+    align-items: center;
+    background: #1a1a1a;
+    color: #ddd;
+    display: flex;
+    font-size: 12px;
+    font-weight: 800;
+    justify-content: space-between;
+    letter-spacing: .06em;
+    min-height: 48px;
+    padding: 0 18px;
+    text-transform: uppercase;
+  }
+  .campaign-dots { display: flex; gap: 7px; }
+  .campaign-dots i {
+    background: #666;
+    border-radius: 50%;
+    display: block;
+    height: 7px;
+    transition: background 300ms ease, transform 300ms ease;
+    width: 7px;
+  }
+  .campaign-dots i.is-active { background: #fff; transform: scale(1.35); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .campaign-slide { transition: none; }
+  }
 
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }

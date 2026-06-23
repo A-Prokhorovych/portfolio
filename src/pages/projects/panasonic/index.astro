@@ -32,7 +32,7 @@ const highlights = [
         Zurueck zu den Projekten
       </a>
       <div class="header-actions">
-        <a class="button light small edit-page" data-owner-only hidden href={`${base}editor/?project=panasonic`}>Редактировать</a>
+        <a class="button light small edit-page" data-owner-only data-edit-only hidden href={`${base}editor/?project=panasonic`}>Редактировать</a>
         <a class="button dark small" data-owner-only hidden href="https://www.edimdoma.ru/2021/panasonic" target="_blank" rel="noreferrer">Original ansehen</a>
       </div>
     </header>
@@ -162,12 +162,38 @@ const highlights = [
 </html>
 
 <script>
-  const ownerParam = new URLSearchParams(location.search).get("owner");
+  const params = new URLSearchParams(location.search);
+  const ownerParam = params.get("owner");
+  const editParam = params.get("edit");
   if (ownerParam === "1") localStorage.setItem("prokha-owner-mode", "1");
-  if (ownerParam === "0") localStorage.removeItem("prokha-owner-mode");
-  const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
-  document.querySelectorAll("[data-owner-only]").forEach((element) => {
-    element.hidden = !isOwner;
+  if (ownerParam === "0") {
+    localStorage.removeItem("prokha-owner-mode");
+    localStorage.removeItem("prokha-edit-links");
+  }
+  if (editParam === "1") localStorage.setItem("prokha-edit-links", "1");
+  if (editParam === "0") localStorage.removeItem("prokha-edit-links");
+
+  const revealOwnerControls = () => {
+    const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
+    const showEditLinks = isOwner && localStorage.getItem("prokha-edit-links") === "1";
+    document.querySelectorAll("[data-owner-only]").forEach((element) => {
+      element.hidden = !isOwner;
+    });
+    document.querySelectorAll("[data-edit-only]").forEach((element) => {
+      element.hidden = !showEditLinks;
+    });
+  };
+
+  revealOwnerControls();
+
+  let editCommand = "";
+  document.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+    editCommand = (editCommand + event.key.toLowerCase()).slice(-4);
+    if (editCommand === "edit") {
+      localStorage.setItem("prokha-edit-links", "1");
+      revealOwnerControls();
+    }
   });
 </script>
 
@@ -225,7 +251,17 @@ const highlights = [
   .button.light { background: transparent; }
   .button.small { justify-self: end; min-height: 42px; }
   .header-actions { display: flex; gap: 8px; justify-self: end; }
-  .edit-page { background: #ffdd57 !important; }
+  .edit-page {
+    background: transparent !important;
+    border-color: rgba(8, 8, 8, 0.18) !important;
+    color: rgba(8, 8, 8, 0.46) !important;
+  }
+
+  .edit-page:hover,
+  .edit-page:focus-visible {
+    border-color: var(--ink) !important;
+    color: var(--ink) !important;
+  }
 
   main { display: grid; grid-template-columns: minmax(280px, 25vw) minmax(0, 1fr); }
   .case-sidebar {

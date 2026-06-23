@@ -11,14 +11,29 @@ const facts = [
 
 const highlights = [
   ["Video als emotionaler Einstieg", "Die Kampagne startet mit einem warmen Food-Moment und macht Wasser sofort zum Teil der Kochgeschichte."],
-  ["Rezepte auf gutem Wasser", "Rezeptkarten zeigen Tee, warme Gerichte und Saucen als direkte Anwendung fuer gefiltertes Wasser."],
-  ["Produktbruecke mit Aktivierung", "Brita MAXTRA wird ueber Produktnutzen, Artikel und Contest in den redaktionellen Flow eingebunden."],
+  ["Rezeptkarussell als Nutzwert", "Die Rezeptmechanik zeigt Tee, Suppen und Saucen als konkrete Anwendung fuer gefiltertes Wasser."],
+  ["Contest als zweiter Funnel", "Der Wettbewerb sammelt User-Rezepte und verlaengert die Kampagne von Inspiration in Teilnahme."],
 ];
 
 const recipes = [
-  ["recipe-01.jpg", "Warmes Getraenk"],
-  ["recipe-02.jpg", "Suppe auf gutem Wasser"],
-  ["recipe-03.jpg", "Aromatisches Gericht"],
+  ["recipe-01.jpg", "Aromatischer Hibiskustee"],
+  ["recipe-02.jpg", "Ingwertee mit Apfel und Limette"],
+  ["recipe-03.jpg", "Wuerziger Sanddorntee"],
+  ["recipe-04.jpg", "Vitamintee mit Beeren"],
+  ["recipe-05.jpg", "Cranberrytee mit Minze"],
+  ["recipe-06.jpg", "Waermende Linsensuppe"],
+];
+
+const contestRecipes = [
+  ["contest-recipe-01.jpg", "Suppe mit Gemuese"],
+  ["contest-recipe-02.jpg", "Mandarinen-Tee"],
+  ["contest-recipe-03.jpg", "Polenta mit Pilzen"],
+];
+
+const mechanics = [
+  ["01", "Main Screen", "Video und Markenclaim setzen den emotionalen Kontext: Wasser wird als unsichtbare Basis fuer Geschmack eingefuehrt."],
+  ["02", "Recipes", "Das Karussell macht den Nutzen klickbar und zeigt direkt, wofuer gefiltertes Wasser im Alltag gebraucht wird."],
+  ["03", "Contest", "Die zweite Seite sammelt Einsendungen, Regeln, Preise und Teilnehmer in einem eigenen Aktivierungsbereich."],
 ];
 ---
 
@@ -74,8 +89,11 @@ const recipes = [
 
       <article class="case-content">
         <section id="ueberblick" class="hero">
-          <div class="hero-copy">
+          <div class="hero-kicker">
             <p class="eyebrow">Lifestyle · Water & Recipe Campaign</p>
+            <span>Edim Doma Special Project</span>
+          </div>
+          <div class="hero-copy">
             <h2>Brita macht gutes Wasser zum Rezeptbestandteil</h2>
             <p>
               Die Kampagne uebersetzt den Produktnutzen in Alltagssituationen:
@@ -108,20 +126,23 @@ const recipes = [
 
         <section class="water-section" aria-labelledby="water-title">
           <div class="section-copy">
-            <p class="eyebrow">Produktnutzen</p>
-            <h2 id="water-title">Brita MAXTRA als Bruecke zwischen Haushalt und Geschmack</h2>
+            <p class="eyebrow">Mechanik</p>
+            <h2 id="water-title">Drei Ebenen statt nur ein schoener Hintergrund</h2>
           </div>
-          <div class="water-grid">
-            <article>
-              <img src={`${media}/video.jpg`} alt="Brita Video-Einstieg" loading="lazy" />
-              <h3>Video</h3>
-              <p>Ein emotionaler Einstieg setzt den Ton fuer die gesamte Kampagne.</p>
-            </article>
-            <article>
-              <img src={`${media}/product.jpg`} alt="Brita Produktbereich" loading="lazy" />
-              <h3>Produkt</h3>
-              <p>Der Filter wird als praktische Loesung fuer besseren Geschmack positioniert.</p>
-            </article>
+          <div class="mechanics-layout">
+            <figure class="screen-card large">
+              <img src={`${media}/video.jpg`} alt="Brita Video-Einstieg mit Play-Button" loading="lazy" />
+              <figcaption>Hero-Video als Einstieg in die Produktstory</figcaption>
+            </figure>
+            <div class="mechanic-list">
+              {mechanics.map(([number, title, text]) => (
+                <article>
+                  <span>{number}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -142,12 +163,17 @@ const recipes = [
           </div>
         </section>
 
-        <section class="recipes" aria-label="Rezeptkarten">
+        <section class="recipes" aria-label="Rezeptkarussell">
           <div class="section-copy">
             <p class="eyebrow">Rezepte</p>
-            <h2>Wasser als stille Hauptzutat</h2>
+            <h2>Die Karussell-Idee als Herz des Nutzwerts</h2>
+            <p>
+              Im Original bewegen sich die Rezeptkarten als Karussell um den Brita-Krug.
+              Hier wird daraus ein horizontales Modul: mehrere warme Rezeptideen auf
+              einen Blick, mit der Botschaft “gutes Wasser macht den Geschmack”.
+            </p>
           </div>
-          <div class="recipe-grid">
+          <div class="recipe-carousel">
             {recipes.map(([image, title]) => (
               <figure>
                 <img src={`${media}/${image}`} alt={title} loading="lazy" />
@@ -155,18 +181,50 @@ const recipes = [
               </figure>
             ))}
           </div>
+          <figure class="screen-card">
+            <img src={`${media}/recipes.jpg`} alt="Brita Rezeptkarussell im Originalprojekt" loading="lazy" />
+            <figcaption>Originalbereich · Rezeptkarussell mit Brita-Krug</figcaption>
+          </figure>
         </section>
 
-        <section class="gallery" aria-label="Kampagnenansichten">
-          <figure class="large">
-            <img src={`${media}/recipes.jpg`} alt="Brita Rezeptbereich" loading="lazy" />
-            <figcaption>Rezeptmodul als direkter Nutzwert der Kampagne</figcaption>
+        <section class="contest-section" aria-label="Wettbewerb">
+          <div class="contest-copy">
+            <p class="eyebrow">Contest</p>
+            <h2>Aus Inspiration wird Einsendung</h2>
+            <p>
+              Die zweite URL zeigt den Wettbewerbsmodus: User laden warme Getraenke,
+              Suppen und Saucen hoch, sehen Regeln und Preise und finden weitere
+              Teilnehmerrezepte. Das gibt der Kampagne einen klaren naechsten Schritt.
+            </p>
+          </div>
+          <figure class="screen-card contest-screen">
+            <img src={`${media}/contest-page.png`} alt="Brita Contest-Seite mit Rezeptwettbewerb" loading="lazy" />
+            <figcaption>Contest-Seite · Regeln, Preise und Rezept-Einsendungen</figcaption>
+          </figure>
+          <div class="contest-grid">
+            {contestRecipes.map(([image, title]) => (
+              <article>
+                <img src={`${media}/${image}`} alt={title} loading="lazy" />
+                <h3>{title}</h3>
+                <p>User-Rezept als Teil des Wettbewerbs.</p>
+              </article>
+            ))}
+            <article class="prize-card">
+              <img src={`${media}/prize-filter.jpg`} alt="Brita Filter als Wettbewerbspreis" loading="lazy" />
+              <h3>Preislogik</h3>
+              <p>Brita-Produkte und Zubehoer machen die Teilnahme greifbar.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="gallery" aria-label="Weitere Kampagnenansichten">
+          <figure>
+            <img src={`${media}/product.jpg`} alt="Brita Produktbereich mit Krug und Filter" loading="lazy" />
+            <figcaption>Produktbereich · Nutzenargument und externer Produktlink</figcaption>
           </figure>
           <figure>
             <img src={`${media}/articles.jpg`} alt="Brita redaktionelle Artikel" loading="lazy" />
-          </figure>
-          <figure>
-            <img src={`${media}/contest.jpg`} alt="Brita Wettbewerb" loading="lazy" />
+            <figcaption>Artikelbereich · Redaktionelle Themen als Zwischenstation</figcaption>
           </figure>
         </section>
 
@@ -390,14 +448,29 @@ const recipes = [
 
   .hero {
     display: grid;
-    gap: 64px;
+    gap: 40px;
+  }
+
+  .hero-kicker {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+  }
+
+  .hero-kicker span {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
 
   .hero-copy {
-    align-items: end;
+    align-items: start;
     display: grid;
-    gap: 42px;
-    grid-template-columns: minmax(360px, 1.2fr) minmax(260px, .8fr);
+    gap: 36px;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
   }
 
   h2 {
@@ -414,10 +487,15 @@ const recipes = [
     line-height: 1.5;
   }
 
+  .hero-copy h2 {
+    max-width: 1020px;
+  }
+
   .hero-media,
   .gallery figure,
-  .water-grid article,
-  .recipe-grid figure {
+  .screen-card,
+  .recipe-carousel figure,
+  .contest-grid article {
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -425,7 +503,8 @@ const recipes = [
     overflow: hidden;
   }
 
-  .hero-media img {
+  .hero-media img,
+  .screen-card img {
     aspect-ratio: 16 / 8.7;
     object-fit: cover;
     width: 100%;
@@ -481,34 +560,46 @@ const recipes = [
   }
 
   .water-section,
-  .recipes {
+  .recipes,
+  .contest-section {
     display: grid;
     gap: 34px;
   }
 
-  .water-grid {
+  .mechanics-layout {
     display: grid;
     gap: 24px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, .55fr);
   }
 
-  .water-grid img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    width: 100%;
+  .mechanic-list {
+    display: grid;
+    gap: 16px;
   }
 
-  .water-grid h3 {
+  .mechanic-list article {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+
+  .mechanic-list span {
+    color: var(--warm);
+    font-size: 14px;
+    font-weight: 950;
+  }
+
+  .mechanic-list h3 {
     font-size: 28px;
     letter-spacing: -0.055em;
-    padding: 24px 24px 8px;
+    margin: 26px 0 10px;
   }
 
-  .water-grid p {
+  .mechanic-list p {
     color: var(--muted);
     font-size: 18px;
     line-height: 1.45;
-    padding: 0 24px 26px;
   }
 
   .highlight-grid {
@@ -545,16 +636,84 @@ const recipes = [
     line-height: 1.45;
   }
 
-  .recipe-grid {
-    display: grid;
+  .recipe-carousel {
+    display: flex;
     gap: 18px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-inline: calc(clamp(44px, 8vw, 140px) * -1);
+    overflow-x: auto;
+    padding: 4px clamp(44px, 8vw, 140px) 18px;
+    scroll-snap-type: x mandatory;
   }
 
-  .recipe-grid img {
-    aspect-ratio: 4 / 3;
+  .recipe-carousel figure {
+    flex: 0 0 min(430px, 78vw);
+    scroll-snap-align: start;
+  }
+
+  .recipe-carousel img {
+    aspect-ratio: 1 / .76;
     object-fit: cover;
     width: 100%;
+  }
+
+  .contest-section {
+    background:
+      radial-gradient(circle at 14% 0%, rgba(255, 144, 0, .18), transparent 32%),
+      linear-gradient(135deg, #fff, #eaf8fe);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 10px);
+    padding: clamp(28px, 4vw, 54px);
+  }
+
+  .contest-copy {
+    display: grid;
+    gap: 22px;
+    max-width: 980px;
+  }
+
+  .contest-copy h2 {
+    font-size: clamp(42px, 5vw, 74px);
+  }
+
+  .contest-copy p:last-child {
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1.5;
+  }
+
+  .contest-screen img {
+    aspect-ratio: 16 / 8.8;
+    object-position: top center;
+  }
+
+  .contest-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .contest-grid img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .contest-grid h3 {
+    font-size: 22px;
+    letter-spacing: -0.045em;
+    padding: 18px 18px 6px;
+  }
+
+  .contest-grid p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.45;
+    padding: 0 18px 20px;
+  }
+
+  .prize-card img {
+    object-fit: contain;
+    padding: 28px;
   }
 
   .gallery {
@@ -598,7 +757,8 @@ const recipes = [
     .hero-copy,
     .story-section,
     .highlights,
-    .result {
+    .result,
+    .mechanics-layout {
       grid-template-columns: 1fr;
     }
 
@@ -622,6 +782,11 @@ const recipes = [
     .highlight-grid {
       grid-column: auto;
     }
+
+    .recipe-carousel {
+      margin-inline: -28px;
+      padding-inline: 28px;
+    }
   }
 
   @media (max-width: 740px) {
@@ -631,11 +796,15 @@ const recipes = [
     }
 
     .header-actions,
-    .water-grid,
     .highlight-grid,
-    .recipe-grid,
+    .contest-grid,
     .gallery {
       grid-template-columns: 1fr;
+    }
+
+    .hero-kicker {
+      align-items: flex-start;
+      flex-direction: column;
     }
 
     .header-actions {

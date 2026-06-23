@@ -1,0 +1,654 @@
+---
+const base = import.meta.env.BASE_URL;
+const media = `${base}projects/brita`;
+
+const facts = [
+  ["Kunde", "Brita"],
+  ["Plattform", "Edim Doma"],
+  ["Jahr", "2017"],
+  ["Rolle", "Web & Campaign Design"],
+];
+
+const highlights = [
+  ["Video als emotionaler Einstieg", "Die Kampagne startet mit einem warmen Food-Moment und macht Wasser sofort zum Teil der Kochgeschichte."],
+  ["Rezepte auf gutem Wasser", "Rezeptkarten zeigen Tee, warme Gerichte und Saucen als direkte Anwendung fuer gefiltertes Wasser."],
+  ["Produktbruecke mit Aktivierung", "Brita MAXTRA wird ueber Produktnutzen, Artikel und Contest in den redaktionellen Flow eingebunden."],
+];
+
+const recipes = [
+  ["recipe-01.jpg", "Warmes Getraenk"],
+  ["recipe-02.jpg", "Suppe auf gutem Wasser"],
+  ["recipe-03.jpg", "Aromatisches Gericht"],
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Brita Special Project 2017 - Case Study von Andrii Prokhorovych." />
+    <title>Brita Campaign 2017 - Andrii Prokhorovych</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={base}>PROKHA</a>
+      <a class="back-link" href={`${base}#projects`}>
+        <span aria-hidden="true">←</span>
+        Zurueck zu den Projekten
+      </a>
+      <div class="header-actions">
+        <a class="button light small edit-page" data-owner-only data-edit-only hidden href={`${base}editor/?project=brita`}>Редактировать</a>
+        <a class="button dark small" data-owner-only hidden href="https://www.edimdoma.ru/2017/brita4" target="_blank" rel="noreferrer">Original ansehen</a>
+      </div>
+    </header>
+
+    <main>
+      <aside class="case-sidebar">
+        <div>
+          <p class="eyebrow">Case Study · 2017</p>
+          <img class="client-logo" src={`${media}/logo.svg`} alt="Brita" />
+          <h1>Gefiltertes Wasser als kulinarischer Mehrwert</h1>
+          <p class="intro">
+            Ein Special Project, das Brita MAXTRA, Rezepte, redaktionelle Tipps
+            und Wettbewerb zu einer klaren Food-&-Lifestyle-Kampagne verbindet.
+          </p>
+        </div>
+
+        <dl>
+          {facts.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <nav aria-label="Case-Study-Navigation">
+          <a href="#ueberblick">01 Überblick</a>
+          <a href="#konzept">02 Konzept</a>
+          <a href="#highlights">03 Highlights</a>
+          <a href="#ergebnis">04 Ergebnis</a>
+        </nav>
+      </aside>
+
+      <article class="case-content">
+        <section id="ueberblick" class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Lifestyle · Water & Recipe Campaign</p>
+            <h2>Brita macht gutes Wasser zum Rezeptbestandteil</h2>
+            <p>
+              Die Kampagne uebersetzt den Produktnutzen in Alltagssituationen:
+              gutes Wasser fuer Tee, Suppen, Saucen und warme Gerichte. So wird
+              der Filter nicht nur erklaert, sondern direkt kulinarisch erlebbar.
+            </p>
+          </div>
+          <div class="hero-media">
+            <img src={`${media}/hero-original.jpg`} alt="Brita Special Project Startscreen" />
+            <span>Startseite · Food-Moment mit Brita</span>
+          </div>
+        </section>
+
+        <section id="konzept" class="story-section">
+          <div class="section-number">02</div>
+          <div class="section-copy">
+            <p class="eyebrow">Konzept</p>
+            <h2>Vom Wasserfilter zur Kochidee</h2>
+            <p>
+              Der Auftritt fuehrt Nutzer durch eine einfache Dramaturgie: Video als
+              emotionaler Einstieg, Produktbereich als Nutzenargument, Artikel als
+              Erklaerung und Rezepte als konkrete Anwendung. Der Contest verlaengert
+              die Kampagne in aktive Teilnahme.
+            </p>
+          </div>
+          <div class="quote">
+            <p>„Wenn Wasser die Basis ist, kann die Produktstory mitten im Rezept beginnen.“</p>
+          </div>
+        </section>
+
+        <section class="water-section" aria-labelledby="water-title">
+          <div class="section-copy">
+            <p class="eyebrow">Produktnutzen</p>
+            <h2 id="water-title">Brita MAXTRA als Bruecke zwischen Haushalt und Geschmack</h2>
+          </div>
+          <div class="water-grid">
+            <article>
+              <img src={`${media}/video.jpg`} alt="Brita Video-Einstieg" loading="lazy" />
+              <h3>Video</h3>
+              <p>Ein emotionaler Einstieg setzt den Ton fuer die gesamte Kampagne.</p>
+            </article>
+            <article>
+              <img src={`${media}/product.jpg`} alt="Brita Produktbereich" loading="lazy" />
+              <h3>Produkt</h3>
+              <p>Der Filter wird als praktische Loesung fuer besseren Geschmack positioniert.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="highlights" class="highlights">
+          <div class="section-number">03</div>
+          <div class="section-copy">
+            <p class="eyebrow">Highlights</p>
+            <h2>Was den Auftritt besonders macht</h2>
+          </div>
+          <div class="highlight-grid">
+            {highlights.map(([title, text], index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="recipes" aria-label="Rezeptkarten">
+          <div class="section-copy">
+            <p class="eyebrow">Rezepte</p>
+            <h2>Wasser als stille Hauptzutat</h2>
+          </div>
+          <div class="recipe-grid">
+            {recipes.map(([image, title]) => (
+              <figure>
+                <img src={`${media}/${image}`} alt={title} loading="lazy" />
+                <figcaption>{title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section class="gallery" aria-label="Kampagnenansichten">
+          <figure class="large">
+            <img src={`${media}/recipes.jpg`} alt="Brita Rezeptbereich" loading="lazy" />
+            <figcaption>Rezeptmodul als direkter Nutzwert der Kampagne</figcaption>
+          </figure>
+          <figure>
+            <img src={`${media}/articles.jpg`} alt="Brita redaktionelle Artikel" loading="lazy" />
+          </figure>
+          <figure>
+            <img src={`${media}/contest.jpg`} alt="Brita Wettbewerb" loading="lazy" />
+          </figure>
+        </section>
+
+        <section id="ergebnis" class="result">
+          <div class="section-number">04</div>
+          <div class="result-copy">
+            <p class="eyebrow">Ergebnis</p>
+            <h2>Eine ruhige Produktstory mit konkretem Kochanlass</h2>
+            <p>
+              Brita wird nicht isoliert als Haushaltsprodukt gezeigt, sondern als
+              Grundlage fuer Geschmack, Waerme und Rezeptideen. Dadurch bekommt die
+              Marke eine natuerliche Rolle in der Food-Plattform.
+            </p>
+            <a class="button light" data-owner-only hidden href="https://www.edimdoma.ru/2017/brita4" target="_blank" rel="noreferrer">
+              Originalprojekt oeffnen
+            </a>
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const ownerParam = params.get("owner");
+  const editParam = params.get("edit");
+  if (ownerParam === "1") localStorage.setItem("prokha-owner-mode", "1");
+  if (ownerParam === "0") localStorage.removeItem("prokha-owner-mode");
+  localStorage.removeItem("prokha-edit-links");
+
+  let editLinksVisible = editParam === "1";
+  const revealOwnerControls = () => {
+    const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
+    const showEditLinks = isOwner && editLinksVisible;
+    document.querySelectorAll("[data-owner-only]").forEach((element) => {
+      element.hidden = !isOwner;
+    });
+    document.querySelectorAll("[data-edit-only]").forEach((element) => {
+      element.hidden = !showEditLinks;
+    });
+  };
+
+  revealOwnerControls();
+
+  let editCommand = "";
+  document.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+    editCommand = (editCommand + event.key.toLowerCase()).slice(-4);
+    if (editCommand === "edit") {
+      editLinksVisible = true;
+      revealOwnerControls();
+    }
+  });
+</script>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4fafd;
+    --paper: #fff;
+    --ink: #071826;
+    --muted: #5b6f80;
+    --line: rgba(7, 24, 38, .12);
+    --accent: #0091ca;
+    --deep: #005690;
+    --warm: #ff9000;
+    --radius: 18px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  p, h1, h2, h3, dl, dd, figure { margin: 0; }
+  img { display: block; max-width: 100%; }
+  [hidden] { display: none !important; }
+
+  .site-header {
+    align-items: center;
+    background: rgba(244, 250, 253, .92);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    left: 0;
+    padding: 28px 40px;
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(18px);
+  }
+
+  .brand {
+    font-size: 32px;
+    font-weight: 950;
+    letter-spacing: -0.08em;
+  }
+
+  .back-link {
+    align-items: center;
+    display: inline-flex;
+    font-weight: 850;
+    gap: 10px;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .button {
+    align-items: center;
+    border-radius: 12px;
+    display: inline-flex;
+    font-weight: 850;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 26px;
+  }
+
+  .button.small { min-height: 48px; padding: 0 24px; }
+  .button.dark { background: var(--ink); color: #fff; }
+  .button.light { background: var(--paper); border: 1px solid var(--line); color: var(--deep); }
+
+  main {
+    display: grid;
+    grid-template-columns: minmax(340px, 25vw) 1fr;
+    min-height: calc(100vh - 105px);
+  }
+
+  .case-sidebar {
+    background: var(--paper);
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    justify-content: space-between;
+    min-height: calc(100vh - 105px);
+    padding: 72px 54px;
+    position: sticky;
+    top: 105px;
+  }
+
+  .eyebrow {
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .client-logo {
+    height: 56px;
+    margin: 36px 0 52px;
+    object-fit: contain;
+    object-position: left center;
+    width: 150px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 4vw, 64px);
+    letter-spacing: -0.08em;
+    line-height: .95;
+    margin-bottom: 28px;
+  }
+
+  .intro {
+    color: var(--muted);
+    font-size: 21px;
+    line-height: 1.45;
+  }
+
+  dl {
+    border-top: 1px solid var(--line);
+    display: grid;
+  }
+
+  dl div {
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 0;
+  }
+
+  dt {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+
+  dd {
+    font-size: 14px;
+    font-weight: 900;
+    text-align: right;
+  }
+
+  nav {
+    display: grid;
+    gap: 10px;
+  }
+
+  nav a {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+
+  .case-content {
+    display: grid;
+    gap: 100px;
+    padding: 124px clamp(44px, 8vw, 140px);
+  }
+
+  .hero {
+    display: grid;
+    gap: 64px;
+  }
+
+  .hero-copy {
+    align-items: end;
+    display: grid;
+    gap: 42px;
+    grid-template-columns: minmax(360px, 1.2fr) minmax(260px, .8fr);
+  }
+
+  h2 {
+    font-size: clamp(48px, 7vw, 104px);
+    letter-spacing: -0.085em;
+    line-height: .92;
+  }
+
+  .hero-copy p:last-child,
+  .section-copy p:last-child,
+  .result-copy p {
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1.5;
+  }
+
+  .hero-media,
+  .gallery figure,
+  .water-grid article,
+  .recipe-grid figure {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 26px 70px rgba(0, 86, 144, .12);
+    overflow: hidden;
+  }
+
+  .hero-media img {
+    aspect-ratio: 16 / 8.7;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .hero-media span,
+  figcaption {
+    color: var(--muted);
+    display: block;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
+
+  .story-section,
+  .highlights,
+  .result {
+    display: grid;
+    gap: 46px;
+    grid-template-columns: 90px 1fr;
+  }
+
+  .section-number {
+    color: var(--accent);
+    font-size: 72px;
+    font-weight: 950;
+    letter-spacing: -0.08em;
+    line-height: .9;
+  }
+
+  .section-copy {
+    display: grid;
+    gap: 22px;
+  }
+
+  .section-copy h2,
+  .result-copy h2 {
+    font-size: clamp(42px, 5vw, 74px);
+  }
+
+  .quote {
+    background: linear-gradient(135deg, var(--deep), var(--accent));
+    border-radius: var(--radius);
+    color: #fff;
+    font-size: clamp(28px, 4vw, 54px);
+    font-weight: 900;
+    grid-column: 2;
+    letter-spacing: -0.055em;
+    line-height: 1.04;
+    padding: clamp(34px, 5vw, 72px);
+  }
+
+  .water-section,
+  .recipes {
+    display: grid;
+    gap: 34px;
+  }
+
+  .water-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .water-grid img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .water-grid h3 {
+    font-size: 28px;
+    letter-spacing: -0.055em;
+    padding: 24px 24px 8px;
+  }
+
+  .water-grid p {
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.45;
+    padding: 0 24px 26px;
+  }
+
+  .highlight-grid {
+    display: grid;
+    gap: 18px;
+    grid-column: 2;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .highlight-grid article {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 290px;
+    padding: 28px;
+  }
+
+  .highlight-grid span {
+    color: var(--warm);
+    font-size: 14px;
+    font-weight: 950;
+  }
+
+  .highlight-grid h3 {
+    font-size: 28px;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    margin: 44px 0 18px;
+  }
+
+  .highlight-grid p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.45;
+  }
+
+  .recipe-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .recipe-grid img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .gallery {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery .large {
+    grid-column: 1 / -1;
+  }
+
+  .gallery img {
+    aspect-ratio: 16 / 8.5;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .gallery figure:not(.large) img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .result {
+    align-items: center;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(255, 144, 0, .22), transparent 34%),
+      linear-gradient(135deg, #fff, #e9f7fd);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 10px);
+    padding: clamp(34px, 5vw, 72px);
+  }
+
+  .result-copy {
+    display: grid;
+    gap: 24px;
+  }
+
+  @media (max-width: 1080px) {
+    .site-header,
+    main,
+    .hero-copy,
+    .story-section,
+    .highlights,
+    .result {
+      grid-template-columns: 1fr;
+    }
+
+    .site-header {
+      position: static;
+    }
+
+    .case-sidebar {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+      min-height: auto;
+      padding: 48px 28px;
+      position: static;
+    }
+
+    .case-content {
+      padding: 72px 28px;
+    }
+
+    .quote,
+    .highlight-grid {
+      grid-column: auto;
+    }
+  }
+
+  @media (max-width: 740px) {
+    .site-header {
+      align-items: flex-start;
+      padding: 24px;
+    }
+
+    .header-actions,
+    .water-grid,
+    .highlight-grid,
+    .recipe-grid,
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .header-actions {
+      display: grid;
+      justify-content: stretch;
+      width: 100%;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    h1 { font-size: 42px; }
+    h2 { font-size: 48px; }
+  }
+</style>

@@ -14,6 +14,29 @@ const highlights = [
   ["Gesundheitswissen mit Genuss", "Artikel und Fotorezepte uebersetzen Naehrwerte und Produktvielfalt in alltagstaugliche Snack- und Kochideen."],
   ["Backwettbewerb als Aktivierung", "Die Community entwickelt Gebaeck mit Nuessen oder Trockenfruechten und macht das Sortiment in eigenen Rezepten sichtbar."],
 ];
+
+const productCards = [
+  ["product-nuts.png", "Nuesse", "Antioxidantien, Vitamin E und ein klarer Premium-Snack-Moment."],
+  ["product-fruits.png", "Trockenfruechte", "Natuerliche Suesse und Energie als Alternative zum schnellen Snack."],
+  ["product-pastila.png", "Pastila & Churchkhela", "Handwerkliche Suessigkeit ohne Zuckerschwere, nah an der Herkunft."],
+  ["product-seeds.png", "Kerne", "Sonnenblumen- und Kuerbiskerne als einfache Alltagsroutine."],
+];
+
+const recipeCards = [
+  ["recipe-01.jpg", "Dampf-Muffins mit Pflaumen"],
+  ["recipe-02.jpg", "Schoko-Muffins mit Trockenfruechten"],
+  ["recipe-03.jpg", "Nuss-Mohn-Kuchen"],
+  ["recipe-04.jpg", "Teebrot mit Trockenfruechten"],
+  ["recipe-05.jpg", "Semushka Torte"],
+  ["recipe-06.jpg", "Ostergebaeck Sinnabon"],
+];
+
+const campaignSteps = [
+  ["01", "Sortiment", "Flip-Karten machen vier Produktwelten sofort greifbar."],
+  ["02", "Wissen", "Artikel erklaeren Nutzen, Gewohnheiten und Naehrwerte."],
+  ["03", "Rezept", "Fotorezepte zeigen, wie Snacks zu Gerichten werden."],
+  ["04", "Contest", "Backrezepte mit Nuesse und Trockenfruechte aktivieren die Community."],
+];
 ---
 
 <html lang="de">
@@ -78,8 +101,8 @@ const highlights = [
             </p>
           </div>
           <div class="hero-media">
-            <img src={`${media}/hero.jpg`} alt="Semushka Healthy Food Kampagne" />
-            <span>Startseite · Desktop</span>
+            <img src={`${media}/hero-concept.jpg`} alt="Semushka Hero-Konzept mit Kraftpackungen, Nuessen und Trockenfruechten" />
+            <span>Hero concept · Kraft, Zutaten, Healthy Baking</span>
           </div>
         </section>
 
@@ -99,13 +122,24 @@ const highlights = [
           </div>
         </section>
 
-        <section class="video-section" aria-labelledby="video-title">
+        <section class="product-system" aria-labelledby="video-title">
           <div class="section-copy">
-            <p class="eyebrow">Kampagnenansicht</p>
-            <h2 id="video-title">Vom natürlichen Snack bis zum eigenen Backrezept</h2>
+            <p class="eyebrow">Produktsystem</p>
+            <h2 id="video-title">Vier Produktwelten statt einer statischen Startseite</h2>
+            <p>
+              Die Originalseite arbeitet mit Flip-Karten: vorne eine appetitliche Kategorie,
+              hinten Nutzen, Herkunft und ein direkter Produktweg. Genau diese Mechanik
+              macht Semushka als Sortiment verständlich.
+            </p>
           </div>
-          <div class="video-frame">
-            <img src={`${media}/hero.jpg`} alt="Startansicht der Semushka Kampagne" loading="lazy" />
+          <div class="product-grid">
+            {productCards.map(([image, title, text]) => (
+              <article>
+                <img src={`${media}/${image}`} alt={`Semushka Kategorie ${title}`} loading="lazy" />
+                <span>{title}</span>
+                <p>{text}</p>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -126,16 +160,65 @@ const highlights = [
           </div>
         </section>
 
+        <section class="journey-section" aria-label="Kampagnenreise">
+          <div class="section-copy">
+            <p class="eyebrow">Kampagnenreise</p>
+            <h2>Von Back to Nature bis zum Wettbewerb</h2>
+          </div>
+          <div class="journey-grid">
+            {campaignSteps.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="recipe-stage" aria-label="Fotorezepte">
+          <div class="section-copy">
+            <p class="eyebrow">Fotorezepte</p>
+            <h2>Die Anwendung wird zum Food-Visual</h2>
+            <p>
+              Der rotierende Rezeptbereich zeigt, dass Semushka nicht nur Snack im Regal ist,
+              sondern Zutat fuer Kuchen, Brote und warme Familienrezepte.
+            </p>
+          </div>
+          <figure class="recipe-hero">
+            <img src={`${media}/photo-recipes-stage.jpg`} alt="Semushka Fotorezept-Rotator mit Gericht und Zutaten" loading="lazy" />
+            <figcaption>Originalmechanik · Fotorezept-Rotator mit Zutatenfokus</figcaption>
+          </figure>
+          <div class="recipe-grid">
+            {recipeCards.map(([image, title]) => (
+              <figure>
+                <img src={`${media}/${image}`} alt={title} loading="lazy" />
+                <figcaption>{title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
         <section class="gallery" aria-label="Kampagnenansichten">
           <figure class="large">
-            <img src={`${media}/hero.jpg`} alt="Kampagnenstartseite Semushka" loading="lazy" />
-            <figcaption>Sortiment, Zutaten und Naturpositionierung auf einen Blick</figcaption>
+            <img src={`${media}/hero-concept.jpg`} alt="Semushka Rebranding Hero mit Zutaten und Kraftpackungen" loading="lazy" />
+            <figcaption>Rebranding · Natuerliche Snackwelt mit Premium-Kraftlook</figcaption>
           </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Produkt- und Rezeptstruktur der Semushka Kampagne" loading="lazy" />
-          </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Visuelles Konzept der Semushka Kampagne" loading="lazy" />
+          <article class="contest-card">
+            <div>
+              <p class="eyebrow">Contest</p>
+              <img class="contest-logo" src={`${media}/logo-middle.png`} alt="Semushka" loading="lazy" />
+              <h3>Выпечка вместе с Semushka</h3>
+              <p>
+                Backrezepte mit Nuesse und Trockenfruechte bringen die Community direkt in
+                die Produktanwendung: Rezepte, Regeln, Teilnehmer und Preise.
+              </p>
+            </div>
+            <img src={`${media}/prize-set.jpg`} alt="Semushka Preis-Set fuer den Wettbewerb" loading="lazy" />
+          </article>
+          <figure class="contest-screen">
+            <img src={`${media}/contest-stage.jpg`} alt="Semushka Contest-Sektion im Originalprojekt" loading="lazy" />
+            <figcaption>Originalbereich · Wettbewerb und Rezeptaktivierung</figcaption>
           </figure>
         </section>
 
@@ -321,10 +404,52 @@ const highlights = [
     padding: clamp(28px, 5vw, 70px);
   }
 
-  .video-section { background: #111; color: #fff; }
-  .video-section .eyebrow { color: #aaa; }
-  .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
-  .video-frame img, .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
+  .product-system {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(174, 146, 98, .28), transparent 32%),
+      linear-gradient(135deg, #fffaf0, #f0eadc 48%, #fff);
+  }
+
+  .product-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+
+  .product-grid article {
+    background: rgba(255, 255, 255, .86);
+    border: 1px solid rgba(75, 119, 42, .18);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(75, 59, 31, .12);
+    min-height: 430px;
+    overflow: hidden;
+    padding: 24px;
+  }
+
+  .product-grid img {
+    aspect-ratio: 1 / 1.15;
+    filter: drop-shadow(0 24px 32px rgba(52, 40, 20, .16));
+    margin: 0 auto 24px;
+    object-fit: contain;
+    width: min(220px, 100%);
+  }
+
+  .product-grid span {
+    color: var(--accent);
+    display: block;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -.05em;
+    line-height: 1;
+  }
+
+  .product-grid p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 16px;
+  }
 
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
@@ -332,12 +457,144 @@ const highlights = [
   .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
   .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
+  .journey-section {
+    background: #454953;
+    color: #fff;
+  }
+
+  .journey-section .eyebrow,
+  .journey-grid p {
+    color: rgba(255, 255, 255, .68);
+  }
+
+  .journey-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 48px;
+  }
+
+  .journey-grid article {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: var(--radius);
+    min-height: 250px;
+    padding: 26px;
+  }
+
+  .journey-grid span {
+    color: #f2d49f;
+    font-size: 13px;
+    font-weight: 950;
+  }
+
+  .journey-grid h3 {
+    font-size: 28px;
+    letter-spacing: -.06em;
+    line-height: 1;
+    margin-top: 68px;
+  }
+
+  .journey-grid p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+
+  .recipe-stage {
+    background:
+      radial-gradient(circle at 80% 0%, rgba(153, 111, 165, .18), transparent 28%),
+      #fff;
+  }
+
+  .recipe-hero,
+  .recipe-grid figure,
+  .contest-card,
+  .contest-screen {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(75, 59, 31, .12);
+    overflow: hidden;
+  }
+
+  .recipe-hero {
+    margin-top: 48px;
+  }
+
+  .recipe-hero img {
+    aspect-ratio: 16 / 8.2;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+
+  .recipe-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    margin-top: 18px;
+  }
+
+  .recipe-grid img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+  }
+
   .gallery { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
   .gallery figure { background: var(--paper); border-radius: var(--radius); overflow: hidden; }
   .gallery .large { grid-column: 1 / -1; }
   .gallery img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
   .gallery .large img { aspect-ratio: 16 / 8; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
+
+  .contest-card {
+    align-items: end;
+    background:
+      radial-gradient(circle at 86% 10%, rgba(229, 96, 49, .2), transparent 26%),
+      linear-gradient(135deg, #fffaf0, #eadfcb);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(0, 1fr) 170px;
+    min-height: 390px;
+    padding: clamp(26px, 4vw, 48px);
+  }
+
+  .contest-card h3 {
+    color: #453828;
+    font-size: clamp(36px, 4vw, 58px);
+    letter-spacing: -.06em;
+    line-height: .96;
+  }
+
+  .contest-card p:last-child {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-top: 22px;
+  }
+
+  .contest-card img {
+    aspect-ratio: 1 / 1;
+    border-radius: calc(var(--radius) - 2px);
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .contest-card .contest-logo {
+    aspect-ratio: auto;
+    border-radius: 0;
+    margin: 10px 0 24px;
+    max-width: 190px;
+    object-fit: contain;
+  }
+
+  .contest-screen img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    width: 100%;
+  }
 
   .result { background: var(--accent); color: #fff; }
   .result .eyebrow, .result-copy > p { color: #c6d1ce; }
@@ -351,6 +608,8 @@ const highlights = [
     .case-sidebar { height: auto; position: static; }
     .case-sidebar nav { display: none; }
     .hero { min-height: auto; }
+    .product-grid, .journey-grid { grid-template-columns: repeat(2, 1fr); }
+    .recipe-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
   @media (max-width: 720px) {
@@ -362,8 +621,9 @@ const highlights = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .gallery { grid-template-columns: 1fr; }
+    .highlight-grid, .gallery, .product-grid, .journey-grid, .recipe-grid { grid-template-columns: 1fr; }
     .gallery .large { grid-column: 1; }
+    .contest-card { grid-template-columns: 1fr; }
     .section-number { display: none; }
   }
 </style>

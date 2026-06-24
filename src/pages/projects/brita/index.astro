@@ -201,9 +201,9 @@ const journeySteps = [
               </figure>
             ))}
           </div>
-          <figure class="screen-card">
-            <img src={`${media}/recipes.jpg`} alt="Brita Rezeptkarussell im Originalprojekt" loading="lazy" />
-            <figcaption>Originalbereich · Rezeptkarussell mit Brita-Krug</figcaption>
+          <figure class="screen-card recipe-stage-card">
+            <img src={`${media}/recipes-stage.jpg`} alt="Brita Rezeptbuehne mit MAXTRA-Krug und umlaufenden Rezeptkarten" loading="lazy" />
+            <figcaption>Originalbereich · Rezeptbuehne mit Brita-Krug</figcaption>
           </figure>
         </section>
 
@@ -737,6 +737,16 @@ const journeySteps = [
     aspect-ratio: 1 / .76;
     object-fit: cover;
     width: 100%;
+  }
+
+  .recipe-stage-card {
+    margin-top: clamp(18px, 3vw, 34px);
+  }
+
+  .recipe-stage-card img {
+    aspect-ratio: 16 / 9.75;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .contest-section {

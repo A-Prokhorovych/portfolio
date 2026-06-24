@@ -10,9 +10,42 @@ const facts = [
 ];
 
 const highlights = [
-  ["Produkte im echten Kontext", "Kuechentextilien, Helfer und Aufbewahrung werden in einer wohnlichen Umgebung und mit klarer Anwendung gezeigt."],
-  ["Rezepte als Produktdemo", "Eine interaktive Food-Karussell verbindet Gerichte direkt mit der Idee einer gut ausgestatteten heimischen Kueche."],
-  ["Lifestyle statt Katalog", "Artikel zu gesundem Kochen, Gewuerzen und Kuechentechnik geben der Produktwelt redaktionelle Tiefe."],
+  ["Hover statt Katalog", "Produktkarten reagieren wie im Original: Bild, Nutzen und der Impuls 'mehr erfahren' werden zu einer kleinen Interaktion."],
+  ["Rezepte als Anwendung", "Der Rezeptbereich zeigt sofort, wofuer die Helfer gebraucht werden: vorbereiten, schneiden, backen, servieren."],
+  ["Editoriale Tiefe", "Artikel und Tipps erweitern die Produktwelt zu einer warmen Geschichte ueber die Kueche als Mittelpunkt des Zuhauses."],
+];
+
+const productCards = [
+  ["product-chopper.jpg", "Zerkleinerer", "Schneller Vorbereiten", "Kleine Helfer werden im Hover als konkrete Alltagserleichterung lesbar."],
+  ["product-cheese-grater.jpg", "Kaesereibe", "Praezision am Tisch", "Die Karte fuehrt vom Produktfoto direkt zum Nutzen beim Kochen."],
+  ["product-fine-grater.jpg", "Feine Reibe", "Textur als Detail", "Ein zweiter Reibentyp zeigt, wie breit der Slider kleine Aufgaben im Kochprozess abdeckt."],
+  ["product-bowl-large.jpg", "Schuessel mit Deckel", "Vorbereiten & Aufbewahren", "Ein einzelnes Objekt erklaert Mise en Place, Ordnung und Servieren."],
+  ["product-bowl-small.jpg", "Kleine Schuessel", "Portionieren", "Die kleinere Variante macht das Sortiment systematisch statt zufaellig."],
+  ["product-baking-form.jpg", "Backform", "Vom Rezept zum Ergebnis", "Der Hover verbindet Produkt und Rezeptmoment ohne lange Erklaerung."],
+  ["product-fish-scraper.jpg", "Fischschaber", "Spezialwerkzeug", "Auch sehr konkrete Tools bekommen im Hover eine klare Aufgabe."],
+  ["product-container-small.jpg", "Kleiner Container", "Ordnung im Vorrat", "Aufbewahrung wird als Teil der Kuechenroutine sichtbar."],
+  ["product-container-medium.jpg", "Mittlerer Container", "Meal Prep", "Die Produktfamilie zeigt, dass das Special nicht nur einzelne Gadgets verkauft."],
+  ["product-spice-mill.jpg", "Gewuerzmuehle", "Geschmack als Detail", "Kleine Accessoires geben der Kampagne redaktionelle Naehe."],
+  ["product-spice-jar.jpg", "Gewuerzbehaelter", "Griffbereit", "Der Hover macht selbst kleine Organisationsprodukte aktiv und klickbar."],
+  ["product-board.jpg", "Schneidebrett", "Arbeitsflaeche als Buehne", "Der ruhige Produktstil macht das Sortiment vergleichbar und klar."],
+];
+
+const recipes = [
+  ["recipe-dorada.jpg", "Dorada mit Kraeutern", "Fischrezept als natuerliche Anwendung fuer Brett, Reibe und Gewuerze."],
+  ["recipe-trout.jpg", "Forelle mit Sauce", "Der warme Food-Shot uebersetzt die Produktwelt in ein Abendessen."],
+  ["recipe-pear-pie.jpg", "Honig-Birnen-Kuchen", "Backform und Schuesseln bekommen einen emotionalen Zielmoment."],
+  ["recipe-vegetable-pie.jpg", "Offener Gemuesekuchen", "Frische Zutaten, Vorbereiten und Servieren werden in einem Bild gebuendelt."],
+  ["recipe-casserole.jpg", "Quarkauflauf", "Suesse Rezepte erweitern die Kueche vom Alltag zum Wochenendmoment."],
+  ["recipe-farfalle.jpg", "Farfalle mit Pilzen", "Pasta bringt den Alltagsmoment in die Kampagne und erdet das Sortiment."],
+  ["recipe-chicken.jpg", "Gebackene Haehnchenkeulen", "Der Ofenmoment gibt Backform, Gewuerzen und Vorbereitung einen gemeinsamen Kontext."],
+  ["recipe-salad.jpg", "Warmer Kuerbissalat", "Der Rezeptmix macht das Sortiment vielseitig statt nur dekorativ."],
+];
+
+const campaignSteps = [
+  ["01", "Hero", "Die Kueche wird nicht als Raum, sondern als Gefuehl inszeniert: hell, warm, ruhig, nutzbar."],
+  ["02", "Goods Slider", "Produkte erscheinen als klickbare Karten mit Hover-Logik und klaren Anwendungsmomenten."],
+  ["03", "Recipe Carousel", "Das Karussell zeigt, wie aus einzelnen Tools konkrete Gerichte und Rituale werden."],
+  ["04", "Articles", "Redaktionelle Tipps geben dem Auftritt Tiefe und verbinden Produkt, Kochen und Zuhause."],
 ];
 ---
 
@@ -45,7 +78,7 @@ const highlights = [
           <h1>Die Kueche als Herz des Zuhauses</h1>
           <p class="intro">
             Eine wohnliche Lifestyle-Kampagne fuer Faberlic by Julia Vysotskaya, die
-            Kuechenaccessoires, Rezeptinspiration und kulinarische Traditionen verbindet.
+            Kuechenaccessoires, Rezeptinspiration und redaktionelle Tipps verbindet.
           </p>
         </div>
 
@@ -70,16 +103,16 @@ const highlights = [
         <section id="ueberblick" class="hero">
           <div class="hero-copy">
             <p class="eyebrow">Lifestyle · Product Campaign</p>
-            <h2>Nuetzliche Kuechenhelfer werden Teil des Alltags</h2>
+            <h2>Kuechenhelfer werden zu kleinen Alltagsritualen</h2>
             <p>
-              Die Seite praesentiert Textilien, Reiben, Zerkleinerer, Backformen und
-              Aufbewahrungsloesungen in einer gemeinsamen Welt. Rezepte und Artikel zeigen,
-              wie die Produkte Kochen, Servieren und Organisation leichter machen.
+              Der neue Case zeigt Faberlic nicht als trockenen Produktkatalog, sondern als
+              warme Kuechenwelt: Produkte, Rezepte und Tipps greifen ineinander und fuehren
+              von der Entdeckung direkt zur Anwendung.
             </p>
           </div>
           <div class="hero-media">
-            <img src={`${media}/hero.jpg`} alt="Faberlic Kuechenkampagne" />
-            <span>Startseite · Desktop</span>
+            <img src={`${media}/hero-concept.jpg`} alt="Faberlic Kuechenwelt mit Produkten und warmer Wohnkueche" />
+            <span>Hero · neu gezeichnete Kampagnenbuehne</span>
           </div>
         </section>
 
@@ -87,25 +120,58 @@ const highlights = [
           <div class="section-number">02</div>
           <div class="section-copy">
             <p class="eyebrow">Konzept</p>
-            <h2>Warme Wohnlichkeit trifft klare Produktpraesentation</h2>
+            <h2>Eine helle Kueche als System fuer Produkte, Rezepte und Tipps</h2>
             <p>
-              Der grossformatige Hero zeigt eine echte, helle Wohnkueche und setzt damit
-              einen emotionalen Rahmen. Viel Weiss, feine Typografie und grosszuegige
-              Produktkarten geben dem umfangreichen Sortiment eine ruhige Premium-Anmutung.
+              Die Gestaltung nimmt die Idee des Originals auf: Die Kueche ist der emotionale
+              Mittelpunkt. Der Portfolio-Case ordnet diese Welt jetzt in klare Bereiche:
+              Hero, Hover-Produkte, Rezeptbuehne und redaktionelle Anwendung.
             </p>
           </div>
           <div class="quote">
-            <p>„Kuechenprodukte wirken glaubwuerdig, wenn sie Teil einer echten Alltagsgeschichte werden.“</p>
+            <p>„Ein guter Produktcase verkauft nicht nur Dinge. Er zeigt, wann man sie anfassen will.“</p>
           </div>
         </section>
 
-        <section class="video-section" aria-labelledby="video-title">
+        <section class="product-system" aria-labelledby="product-title">
           <div class="section-copy">
-            <p class="eyebrow">Kampagnenansicht</p>
-            <h2 id="video-title">Vom Produktdetail zur kulinarischen Inspiration</h2>
+            <p class="eyebrow">Originalbereich · Goods Slider</p>
+            <h2 id="product-title">Produktkarten mit Hover-Effekt und klarem Nutzen</h2>
+            <p>
+              Der alte Slider wird als dichtes Produktsystem erzaehlt: Jede Karte hat ein
+              eigenes Bild aus dem Special und einen Hover, der wie im Original die naechste
+              Aktion andeutet.
+            </p>
           </div>
-          <div class="video-frame">
-            <img src={`${media}/hero.jpg`} alt="Startansicht der Faberlic Kampagne" loading="lazy" />
+          <div class="product-grid">
+            {productCards.map(([image, title, kicker, text]) => (
+              <article class="product-card">
+                <div class="product-image">
+                  <img src={`${media}/${image}`} alt={title} loading="lazy" />
+                </div>
+                <div class="product-copy">
+                  <span>{kicker}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+                <div class="hover-note">подробнее</div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="journey-section" aria-label="Kampagnenlogik">
+          <div class="section-copy">
+            <p class="eyebrow">Struktur</p>
+            <h2>Vom ersten Bild bis zum Rezeptmoment</h2>
+          </div>
+          <div class="journey-grid">
+            {campaignSteps.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -126,16 +192,41 @@ const highlights = [
           </div>
         </section>
 
+        <section class="recipe-stage" aria-labelledby="recipe-title">
+          <div class="section-copy">
+            <p class="eyebrow">Originalbereich · Rezeptkarussell</p>
+            <h2 id="recipe-title">Rezepte zeigen, wofuer die Tools im Alltag gebraucht werden</h2>
+            <p>
+              Statt das Hero-Bild zu wiederholen, nutzt dieser Bereich die Food-Bilder aus
+              dem Originalkarussell. So wird der Nutzen klickbar: vorbereiten, wuerzen,
+              backen, anrichten.
+            </p>
+          </div>
+          <div class="recipe-grid">
+            {recipes.map(([image, title, text]) => (
+              <figure class="recipe-card">
+                <img src={`${media}/${image}`} alt={title} loading="lazy" />
+                <figcaption>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
         <section class="gallery" aria-label="Kampagnenansichten">
           <figure class="large">
-            <img src={`${media}/hero.jpg`} alt="Kampagnenstartseite Faberlic" loading="lazy" />
-            <figcaption>Wohnliche Atmosphaere und Markenwelt auf einen Blick</figcaption>
+            <img src={`${media}/recipe-farfalle.jpg`} alt="Farfalle Rezept aus dem Faberlic Special" loading="lazy" />
+            <figcaption>Rezeptwelt · Food-Bild als Anwendung der Kuechenhelfer</figcaption>
           </figure>
           <figure>
-            <img src={`${media}/hero.jpg`} alt="Produkt- und Rezeptstruktur der Faberlic Kampagne" loading="lazy" />
+            <img src={`${media}/product-fish-scraper.jpg`} alt="Faberlic Fischschaber Produktkarte" loading="lazy" />
+            <figcaption>Produktdetail · Hover-Slider</figcaption>
           </figure>
           <figure>
-            <img src={`${media}/hero.jpg`} alt="Visuelles Konzept der Faberlic Kampagne" loading="lazy" />
+            <img src={`${media}/product-container-medium.jpg`} alt="Faberlic Aufbewahrungscontainer Produktkarte" loading="lazy" />
+            <figcaption>Sortiment · Aufbewahrung und Ordnung</figcaption>
           </figure>
         </section>
 
@@ -143,11 +234,11 @@ const highlights = [
           <div class="section-number">04</div>
           <div class="result-copy">
             <p class="eyebrow">Ergebnis</p>
-            <h2>Eine kohärente Welt fuer Produkte und Content</h2>
+            <h2>Aus Sortiment wird ein lebendiger Kuechenkosmos</h2>
             <p>
-              Das Special verwandelt einen umfangreichen Produktkatalog in ein inspirierendes
-              Lifestyle-Erlebnis. Produktslider, Rezeptkarussell und redaktionelle Artikel
-              fuehren von der Entdeckung direkt zur Anwendung in der eigenen Kueche.
+              Der Case zeigt nun die eigentliche Staerke des Specials: Produkte sind nicht
+              isoliert, sondern werden ueber Hover, Rezepte und redaktionelle Themen in ein
+              zusammenhaengendes Alltagserlebnis uebersetzt.
             </p>
             <a class="button light" data-owner-only hidden href="https://www.edimdoma.ru/2018/faberlic" target="_blank" rel="noreferrer">
               Originalprojekt oeffnen
@@ -200,7 +291,10 @@ const highlights = [
     --ink: #080808;
     --muted: #5f5f5f;
     --line: #dededb;
-    --accent: #73b7cf;
+    --accent: #8dc7d8;
+    --accent-dark: #0c5b78;
+    --soft: #eaf6f8;
+    --warm: #efe4d5;
     --radius: 8px;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -217,6 +311,7 @@ const highlights = [
     align-items: center;
     background: rgba(247, 247, 245, .9);
     border-bottom: 1px solid rgba(222, 222, 219, .75);
+    backdrop-filter: blur(18px);
     display: grid;
     gap: 24px;
     grid-template-columns: 1fr auto 1fr;
@@ -226,7 +321,6 @@ const highlights = [
     right: 0;
     top: 0;
     z-index: 10;
-    backdrop-filter: blur(18px);
   }
 
   .brand { font-size: 28px; font-weight: 900; }
@@ -252,7 +346,6 @@ const highlights = [
     border-color: rgba(8, 8, 8, 0.18) !important;
     color: rgba(8, 8, 8, 0.46) !important;
   }
-
   .edit-page:hover,
   .edit-page:focus-visible {
     border-color: var(--ink) !important;
@@ -283,7 +376,9 @@ const highlights = [
   h1 { font-size: clamp(25px, 2.25vw, 38px); hyphens: auto; line-height: 1.08; overflow-wrap: anywhere; }
   h2 { font-size: clamp(32px, 4.5vw, 68px); line-height: 1.02; max-width: 900px; }
   .intro { hyphens: auto; overflow-wrap: anywhere; }
-  .intro, .section-copy > p:last-child, .result-copy > p {
+  .intro,
+  .section-copy > p:last-child,
+  .result-copy > p {
     color: var(--muted);
     font-size: 16px;
     line-height: 1.7;
@@ -302,15 +397,22 @@ const highlights = [
   .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
   .hero-copy .eyebrow { grid-column: 1 / -1; }
   .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
-  .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; }
+  .hero-media {
+    background: linear-gradient(135deg, var(--soft), var(--warm));
+    border-radius: var(--radius);
+    box-shadow: 0 28px 80px rgba(12, 91, 120, .12);
+    overflow: hidden;
+  }
   .hero-media img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
-  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+  .hero-media span { color: var(--accent-dark); display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
 
-  .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
+  .story-section,
+  .highlights,
+  .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
   .section-copy { max-width: 850px; }
   .quote {
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent-dark), #73b7cf);
     border-radius: var(--radius);
     color: #fff;
     font-size: clamp(26px, 4vw, 52px);
@@ -321,16 +423,119 @@ const highlights = [
     padding: clamp(28px, 5vw, 70px);
   }
 
-  .video-section { background: #111; color: #fff; }
-  .video-section .eyebrow { color: #aaa; }
-  .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
-  .video-frame img, .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
+  .product-system { background: #101819; color: #fff; }
+  .product-system .eyebrow,
+  .product-system .section-copy > p:last-child { color: rgba(255, 255, 255, .68); }
+  .product-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+  .product-card {
+    background: #fff;
+    border-radius: 16px;
+    color: var(--ink);
+    min-height: 390px;
+    overflow: hidden;
+    position: relative;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .product-card:hover {
+    box-shadow: 0 22px 60px rgba(0, 0, 0, .26);
+    transform: translateY(-8px);
+  }
+  .product-image {
+    align-items: center;
+    background: linear-gradient(180deg, #f8fbfb, #eef6f8);
+    display: flex;
+    height: 210px;
+    justify-content: center;
+    padding: 24px;
+  }
+  .product-image img {
+    max-height: 170px;
+    object-fit: contain;
+    transition: transform .35s ease;
+    width: 100%;
+  }
+  .product-card:hover .product-image img { transform: scale(1.08) rotate(-1.5deg); }
+  .product-copy { padding: 24px; }
+  .product-copy span {
+    color: var(--accent-dark);
+    display: block;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .product-copy h3 { font-size: 24px; line-height: 1.05; }
+  .product-copy p { color: var(--muted); font-size: 14px; line-height: 1.55; margin-top: 14px; }
+  .hover-note {
+    background: var(--accent-dark);
+    border-radius: 999px;
+    bottom: 18px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    opacity: 0;
+    padding: 10px 16px;
+    position: absolute;
+    right: 18px;
+    text-transform: uppercase;
+    transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .product-card:hover .hover-note { opacity: 1; transform: translateY(0); }
+
+  .journey-section { background: var(--soft); }
+  .journey-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 46px;
+  }
+  .journey-grid article {
+    background: rgba(255, 255, 255, .78);
+    border: 1px solid rgba(12, 91, 120, .12);
+    border-radius: 16px;
+    min-height: 250px;
+    padding: 24px;
+  }
+  .journey-grid span { color: var(--accent-dark); font-size: 13px; font-weight: 900; }
+  .journey-grid h3 { font-size: 21px; margin-top: 48px; }
+  .journey-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
   .highlight-grid span { color: var(--muted); font-size: 12px; font-weight: 900; }
   .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
   .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .recipe-stage { background: #fff; }
+  .recipe-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+  .recipe-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .recipe-card:hover {
+    box-shadow: 0 20px 50px rgba(12, 91, 120, .13);
+    transform: translateY(-6px);
+  }
+  .recipe-card img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+  .recipe-card figcaption { display: grid; gap: 10px; padding: 20px; text-transform: none; }
+  .recipe-card strong { font-size: 18px; }
+  .recipe-card span { color: var(--muted); font-size: 14px; font-weight: 500; line-height: 1.55; }
 
   .gallery { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
   .gallery figure { background: var(--paper); border-radius: var(--radius); overflow: hidden; }
@@ -339,10 +544,17 @@ const highlights = [
   .gallery .large img { aspect-ratio: 16 / 8; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
 
-  .result { background: var(--accent); color: #fff; }
-  .result .eyebrow, .result-copy > p { color: #c6d1ce; }
+  .result { background: linear-gradient(135deg, var(--accent-dark), #8dc7d8); color: #fff; }
+  .result .eyebrow,
+  .result-copy > p { color: rgba(255, 255, 255, .72); }
   .result-copy { max-width: 900px; }
   .result .button { border-color: #fff; margin-top: 34px; }
+
+  @media (max-width: 1180px) {
+    .product-grid,
+    .recipe-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .journey-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
   @media (max-width: 1100px) {
     .site-header { grid-template-columns: 1fr auto; }
@@ -360,9 +572,18 @@ const highlights = [
     .header-actions { gap: 5px; }
     .case-sidebar { padding: 36px 18px; }
     .case-content > section { padding-left: 18px; padding-right: 18px; }
-    .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
-    .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .gallery { grid-template-columns: 1fr; }
+    .hero-copy,
+    .story-section,
+    .highlights,
+    .result { grid-template-columns: 1fr; }
+    .hero-copy .eyebrow,
+    .quote,
+    .highlight-grid { grid-column: 1; }
+    .product-grid,
+    .journey-grid,
+    .highlight-grid,
+    .recipe-grid,
+    .gallery { grid-template-columns: 1fr; }
     .gallery .large { grid-column: 1; }
     .section-number { display: none; }
   }

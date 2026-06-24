@@ -14,6 +14,19 @@ const highlights = [
   ["Eco-Nutzen sofort sichtbar", "Biologische Abbaubarkeit, Hypoallergenität und antibakterielle Wirkung werden als wiederkehrende Produktargumente strukturiert."],
   ["Familienalltag als Kontext", "Ratgeber und Fotowettbewerb zeigen sichere Reinigung in Haushalten mit Kindern und Haustieren statt abstrakter Ökologie."],
 ];
+
+const productCards = [
+  ["product-bathroom.png", "Bad & Sanitär", "Desinfektion, Kalk, Rost und Geruch in einem Produktargument."],
+  ["product-laundry.png", "Wäsche", "Hypoallergene Konzentratformel fuer Familienwaesche."],
+  ["product-dish.png", "Geschirr", "Sichere Anwendung fuer Geschirr, Obst und Kindersachen."],
+  ["product-soap.png", "Handpflege", "Alltagstouchpoint: Reinigung wird weich, nahbar und wiederkehrend."],
+];
+
+const campaignBlocks = [
+  ["icon-bathroom.png", "Produktnavigator", "Acht Kategorien werden ueber Select, Slider und Sticky-Menue direkt vergleichbar."],
+  ["icon-glass.png", "Ratgeber", "Artikel zu Kindern, Haustieren und gesunder Reinigung geben der Marke redaktionelle Tiefe."],
+  ["icon-kitchen.png", "Fotowettbewerb", "Der Contest „Kinder ueberraschen“ macht Flecken und Alltagssituationen zur Aktivierung."],
+];
 ---
 
 <html lang="de">
@@ -78,8 +91,8 @@ const highlights = [
             </p>
           </div>
           <div class="hero-media">
-            <img src={`${media}/hero.jpg`} alt="Synergetic Eco Cleaning Kampagne" />
-            <span>Startseite · Desktop</span>
+            <img src={`${media}/hero-concept.jpg`} alt="Synergetic Hero-Konzept mit Eco-Reinigungsprodukten und frischem Zuhause" />
+            <span>Hero concept · Eco cleaning system</span>
           </div>
         </section>
 
@@ -99,13 +112,36 @@ const highlights = [
           </div>
         </section>
 
-        <section class="video-section" aria-labelledby="video-title">
+        <section class="product-system" aria-labelledby="video-title">
           <div class="section-copy">
-            <p class="eyebrow">Kampagnenansicht</p>
-            <h2 id="video-title">Von der Produktwahl bis zur sicheren Anwendung</h2>
+            <p class="eyebrow">Produktsystem</p>
+            <h2 id="video-title">Ein Slider, der das Sortiment wirklich erklaert</h2>
+            <p>
+              Im Original ist die staerkste Mechanik der Produktnavigator: acht Reiniger,
+              jeweils mit Illustration, Eigenschaften, Anwendungsbereich und Produktbild.
+              Fuer das Portfolio wird daraus ein kuratiertes System statt eines wiederholten
+              Startseiten-Screens.
+            </p>
           </div>
-          <div class="video-frame">
-            <img src={`${media}/hero.jpg`} alt="Startansicht der Synergetic Kampagne" loading="lazy" />
+          <div class="product-stage">
+            <div class="product-copy">
+              <img src={`${media}/logo-small.png`} alt="Synergetic" loading="lazy" />
+              <h3>Antibakteriell, hypoallergen, biologisch abbaubar</h3>
+              <p>
+                Der Case verbindet Produktleistung mit Haushaltsmomenten: Bad, Waesche,
+                Geschirr und Handpflege werden nicht als Katalog, sondern als Alltagssystem
+                erzaehlt.
+              </p>
+            </div>
+            <div class="product-cards">
+              {productCards.map(([image, title, text]) => (
+                <article>
+                  <img src={`${media}/${image}`} alt={`Synergetic ${title}`} loading="lazy" />
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -127,16 +163,33 @@ const highlights = [
         </section>
 
         <section class="gallery" aria-label="Kampagnenansichten">
-          <figure class="large">
-            <img src={`${media}/hero.jpg`} alt="Kampagnenstartseite Synergetic" loading="lazy" />
-            <figcaption>Eco-Positionierung und Produktfamilie auf einen Blick</figcaption>
+          <figure class="large concept-card">
+            <img src={`${media}/hero-concept.jpg`} alt="Synergetic Hero-Konzept als frische Eco-Reinigungswelt" loading="lazy" />
+            <figcaption>Rebranding · Frische Eco-Welt statt statischem Startscreen</figcaption>
           </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Produkt- und Ratgeberstruktur der Synergetic Kampagne" loading="lazy" />
-          </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Visuelles Konzept der Synergetic Kampagne" loading="lazy" />
-          </figure>
+          {campaignBlocks.map(([image, title, text]) => (
+            <article class="campaign-card">
+              <img src={`${media}/${image}`} alt={title} loading="lazy" />
+              <p>{title}</p>
+              <h3>{text}</h3>
+            </article>
+          ))}
+          <article class="contest-card">
+            <span>Фотоконкурс</span>
+            <h3>„Дети удивляют“</h3>
+            <p>
+              Внутренняя страница конкурса превращает уборку из сухой темы в живой
+              семейный повод: дети, пятна, творчество, призы и участие.
+            </p>
+          </article>
+          <article class="retail-card">
+            <span>Где купить</span>
+            <h3>Официальный магазин + 16 retail-точек</h3>
+            <p>
+              Финальный блок закрывает путь пользователя: от пользы и советов к месту
+              покупки, а не просто к красивой промо-странице.
+            </p>
+          </article>
         </section>
 
         <section id="ergebnis" class="result">
@@ -321,10 +374,90 @@ const highlights = [
     padding: clamp(28px, 5vw, 70px);
   }
 
-  .video-section { background: #111; color: #fff; }
-  .video-section .eyebrow { color: #aaa; }
-  .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
-  .video-frame img, .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
+  .product-system {
+    background:
+      radial-gradient(circle at 12% 0%, rgba(151, 215, 60, .22), transparent 32%),
+      linear-gradient(135deg, #f8fbf5, #eef8e8 46%, #fff);
+  }
+
+  .product-stage {
+    display: grid;
+    gap: 28px;
+    grid-template-columns: minmax(260px, .78fr) 1.5fr;
+    margin-top: 48px;
+  }
+
+  .product-copy,
+  .product-cards article,
+  .campaign-card,
+  .contest-card,
+  .retail-card {
+    background: rgba(255, 255, 255, .86);
+    border: 1px solid rgba(97, 167, 50, .18);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(38, 104, 20, .11);
+  }
+
+  .product-copy {
+    align-content: end;
+    display: grid;
+    min-height: 430px;
+    padding: clamp(28px, 4vw, 54px);
+  }
+
+  .product-copy img {
+    margin-bottom: auto;
+    max-width: 180px;
+  }
+
+  .product-copy h3 {
+    color: var(--accent);
+    font-size: clamp(30px, 4vw, 54px);
+    line-height: .96;
+    margin-top: 60px;
+  }
+
+  .product-copy p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 22px;
+  }
+
+  .product-cards {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .product-cards article {
+    display: grid;
+    min-height: 430px;
+    overflow: hidden;
+    padding: 22px;
+  }
+
+  .product-cards img {
+    align-self: center;
+    filter: drop-shadow(0 24px 34px rgba(57, 97, 35, .18));
+    height: 230px;
+    justify-self: center;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .product-cards h3 {
+    font-size: 19px;
+    line-height: 1.1;
+    margin-top: 20px;
+  }
+
+  .product-cards p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+    margin-top: 12px;
+  }
 
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
@@ -332,12 +465,74 @@ const highlights = [
   .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
   .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
-  .gallery { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
+  .gallery { display: grid; gap: 18px; grid-template-columns: repeat(6, 1fr); }
   .gallery figure { background: var(--paper); border-radius: var(--radius); overflow: hidden; }
   .gallery .large { grid-column: 1 / -1; }
   .gallery img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
   .gallery .large img { aspect-ratio: 16 / 8; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
+
+  .campaign-card {
+    grid-column: span 2;
+    min-height: 310px;
+    overflow: hidden;
+    padding: 24px;
+  }
+
+  .campaign-card img {
+    aspect-ratio: 1 / .7;
+    height: 150px;
+    margin: 0 auto 26px;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .campaign-card p,
+  .contest-card span,
+  .retail-card span {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .campaign-card h3,
+  .contest-card h3,
+  .retail-card h3 {
+    font-size: clamp(22px, 2.5vw, 34px);
+    line-height: 1.05;
+    margin-top: 18px;
+  }
+
+  .contest-card,
+  .retail-card {
+    align-content: end;
+    display: grid;
+    grid-column: span 3;
+    min-height: 320px;
+    padding: clamp(24px, 4vw, 44px);
+  }
+
+  .contest-card {
+    background:
+      radial-gradient(circle at 82% 8%, rgba(255, 219, 67, .8), transparent 22%),
+      linear-gradient(135deg, #ffffff, #f8e7f0);
+  }
+
+  .retail-card {
+    background:
+      radial-gradient(circle at 12% 12%, rgba(97, 167, 50, .2), transparent 28%),
+      linear-gradient(135deg, #fff, #eef8e8);
+  }
+
+  .contest-card p,
+  .retail-card p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 18px;
+  }
 
   .result { background: var(--accent); color: #fff; }
   .result .eyebrow, .result-copy > p { color: #c6d1ce; }
@@ -351,6 +546,8 @@ const highlights = [
     .case-sidebar { height: auto; position: static; }
     .case-sidebar nav { display: none; }
     .hero { min-height: auto; }
+    .product-stage { grid-template-columns: 1fr; }
+    .product-cards { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 720px) {
@@ -362,8 +559,8 @@ const highlights = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .gallery { grid-template-columns: 1fr; }
-    .gallery .large { grid-column: 1; }
+    .highlight-grid, .gallery, .product-cards { grid-template-columns: 1fr; }
+    .gallery .large, .campaign-card, .contest-card, .retail-card { grid-column: 1; }
     .section-number { display: none; }
   }
 </style>

@@ -30,10 +30,12 @@ const contestRecipes = [
   ["contest-recipe-03.jpg", "Polenta mit Pilzen"],
 ];
 
-const mechanics = [
-  ["01", "Main Screen", "Video und Markenclaim setzen den emotionalen Kontext: Wasser wird als unsichtbare Basis fuer Geschmack eingefuehrt."],
-  ["02", "Recipes", "Das Karussell macht den Nutzen klickbar und zeigt direkt, wofuer gefiltertes Wasser im Alltag gebraucht wird."],
-  ["03", "Contest", "Die zweite Seite sammelt Einsendungen, Regeln, Preise und Teilnehmer in einem eigenen Aktivierungsbereich."],
+const journeySteps = [
+  ["01", "Aufmerksamkeit", "Hero-Video", "Ein ruhiger Food-Moment fuehrt das Produkt nicht technisch, sondern atmosphaerisch ein."],
+  ["02", "Produktnutzen", "MAXTRA", "Der Filter wird als Geschmacksverstaerker fuer Tee, Suppen und Saucen positioniert."],
+  ["03", "Redaktion", "Artikel", "Wasserwissen und Alltagstipps geben der Kampagne Glaubwuerdigkeit und Suchwert."],
+  ["04", "Anwendung", "Rezepte", "Das Rezeptkarussell macht aus dem Nutzen sofort konkrete Kochideen."],
+  ["05", "Aktivierung", "Contest", "User-Rezepte, Regeln und Preise verwandeln Inspiration in Teilnahme."],
 ];
 ---
 
@@ -124,24 +126,42 @@ const mechanics = [
           </div>
         </section>
 
-        <section class="water-section" aria-labelledby="water-title">
+        <section class="campaign-system" aria-labelledby="water-title">
           <div class="section-copy">
-            <p class="eyebrow">Mechanik</p>
-            <h2 id="water-title">Drei Ebenen statt nur ein schoener Hintergrund</h2>
+            <p class="eyebrow">Kampagnensystem</p>
+            <h2 id="water-title">Aus Wasser wird eine komplette Nutzerreise</h2>
+            <p>
+              Die Staerke des Projekts liegt nicht in einem einzelnen Screen, sondern
+              in der Dramaturgie: Aufmerksamkeit erzeugen, Produktnutzen erklaeren,
+              Kochideen liefern und die Nutzer ueber den Contest zur eigenen Einsendung
+              fuehren.
+            </p>
           </div>
-          <div class="mechanics-layout">
-            <figure class="screen-card large">
-              <img src={`${media}/video.jpg`} alt="Brita Video-Einstieg mit Play-Button" loading="lazy" />
-              <figcaption>Hero-Video als Einstieg in die Produktstory</figcaption>
-            </figure>
-            <div class="mechanic-list">
-              {mechanics.map(([number, title, text]) => (
+          <div class="system-board">
+            <div class="journey-rail" aria-label="Kampagnenreise">
+              {journeySteps.map(([number, phase, title, text]) => (
                 <article>
                   <span>{number}</span>
+                  <p>{phase}</p>
                   <h3>{title}</h3>
-                  <p>{text}</p>
+                  <small>{text}</small>
                 </article>
               ))}
+            </div>
+
+            <div class="system-showcase">
+              <figure class="screen-card product-screen">
+                <img src={`${media}/video.jpg`} alt="Brita Video-Einstieg mit Play-Button" loading="lazy" />
+                <figcaption>Awareness · Video und Markenclaim</figcaption>
+              </figure>
+              <figure class="screen-card recipe-screen">
+                <img src={`${media}/recipes.jpg`} alt="Brita Rezeptkarussell im Originalprojekt" loading="lazy" />
+                <figcaption>Utility · Rezeptkarussell als Nutzwert</figcaption>
+              </figure>
+              <figure class="screen-card contest-mini-screen">
+                <img src={`${media}/contest-page.png`} alt="Brita Contest-Seite mit Rezeptwettbewerb" loading="lazy" />
+                <figcaption>Activation · Contest als Rueckkanal</figcaption>
+              </figure>
             </div>
           </div>
         </section>
@@ -559,47 +579,110 @@ const mechanics = [
     padding: clamp(34px, 5vw, 72px);
   }
 
-  .water-section,
+  .campaign-system,
   .recipes,
   .contest-section {
     display: grid;
     gap: 34px;
   }
 
-  .mechanics-layout {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: minmax(0, 1.45fr) minmax(300px, .55fr);
+  .campaign-system {
+    background:
+      radial-gradient(circle at 12% 18%, rgba(0, 145, 202, .16), transparent 30%),
+      linear-gradient(135deg, #fff, #eef9fe);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 10px);
+    padding: clamp(30px, 5vw, 72px);
   }
 
-  .mechanic-list {
+  .system-board {
     display: grid;
-    gap: 16px;
+    gap: 32px;
   }
 
-  .mechanic-list article {
+  .journey-rail {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    position: relative;
+  }
+
+  .journey-rail::before {
+    background: linear-gradient(90deg, var(--accent), var(--warm));
+    content: "";
+    height: 3px;
+    left: 10%;
+    opacity: .45;
+    position: absolute;
+    right: 10%;
+    top: 24px;
+  }
+
+  .journey-rail article {
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 24px;
+    min-height: 220px;
+    padding: 18px;
+    position: relative;
+    z-index: 1;
   }
 
-  .mechanic-list span {
-    color: var(--warm);
-    font-size: 14px;
+  .journey-rail span {
+    align-items: center;
+    background: var(--deep);
+    border-radius: 999px;
+    color: #fff;
+    display: inline-flex;
+    font-size: 13px;
     font-weight: 950;
+    height: 48px;
+    justify-content: center;
+    margin-bottom: 28px;
+    width: 48px;
   }
 
-  .mechanic-list h3 {
-    font-size: 28px;
+  .journey-rail p {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .journey-rail h3 {
+    font-size: 24px;
     letter-spacing: -0.055em;
-    margin: 26px 0 10px;
+    line-height: 1;
+    margin-bottom: 14px;
   }
 
-  .mechanic-list p {
+  .journey-rail small {
     color: var(--muted);
-    font-size: 18px;
-    line-height: 1.45;
+    display: block;
+    font-size: 15px;
+    line-height: 1.42;
+  }
+
+  .system-showcase {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1.18fr .82fr;
+  }
+
+  .system-showcase .product-screen {
+    grid-row: span 2;
+  }
+
+  .system-showcase .product-screen img {
+    aspect-ratio: 1 / .78;
+  }
+
+  .system-showcase .recipe-screen img,
+  .system-showcase .contest-mini-screen img {
+    aspect-ratio: 16 / 8.4;
+    object-position: top center;
   }
 
   .highlight-grid {
@@ -758,7 +841,7 @@ const mechanics = [
     .story-section,
     .highlights,
     .result,
-    .mechanics-layout {
+    .system-showcase {
       grid-template-columns: 1fr;
     }
 
@@ -786,6 +869,19 @@ const mechanics = [
     .recipe-carousel {
       margin-inline: -28px;
       padding-inline: 28px;
+    }
+
+    .journey-rail {
+      grid-template-columns: 1fr;
+    }
+
+    .journey-rail::before {
+      bottom: 24px;
+      height: auto;
+      left: 24px;
+      right: auto;
+      top: 24px;
+      width: 3px;
     }
   }
 

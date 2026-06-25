@@ -18,9 +18,9 @@ const highlights = [
 ];
 
 const sweetMoments = [
-  ["Scharmel", "Luftiger Zephyr", "Weich, hell und nostalgisch: der visuelle Einstieg in die Fruehlingskampagne."],
-  ["Pastila", "Fruchtige Leichtigkeit", "Pastellfarben und kleine Portionen machen das Produkt zum Tea-Party-Detail."],
-  ["Marmelandia", "Bunte Fruchtgummis", "Der spielerische Akzent fuer Fotomotive, Dekoration und Social-Media-Naehe."],
+  ["hero-concept.jpg", "58% 53%", "Scharmel", "Luftiger Zephyr", "Weich, hell und nostalgisch: der visuelle Einstieg in die Fruehlingskampagne."],
+  ["hero-concept.jpg", "55% 78%", "Pastila", "Fruchtige Leichtigkeit", "Pastellfarben und kleine Portionen machen das Produkt zum Tea-Party-Detail."],
+  ["contest-activation.jpg", "21% 84%", "Marmelandia", "Bunte Fruchtgummis", "Der spielerische Akzent fuer Fotomotive, Dekoration und Social-Media-Naehe."],
 ];
 
 const contestSteps = [
@@ -94,7 +94,7 @@ const contestSteps = [
             </p>
           </div>
           <div class="hero-media">
-            <img src={`${media}/hero-concept.svg`} alt="Udarnitsa Hero-Konzept mit Tee, Fruehlingssuessigkeiten und rotem Markenband" />
+            <img src={`${media}/hero-concept.jpg`} alt="Udarnitsa Hero-Konzept mit Tee, Fruehlingssuessigkeiten und rotem Markenband" />
             <span>Hero · neue Fruehlingsbuehne fuer den Case</span>
           </div>
         </section>
@@ -127,11 +127,16 @@ const contestSteps = [
             </p>
           </div>
           <div class="sweet-grid">
-            {sweetMoments.map(([label, title, text]) => (
+            {sweetMoments.map(([image, position, label, title, text]) => (
               <article class="sweet-card">
-                <span>{label}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
+                <div class="sweet-image">
+                  <img src={`${media}/${image}`} alt={title} style={`object-position: ${position};`} loading="lazy" />
+                </div>
+                <div class="sweet-copy">
+                  <span>{label}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -142,13 +147,13 @@ const contestSteps = [
             <p class="eyebrow">Originalidee · Tea Party</p>
             <h2 id="ritual-title">Der Teetisch wird zur Bühne fuer Marke und Stimmung</h2>
             <p>
-              Das neue Bild verdichtet die Originalbereiche „Sekrety“ und „Lifehaki“:
-              Produkte, Tassen, Blueten und kleine Dekorationsideen greifen ineinander und
-              machen den Nutzen des Specials schneller lesbar.
+              Hier arbeitet der Case mit dem starken neuen Hero statt mit einer
+              schematischen Grafik: Tee, Blueten, Zephyr, Pastila und rote Bänder werden
+              zu einem emotionalen Fruehlingsmoment.
             </p>
           </div>
           <figure class="ritual-shot">
-            <img src={`${media}/tea-ritual.svg`} alt="Teeritual mit Udarnitsa Suessigkeiten und Fruehlingskarten" loading="lazy" />
+            <img src={`${media}/hero-concept.jpg`} alt="Teeritual mit Udarnitsa Suessigkeiten und Fruehlingskarten" loading="lazy" />
             <figcaption>Tea-Party-System · Stimmung, Produkt und Dekoration</figcaption>
           </figure>
         </section>
@@ -176,11 +181,11 @@ const contestSteps = [
             <figcaption>Originalscreen · die vorhandene Kampagnenbuehne</figcaption>
           </figure>
           <figure>
-            <img src={`${media}/contest-activation.svg`} alt="Fotowettbewerb Aktivierungsbereich mit Einsendungen und Regeln" loading="lazy" />
+            <img src={`${media}/contest-activation.jpg`} alt="Fotowettbewerb Aktivierungsbereich mit Einsendungen und Regeln" loading="lazy" />
             <figcaption>Contest · Mechanik und Community-Galerie</figcaption>
           </figure>
           <figure>
-            <img src={`${media}/tea-ritual.svg`} alt="Teetisch als visuelles System der Udarnitsa Kampagne" loading="lazy" />
+            <img src={`${media}/hero-concept.jpg`} alt="Teetisch als visuelles System der Udarnitsa Kampagne" loading="lazy" />
             <figcaption>Lifehack · Teeritual als Inhaltsanker</figcaption>
           </figure>
         </section>
@@ -195,6 +200,10 @@ const contestSteps = [
               in User-Fotos und verlaengert die Markenwelt in die Community.
             </p>
           </div>
+          <figure class="contest-shot">
+            <img src={`${media}/contest-activation.jpg`} alt="Fotowettbewerb mit Einsendungen, Tee und Udarnitsa Suessigkeiten" loading="lazy" />
+            <figcaption>Contest-Visual · kuratierte Einsendungen statt abstrakter Mechanik</figcaption>
+          </figure>
           <div class="contest-grid">
             {contestSteps.map(([number, title, text]) => (
               <article>
@@ -415,23 +424,30 @@ const contestSteps = [
     background: #fff;
     border: 1px solid rgba(183, 25, 34, .16);
     border-radius: 22px;
-    min-height: 310px;
     overflow: hidden;
-    padding: 28px;
     position: relative;
+    transition: box-shadow .35s ease, transform .35s ease;
   }
-  .sweet-card::before {
-    background:
-      radial-gradient(circle at 32% 34%, #fff7ef 0 18px, transparent 19px),
-      radial-gradient(circle at 62% 54%, #f8d5d8 0 24px, transparent 25px),
-      linear-gradient(135deg, var(--accent), #e86638);
-    border-radius: 999px;
-    content: "";
-    height: 118px;
-    position: absolute;
-    right: 22px;
-    top: 22px;
-    width: 118px;
+  .sweet-card:hover {
+    box-shadow: 0 24px 70px rgba(127, 13, 20, .16);
+    transform: translateY(-8px);
+  }
+  .sweet-image {
+    aspect-ratio: 4 / 3;
+    background: var(--rose);
+    overflow: hidden;
+  }
+  .sweet-image img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease;
+    width: 100%;
+  }
+  .sweet-card:hover .sweet-image img {
+    transform: scale(1.08);
+  }
+  .sweet-copy {
+    padding: 26px;
   }
   .sweet-card span {
     color: var(--accent);
@@ -439,19 +455,15 @@ const contestSteps = [
     font-size: 11px;
     font-weight: 900;
     letter-spacing: .08em;
-    position: relative;
     text-transform: uppercase;
-    z-index: 1;
   }
   .sweet-card h3 {
-    font-size: clamp(28px, 3vw, 40px);
-    line-height: 1;
-    margin-top: 118px;
+    font-size: 25px;
+    line-height: 1.08;
+    margin-top: 18px;
     max-width: 260px;
-    position: relative;
-    z-index: 1;
   }
-  .sweet-card p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 18px; position: relative; z-index: 1; }
+  .sweet-card p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
   .ritual-stage {
     background:
@@ -490,11 +502,25 @@ const contestSteps = [
   }
   .contest-lab .eyebrow,
   .contest-lab .section-copy > p:last-child { color: rgba(255, 255, 255, .74); }
+  .contest-shot {
+    background: var(--paper);
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(67, 7, 11, .22);
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .contest-shot img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+  .contest-shot figcaption { background: rgba(255, 255, 255, .92); color: var(--accent-dark); }
   .contest-grid {
     display: grid;
     gap: 14px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 48px;
+    margin-top: 22px;
   }
   .contest-grid article {
     background: rgba(255, 255, 255, .13);

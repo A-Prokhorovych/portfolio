@@ -45,7 +45,7 @@ const pressSelector = [
   ".gallery figure",
   ".brand-logo",
 ].join(",");
-const floatSelector = ".floating-sweets .sweet-orb";
+const floatSelector = ".floating-sweets .sweet-orb, .floating-easter .easter-orb";
 
 const setVisible = (elements) => {
   elements.forEach((element) => {

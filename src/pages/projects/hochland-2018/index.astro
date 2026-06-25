@@ -12,9 +12,22 @@ const facts = [
 ];
 
 const highlights = [
-  ["Zehn Rezepte, ein Produkt", "Suesse und herzhafte Ostergerichte zeigen die Vielseitigkeit des Frischkaeses von Kuchen bis Vorspeise."],
-  ["Professionalitaet fuer zuhause", "Die Produktgeschichte uebersetzt die Erfahrung aus der Gastronomie in einen klaren Vorteil fuer die private Kueche."],
-  ["Saisonale Orientierung", "Rezepte und redaktionelle Tipps bilden ein kompaktes Oster-Menue und helfen bei Planung und Gestaltung der Festtafel."],
+  ["Hero als Festtafel", "Der neue Hero zeigt Hochland nicht als Packshot, sondern als Zutat im Zentrum eines Oster-Menues."],
+  ["Suess und herzhaft", "Kuchen, Tartlets und Brote bekommen eigene Bilder, damit die Vielseitigkeit sofort sichtbar wird."],
+  ["Rezeptlogik", "Die Rezeptuebersicht macht aus zehn Einzelideen ein kuratiertes Menue fuer die Festtafel."],
+];
+
+const recipeCards = [
+  ["recipe-sweet.jpg", "Suesse Anwendung", "Osterkuchen mit Frischkaese-Glasur", "Der suesse Teil der Kampagne: Hochland wird zur cremigen Basis fuer Glasur, Fuellung und festliche Gebaeckideen."],
+  ["recipe-savory.jpg", "Herzhafte Anwendung", "Tartlets und Brote fuer den Ostertisch", "Die herzhafte Seite zeigt den Nutzen im Alltag: schnell streichbar, kombinierbar mit Kraeutern, Lachs und Gemuese."],
+  ["product-focus.jpg", "Produkt im Zentrum", "Frischkaese als verbindende Zutat", "Die dritte Karte zeigt nicht noch einmal die Rezeptuebersicht, sondern das Produkt selbst: cremig, streichbar und direkt im Einsatz."],
+];
+
+const processSteps = [
+  ["01", "Produkt", "Frischkaese bleibt als verbindende Zutat sichtbar."],
+  ["02", "Rezepte", "Suesse und herzhafte Motive zeigen die Bandbreite."],
+  ["03", "Saison", "Eier, Tulpen und Blau-Gelb codieren Ostern sofort."],
+  ["04", "Planung", "Die Rezeptuebersicht macht daraus ein komplettes Menue."],
 ];
 ---
 
@@ -70,6 +83,11 @@ const highlights = [
 
       <article class="case-content">
         <section id="ueberblick" class="hero">
+          <div class="floating-easter" aria-hidden="true">
+            <span class="easter-orb egg-one"></span>
+            <span class="easter-orb egg-two"></span>
+            <span class="easter-orb egg-three"></span>
+          </div>
           <div class="hero-copy">
             <p class="eyebrow">Food & Beverage · Seasonal Campaign</p>
             <h2>Ein vielseitiger Frischkäse für die ganze Festtafel</h2>
@@ -80,8 +98,8 @@ const highlights = [
             </p>
           </div>
           <div class="hero-media">
-            <img src={`${media}/hero.jpg`} alt="Hochland Osterkampagne 2018" />
-            <span>Startseite · Desktop</span>
+            <img src={`${media}/hero-concept.jpg`} alt="Hochland Osterkampagne mit Frischkaese, Osterkuchen, Eiern und Tulpen" />
+            <span>Hero · neu inszenierte Oster-Festtafel</span>
           </div>
         </section>
 
@@ -101,13 +119,51 @@ const highlights = [
           </div>
         </section>
 
-        <section class="video-section" aria-labelledby="video-title">
+        <section class="recipe-system" aria-labelledby="recipe-title">
           <div class="section-copy">
-            <p class="eyebrow">Kampagnenansicht</p>
-            <h2 id="video-title">Vom Osterkuchen bis zur herzhaften Vorspeise</h2>
+            <p class="eyebrow">Rezeptwelten</p>
+            <h2 id="recipe-title">Drei Bilder zeigen, warum das Produkt gebraucht wird</h2>
+            <p>
+              Statt den Startscreen zu wiederholen, trennt der Case die wichtigsten
+              Anwendungen: suess, herzhaft und als Rezeptuebersicht. So wird der Nutzen des
+              Frischkaeses schneller begreifbar.
+            </p>
           </div>
-          <div class="video-frame">
-            <img src={`${media}/hero.jpg`} alt="Startansicht der Hochland Osterkampagne" loading="lazy" />
+          <div class="recipe-grid">
+            {recipeCards.map(([image, label, title, text]) => (
+              <article class="recipe-card">
+                <div class="recipe-image">
+                  <img src={`${media}/${image}`} alt={title} loading="lazy" />
+                </div>
+                <div class="recipe-copy">
+                  <span>{label}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="overview-stage" aria-labelledby="overview-title">
+          <div class="section-copy">
+            <p class="eyebrow">Originalscreen + neue Ordnung</p>
+            <h2 id="overview-title">Aus der Startseite wird ein Menue-System</h2>
+            <p>
+              Der originale Screen bleibt als Referenz erhalten, aber nicht als endlose
+              Wiederholung. Daneben steht die neue Rezeptbuehne, die das Special als
+              planbare Osterstrecke zeigt.
+            </p>
+          </div>
+          <div class="overview-pair">
+            <figure>
+              <img src={`${media}/hero.jpg`} alt="Originaler Hochland Kampagnenstartscreen" loading="lazy" />
+              <figcaption>Originalscreen · Kampagnenstart</figcaption>
+            </figure>
+            <figure>
+              <img src={`${media}/recipes-overview.jpg`} alt="Rezeptuebersicht der Hochland Osterkampagne" loading="lazy" />
+              <figcaption>Neue Buehne · Rezeptauswahl und Menueplanung</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -128,17 +184,20 @@ const highlights = [
           </div>
         </section>
 
-        <section class="gallery" aria-label="Kampagnenansichten">
-          <figure class="large">
-            <img src={`${media}/hero.jpg`} alt="Kampagnenstartseite Hochland 2018" loading="lazy" />
-            <figcaption>Produkt, Osterkuchen und saisonale Markenwelt auf einen Blick</figcaption>
-          </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Produkt- und Rezeptstruktur der Hochland Kampagne" loading="lazy" />
-          </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Visuelles Konzept der Hochland Osterkampagne" loading="lazy" />
-          </figure>
+        <section class="process-section" aria-label="Kampagnenlogik">
+          <div class="section-copy">
+            <p class="eyebrow">Dramaturgie</p>
+            <h2>Wie der Case die Kampagne lesbar macht</h2>
+          </div>
+          <div class="process-grid">
+            {processSteps.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section id="ergebnis" class="result">
@@ -199,12 +258,15 @@ const highlights = [
 <style>
   :root {
     color-scheme: light;
-    --bg: #f7f7f5;
+    --bg: #f6f8f2;
     --paper: #fff;
     --ink: #080808;
-    --muted: #5f5f5f;
-    --line: #dededb;
-    --accent: #145aa2;
+    --muted: #5f655e;
+    --line: #dce4d6;
+    --accent: #075da7;
+    --accent-dark: #003b7a;
+    --yellow: #ffd642;
+    --sky: #d7eef5;
     --radius: 8px;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -219,8 +281,8 @@ const highlights = [
 
   .site-header {
     align-items: center;
-    background: rgba(247, 247, 245, .9);
-    border-bottom: 1px solid rgba(222, 222, 219, .75);
+    background: rgba(246, 248, 242, .9);
+    border-bottom: 1px solid rgba(220, 228, 214, .78);
     display: grid;
     gap: 24px;
     grid-template-columns: 1fr auto 1fr;
@@ -302,19 +364,68 @@ const highlights = [
   nav a:hover { color: var(--ink); }
 
   .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
-  .hero { min-height: calc(100vh - 83px); }
+  .hero { min-height: calc(100vh - 83px); position: relative; }
+  .floating-easter {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+  .easter-orb {
+    border-radius: 999px;
+    box-shadow: 0 24px 60px rgba(7, 93, 167, .14);
+    display: block;
+    opacity: .78;
+    position: absolute;
+  }
+  .egg-one {
+    background:
+      radial-gradient(circle at 35% 28%, rgba(255, 255, 255, .8), transparent 28%),
+      linear-gradient(135deg, #ffe86f, #f0c520);
+    height: 92px;
+    left: 7%;
+    top: 48%;
+    width: 72px;
+  }
+  .egg-two {
+    background:
+      radial-gradient(circle at 35% 28%, rgba(255, 255, 255, .8), transparent 28%),
+      linear-gradient(135deg, #d7eef5, #7fc1d8);
+    height: 118px;
+    right: -24px;
+    top: 12%;
+    width: 92px;
+  }
+  .egg-three {
+    background:
+      radial-gradient(circle at 35% 28%, rgba(255, 255, 255, .8), transparent 28%),
+      linear-gradient(135deg, #fff, #d8c7a4);
+    bottom: 9%;
+    height: 78px;
+    right: 18%;
+    width: 62px;
+  }
   .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
+  .hero-copy, .hero-media { position: relative; z-index: 1; }
   .hero-copy .eyebrow { grid-column: 1 / -1; }
   .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
-  .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; }
+  .hero-media {
+    background: linear-gradient(135deg, var(--sky), #fff3b8);
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(7, 93, 167, .14);
+    overflow: hidden;
+  }
   .hero-media img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
-  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+  .hero-media span { color: var(--accent-dark); display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
 
   .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
   .section-copy { max-width: 850px; }
   .quote {
-    background: var(--accent);
+    background:
+      radial-gradient(circle at 86% 18%, rgba(255, 214, 66, .38), transparent 24%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent));
     border-radius: var(--radius);
     color: #fff;
     font-size: clamp(26px, 4vw, 52px);
@@ -325,10 +436,73 @@ const highlights = [
     padding: clamp(28px, 5vw, 70px);
   }
 
-  .video-section { background: #111; color: #fff; }
-  .video-section .eyebrow { color: #aaa; }
-  .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
-  .video-frame img, .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
+  .recipe-system {
+    background:
+      radial-gradient(circle at 15% 12%, rgba(255, 214, 66, .24), transparent 22%),
+      linear-gradient(135deg, #fff, #f3f8ee);
+  }
+  .recipe-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+  .recipe-card {
+    background: var(--paper);
+    border: 1px solid rgba(7, 93, 167, .12);
+    border-radius: 22px;
+    box-shadow: 0 22px 70px rgba(7, 93, 167, .08);
+    overflow: hidden;
+    transition: box-shadow .35s ease, transform .35s ease;
+  }
+  .recipe-card:hover {
+    box-shadow: 0 28px 80px rgba(7, 93, 167, .16);
+    transform: translateY(-8px);
+  }
+  .recipe-image {
+    aspect-ratio: 4 / 3;
+    background: var(--sky);
+    overflow: hidden;
+  }
+  .recipe-image img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease;
+    width: 100%;
+  }
+  .recipe-card:hover .recipe-image img { transform: scale(1.06); }
+  .recipe-copy { padding: 26px; }
+  .recipe-copy span {
+    color: var(--accent);
+    display: block;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .recipe-copy h3 { font-size: 24px; line-height: 1.08; }
+  .recipe-copy p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .overview-stage {
+    background:
+      linear-gradient(90deg, rgba(7, 93, 167, .06) 1px, transparent 1px),
+      linear-gradient(180deg, #f6f8f2, #e9f5f7);
+    background-size: 42px 42px, auto;
+  }
+  .overview-pair {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: .9fr 1.1fr;
+    margin-top: 48px;
+  }
+  .overview-pair figure {
+    background: var(--paper);
+    border-radius: 24px;
+    box-shadow: 0 24px 70px rgba(7, 93, 167, .1);
+    overflow: hidden;
+  }
+  .overview-pair img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
 
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
@@ -336,15 +510,35 @@ const highlights = [
   .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
   .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
-  .gallery { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
-  .gallery figure { background: var(--paper); border-radius: var(--radius); overflow: hidden; }
-  .gallery .large { grid-column: 1 / -1; }
-  .gallery img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
-  .gallery .large img { aspect-ratio: 16 / 8; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
 
-  .result { background: var(--accent); color: #fff; }
-  .result .eyebrow, .result-copy > p { color: #c6d1ce; }
+  .process-section {
+    background: var(--paper);
+  }
+  .process-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 46px;
+  }
+  .process-grid article {
+    background: #f6f8f2;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    min-height: 240px;
+    padding: 24px;
+  }
+  .process-grid span { color: var(--accent); font-size: 13px; font-weight: 900; }
+  .process-grid h3 { font-size: 22px; margin-top: 52px; }
+  .process-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .result {
+    background:
+      radial-gradient(circle at 16% 18%, rgba(255, 214, 66, .26), transparent 24%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+  .result .eyebrow, .result-copy > p { color: rgba(255, 255, 255, .72); }
   .result-copy { max-width: 900px; }
   .result .button { border-color: #fff; margin-top: 34px; }
 
@@ -355,6 +549,8 @@ const highlights = [
     .case-sidebar { height: auto; position: static; }
     .case-sidebar nav { display: none; }
     .hero { min-height: auto; }
+    .overview-pair { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 720px) {
@@ -366,8 +562,7 @@ const highlights = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .gallery { grid-template-columns: 1fr; }
-    .gallery .large { grid-column: 1; }
+    .recipe-grid, .highlight-grid, .process-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
   }
 </style>

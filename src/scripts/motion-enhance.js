@@ -17,6 +17,8 @@ const groupSelector = [
   ".recipe-grid",
   ".journey-grid",
   ".process-grid",
+  ".sweet-grid",
+  ".contest-grid",
   ".competencies",
   ".gallery",
 ].join(",");
@@ -28,6 +30,8 @@ const cardSelector = [
   ".recipe-card",
   ".journey-grid article",
   ".process-grid article",
+  ".sweet-grid article",
+  ".contest-grid article",
   ".competencies article",
   ".gallery figure",
 ].join(",");

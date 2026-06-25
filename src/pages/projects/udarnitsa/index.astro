@@ -12,9 +12,22 @@ const facts = [
 ];
 
 const highlights = [
-  ["Drei Produktwelten im Slider", "Marshmallow, Pastila und Fruchtgummi erhalten eigene Geschichten, waehrend die Kampagne visuell zusammenhaengend bleibt."],
-  ["Tea-Party-Ideen mit Social-Appeal", "Fuenf Stilwelten liefern Inspiration fuer Tischdekoration und moderne Food-Fotografie, die sich leicht nachmachen laesst."],
-  ["Fotowettbewerb als Aktivierung", "Die Community inszeniert Tee oder Kaffee mit den Markenprodukten und erweitert die Kampagne um authentische Bilder."],
+  ["Roter Markenanker", "Die diagonale Udarnitsa-Lasche wird zum wiederkehrenden Signal und fuehrt durch Hero, Teeritual und Wettbewerb."],
+  ["Suesse als Anlass", "Zephyr, Pastila und Marmelandia werden nicht katalogisiert, sondern als kleine Momente am Tisch inszeniert."],
+  ["Contest mit Bildlogik", "Der Fotowettbewerb bekommt eine klare Mechanik: Motividee, Teilnahme, Galerie und Community-Verstaerkung."],
+];
+
+const sweetMoments = [
+  ["Scharmel", "Luftiger Zephyr", "Weich, hell und nostalgisch: der visuelle Einstieg in die Fruehlingskampagne."],
+  ["Pastila", "Fruchtige Leichtigkeit", "Pastellfarben und kleine Portionen machen das Produkt zum Tea-Party-Detail."],
+  ["Marmelandia", "Bunte Fruchtgummis", "Der spielerische Akzent fuer Fotomotive, Dekoration und Social-Media-Naehe."],
+];
+
+const contestSteps = [
+  ["01", "Thema geben", "Tee, Kaffee, Fruehling und Suessigkeiten werden als einfache Bildaufgabe formuliert."],
+  ["02", "Motiv zeigen", "Beispiel-Laydowns machen sofort klar, wie die Marke im Foto vorkommen kann."],
+  ["03", "Einsendungen sammeln", "Die Galerie macht aus einzelnen Beiträgen einen sichtbaren Aktivierungsbereich."],
+  ["04", "Gewinner feiern", "Preise, Jury und Community-Ruecklauf geben dem Special einen klaren Abschluss."],
 ];
 ---
 
@@ -47,7 +60,8 @@ const highlights = [
           <h1>Eine süsse Frühlingskampagne rund ums Teetrinken</h1>
           <p class="intro">
             Eine leichte saisonale Kampagne, die Produktgeschichten, Tea-Party-Ideen,
-            Food-Fotografie, Lifestyle-Tipps und einen Community-Fotowettbewerb verbindet.
+            Food-Fotografie, Lifestyle-Tipps und einen Community-Fotowettbewerb zu einer
+            kleinen digitalen Fruehlingsbuehne verbindet.
           </p>
         </div>
 
@@ -74,14 +88,14 @@ const highlights = [
             <p class="eyebrow">Food & Beverage · Seasonal Campaign</p>
             <h2>Leichte Süssigkeiten werden zum Frühlingsritual</h2>
             <p>
-              Die Kampagne praesentiert Scharmel Marshmallow und Pastila sowie Marmelandia
-              Fruchtgummi als Begleiter fuer Tee, kleine Feiern und gesellige Momente.
-              Redaktionelle Inhalte liefern passende Stile, Dekoration und Fototipps.
+              Der neue Case schaerft das, was im Original schon angelegt war: Udarnitsa ist
+              nicht nur Packshot und Slider, sondern ein Anlass fuer Tee, Gespraech,
+              Fruehlingsdeko und teilbare Bilder.
             </p>
           </div>
           <div class="hero-media">
-            <img src={`${media}/hero.jpg`} alt="Udarnitsa Sweet Spring Kampagne" />
-            <span>Startseite · Desktop</span>
+            <img src={`${media}/hero-concept.svg`} alt="Udarnitsa Hero-Konzept mit Tee, Fruehlingssuessigkeiten und rotem Markenband" />
+            <span>Hero · neue Fruehlingsbuehne fuer den Case</span>
           </div>
         </section>
 
@@ -91,24 +105,52 @@ const highlights = [
             <p class="eyebrow">Konzept</p>
             <h2>Frühlingsleichtigkeit trifft nostalgische Markenwärme</h2>
             <p>
-              Ein emotionaler Hero zeigt Freundinnen beim Teetrinken und verbindet das
-              Markenrot mit hellen Pastellfarben. Grossformatige Script-Typografie, Blumen
-              und elegante Produktinszenierungen tragen die leichte saisonale Stimmung.
+              Das Markenrot bleibt der Anker, aber die Seite erzaehlt jetzt in klaren
+              Ebenen: Tee-Moment, drei Produktrollen, Lifehack-Ideen und Fotowettbewerb.
+              So wirkt das Special weniger wie ein einzelner Screenshot und mehr wie ein
+              Kampagnensystem.
             </p>
           </div>
           <div class="quote">
-            <p>„Eine kleine Süssigkeit wird zur Geschichte, wenn Produkt, Stimmung und gemeinsamer Moment zusammenpassen.“</p>
+            <p>„Eine kleine Süssigkeit wird zur Geschichte, wenn sie einen Moment am Tisch ausloest.“</p>
           </div>
         </section>
 
-        <section class="video-section" aria-labelledby="video-title">
+        <section class="sweet-system" aria-labelledby="sweet-title">
           <div class="section-copy">
-            <p class="eyebrow">Kampagnenansicht</p>
-            <h2 id="video-title">Vom Produktmoment zur teilbaren Bildidee</h2>
+            <p class="eyebrow">Produktrollen</p>
+            <h2 id="sweet-title">Drei Suesse, drei Aufgaben im Fruehlingsbild</h2>
+            <p>
+              Statt den gesamten Slider zu wiederholen, bekommt jede Produktwelt eine klare
+              Rolle. Dadurch sieht man schneller, warum die Kampagne mehr ist als ein
+              saisonaler Header.
+            </p>
           </div>
-          <div class="video-frame">
-            <img src={`${media}/hero.jpg`} alt="Startansicht der Udarnitsa Kampagne" loading="lazy" />
+          <div class="sweet-grid">
+            {sweetMoments.map(([label, title, text]) => (
+              <article class="sweet-card">
+                <span>{label}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
           </div>
+        </section>
+
+        <section class="ritual-stage" aria-labelledby="ritual-title">
+          <div class="section-copy">
+            <p class="eyebrow">Originalidee · Tea Party</p>
+            <h2 id="ritual-title">Der Teetisch wird zur Bühne fuer Marke und Stimmung</h2>
+            <p>
+              Das neue Bild verdichtet die Originalbereiche „Sekrety“ und „Lifehaki“:
+              Produkte, Tassen, Blueten und kleine Dekorationsideen greifen ineinander und
+              machen den Nutzen des Specials schneller lesbar.
+            </p>
+          </div>
+          <figure class="ritual-shot">
+            <img src={`${media}/tea-ritual.svg`} alt="Teeritual mit Udarnitsa Suessigkeiten und Fruehlingskarten" loading="lazy" />
+            <figcaption>Tea-Party-System · Stimmung, Produkt und Dekoration</figcaption>
+          </figure>
         </section>
 
         <section id="highlights" class="highlights">
@@ -131,14 +173,37 @@ const highlights = [
         <section class="gallery" aria-label="Kampagnenansichten">
           <figure class="large">
             <img src={`${media}/hero.jpg`} alt="Kampagnenstartseite Udarnitsa" loading="lazy" />
-            <figcaption>Teemoment, Produkt und Frühlingsbotschaft auf einen Blick</figcaption>
+            <figcaption>Originalscreen · die vorhandene Kampagnenbuehne</figcaption>
           </figure>
           <figure>
-            <img src={`${media}/hero.jpg`} alt="Produkt- und Lifestyle-Struktur der Udarnitsa Kampagne" loading="lazy" />
+            <img src={`${media}/contest-activation.svg`} alt="Fotowettbewerb Aktivierungsbereich mit Einsendungen und Regeln" loading="lazy" />
+            <figcaption>Contest · Mechanik und Community-Galerie</figcaption>
           </figure>
           <figure>
-            <img src={`${media}/hero.jpg`} alt="Visuelles Konzept der Udarnitsa Kampagne" loading="lazy" />
+            <img src={`${media}/tea-ritual.svg`} alt="Teetisch als visuelles System der Udarnitsa Kampagne" loading="lazy" />
+            <figcaption>Lifehack · Teeritual als Inhaltsanker</figcaption>
           </figure>
+        </section>
+
+        <section class="contest-lab" aria-labelledby="contest-title">
+          <div class="section-copy">
+            <p class="eyebrow">Fotokonkurs</p>
+            <h2 id="contest-title">Der Wettbewerb wird als Aktivierung sichtbar</h2>
+            <p>
+              Der Portfolio-Case erklaert nun nicht nur, dass es einen Wettbewerb gab,
+              sondern warum er fuer die Kampagne wichtig war: Er uebersetzt den Teemoment
+              in User-Fotos und verlaengert die Markenwelt in die Community.
+            </p>
+          </div>
+          <div class="contest-grid">
+            {contestSteps.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section id="ergebnis" class="result">
@@ -147,9 +212,9 @@ const highlights = [
             <p class="eyebrow">Ergebnis</p>
             <h2>Eine saisonale Markenwelt mit Community-Effekt</h2>
             <p>
-              Das Special verbindet Produktwissen und emotionales Storytelling mit konkreter
-              Inspiration. Tea-Party-Konzepte, Fotolaydowns, Artikel und Wettbewerb fuehren
-              von der Markenwelt direkt zu eigenen kreativen Inszenierungen.
+              Das Special verbindet Produktwissen, emotionales Storytelling und konkrete
+              Aktivierung. Im Case sind die staerksten Elemente jetzt sichtbar getrennt:
+              neuer Hero, Teeritual, Produktrollen und Fotowettbewerb.
             </p>
             <a class="button light" data-owner-only hidden href="https://www.edimdoma.ru/2018/udarnitsa" target="_blank" rel="noreferrer">
               Originalprojekt oeffnen
@@ -199,12 +264,15 @@ const highlights = [
 <style>
   :root {
     color-scheme: light;
-    --bg: #f7f7f5;
+    --bg: #fff8f0;
     --paper: #fff;
     --ink: #080808;
-    --muted: #5f5f5f;
-    --line: #dededb;
-    --accent: #b83225;
+    --muted: #6a5553;
+    --line: #ead6cf;
+    --accent: #b71922;
+    --accent-dark: #7f0d14;
+    --peach: #ffe1c7;
+    --rose: #f8d5d8;
     --radius: 8px;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -219,8 +287,8 @@ const highlights = [
 
   .site-header {
     align-items: center;
-    background: rgba(247, 247, 245, .9);
-    border-bottom: 1px solid rgba(222, 222, 219, .75);
+    background: rgba(255, 248, 240, .9);
+    border-bottom: 1px solid rgba(234, 214, 207, .75);
     display: grid;
     gap: 24px;
     grid-template-columns: 1fr auto 1fr;
@@ -306,15 +374,22 @@ const highlights = [
   .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
   .hero-copy .eyebrow { grid-column: 1 / -1; }
   .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
-  .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; }
+  .hero-media {
+    background: linear-gradient(135deg, var(--rose), var(--peach));
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(127, 13, 20, .16);
+    overflow: hidden;
+  }
   .hero-media img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
-  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+  .hero-media span { color: var(--accent-dark); display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
 
   .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
   .section-copy { max-width: 850px; }
   .quote {
-    background: var(--accent);
+    background:
+      radial-gradient(circle at 82% 18%, rgba(255, 255, 255, .24), transparent 24%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent) 62%, #e86638);
     border-radius: var(--radius);
     color: #fff;
     font-size: clamp(26px, 4vw, 52px);
@@ -325,10 +400,74 @@ const highlights = [
     padding: clamp(28px, 5vw, 70px);
   }
 
-  .video-section { background: #111; color: #fff; }
-  .video-section .eyebrow { color: #aaa; }
-  .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
-  .video-frame img, .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
+  .sweet-system {
+    background:
+      radial-gradient(circle at 16% 12%, rgba(183, 25, 34, .12), transparent 24%),
+      linear-gradient(135deg, #fffdf8, #fff0e1);
+  }
+  .sweet-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+  .sweet-card {
+    background: #fff;
+    border: 1px solid rgba(183, 25, 34, .16);
+    border-radius: 22px;
+    min-height: 310px;
+    overflow: hidden;
+    padding: 28px;
+    position: relative;
+  }
+  .sweet-card::before {
+    background:
+      radial-gradient(circle at 32% 34%, #fff7ef 0 18px, transparent 19px),
+      radial-gradient(circle at 62% 54%, #f8d5d8 0 24px, transparent 25px),
+      linear-gradient(135deg, var(--accent), #e86638);
+    border-radius: 999px;
+    content: "";
+    height: 118px;
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    width: 118px;
+  }
+  .sweet-card span {
+    color: var(--accent);
+    display: block;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    position: relative;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  .sweet-card h3 {
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1;
+    margin-top: 118px;
+    max-width: 260px;
+    position: relative;
+    z-index: 1;
+  }
+  .sweet-card p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 18px; position: relative; z-index: 1; }
+
+  .ritual-stage {
+    background:
+      linear-gradient(90deg, rgba(127, 13, 20, .08) 1px, transparent 1px),
+      linear-gradient(180deg, #fff8f0, #f8d5d8);
+    background-size: 42px 42px, auto;
+  }
+  .ritual-shot {
+    background: var(--paper);
+    border-radius: 24px;
+    box-shadow: 0 26px 80px rgba(127, 13, 20, .14);
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .ritual-shot img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+  .ritual-shot figcaption { background: #fff; color: var(--accent-dark); }
 
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
@@ -343,8 +482,38 @@ const highlights = [
   .gallery .large img { aspect-ratio: 16 / 8; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
 
-  .result { background: var(--accent); color: #fff; }
-  .result .eyebrow, .result-copy > p { color: #c6d1ce; }
+  .contest-lab {
+    background:
+      radial-gradient(circle at 85% 20%, rgba(255, 255, 255, .18), transparent 23%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent) 55%, #e86638);
+    color: #fff;
+  }
+  .contest-lab .eyebrow,
+  .contest-lab .section-copy > p:last-child { color: rgba(255, 255, 255, .74); }
+  .contest-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+  .contest-grid article {
+    background: rgba(255, 255, 255, .13);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 18px;
+    min-height: 260px;
+    padding: 24px;
+  }
+  .contest-grid span { color: #ffd9bd; font-size: 13px; font-weight: 900; }
+  .contest-grid h3 { font-size: 22px; line-height: 1.12; margin-top: 58px; }
+  .contest-grid p { color: rgba(255, 255, 255, .74); font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .result {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255, 255, 255, .18), transparent 24%),
+      linear-gradient(135deg, #571016, var(--accent-dark));
+    color: #fff;
+  }
+  .result .eyebrow, .result-copy > p { color: rgba(255, 255, 255, .72); }
   .result-copy { max-width: 900px; }
   .result .button { border-color: #fff; margin-top: 34px; }
 
@@ -355,6 +524,7 @@ const highlights = [
     .case-sidebar { height: auto; position: static; }
     .case-sidebar nav { display: none; }
     .hero { min-height: auto; }
+    .contest-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 720px) {
@@ -366,7 +536,7 @@ const highlights = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .gallery { grid-template-columns: 1fr; }
+    .sweet-grid, .highlight-grid, .contest-grid, .gallery { grid-template-columns: 1fr; }
     .gallery .large { grid-column: 1; }
     .section-number { display: none; }
   }

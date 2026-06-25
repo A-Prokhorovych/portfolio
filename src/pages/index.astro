@@ -1,4 +1,6 @@
 ---
+import MotionEnhance from "../components/MotionEnhance.astro";
+
 const base = import.meta.env.BASE_URL;
 const campaignCover = (url) => {
   if (url.startsWith(`${base}projects/`)) {
@@ -673,6 +675,7 @@ const process = [
         </div>
       </section>
     </main>
+    <MotionEnhance />
     <script>
       const counters = Array.from(document.querySelectorAll("[data-count-target]"));
       const showProjectsButton = document.querySelector("[data-show-projects]");

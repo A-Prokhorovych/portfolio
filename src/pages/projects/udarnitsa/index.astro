@@ -14,20 +14,26 @@ const facts = [
 const highlights = [
   ["Roter Markenanker", "Die diagonale Udarnitsa-Lasche wird zum wiederkehrenden Signal und fuehrt durch Hero, Teeritual und Wettbewerb."],
   ["Suesse als Anlass", "Zephyr, Pastila und Marmelandia werden nicht katalogisiert, sondern als kleine Momente am Tisch inszeniert."],
-  ["Contest mit Bildlogik", "Der Fotowettbewerb bekommt eine klare Mechanik: Motividee, Teilnahme, Galerie und Community-Verstaerkung."],
+  ["Instagram als Mechanik", "Der Social-Block wird als kuratierte Story gezeigt, ohne das alte Interface eins zu eins nachzubauen."],
 ];
 
 const sweetMoments = [
-  ["hero-concept.jpg", "58% 53%", "Scharmel", "Luftiger Zephyr", "Weich, hell und nostalgisch: der visuelle Einstieg in die Fruehlingskampagne."],
-  ["hero-concept.jpg", "55% 78%", "Pastila", "Fruchtige Leichtigkeit", "Pastellfarben und kleine Portionen machen das Produkt zum Tea-Party-Detail."],
-  ["contest-activation.jpg", "21% 84%", "Marmelandia", "Bunte Fruchtgummis", "Der spielerische Akzent fuer Fotomotive, Dekoration und Social-Media-Naehe."],
+  ["product-scharmel.jpg", "Scharmel", "Luftiger Zephyr", "Zephyr und Schokoglasur als weicher, nostalgischer Tea-Time-Moment."],
+  ["product-pastila.jpg", "Pastila", "Fruchtige Leichtigkeit", "Pastila bekommt ein helles Morgenbild und wirkt nicht wie ein Ausschnitt aus dem Hero."],
+  ["product-marmelandia.jpg", "Marmelandia", "Bunte Fruchtgummis", "Marmeladen-Stuecke werden als farbiger Akzent fuer Party und Tischdeko gezeigt."],
+];
+
+const originalSlides = [
+  ["original-scharmel-slide.jpg", "Scharmel · Kaffee, Blumen und Packung"],
+  ["original-pastila-slide.jpg", "Pastila · heller Lifestyle-Slide"],
+  ["original-marmelandia-slide.jpg", "Marmelandia · gedeckter Tisch und Fruchtgummi"],
 ];
 
 const contestSteps = [
-  ["01", "Thema geben", "Tee, Kaffee, Fruehling und Suessigkeiten werden als einfache Bildaufgabe formuliert."],
-  ["02", "Motiv zeigen", "Beispiel-Laydowns machen sofort klar, wie die Marke im Foto vorkommen kann."],
-  ["03", "Einsendungen sammeln", "Die Galerie macht aus einzelnen Beiträgen einen sichtbaren Aktivierungsbereich."],
-  ["04", "Gewinner feiern", "Preise, Jury und Community-Ruecklauf geben dem Special einen klaren Abschluss."],
+  ["01", "Story", "Ein Social-Teaser erklaert die Idee: Fruehlingsstimmung, Tee und kleine Geheimnisse rund um Suessigkeiten."],
+  ["02", "Mood", "Pastellverlauf, Smartphone-Karte und fliegende Sweets greifen die Sprache des Specials auf."],
+  ["03", "Artikel", "Die darunterliegenden Karten fuehren von Instagram-Idee zu Lifehacks und saisonalen Tipps."],
+  ["04", "Community", "Der Fotokontext bleibt erhalten, wirkt aber im Portfolio ruhiger und moderner."],
 ];
 ---
 
@@ -84,6 +90,11 @@ const contestSteps = [
 
       <article class="case-content">
         <section id="ueberblick" class="hero">
+          <div class="floating-sweets" aria-hidden="true">
+            <span class="sweet-orb orb-one"></span>
+            <span class="sweet-orb orb-two"></span>
+            <span class="sweet-orb orb-three"></span>
+          </div>
           <div class="hero-copy">
             <p class="eyebrow">Food & Beverage · Seasonal Campaign</p>
             <h2>Leichte Süssigkeiten werden zum Frühlingsritual</h2>
@@ -127,10 +138,10 @@ const contestSteps = [
             </p>
           </div>
           <div class="sweet-grid">
-            {sweetMoments.map(([image, position, label, title, text]) => (
+            {sweetMoments.map(([image, label, title, text]) => (
               <article class="sweet-card">
                 <div class="sweet-image">
-                  <img src={`${media}/${image}`} alt={title} style={`object-position: ${position};`} loading="lazy" />
+                  <img src={`${media}/${image}`} alt={title} loading="lazy" />
                 </div>
                 <div class="sweet-copy">
                   <span>{label}</span>
@@ -142,20 +153,69 @@ const contestSteps = [
           </div>
         </section>
 
-        <section class="ritual-stage" aria-labelledby="ritual-title">
+        <section class="original-slides" aria-labelledby="original-title">
           <div class="section-copy">
-            <p class="eyebrow">Originalidee · Tea Party</p>
-            <h2 id="ritual-title">Der Teetisch wird zur Bühne fuer Marke und Stimmung</h2>
+            <p class="eyebrow">Originalmaterial · Drei Slides</p>
+            <h2 id="original-title">Die echten Kampagnenbilder gehoeren sichtbar in den Case</h2>
             <p>
-              Hier arbeitet der Case mit dem starken neuen Hero statt mit einer
-              schematischen Grafik: Tee, Blueten, Zephyr, Pastila und rote Bänder werden
-              zu einem emotionalen Fruehlingsmoment.
+              Die Seite zeigt jetzt die drei starken Originalmotive aus dem Special:
+              Scharmel, Pastila und Marmelandia. So bleibt die Arbeit nah am realen
+              Projekt und verliert sich nicht in generischen Bildern.
             </p>
           </div>
-          <figure class="ritual-shot">
-            <img src={`${media}/hero-concept.jpg`} alt="Teeritual mit Udarnitsa Suessigkeiten und Fruehlingskarten" loading="lazy" />
-            <figcaption>Tea-Party-System · Stimmung, Produkt und Dekoration</figcaption>
-          </figure>
+          <div class="original-strip">
+            {originalSlides.map(([image, caption]) => (
+              <figure>
+                <img src={`${media}/${image}`} alt={caption} loading="lazy" />
+                <figcaption>{caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section class="instagram-stage" aria-labelledby="instagram-title">
+          <div class="section-copy">
+            <p class="eyebrow">Instagram-Block · neu interpretiert</p>
+            <h2 id="instagram-title">Social-Idee statt altem Instagram-Embed</h2>
+            <p>
+              Das Original hatte einen Instagram-Bereich. Im Portfolio bleibt die Mechanik
+              erhalten, aber als moderne Placeholder-Buehne: Smartphone-Karte,
+              Beitragskacheln, Candy-Pattern und fliegende Suessigkeiten.
+            </p>
+          </div>
+          <div class="instagram-board">
+            <figure class="instagram-reference">
+              <img src={`${media}/original-instagram.jpg`} alt="Originaler Instagram-Bereich des Udarnitsa Specials" loading="lazy" />
+              <figcaption>Originalscreen · Social-Bereich des Specials</figcaption>
+            </figure>
+            <div class="mock-social" aria-label="Instagram Placeholder">
+              <div class="phone-shell">
+                <div class="phone-top">
+                  <span></span>
+                  <strong>sweet spring</strong>
+                  <span></span>
+                </div>
+                <div class="phone-visual">
+                  <img src={`${media}/original-floating-sweets.jpg`} alt="Fliegende Suessigkeiten aus dem Originalpattern" loading="lazy" />
+                </div>
+                <div class="phone-actions">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <p>Placeholder fuer kuratierte Social-Posts, passend zum Portfolio-Look.</p>
+              </div>
+              <div class="social-copy">
+                <span>Instagram secrets</span>
+                <h3>Fruehlingsposts mit Zephyr, Pastila und Marmelandia</h3>
+                <p>
+                  Statt ein veraltetes Interface zu zeigen, inszeniert der Block die Idee:
+                  kleine Tipps, Rezeptkarten und User-Motive, die aus dem Special in Social
+                  Media weiterwandern.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section id="highlights" class="highlights">
@@ -173,21 +233,6 @@ const contestSteps = [
               </article>
             ))}
           </div>
-        </section>
-
-        <section class="gallery" aria-label="Kampagnenansichten">
-          <figure class="large">
-            <img src={`${media}/hero.jpg`} alt="Kampagnenstartseite Udarnitsa" loading="lazy" />
-            <figcaption>Originalscreen · die vorhandene Kampagnenbuehne</figcaption>
-          </figure>
-          <figure>
-            <img src={`${media}/contest-activation.jpg`} alt="Fotowettbewerb Aktivierungsbereich mit Einsendungen und Regeln" loading="lazy" />
-            <figcaption>Contest · Mechanik und Community-Galerie</figcaption>
-          </figure>
-          <figure>
-            <img src={`${media}/hero-concept.jpg`} alt="Teetisch als visuelles System der Udarnitsa Kampagne" loading="lazy" />
-            <figcaption>Lifehack · Teeritual als Inhaltsanker</figcaption>
-          </figure>
         </section>
 
         <section class="contest-lab" aria-labelledby="contest-title">
@@ -380,7 +425,57 @@ const contestSteps = [
 
   .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
   .hero { min-height: calc(100vh - 83px); }
+  .hero { position: relative; }
+  .floating-sweets {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+  .sweet-orb {
+    background: var(--paper);
+    border-radius: 999px;
+    box-shadow: 0 24px 60px rgba(127, 13, 20, .16);
+    display: block;
+    opacity: .74;
+    position: absolute;
+  }
+  .sweet-orb::before {
+    border-radius: inherit;
+    content: "";
+    inset: 16%;
+    position: absolute;
+  }
+  .orb-one {
+    height: 94px;
+    left: 7%;
+    top: 44%;
+    width: 94px;
+  }
+  .orb-one::before { background: radial-gradient(circle at 35% 35%, #fff, #7a342c 54%, #2b1110 100%); }
+  .orb-two {
+    height: 130px;
+    right: -30px;
+    top: 10%;
+    width: 130px;
+  }
+  .orb-two::before {
+    background:
+      radial-gradient(circle at 50% 50%, transparent 0 42%, #fff7ef 43% 48%, transparent 49%),
+      conic-gradient(from 20deg, #fff7ef, #f3b3bc, #fff7ef, #f3b3bc, #fff7ef);
+  }
+  .orb-three {
+    border-radius: 52% 48% 46% 54%;
+    bottom: 8%;
+    height: 96px;
+    right: 15%;
+    transform: rotate(-18deg);
+    width: 136px;
+  }
+  .orb-three::before { background: linear-gradient(135deg, #ffd84d, #ef6c3a 54%, #b81823); border-radius: 52% 48% 46% 54%; }
   .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
+  .hero-copy, .hero-media { position: relative; z-index: 1; }
   .hero-copy .eyebrow { grid-column: 1 / -1; }
   .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
   .hero-media {
@@ -465,21 +560,120 @@ const contestSteps = [
   }
   .sweet-card p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
-  .ritual-stage {
+  .original-slides {
     background:
-      linear-gradient(90deg, rgba(127, 13, 20, .08) 1px, transparent 1px),
-      linear-gradient(180deg, #fff8f0, #f8d5d8);
-    background-size: 42px 42px, auto;
+      radial-gradient(circle at 88% 12%, rgba(183, 25, 34, .1), transparent 22%),
+      #fffdf8;
   }
-  .ritual-shot {
-    background: var(--paper);
-    border-radius: 24px;
-    box-shadow: 0 26px 80px rgba(127, 13, 20, .14);
+  .original-strip {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-top: 48px;
+  }
+  .original-strip figure {
+    background: #fff;
+    border: 1px solid rgba(183, 25, 34, .12);
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(127, 13, 20, .08);
     overflow: hidden;
   }
-  .ritual-shot img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
-  .ritual-shot figcaption { background: #fff; color: var(--accent-dark); }
+  .original-strip img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .instagram-stage {
+    background:
+      radial-gradient(circle at 8% 20%, rgba(255, 255, 255, .34), transparent 24%),
+      linear-gradient(135deg, #d486c7, #ff9e88 58%, #fff7ef 58%);
+  }
+  .instagram-board {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(0, .95fr) minmax(320px, 1.05fr);
+    margin-top: 48px;
+  }
+  .instagram-reference,
+  .mock-social {
+    background: rgba(255, 255, 255, .86);
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(127, 13, 20, .16);
+    overflow: hidden;
+  }
+  .instagram-reference img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center top;
+    width: 100%;
+  }
+  .mock-social {
+    align-items: center;
+    display: grid;
+    gap: 28px;
+    grid-template-columns: 240px minmax(0, 1fr);
+    padding: clamp(24px, 4vw, 46px);
+  }
+  .phone-shell {
+    background: #fff;
+    border: 10px solid #111;
+    border-radius: 34px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .22);
+    overflow: hidden;
+  }
+  .phone-top {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    padding: 14px 16px;
+  }
+  .phone-top span,
+  .phone-actions span {
+    background: #111;
+    border-radius: 999px;
+    height: 10px;
+    width: 10px;
+  }
+  .phone-top strong { font-size: 15px; }
+  .phone-visual img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+  .phone-actions {
+    display: flex;
+    gap: 9px;
+    padding: 14px 16px 0;
+  }
+  .phone-shell p {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.35;
+    padding: 12px 16px 18px;
+  }
+  .social-copy span {
+    color: var(--accent);
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .social-copy h3 {
+    font-size: clamp(30px, 4vw, 56px);
+    line-height: 1.02;
+  }
+  .social-copy p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-top: 22px;
+  }
 
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
@@ -551,6 +745,8 @@ const contestSteps = [
     .case-sidebar nav { display: none; }
     .hero { min-height: auto; }
     .contest-grid { grid-template-columns: repeat(2, 1fr); }
+    .instagram-board,
+    .mock-social { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 720px) {
@@ -562,7 +758,7 @@ const contestSteps = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .sweet-grid, .highlight-grid, .contest-grid, .gallery { grid-template-columns: 1fr; }
+    .sweet-grid, .original-strip, .highlight-grid, .contest-grid, .gallery { grid-template-columns: 1fr; }
     .gallery .large { grid-column: 1; }
     .section-number { display: none; }
   }

@@ -19,6 +19,7 @@ const groupSelector = [
   ".process-grid",
   ".sweet-grid",
   ".contest-grid",
+  ".original-strip",
   ".competencies",
   ".gallery",
 ].join(",");
@@ -32,6 +33,7 @@ const cardSelector = [
   ".process-grid article",
   ".sweet-grid article",
   ".contest-grid article",
+  ".original-strip figure",
   ".competencies article",
   ".gallery figure",
 ].join(",");
@@ -43,6 +45,7 @@ const pressSelector = [
   ".gallery figure",
   ".brand-logo",
 ].join(",");
+const floatSelector = ".floating-sweets .sweet-orb";
 
 const setVisible = (elements) => {
   elements.forEach((element) => {
@@ -74,6 +77,7 @@ if (reduceMotion) {
   const revealItems = Array.from(document.querySelectorAll(revealSelector));
   const cardGroups = Array.from(document.querySelectorAll(groupSelector));
   const pressItems = Array.from(document.querySelectorAll(pressSelector));
+  const floatItems = Array.from(document.querySelectorAll(floatSelector));
 
   revealItems.forEach((element) => {
     element.style.opacity = "0";
@@ -126,5 +130,13 @@ if (reduceMotion) {
     item.addEventListener("pointerdown", press);
     item.addEventListener("pointerup", enter);
     item.addEventListener("blur", leave);
+  });
+
+  floatItems.forEach((item, index) => {
+    animate(
+      item,
+      { transform: ["translate3d(0, 0, 0) rotate(0deg)", "translate3d(0, -18px, 0) rotate(8deg)", "translate3d(0, 0, 0) rotate(0deg)"] },
+      { duration: 4.6 + index * 0.7, repeat: Infinity, easing: "ease-in-out" }
+    );
   });
 }

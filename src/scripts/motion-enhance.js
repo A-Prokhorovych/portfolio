@@ -13,6 +13,7 @@ const groupSelector = [
   "[data-motion-group]",
   ".project-grid",
   ".highlight-grid",
+  ".platform-grid",
   ".product-grid",
   ".recipe-grid",
   ".journey-grid",
@@ -22,11 +23,13 @@ const groupSelector = [
   ".original-strip",
   ".competencies",
   ".gallery",
+  ".showcase-section",
 ].join(",");
 const cardSelector = [
   "[data-motion-card]",
   ".project-card",
   ".highlight-grid article",
+  ".platform-grid article",
   ".product-card",
   ".recipe-card",
   ".journey-grid article",
@@ -36,13 +39,18 @@ const cardSelector = [
   ".original-strip figure",
   ".competencies article",
   ".gallery figure",
+  ".showcase-section figure",
+  ".system-card",
 ].join(",");
 const pressSelector = [
   "[data-motion-press]",
   ".project-card",
+  ".platform-grid article",
   ".product-card",
   ".recipe-card",
   ".gallery figure",
+  ".showcase-section figure",
+  ".system-card",
   ".brand-logo",
 ].join(",");
 const floatSelector = ".floating-sweets .sweet-orb, .floating-easter .easter-orb";

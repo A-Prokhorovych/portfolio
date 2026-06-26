@@ -16,6 +16,19 @@ const highlights = [
   ["Umfangreiche Seafood-Küche", "Dutzende leichte Rezepte mit Fisch und Meeresfrüchten machen die gesunde Positionierung konkret und alltagstauglich."],
   ["Aktivität mit Anleitung", "Trainings, Yoga, Pilates und saisonale Sportideen ergänzen das Ernährungsthema um praktische Bewegung."],
 ];
+
+const platformCards = [
+  ["recipe-system.jpg", "Essen", "Seafood-Rezepte als Alltagssystem", "Die Rezeptwelt zeigt Maguro nicht als einzelnes Produkt, sondern als leichtes, variierbares Essen nach dem Training."],
+  ["training-system.jpg", "Laufen", "Bewegung mit klarer Anleitung", "Matte, Schuhe, Tracker und Trainingsmodule uebersetzen Motivation in konkrete Routinen."],
+  ["content-hub.jpg", "Leben", "Content-Hub fuer Haltung und Plan", "Artikel, Routen, Rezeptkarten und Fortschritt bilden den redaktionellen Rahmen der Kampagne."],
+];
+
+const journeySteps = [
+  ["01", "Impuls", "Der Hero setzt Energie: Meer, Lauf, frisches Essen."],
+  ["02", "Rezept", "Seafood wird ueber visuelle Karten direkt nutzbar."],
+  ["03", "Training", "Sportmodule erweitern die Marke in Bewegung."],
+  ["04", "Routine", "Motivation und Planung halten den Nutzer im Special."],
+];
 ---
 
 <html lang="de">
@@ -80,8 +93,8 @@ const highlights = [
             </p>
           </div>
           <div class="hero-media">
-            <img src={`${media}/hero.jpg`} alt="Maguro Healthy Lifestyle Kampagne" />
-            <span>Startseite · Desktop</span>
+            <img src={`${media}/hero-concept.jpg`} alt="Maguro Healthy Lifestyle Hero mit Seafood-Bowl, Meer und Laufmotiv" />
+            <span>Hero · Seafood, Bewegung und Meer</span>
           </div>
         </section>
 
@@ -101,13 +114,29 @@ const highlights = [
           </div>
         </section>
 
-        <section class="video-section" aria-labelledby="video-title">
+        <section class="platform-section" aria-labelledby="platform-title">
           <div class="section-copy">
-            <p class="eyebrow">Kampagnenansicht</p>
-            <h2 id="video-title">Vom Seafood-Rezept bis zum nächsten Training</h2>
+            <p class="eyebrow">Plattformlogik</p>
+            <h2 id="platform-title">Essen, Laufen, Leben als drei eigene Screens</h2>
+            <p>
+              Statt den Startscreen mehrfach zu zeigen, bekommt jede Kampagnensaeule ein
+              eigenes Bild. So liest man sofort, dass Maguro hier Rezepte, Training und
+              Motivation zu einer aktiven Routine verbindet.
+            </p>
           </div>
-          <div class="video-frame">
-            <img src={`${media}/hero.jpg`} alt="Startansicht der Maguro Kampagne" loading="lazy" />
+          <div class="platform-grid">
+            {platformCards.map(([image, label, title, text]) => (
+              <article>
+                <div class="platform-image">
+                  <img src={`${media}/${image}`} alt={title} loading="lazy" />
+                </div>
+                <div class="platform-copy">
+                  <span>{label}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -128,16 +157,34 @@ const highlights = [
           </div>
         </section>
 
-        <section class="gallery" aria-label="Kampagnenansichten">
-          <figure class="large">
-            <img src={`${media}/hero.jpg`} alt="Kampagnenstartseite Maguro" loading="lazy" />
-            <figcaption>Bewegung, Motto und Markenenergie auf einen Blick</figcaption>
-          </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Rezept- und Trainingsstruktur der Maguro Kampagne" loading="lazy" />
-          </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Visuelles Konzept der Maguro Kampagne" loading="lazy" />
+        <section class="journey-section" aria-label="Kampagnenreise">
+          <div class="section-copy">
+            <p class="eyebrow">Dramaturgie</p>
+            <h2>Wie aus einem Motto ein Content-System wird</h2>
+          </div>
+          <div class="journey-grid">
+            {journeySteps.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="showcase-section" aria-label="Kampagnenansichten">
+          <article class="system-card">
+            <p class="eyebrow">Original + Case-Logik</p>
+            <h2>Der alte Startscreen bleibt Referenz, nicht Wiederholung</h2>
+            <p>
+              Die Seite zeigt das Original einmal und zerlegt danach die Idee in klare
+              Ebenen: Seafood-Rezepte, Trainingsroutine und motivierende Content-Strecke.
+            </p>
+          </article>
+          <figure class="original-screen">
+            <img src={`${media}/hero.jpg`} alt="Originaler Maguro Kampagnenstartscreen" loading="lazy" />
+            <figcaption>Originalscreen · Kampagnenstart und Motto</figcaption>
           </figure>
         </section>
 
@@ -199,12 +246,15 @@ const highlights = [
 <style>
   :root {
     color-scheme: light;
-    --bg: #f7f7f5;
+    --bg: #f3f4f2;
     --paper: #fff;
     --ink: #080808;
-    --muted: #5f5f5f;
-    --line: #dededb;
+    --muted: #61656a;
+    --line: #dadcda;
     --accent: #d71f3a;
+    --accent-dark: #171b20;
+    --sea: #0f5f75;
+    --sand: #f0d6a4;
     --radius: 8px;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -219,8 +269,8 @@ const highlights = [
 
   .site-header {
     align-items: center;
-    background: rgba(247, 247, 245, .9);
-    border-bottom: 1px solid rgba(222, 222, 219, .75);
+    background: rgba(243, 244, 242, .9);
+    border-bottom: 1px solid rgba(218, 220, 218, .75);
     display: grid;
     gap: 24px;
     grid-template-columns: 1fr auto 1fr;
@@ -302,19 +352,32 @@ const highlights = [
   nav a:hover { color: var(--ink); }
 
   .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
-  .hero { min-height: calc(100vh - 83px); }
+  .hero {
+    background:
+      radial-gradient(circle at 78% 22%, rgba(215, 31, 58, .16), transparent 28%),
+      radial-gradient(circle at 12% 70%, rgba(15, 95, 117, .16), transparent 30%),
+      var(--bg);
+    min-height: calc(100vh - 83px);
+  }
   .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
   .hero-copy .eyebrow { grid-column: 1 / -1; }
   .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
-  .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; }
+  .hero-media {
+    background: var(--accent-dark);
+    border-radius: 24px;
+    box-shadow: 0 30px 90px rgba(23, 27, 32, .18);
+    overflow: hidden;
+  }
   .hero-media img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
-  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
 
   .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
   .section-copy { max-width: 850px; }
   .quote {
-    background: var(--accent);
+    background:
+      radial-gradient(circle at 82% 20%, rgba(215, 31, 58, .36), transparent 28%),
+      linear-gradient(135deg, var(--accent-dark), #2f3640);
     border-radius: var(--radius);
     color: #fff;
     font-size: clamp(26px, 4vw, 52px);
@@ -325,10 +388,59 @@ const highlights = [
     padding: clamp(28px, 5vw, 70px);
   }
 
-  .video-section { background: #111; color: #fff; }
-  .video-section .eyebrow { color: #aaa; }
-  .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
-  .video-frame img, .video-frame video { aspect-ratio: 16 / 9; background: #000; object-fit: cover; width: 100%; }
+  .platform-section {
+    background:
+      radial-gradient(circle at 16% 14%, rgba(15, 95, 117, .18), transparent 28%),
+      linear-gradient(135deg, #fff, #eef2f2);
+  }
+
+  .platform-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+
+  .platform-grid article {
+    background: var(--paper);
+    border: 1px solid rgba(23, 27, 32, .08);
+    border-radius: 22px;
+    box-shadow: 0 24px 80px rgba(23, 27, 32, .09);
+    overflow: hidden;
+    transition: box-shadow .35s ease, transform .35s ease;
+  }
+
+  .platform-grid article:hover {
+    box-shadow: 0 32px 90px rgba(23, 27, 32, .16);
+    transform: translateY(-8px);
+  }
+
+  .platform-image {
+    aspect-ratio: 4 / 3;
+    background: var(--accent-dark);
+    overflow: hidden;
+  }
+
+  .platform-image img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease;
+    width: 100%;
+  }
+
+  .platform-grid article:hover .platform-image img { transform: scale(1.05); }
+  .platform-copy { padding: 26px; }
+  .platform-copy span {
+    color: var(--accent);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .platform-copy h3 { font-size: 25px; line-height: 1.05; }
+  .platform-copy p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
   .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
   .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
@@ -336,14 +448,76 @@ const highlights = [
   .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
   .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
-  .gallery { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
-  .gallery figure { background: var(--paper); border-radius: var(--radius); overflow: hidden; }
-  .gallery .large { grid-column: 1 / -1; }
-  .gallery img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
-  .gallery .large img { aspect-ratio: 16 / 8; }
+  .journey-section {
+    background:
+      radial-gradient(circle at 88% 18%, rgba(215, 31, 58, .26), transparent 26%),
+      linear-gradient(135deg, var(--accent-dark), #2b3139);
+    color: #fff;
+  }
+
+  .journey-section .eyebrow,
+  .journey-grid p { color: rgba(255, 255, 255, .68); }
+
+  .journey-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+
+  .journey-grid article {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 18px;
+    min-height: 240px;
+    padding: 24px;
+  }
+
+  .journey-grid span { color: var(--sand); font-size: 13px; font-weight: 950; }
+  .journey-grid h3 { font-size: 24px; line-height: 1.08; margin-top: 58px; }
+  .journey-grid p { font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .showcase-section {
+    background:
+      linear-gradient(90deg, rgba(15, 95, 117, .08) 1px, transparent 1px),
+      linear-gradient(180deg, #f3f4f2, #e8eeee);
+    background-size: 44px 44px, auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1.2fr .8fr;
+  }
+
+  .showcase-section figure,
+  .system-card {
+    background: var(--paper);
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(23, 27, 32, .1);
+    overflow: hidden;
+  }
+
+  .system-card {
+    background:
+      radial-gradient(circle at 84% 14%, rgba(215, 31, 58, .16), transparent 28%),
+      linear-gradient(135deg, #fff, #eef2f2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 420px;
+    padding: clamp(28px, 4vw, 56px);
+  }
+
+  .system-card h2 { font-size: clamp(36px, 4vw, 62px); }
+  .system-card p:last-child { color: var(--muted); font-size: 16px; line-height: 1.7; margin-top: 24px; max-width: 640px; }
+
+  .showcase-section img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
 
-  .result { background: var(--accent); color: #fff; }
+  .result {
+    background:
+      radial-gradient(circle at 20% 18%, rgba(15, 95, 117, .34), transparent 25%),
+      linear-gradient(135deg, #8e1427, var(--accent));
+    color: #fff;
+  }
   .result .eyebrow, .result-copy > p { color: #c6d1ce; }
   .result-copy { max-width: 900px; }
   .result .button { border-color: #fff; margin-top: 34px; }
@@ -355,6 +529,9 @@ const highlights = [
     .case-sidebar { height: auto; position: static; }
     .case-sidebar nav { display: none; }
     .hero { min-height: auto; }
+    .platform-grid { grid-template-columns: 1fr; }
+    .journey-grid { grid-template-columns: repeat(2, 1fr); }
+    .showcase-section { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 720px) {
@@ -366,8 +543,7 @@ const highlights = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .gallery { grid-template-columns: 1fr; }
-    .gallery .large { grid-column: 1; }
+    .highlight-grid, .journey-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
   }
 </style>

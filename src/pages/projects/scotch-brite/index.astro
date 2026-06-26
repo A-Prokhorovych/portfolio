@@ -23,6 +23,19 @@ const modules = [
   ["product-01.jpg", "Produktlinie", "Die Produktmodule verbinden Anwendungsszenario, Nutzen und weiterfuehrende Aktion."],
   ["product-02.jpg", "Wissensbasis", "Artikel und Masterclasses erweitern die Kampagne zu einem nutzbaren Haushaltsratgeber."],
 ];
+
+const guideSteps = [
+  ["01", "Planen", "Das Special nimmt den Stress vor dem Fest ernst."],
+  ["02", "Vorbereiten", "Expertinnen fuehren durch Kochen, Deko und Einladung."],
+  ["03", "Reinigen", "Video-Tipps machen Produkte als Helfer konkret."],
+  ["04", "Feiern", "Der saubere Raum wird Teil der Gastgebergeschichte."],
+];
+
+const originalScreens = [
+  ["hero.jpg", "Originalscreen · Kampagnenstart mit Headline"],
+  ["hero-original.jpg", "Originalfoto · Reinigung als freundliche Situation"],
+  ["video-02.jpg", "Video-Modul · konkreter Haushaltstipp"],
+];
 ---
 
 <html lang="de">
@@ -86,10 +99,9 @@ const modules = [
               verbindet Rat, Unterhaltung und Produktnutzen in einer scrollbaren Markenwelt.
             </p>
           </div>
-          <div class="hero-media hero-stack">
-            <img src={`${media}/hero-original.jpg`} alt="Scotch-Brite Special Project Startscreen" />
-            <img class="hero-label" src={`${media}/hello.png`} alt="Wie man aufhoert, sich vor Feiertagen zu fuerchten" />
-            <span>Startseite · Desktop</span>
+          <div class="hero-media">
+            <img src={`${media}/hero-concept.jpg`} alt="Scotch-Brite Hero mit vorbereiteter Festtafel und Reinigungshelfern" />
+            <span>Hero · Fest vorbereiten ohne Stress</span>
           </div>
         </section>
 
@@ -110,10 +122,15 @@ const modules = [
           </div>
         </section>
 
-        <section class="video-section" aria-labelledby="video-title">
+        <section class="module-section" aria-labelledby="module-title">
           <div class="section-copy">
             <p class="eyebrow">Interaktive Kampagne</p>
-            <h2 id="video-title">Slider, Videos und Wissensmodule als Content-System</h2>
+            <h2 id="module-title">Slider, Videos und Wissensmodule als Content-System</h2>
+            <p>
+              Die Kampagne funktioniert nicht als einzelne Produktanzeige, sondern als
+              Gastgeber-Guide: Expertenteam, How-to-Videos, Produktmodule und Wissensbasis
+              bilden zusammen eine brauchbare Vorbereitung auf das Fest.
+            </p>
           </div>
           <div class="module-grid">
             {modules.map(([image, title, text], index) => (
@@ -144,17 +161,38 @@ const modules = [
           </div>
         </section>
 
-        <section class="gallery" aria-label="Kampagnenansichten">
-          <figure class="large">
-            <img src={`${media}/hero.jpg`} alt="Scotch-Brite Kampagnenuebersicht" loading="lazy" />
-            <figcaption>Ratgeberkampagne gegen Feiertagsstress</figcaption>
-          </figure>
-          <figure>
-            <img src={`${media}/video-02.jpg`} alt="Scotch-Brite Video-Tipp" loading="lazy" />
-          </figure>
-          <figure>
-            <img src={`${media}/product-02.jpg`} alt="Scotch-Brite Produktmodul" loading="lazy" />
-          </figure>
+        <section class="guide-section" aria-label="Guide-Dramaturgie">
+          <div class="section-copy">
+            <p class="eyebrow">Dramaturgie</p>
+            <h2>Vom Feiertagsstress zur klaren Gastgeberroutine</h2>
+          </div>
+          <div class="guide-grid">
+            {guideSteps.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="original-section" aria-label="Originalmechaniken">
+          <article class="system-card">
+            <p class="eyebrow">Originalmechanik</p>
+            <h2>Das Original bleibt sichtbar, aber nicht dreifach wiederholt</h2>
+            <p>
+              Statt denselben Startscreen in jedem Block zu zeigen, trennt der Case die
+              Mechaniken: Startscreen, Foto-Tonality und Video-Tipp. So wird der Aufbau des
+              Specials klarer.
+            </p>
+          </article>
+          {originalScreens.map(([image, caption]) => (
+            <figure>
+              <img src={`${media}/${image}`} alt={caption} loading="lazy" />
+              <figcaption>{caption}</figcaption>
+            </figure>
+          ))}
         </section>
 
         <section id="ergebnis" class="result">
@@ -215,12 +253,16 @@ const modules = [
 <style>
   :root {
     color-scheme: light;
-    --bg: #f7f7f5;
+    --bg: #f5f8f4;
     --paper: #fff;
     --ink: #080808;
-    --muted: #5f5f5f;
-    --line: #dededb;
+    --muted: #5f675f;
+    --line: #dce4da;
     --accent: #0b7f5b;
+    --accent-dark: #06543f;
+    --fresh: #b8f04f;
+    --mint: #dff7ef;
+    --yellow: #ffe35c;
     --radius: 8px;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -235,8 +277,8 @@ const modules = [
 
   .site-header {
     align-items: center;
-    background: rgba(247, 247, 245, .9);
-    border-bottom: 1px solid rgba(222, 222, 219, .75);
+    background: rgba(245, 248, 244, .9);
+    border-bottom: 1px solid rgba(220, 228, 218, .75);
     display: grid;
     gap: 24px;
     grid-template-columns: 1fr auto 1fr;
@@ -317,27 +359,33 @@ const modules = [
   nav a:hover { color: var(--ink); }
 
   .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
-  .hero { min-height: calc(100vh - 83px); }
+  .hero {
+    background:
+      radial-gradient(circle at 12% 12%, rgba(184, 240, 79, .22), transparent 28%),
+      radial-gradient(circle at 82% 22%, rgba(11, 127, 91, .14), transparent 28%),
+      var(--bg);
+    min-height: calc(100vh - 83px);
+  }
   .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
   .hero-copy .eyebrow { grid-column: 1 / -1; }
   .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
-  .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; position: relative; }
-  .hero-media > img:first-child { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
-  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
-  .hero-label {
-    left: 50%;
-    max-width: min(54%, 520px);
-    position: absolute;
-    top: 17%;
-    transform: translateX(-50%);
-    width: 520px;
+  .hero-media {
+    background: linear-gradient(135deg, var(--mint), #fff);
+    border-radius: 24px;
+    box-shadow: 0 30px 90px rgba(6, 84, 63, .16);
+    overflow: hidden;
+    position: relative;
   }
+  .hero-media > img:first-child { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+  .hero-media span { color: var(--accent-dark); display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
 
   .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
   .section-copy { max-width: 850px; }
   .quote {
-    background: var(--accent);
+    background:
+      radial-gradient(circle at 84% 18%, rgba(255, 227, 92, .3), transparent 26%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent));
     border-radius: var(--radius);
     color: #fff;
     font-size: clamp(26px, 4vw, 52px);
@@ -348,8 +396,11 @@ const modules = [
     padding: clamp(28px, 5vw, 70px);
   }
 
-  .video-section { background: #111; color: #fff; }
-  .video-section .eyebrow { color: #aaa; }
+  .module-section {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(184, 240, 79, .2), transparent 30%),
+      linear-gradient(135deg, #fff, #eff7f2);
+  }
   .module-grid {
     display: grid;
     gap: 18px;
@@ -357,16 +408,25 @@ const modules = [
     margin-top: 48px;
   }
   .module-grid article {
-    background: #fff;
-    border-radius: var(--radius);
+    background: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(11, 127, 91, .14);
+    border-radius: 22px;
+    box-shadow: 0 24px 70px rgba(6, 84, 63, .09);
     color: var(--ink);
     overflow: hidden;
+    transition: box-shadow .35s ease, transform .35s ease;
+  }
+  .module-grid article:hover {
+    box-shadow: 0 32px 86px rgba(6, 84, 63, .16);
+    transform: translateY(-8px);
   }
   .module-grid img {
     aspect-ratio: 4 / 3;
     object-fit: cover;
+    transition: transform .45s ease;
     width: 100%;
   }
+  .module-grid article:hover img { transform: scale(1.05); }
   .module-grid span {
     color: var(--accent);
     display: block;
@@ -392,14 +452,70 @@ const modules = [
   .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
   .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
-  .gallery { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
-  .gallery figure { background: var(--paper); border-radius: var(--radius); overflow: hidden; }
-  .gallery .large { grid-column: 1 / -1; }
-  .gallery img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
-  .gallery .large img { aspect-ratio: 16 / 8; }
+  .guide-section {
+    background:
+      radial-gradient(circle at 82% 16%, rgba(255, 227, 92, .22), transparent 26%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+  .guide-section .eyebrow,
+  .guide-grid p { color: rgba(255, 255, 255, .72); }
+  .guide-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+  .guide-grid article {
+    background: rgba(255, 255, 255, .09);
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 18px;
+    min-height: 230px;
+    padding: 24px;
+  }
+  .guide-grid span { color: var(--yellow); font-size: 13px; font-weight: 950; }
+  .guide-grid h3 { font-size: 24px; line-height: 1.08; margin-top: 58px; }
+  .guide-grid p { font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .original-section {
+    background:
+      linear-gradient(90deg, rgba(11, 127, 91, .07) 1px, transparent 1px),
+      linear-gradient(180deg, #f5f8f4, #eaf5ee);
+    background-size: 42px 42px, auto;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .original-section figure,
+  .system-card {
+    background: var(--paper);
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(6, 84, 63, .1);
+    overflow: hidden;
+  }
+  .system-card {
+    background:
+      radial-gradient(circle at 82% 16%, rgba(184, 240, 79, .24), transparent 28%),
+      linear-gradient(135deg, #fff, #eef8f1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 420px;
+    padding: clamp(28px, 4vw, 56px);
+  }
+  .system-card h2 { font-size: clamp(34px, 4vw, 58px); }
+  .system-card p:last-child { color: var(--muted); font-size: 16px; line-height: 1.7; margin-top: 24px; max-width: 640px; }
+  .original-section img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+  .original-section figure:first-of-type { grid-column: 2; grid-row: 1 / span 2; }
+  .original-section figure:first-of-type img { aspect-ratio: 16 / 13.4; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
 
-  .result { background: var(--accent); color: #fff; }
+  .result {
+    background:
+      radial-gradient(circle at 22% 18%, rgba(255, 227, 92, .24), transparent 24%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
   .result .eyebrow, .result-copy > p { color: #d8f0e7; }
   .result-copy { max-width: 900px; }
   .result .button { border-color: #fff; margin-top: 34px; }
@@ -412,6 +528,9 @@ const modules = [
     .case-sidebar nav { display: none; }
     .hero { min-height: auto; }
     .module-grid { grid-template-columns: repeat(2, 1fr); }
+    .guide-grid { grid-template-columns: repeat(2, 1fr); }
+    .original-section { grid-template-columns: 1fr; }
+    .original-section figure:first-of-type { grid-column: auto; grid-row: auto; }
   }
 
   @media (max-width: 720px) {
@@ -423,8 +542,7 @@ const modules = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .module-grid, .gallery { grid-template-columns: 1fr; }
-    .gallery .large { grid-column: 1; }
+    .highlight-grid, .module-grid, .guide-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
   }
 </style>

@@ -15,6 +15,7 @@ const groupSelector = [
   ".highlight-grid",
   ".module-grid",
   ".platform-grid",
+  ".product-row",
   ".product-grid",
   ".recipe-grid",
   ".journey-grid",
@@ -27,6 +28,7 @@ const groupSelector = [
   ".gallery",
   ".showcase-section",
   ".original-section",
+  ".feature-grid",
 ].join(",");
 const cardSelector = [
   "[data-motion-card]",
@@ -34,6 +36,7 @@ const cardSelector = [
   ".highlight-grid article",
   ".module-grid article",
   ".platform-grid article",
+  ".product-row article",
   ".product-card",
   ".recipe-card",
   ".journey-grid article",
@@ -46,6 +49,7 @@ const cardSelector = [
   ".gallery figure",
   ".showcase-section figure",
   ".original-section figure",
+  ".feature-grid article",
   ".system-card",
 ].join(",");
 const pressSelector = [
@@ -53,11 +57,13 @@ const pressSelector = [
   ".project-card",
   ".module-grid article",
   ".platform-grid article",
+  ".product-row article",
   ".product-card",
   ".recipe-card",
   ".gallery figure",
   ".showcase-section figure",
   ".original-section figure",
+  ".feature-grid article",
   ".system-card",
   ".brand-logo",
 ].join(",");

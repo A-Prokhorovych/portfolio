@@ -23,6 +23,19 @@ const products = [
   ["product-jam.png", "Marmelade", "Suesse Komponente fuer Desserts und Gebaeck."],
   ["product-preserve.png", "Konserven", "Vorrat und schnelle Zutaten fuer den Festtisch."],
 ];
+
+const journeySteps = [
+  ["01", "Sortiment", "Der Nutzer sieht zuerst, welche Produktgruppen den Festtisch tragen."],
+  ["02", "Rezeptkarte", "Die Karte verwandelt Produkte in konkrete internationale Menueideen."],
+  ["03", "Tipps", "Artikel helfen bei Planung, Servieren und kleinen saisonalen Entscheidungen."],
+  ["04", "Contest", "Der Wettbewerb macht aus Inspiration eigene Rezepte und Beteiligung."],
+];
+
+const featureScreens = [
+  ["map.jpg", "Rezeptkarte", "Interaktive Laenderlogik", "Die Weltkarte macht das Festmenue spielerisch: Nutzer springen von Land zu Land und entdecken passende Gerichte."],
+  ["articles.jpg", "Artikel", "Redaktionelle Vorbereitung", "Tipps und saisonale Inhalte geben der Kampagne Nutzwert jenseits des Produktregals."],
+  ["contest.jpg", "Contest", "Teilnahme als Aktivierung", "Der Wettbewerb verlaengert die Inspiration in User-Generated-Content und eigene Festrezepte."],
+];
 ---
 
 <html lang="de">
@@ -87,8 +100,8 @@ const products = [
             </p>
           </div>
           <div class="hero-media hero-stack">
-            <img src={`${media}/hero-original.jpg`} alt="Maheev New Year Special Project Startscreen" />
-            <span>Startseite · Desktop</span>
+            <img src={`${media}/hero-concept.jpg`} alt="Maheev New Year Festtisch mit Saucen, Salaten, Dessert und Rezeptplanung" />
+            <span>Hero · Festtisch, Sortiment und Rezeptplanung</span>
           </div>
         </section>
 
@@ -145,17 +158,43 @@ const products = [
           </div>
         </section>
 
-        <section class="gallery" aria-label="Kampagnenansichten">
-          <figure class="large">
-            <img src={`${media}/map.jpg`} alt="Interaktive Rezeptkarte im Maheev Special Project" loading="lazy" />
-            <figcaption>Interaktive Rezeptkarte fuer das Festmenue</figcaption>
-          </figure>
-          <figure>
-            <img src={`${media}/articles.jpg`} alt="Redaktionelle Tipps im Maheev Special Project" loading="lazy" />
-          </figure>
-          <figure>
-            <img src={`${media}/contest.jpg`} alt="Maheev Rezeptwettbewerb" loading="lazy" />
-          </figure>
+        <section class="journey-section" aria-label="Kampagnenreise">
+          <div class="section-copy">
+            <p class="eyebrow">Dramaturgie</p>
+            <h2>Vier Schritte vom Produkt zum eigenen Festrezept</h2>
+          </div>
+          <div class="journey-grid">
+            {journeySteps.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="feature-section" aria-label="Kampagnenansichten">
+          <article class="system-card">
+            <p class="eyebrow">Originalmechaniken</p>
+            <h2>Die Kampagne wird als Menue-Tool lesbar</h2>
+            <p>
+              Maheev wirkt hier nicht nur dekorativ saisonal. Sortiment, Karte, Artikel und
+              Contest bilden eine echte Aktivierungsstrecke fuer den Neujahrstisch.
+            </p>
+          </article>
+          <div class="feature-grid">
+            {featureScreens.map(([image, label, title, text]) => (
+              <article>
+                <img src={`${media}/${image}`} alt={title} loading="lazy" />
+                <div>
+                  <span>{label}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section id="ergebnis" class="result">
@@ -224,6 +263,8 @@ const products = [
     --line: rgba(17, 17, 17, .12);
     --accent: #e30613;
     --deep: #811015;
+    --gold: #f5c15b;
+    --cream: #fff5df;
     --radius: 10px;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -315,19 +356,33 @@ const products = [
   nav a:hover { color: var(--ink); }
 
   .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
-  .hero { min-height: calc(100vh - 83px); }
+  .hero {
+    background:
+      radial-gradient(circle at 12% 12%, rgba(245, 193, 91, .24), transparent 30%),
+      radial-gradient(circle at 84% 18%, rgba(227, 6, 19, .14), transparent 28%),
+      var(--bg);
+    min-height: calc(100vh - 83px);
+  }
   .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
   .hero-copy .eyebrow { grid-column: 1 / -1; }
   .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
-  .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; position: relative; }
+  .hero-media {
+    background: linear-gradient(135deg, var(--deep), var(--accent));
+    border-radius: 24px;
+    box-shadow: 0 30px 90px rgba(129, 16, 21, .18);
+    overflow: hidden;
+    position: relative;
+  }
   .hero-media > img:first-child { aspect-ratio: 16 / 8; object-fit: cover; width: 100%; }
-  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
 
   .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
   .section-copy { max-width: 850px; }
   .quote {
-    background: var(--accent);
+    background:
+      radial-gradient(circle at 84% 18%, rgba(245, 193, 91, .34), transparent 26%),
+      linear-gradient(135deg, var(--deep), var(--accent));
     border-radius: var(--radius);
     color: #fff;
     font-size: clamp(26px, 4vw, 52px);
@@ -338,8 +393,18 @@ const products = [
     padding: clamp(28px, 5vw, 70px);
   }
 
-  .product-section { background: #fff; }
-  .product-stage { border-radius: var(--radius); margin-top: 48px; overflow: hidden; position: relative; }
+  .product-section {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(245, 193, 91, .18), transparent 28%),
+      #fff;
+  }
+  .product-stage {
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(129, 16, 21, .1);
+    margin-top: 48px;
+    overflow: hidden;
+    position: relative;
+  }
   .stage-bg { aspect-ratio: 16 / 8; object-fit: cover; width: 100%; }
   .product-row {
     bottom: 28px;
@@ -352,11 +417,18 @@ const products = [
   }
   .product-row article {
     background: rgba(255, 255, 255, .92);
-    border-radius: var(--radius);
+    border: 1px solid rgba(227, 6, 19, .12);
+    border-radius: 18px;
+    box-shadow: 0 22px 60px rgba(80, 21, 10, .12);
     min-height: 220px;
     padding: 18px;
     text-align: center;
+    transition: box-shadow .35s ease, transform .35s ease;
     backdrop-filter: blur(12px);
+  }
+  .product-row article:hover {
+    box-shadow: 0 30px 76px rgba(80, 21, 10, .2);
+    transform: translateY(-8px);
   }
   .product-row img { height: 150px; margin: -90px auto 16px; object-fit: contain; }
   .product-row h3 { font-size: 19px; line-height: 1.2; }
@@ -368,11 +440,82 @@ const products = [
   .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
   .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
-  .gallery { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
-  .gallery figure { background: var(--paper); border-radius: var(--radius); overflow: hidden; }
-  .gallery .large { grid-column: 1 / -1; }
-  .gallery img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
-  .gallery .large img { aspect-ratio: 16 / 7; }
+  .journey-section {
+    background:
+      radial-gradient(circle at 88% 16%, rgba(245, 193, 91, .28), transparent 26%),
+      linear-gradient(135deg, var(--deep), #b9161f);
+    color: #fff;
+  }
+  .journey-section .eyebrow,
+  .journey-grid p { color: rgba(255, 255, 255, .72); }
+  .journey-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 48px;
+  }
+  .journey-grid article {
+    background: rgba(255, 255, 255, .09);
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 18px;
+    min-height: 240px;
+    padding: 24px;
+  }
+  .journey-grid span { color: var(--gold); font-size: 13px; font-weight: 950; }
+  .journey-grid h3 { font-size: 24px; line-height: 1.08; margin-top: 58px; }
+  .journey-grid p { font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .feature-section {
+    background:
+      linear-gradient(90deg, rgba(227, 6, 19, .06) 1px, transparent 1px),
+      linear-gradient(180deg, #fbf6ed, #fff5df);
+    background-size: 42px 42px, auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: .82fr 1.18fr;
+  }
+  .system-card,
+  .feature-grid article {
+    background: var(--paper);
+    border-radius: 24px;
+    box-shadow: 0 28px 80px rgba(129, 16, 21, .1);
+    overflow: hidden;
+  }
+  .system-card {
+    background:
+      radial-gradient(circle at 84% 16%, rgba(245, 193, 91, .28), transparent 28%),
+      linear-gradient(135deg, #fff, var(--cream));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 520px;
+    padding: clamp(28px, 4vw, 56px);
+  }
+  .system-card h2 { font-size: clamp(34px, 4vw, 58px); }
+  .system-card p:last-child { color: var(--muted); font-size: 16px; line-height: 1.7; margin-top: 24px; max-width: 640px; }
+  .feature-grid { display: grid; gap: 18px; }
+  .feature-grid article {
+    display: grid;
+    grid-template-columns: minmax(220px, .82fr) minmax(0, 1fr);
+  }
+  .feature-grid img {
+    aspect-ratio: 16 / 10;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+  .feature-grid article > div { align-self: end; padding: 28px; }
+  .feature-grid span {
+    color: var(--accent);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .feature-grid h3 { font-size: 28px; line-height: 1.08; }
+  .feature-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
 
   .result { background: var(--deep); color: #fff; overflow: hidden; position: relative; }
@@ -390,6 +533,8 @@ const products = [
     .hero { min-height: auto; }
     .product-row { grid-template-columns: repeat(2, 1fr); position: static; padding: 18px; }
     .product-row img { margin-top: 0; }
+    .journey-grid { grid-template-columns: repeat(2, 1fr); }
+    .feature-section { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 720px) {
@@ -401,8 +546,7 @@ const products = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .highlights, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .quote, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .product-row, .gallery { grid-template-columns: 1fr; }
-    .gallery .large { grid-column: 1; }
+    .highlight-grid, .product-row, .journey-grid, .feature-grid article { grid-template-columns: 1fr; }
     .section-number { display: none; }
     .sani { display: none; }
   }

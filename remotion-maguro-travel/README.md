@@ -1,54 +1,28 @@
-# Remotion video
+# Maguro Travel Remotion Reel
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+Short Remotion proof of concept for the `Maguro Travel 2017` portfolio case.
 
-Welcome to your Remotion project!
+## Preview
+
+The rendered preview video is stored in:
+
+```text
+renders/maguro-travel-reel-preview.mp4
+```
+
+Open it on macOS:
+
+```bash
+open renders/maguro-travel-reel-preview.mp4
+```
 
 ## Commands
 
-**Install Dependencies**
-
-```console
+```bash
 npm i
-```
-
-**Start Preview**
-
-```console
 npm run dev
+npm run still
+npm run render:preview
 ```
 
-**Render video**
-
-```console
-npx remotion render
-```
-
-**Upgrade Remotion**
-
-```console
-npx remotion upgrade
-```
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+`render:preview` renders the `MaguroTravelReel` composition at half scale for quick review.

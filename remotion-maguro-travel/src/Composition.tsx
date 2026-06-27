@@ -313,7 +313,7 @@ const ContestScene: React.FC = () => {
             textAlign: "center",
           }}
         >
-          <Img src={asset("logo.svg")} style={{height: 86, objectFit: "contain"}} />
+          <Img src={asset("maguro-logo-red.png")} style={{height: 92, objectFit: "contain"}} />
           <TextBlock
             align="center"
             body="Die Reise endet nicht beim Lesen. Der Wettbewerb macht daraus Teilnahme."

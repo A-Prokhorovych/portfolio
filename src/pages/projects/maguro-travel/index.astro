@@ -49,7 +49,7 @@ const recipes = [
       <aside class="case-sidebar">
         <div>
           <p class="eyebrow">Case Study · 2017</p>
-          <img class="client-logo" src={`${media}/logo.svg`} alt="Maguro" />
+          <img class="client-logo" src={`${media}/logo-red.png`} alt="Maguro" />
           <h1>Seafood als kulinarische Reise</h1>
           <p class="intro">
             Ein Special Project, das Fisch, Meeresfruechte, Rezepte und Wettbewerb
@@ -88,6 +88,24 @@ const recipes = [
           <div class="hero-media">
             <img src={`${media}/hero-original.jpg`} alt="Maguro Travel Special Project Startscreen" />
             <span>Startseite · Reise-Inszenierung</span>
+          </div>
+        </section>
+
+        <section class="reel-section" aria-labelledby="reel-title">
+          <div class="section-copy">
+            <p class="eyebrow">Remotion Experiment</p>
+            <h2 id="reel-title">Ein kurzer Motion-Reel aus dem Case</h2>
+            <p>
+              Der erste Remotion-Test uebersetzt die Travel-Mechanik in ein 12-Sekunden-Video:
+              Hero, Konstruktor, Rezeptkarten und Contest werden wie ein kleiner Kampagnenfilm
+              nacheinander sichtbar.
+            </p>
+          </div>
+          <div class="reel-frame">
+            <video controls preload="metadata" poster={`${media}/hero-original.jpg`}>
+              <source src={`${media}/reel-preview.mp4`} type="video/mp4" />
+            </video>
+            <span>Remotion Preview · Maguro Travel Reel</span>
           </div>
         </section>
 
@@ -336,6 +354,40 @@ const recipes = [
   .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; position: relative; }
   .hero-media > img:first-child { aspect-ratio: 16 / 9; object-fit: cover; object-position: center top; width: 100%; }
   .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+
+  .reel-section {
+    background:
+      radial-gradient(circle at 82% 18%, rgba(255, 241, 60, .16), transparent 26%),
+      linear-gradient(135deg, #08141f, #173344);
+    color: #fff;
+  }
+  .reel-section .eyebrow,
+  .reel-section .section-copy > p:last-child {
+    color: rgba(255, 255, 255, .72);
+  }
+  .reel-frame {
+    background: #08141f;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 24px;
+    box-shadow: 0 32px 90px rgba(8, 20, 31, .24);
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .reel-frame video {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    display: block;
+    width: 100%;
+  }
+  .reel-frame span {
+    color: rgba(255, 255, 255, .82);
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
 
   .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }

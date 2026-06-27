@@ -9,6 +9,7 @@ import {
 } from "remotion";
 
 const asset = (name: string) => staticFile(`maguro-travel/${name}`);
+const healthyAsset = (name: string) => staticFile(`maguro-2018/${name}`);
 
 const clamp = {
   extrapolateLeft: "clamp" as const,
@@ -30,11 +31,12 @@ const KenBurnsImage: React.FC<{
   from?: number;
   to?: number;
   opacity?: number;
-}> = ({src, start, end, from = 1.04, to = 1.12, opacity = 1}) => {
+  resolver?: (name: string) => string;
+}> = ({src, start, end, from = 1.04, to = 1.12, opacity = 1, resolver = asset}) => {
   const frame = useCurrentFrame();
   return (
     <Img
-      src={asset(src)}
+      src={resolver(src)}
       style={{
         width: "100%",
         height: "100%",
@@ -326,6 +328,144 @@ const ContestScene: React.FC = () => {
   );
 };
 
+const HealthyHeroScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const opacity = sceneIn(frame, 0) * sceneOut(frame, 98);
+  return (
+    <AbsoluteFill style={{background: "#15191d", opacity}}>
+      <KenBurnsImage resolver={healthyAsset} src="hero-concept.jpg" start={0} end={110} from={1.02} to={1.09} />
+      <AbsoluteFill
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(10,12,15,0.82), rgba(10,12,15,0.34) 48%, rgba(10,12,15,0.08))",
+        }}
+      />
+      <AbsoluteFill style={{justifyContent: "center", padding: "0 130px"}}>
+        <div
+          style={{
+            opacity: sceneIn(frame, 8),
+            translate: `${interpolate(frame, [8, 34], [-54, 0], clamp)}px 0px`,
+          }}
+        >
+          <TextBlock
+            body="Maguro zeigt gesunden Lifestyle als Zusammenspiel aus Seafood, Bewegung und Motivation."
+            label="Maguro · 2018"
+            title={<>Essen. Laufen. Leben.</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const HealthySystemScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 90;
+  const end = 192;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  const cards = [
+    ["recipe-system.jpg", "Essen", "Seafood-Rezepte machen den Nutzen sofort konkret."],
+    ["training-system.jpg", "Laufen", "Sportmodule bringen die Marke in Bewegung."],
+    ["content-hub.jpg", "Leben", "Artikel und Routen halten die Motivation sichtbar."],
+  ];
+
+  return (
+    <AbsoluteFill style={{background: "#eef2f2", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 14% 12%, rgba(215,31,58,0.2), transparent 26%), radial-gradient(circle at 86% 78%, rgba(15,95,117,0.18), transparent 30%)",
+        }}
+      />
+      <AbsoluteFill style={{display: "grid", gridTemplateColumns: "0.72fr 1.28fr", gap: 54, padding: "110px 130px"}}>
+        <div style={{alignSelf: "center", opacity: sceneIn(frame, start + 8)}}>
+          <div style={{color: "#d71f3a", fontSize: 34, fontWeight: 950, letterSpacing: "0.14em", textTransform: "uppercase"}}>
+            System
+          </div>
+          <div style={{color: "#11161c", fontSize: 102, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, marginTop: 28}}>
+            Drei Bereiche, ein Rhythmus
+          </div>
+          <div style={{color: "#50606a", fontSize: 42, fontWeight: 650, lineHeight: 1.2, marginTop: 30}}>
+            Der Case wird als Plattform lesbar: Rezept, Training und Content-Hub tragen jeweils eine eigene Aufgabe.
+          </div>
+        </div>
+        <div style={{alignItems: "center", display: "flex", gap: 24}}>
+          {cards.map(([image, title, text], index) => (
+            <div
+              key={image}
+              style={{
+                background: "#fff",
+                borderRadius: 34,
+                boxShadow: "0 32px 80px rgba(17,22,28,0.16)",
+                opacity: sceneIn(frame, start + 12 + index * 10),
+                overflow: "hidden",
+                scale: interpolate(frame, [start + 12 + index * 10, start + 40 + index * 10], [0.9, 1], clamp),
+                width: 390,
+              }}
+            >
+              <Img src={healthyAsset(image)} style={{height: 300, objectFit: "cover", width: "100%"}} />
+              <div style={{padding: 30}}>
+                <div style={{color: "#d71f3a", fontSize: 28, fontWeight: 950}}>{title}</div>
+                <div style={{color: "#53606a", fontSize: 26, fontWeight: 650, lineHeight: 1.22, marginTop: 12}}>{text}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const HealthyOriginalScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 180;
+  const end = 286;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  return (
+    <AbsoluteFill style={{background: "#1d2024", opacity}}>
+      <KenBurnsImage resolver={healthyAsset} src="hero.jpg" start={start} end={end} from={1.01} to={1.06} />
+      <DarkOverlay opacity={0.66} />
+      <AbsoluteFill style={{alignItems: "flex-end", justifyContent: "center", padding: "0 130px 108px"}}>
+        <div style={{opacity: sceneIn(frame, start + 10)}}>
+          <TextBlock
+            align="right"
+            body="Der Originalscreen bleibt als Referenz: starkes Motto, Laufmotiv und die drei Navigationspunkte der Kampagne."
+            label="Original"
+            title={<>Der alte Screen wird zur Case-Spur</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const HealthyFinalScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 272;
+  const opacity = sceneIn(frame, start);
+  return (
+    <AbsoluteFill style={{background: "#11161c", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 18% 24%, rgba(215,31,58,0.34), transparent 28%), radial-gradient(circle at 82% 70%, rgba(15,95,117,0.28), transparent 32%)",
+        }}
+      />
+      <AbsoluteFill style={{alignItems: "center", justifyContent: "center", padding: "0 130px"}}>
+        <div style={{alignItems: "center", display: "flex", flexDirection: "column", gap: 36, opacity: sceneIn(frame, start + 8), textAlign: "center"}}>
+          <Img src={healthyAsset("logo.png")} style={{height: 96, objectFit: "contain"}} />
+          <TextBlock
+            align="center"
+            body="Seafood wird nicht nur gezeigt. Es wird Teil einer aktiven, wiederholbaren Routine."
+            label="Case-Finale"
+            title={<>Eine Marke als Lifestyle-Begleiter</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
 export const MaguroTravelReel: React.FC = () => {
   return (
     <AbsoluteFill style={{background: "#08141f", fontFamily: "Inter, Arial, sans-serif"}}>
@@ -340,6 +480,25 @@ export const MaguroTravelReel: React.FC = () => {
       </Sequence>
       <Sequence durationInFrames={360}>
         <ContestScene />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
+
+export const MaguroHealthyReel: React.FC = () => {
+  return (
+    <AbsoluteFill style={{background: "#11161c", fontFamily: "Inter, Arial, sans-serif"}}>
+      <Sequence durationInFrames={112}>
+        <HealthyHeroScene />
+      </Sequence>
+      <Sequence durationInFrames={202}>
+        <HealthySystemScene />
+      </Sequence>
+      <Sequence durationInFrames={296}>
+        <HealthyOriginalScene />
+      </Sequence>
+      <Sequence durationInFrames={360}>
+        <HealthyFinalScene />
       </Sequence>
     </AbsoluteFill>
   );

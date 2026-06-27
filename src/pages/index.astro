@@ -3,6 +3,10 @@ import MotionEnhance from "../components/MotionEnhance.astro";
 
 const base = import.meta.env.BASE_URL;
 const campaignCover = (url) => {
+  if (url === `${base}projects/maguro-2018/`) {
+    return `${base}projects/maguro-2018/hero-concept.jpg`;
+  }
+
   if (url.startsWith(`${base}projects/`)) {
     return `${url.replace(/\/?$/, "/")}hero.jpg`;
   }

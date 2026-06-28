@@ -25,6 +25,7 @@
     "still": "remotion still MaguroTravelReel --scale=0.25 --frame=150 /private/tmp/maguro-travel-reel-frame.png",
     "render:preview": "remotion render MaguroTravelReel renders/maguro-travel-reel-preview.mp4 --scale=0.5",
     "render:maguro-healthy": "remotion render MaguroHealthyReel renders/maguro-healthy-reel-preview.mp4 --scale=0.5",
+    "render:synergetic": "remotion render SynergeticReel renders/synergetic-reel-preview.mp4 --scale=0.5",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },

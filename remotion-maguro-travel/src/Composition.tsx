@@ -10,6 +10,7 @@ import {
 
 const asset = (name: string) => staticFile(`maguro-travel/${name}`);
 const healthyAsset = (name: string) => staticFile(`maguro-2018/${name}`);
+const synergeticAsset = (name: string) => staticFile(`synergetic/${name}`);
 
 const clamp = {
   extrapolateLeft: "clamp" as const,
@@ -499,6 +500,166 @@ export const MaguroHealthyReel: React.FC = () => {
       </Sequence>
       <Sequence durationInFrames={360}>
         <HealthyFinalScene />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
+
+const SynergeticHeroScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const opacity = sceneIn(frame, 0) * sceneOut(frame, 98);
+  return (
+    <AbsoluteFill style={{background: "#f6fbf2", opacity}}>
+      <KenBurnsImage resolver={synergeticAsset} src="hero-concept.jpg" start={0} end={112} from={1.01} to={1.07} />
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(90deg, rgba(246,251,242,0.94), rgba(246,251,242,0.48) 48%, rgba(246,251,242,0.08))",
+        }}
+      />
+      <AbsoluteFill style={{justifyContent: "center", padding: "0 130px"}}>
+        <div
+          style={{
+            opacity: sceneIn(frame, 8),
+            translate: `${interpolate(frame, [8, 34], [-50, 0], clamp)}px 0px`,
+          }}
+        >
+          <div style={{color: "#61a732", fontSize: 34, fontWeight: 950, letterSpacing: "0.14em", textTransform: "uppercase"}}>
+            Synergetic · 2018
+          </div>
+          <div style={{color: "#111", fontSize: 112, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.9, marginTop: 28, maxWidth: 1040}}>
+            Eco cleaning gets concrete
+          </div>
+          <div style={{color: "#4f6048", fontSize: 46, fontWeight: 650, lineHeight: 1.18, marginTop: 32, maxWidth: 820}}>
+            Produktleistung, Pflanzenbasis und Familienalltag werden als ein klares System lesbar.
+          </div>
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const SynergeticProductsScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 90;
+  const end = 202;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  const products = [
+    ["product-bathroom.png", "Bad", "#61a732"],
+    ["product-laundry.png", "Waesche", "#e2007a"],
+    ["product-dish.png", "Geschirr", "#8ac63f"],
+    ["product-soap.png", "Pflege", "#61a732"],
+  ];
+
+  return (
+    <AbsoluteFill style={{background: "#f8fbf5", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 16% 20%, rgba(97,167,50,0.2), transparent 28%), radial-gradient(circle at 82% 18%, rgba(226,0,122,0.16), transparent 24%)",
+        }}
+      />
+      <AbsoluteFill style={{display: "grid", gridTemplateColumns: "0.76fr 1.24fr", gap: 54, padding: "110px 130px"}}>
+        <div style={{alignSelf: "center", opacity: sceneIn(frame, start + 8)}}>
+          <div style={{color: "#61a732", fontSize: 34, fontWeight: 950, letterSpacing: "0.14em", textTransform: "uppercase"}}>
+            Produktnavigator
+          </div>
+          <div style={{color: "#111", fontSize: 102, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, marginTop: 28}}>
+            Vier Produkte, sofort unterscheidbar
+          </div>
+          <div style={{color: "#5b6657", fontSize: 42, fontWeight: 650, lineHeight: 1.2, marginTop: 30}}>
+            Statt abstrakter Oekologie zeigt der Slider konkrete Anwendungsmomente im Haushalt.
+          </div>
+        </div>
+        <div style={{alignItems: "end", display: "flex", gap: 30, justifyContent: "center"}}>
+          {products.map(([image, title, color], index) => (
+            <div
+              key={image}
+              style={{
+                alignItems: "center",
+                background: "#fff",
+                borderRadius: 34,
+                boxShadow: "0 32px 80px rgba(42,92,22,0.14)",
+                display: "grid",
+                height: 650,
+                opacity: sceneIn(frame, start + 12 + index * 8),
+                padding: "32px 22px",
+                scale: interpolate(frame, [start + 12 + index * 8, start + 38 + index * 8], [0.88, 1], clamp),
+                width: 230,
+              }}
+            >
+              <Img src={synergeticAsset(image)} style={{filter: "drop-shadow(0 24px 32px rgba(42,92,22,0.18))", height: 470, objectFit: "contain", width: "100%"}} />
+              <div style={{color, fontSize: 30, fontWeight: 950, textAlign: "center"}}>{title}</div>
+            </div>
+          ))}
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const SynergeticOriginalScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 190;
+  const end = 292;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  return (
+    <AbsoluteFill style={{background: "#e9f5df", opacity}}>
+      <KenBurnsImage resolver={synergeticAsset} src="hero.jpg" start={start} end={end} from={1.01} to={1.06} />
+      <AbsoluteFill style={{background: "linear-gradient(90deg, rgba(20,54,12,0.52), rgba(20,54,12,0.18), rgba(20,54,12,0.08))"}} />
+      <AbsoluteFill style={{justifyContent: "flex-end", padding: "0 130px 110px"}}>
+        <div style={{opacity: sceneIn(frame, start + 8), maxWidth: 1040}}>
+          <TextBlock
+            body="Das Original liefert die Tonalitaet: Blatt, Produktfamilie, pinker Akzent und klare Produktversprechen."
+            label="Originalscreen"
+            title={<>100% Eco-Auftritt mit Produktfokus</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const SynergeticFinalScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 274;
+  const opacity = sceneIn(frame, start);
+  return (
+    <AbsoluteFill style={{background: "#f6fbf2", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 20% 24%, rgba(97,167,50,0.28), transparent 28%), radial-gradient(circle at 78% 68%, rgba(226,0,122,0.18), transparent 30%)",
+        }}
+      />
+      <AbsoluteFill style={{alignItems: "center", justifyContent: "center", padding: "0 130px"}}>
+        <div style={{alignItems: "center", display: "flex", flexDirection: "column", gap: 36, opacity: sceneIn(frame, start + 8), textAlign: "center"}}>
+          <Img src={synergeticAsset("logo-small.png")} style={{height: 138, objectFit: "contain"}} />
+          <div style={{color: "#111", fontSize: 104, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, maxWidth: 1120}}>
+            From product detail to family trust
+          </div>
+          <div style={{color: "#5b6657", fontSize: 44, fontWeight: 650, lineHeight: 1.18, maxWidth: 920}}>
+            Die Kampagne fuehrt vom Reiniger ueber Ratgeber und Contest bis zur Kaufentscheidung.
+          </div>
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+export const SynergeticReel: React.FC = () => {
+  return (
+    <AbsoluteFill style={{background: "#f6fbf2", fontFamily: "Inter, Arial, sans-serif"}}>
+      <Sequence durationInFrames={112}>
+        <SynergeticHeroScene />
+      </Sequence>
+      <Sequence durationInFrames={212}>
+        <SynergeticProductsScene />
+      </Sequence>
+      <Sequence durationInFrames={300}>
+        <SynergeticOriginalScene />
+      </Sequence>
+      <Sequence durationInFrames={360}>
+        <SynergeticFinalScene />
       </Sequence>
     </AbsoluteFill>
   );

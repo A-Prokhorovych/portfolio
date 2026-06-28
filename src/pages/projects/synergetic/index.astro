@@ -98,6 +98,24 @@ const campaignBlocks = [
           </div>
         </section>
 
+        <section class="reel-section" aria-labelledby="reel-title">
+          <div class="section-copy">
+            <p class="eyebrow">Remotion Experiment</p>
+            <h2 id="reel-title">Eco-Produktlogik als kurzer Motion-Reel</h2>
+            <p>
+              Der Preview-Film verdichtet den Case auf vier Momente: frische Eco-Welt,
+              Produktnavigator, Originalscreen und der Weg von Produktleistung zu Vertrauen
+              im Familienalltag.
+            </p>
+          </div>
+          <div class="reel-frame">
+            <video controls preload="metadata" poster={`${media}/hero-concept.jpg`}>
+              <source src={`${media}/reel-preview.mp4`} type="video/mp4" />
+            </video>
+            <span>Remotion Preview · Synergetic Eco Cleaning Reel</span>
+          </div>
+        </section>
+
         <section id="konzept" class="story-section">
           <div class="section-number">02</div>
           <div class="section-copy">
@@ -362,6 +380,36 @@ const campaignBlocks = [
   .hero-media { background: var(--accent); border-radius: var(--radius); overflow: hidden; }
   .hero-media img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
   .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+
+  .reel-section {
+    background:
+      radial-gradient(circle at 14% 18%, rgba(97, 167, 50, .25), transparent 28%),
+      radial-gradient(circle at 84% 70%, rgba(226, 0, 122, .16), transparent 30%),
+      linear-gradient(135deg, #f8fbf5, #eef8e8 52%, #fff);
+  }
+  .reel-frame {
+    background: #fff;
+    border: 1px solid rgba(97, 167, 50, .18);
+    border-radius: var(--radius);
+    box-shadow: 0 28px 84px rgba(38, 104, 20, .13);
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .reel-frame video {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    display: block;
+    width: 100%;
+  }
+  .reel-frame span {
+    color: var(--accent);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
 
   .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }

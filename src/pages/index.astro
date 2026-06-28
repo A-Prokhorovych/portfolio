@@ -7,6 +7,10 @@ const campaignCover = (url) => {
     return `${base}projects/maguro-2018/hero-concept.jpg`;
   }
 
+  if (url === `${base}projects/synergetic/`) {
+    return `${base}projects/synergetic/hero-concept.jpg`;
+  }
+
   if (url.startsWith(`${base}projects/`)) {
     return `${url.replace(/\/?$/, "/")}hero.jpg`;
   }

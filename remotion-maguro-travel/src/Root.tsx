@@ -1,6 +1,6 @@
 import "./index.css";
 import { Composition } from "remotion";
-import { MaguroHealthyReel, MaguroTravelReel, SynergeticReel } from "./Composition";
+import { BiottaReel, MaguroHealthyReel, MaguroTravelReel, SynergeticReel } from "./Composition";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -24,6 +24,14 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="SynergeticReel"
         component={SynergeticReel}
+        durationInFrames={360}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="BiottaReel"
+        component={BiottaReel}
         durationInFrames={360}
         fps={30}
         width={1920}

@@ -115,6 +115,23 @@ const campaignSlides = [
           </div>
         </section>
 
+        <section class="reel-section" aria-labelledby="reel-title">
+          <div class="section-copy">
+            <p class="eyebrow">Remotion Experiment</p>
+            <h2 id="reel-title">Der Slider als kurzer Premium-Reel</h2>
+            <p>
+              Der Preview-Film zeigt die Kampagne als Bewegung durch Sorten, Zutaten und
+              Anwendung: vom Hero über einzelne Produktbühnen bis zu Rezepten und Community-Idee.
+            </p>
+          </div>
+          <div class="reel-frame">
+            <video controls preload="metadata" poster={`${media}/hero.jpg`}>
+              <source src={`${media}/reel-preview.mp4`} type="video/mp4" />
+            </video>
+            <span>Remotion Preview · Biotta Organic Juice Reel</span>
+          </div>
+        </section>
+
         <section class="video-section" aria-labelledby="video-title">
           <div class="section-copy">
             <p class="eyebrow">Kampagnenansicht</p>
@@ -167,10 +184,16 @@ const campaignSlides = [
             <figcaption>Flasche, Bio-Positionierung und Zutat auf einen Blick</figcaption>
           </figure>
           <figure>
-            <img src={`${media}/hero.jpg`} alt="Produkt- und Rezeptstruktur der Biotta Kampagne" loading="lazy" />
+            <img src={`${media}/slide-carrot.jpg`} alt="Biotta Karotten-Saft als Sortenbuehne" loading="lazy" />
+            <figcaption>Karotte · Funktionale Sorte mit klarem Farbcode</figcaption>
           </figure>
           <figure>
-            <img src={`${media}/hero.jpg`} alt="Visuelles Konzept der Biotta Kampagne" loading="lazy" />
+            <img src={`${media}/slide-pomegranate.jpg`} alt="Biotta Granatapfel-Saft als Premium-Slide" loading="lazy" />
+            <figcaption>Granatapfel · Produkt, Frucht und Nutzen</figcaption>
+          </figure>
+          <figure>
+            <img src={`${media}/slide-vita7.jpg`} alt="Biotta Vita 7 als Rezept- und Anwendungsszene" loading="lazy" />
+            <figcaption>Vita 7 · Anwendung und Rezeptidee</figcaption>
           </figure>
         </section>
 
@@ -388,6 +411,36 @@ const campaignSlides = [
     line-height: 1.12;
     margin-top: 28px;
     padding: clamp(28px, 5vw, 70px);
+  }
+
+  .reel-section {
+    background:
+      radial-gradient(circle at 14% 18%, rgba(22, 132, 60, .18), transparent 28%),
+      radial-gradient(circle at 86% 72%, rgba(143, 18, 52, .13), transparent 30%),
+      linear-gradient(135deg, #fff, #f4f4ef);
+  }
+  .reel-frame {
+    background: #fff;
+    border: 1px solid rgba(22, 132, 60, .14);
+    border-radius: var(--radius);
+    box-shadow: 0 28px 84px rgba(26, 54, 34, .12);
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .reel-frame video {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    display: block;
+    width: 100%;
+  }
+  .reel-frame span {
+    color: var(--accent);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
   }
 
   .video-section { background: #111; color: #fff; }

@@ -11,6 +11,7 @@ import {
 const asset = (name: string) => staticFile(`maguro-travel/${name}`);
 const healthyAsset = (name: string) => staticFile(`maguro-2018/${name}`);
 const synergeticAsset = (name: string) => staticFile(`synergetic/${name}`);
+const biottaAsset = (name: string) => staticFile(`biotta/${name}`);
 
 const clamp = {
   extrapolateLeft: "clamp" as const,
@@ -660,6 +661,158 @@ export const SynergeticReel: React.FC = () => {
       </Sequence>
       <Sequence durationInFrames={360}>
         <SynergeticFinalScene />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
+
+const BiottaHeroScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const opacity = sceneIn(frame, 0) * sceneOut(frame, 98);
+  return (
+    <AbsoluteFill style={{background: "#f4f4ef", opacity}}>
+      <KenBurnsImage resolver={biottaAsset} src="hero.jpg" start={0} end={112} from={1.01} to={1.06} />
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(90deg, rgba(12,55,28,0.74), rgba(12,55,28,0.24) 46%, rgba(12,55,28,0.04))",
+        }}
+      />
+      <AbsoluteFill style={{justifyContent: "center", padding: "0 130px"}}>
+        <div
+          style={{
+            opacity: sceneIn(frame, 8),
+            translate: `${interpolate(frame, [8, 34], [-50, 0], clamp)}px 0px`,
+          }}
+        >
+          <TextBlock
+            body="Elf Bio-Saefte werden nicht als Katalog gezeigt, sondern als ruhige Premium-Produktwelt mit Zutaten, Nutzen und Rezeptideen."
+            label="Biotta · 2017"
+            title={<>Vitamine und Geschmack das ganze Jahr</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const BiottaSlidesScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 90;
+  const end = 214;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  const slides = [
+    ["slide-lingonberry.jpg", "Preiselbeere", "#8f1234"],
+    ["slide-carrot.jpg", "Karotte", "#d98519"],
+    ["slide-pomegranate.jpg", "Granatapfel", "#b81435"],
+  ];
+
+  return (
+    <AbsoluteFill style={{background: "#f7f7f3", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 15% 18%, rgba(22,132,60,0.18), transparent 30%), radial-gradient(circle at 82% 80%, rgba(217,133,25,0.18), transparent 32%)",
+        }}
+      />
+      <AbsoluteFill style={{display: "grid", gap: 50, gridTemplateColumns: "0.72fr 1.28fr", padding: "108px 130px"}}>
+        <div style={{alignSelf: "center", opacity: sceneIn(frame, start + 8)}}>
+          <div style={{color: "#16843c", fontSize: 34, fontWeight: 950, letterSpacing: "0.14em", textTransform: "uppercase"}}>
+            Produktbuehnen
+          </div>
+          <div style={{color: "#101510", fontSize: 102, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, marginTop: 28}}>
+            Jeder Geschmack bekommt seine eigene Szene
+          </div>
+          <div style={{color: "#58625b", fontSize: 42, fontWeight: 650, lineHeight: 1.2, marginTop: 30}}>
+            Die Kampagne nutzt Wiedererkennung, aber variiert Farbe, Zutat und Produktnutzen pro Sorte.
+          </div>
+        </div>
+        <div style={{alignItems: "center", display: "flex", gap: 24}}>
+          {slides.map(([image, title, color], index) => (
+            <div
+              key={image}
+              style={{
+                background: "#fff",
+                borderRadius: 34,
+                boxShadow: "0 32px 80px rgba(20,35,22,0.14)",
+                opacity: sceneIn(frame, start + 12 + index * 10),
+                overflow: "hidden",
+                scale: interpolate(frame, [start + 12 + index * 10, start + 42 + index * 10], [0.9, 1], clamp),
+                width: 360,
+              }}
+            >
+              <Img src={biottaAsset(image)} style={{height: 420, objectFit: "cover", objectPosition: "center", width: "100%"}} />
+              <div style={{color, fontSize: 30, fontWeight: 950, padding: "24px 28px 28px"}}>{title}</div>
+            </div>
+          ))}
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const BiottaRecipeScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 200;
+  const end = 300;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  return (
+    <AbsoluteFill style={{background: "#f4f4ef", opacity}}>
+      <KenBurnsImage resolver={biottaAsset} src="slide-vita7.jpg" start={start} end={end} from={1.01} to={1.07} />
+      <AbsoluteFill style={{background: "linear-gradient(90deg, rgba(10,30,18,0.72), rgba(10,30,18,0.34), rgba(10,30,18,0.08))"}} />
+      <AbsoluteFill style={{justifyContent: "flex-end", padding: "0 130px 110px"}}>
+        <div style={{opacity: sceneIn(frame, start + 10)}}>
+          <TextBlock
+            body="Rezepte, Drinks und Wissen erweitern die Flasche vom Produkt zum Ritual."
+            label="Anwendung"
+            title={<>Vom Bio-Saft zum eigenen Drink</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const BiottaFinalScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 274;
+  const opacity = sceneIn(frame, start);
+  return (
+    <AbsoluteFill style={{background: "#f7f7f3", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 18% 24%, rgba(22,132,60,0.2), transparent 28%), radial-gradient(circle at 82% 70%, rgba(143,18,52,0.16), transparent 30%)",
+        }}
+      />
+      <AbsoluteFill style={{alignItems: "center", justifyContent: "center", padding: "0 130px"}}>
+        <div style={{alignItems: "center", display: "flex", flexDirection: "column", gap: 36, opacity: sceneIn(frame, start + 8), textAlign: "center"}}>
+          <Img src={biottaAsset("logo.svg")} style={{height: 96, objectFit: "contain"}} />
+          <div style={{color: "#101510", fontSize: 104, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, maxWidth: 1180}}>
+            Premium product storytelling, not a simple juice list
+          </div>
+          <div style={{color: "#58625b", fontSize: 44, fontWeight: 650, lineHeight: 1.18, maxWidth: 980}}>
+            Slider, Fakten, Rezepte und Community-Aktivierung arbeiten als ein klares Bio-System.
+          </div>
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+export const BiottaReel: React.FC = () => {
+  return (
+    <AbsoluteFill style={{background: "#f7f7f3", fontFamily: "Inter, Arial, sans-serif"}}>
+      <Sequence durationInFrames={112}>
+        <BiottaHeroScene />
+      </Sequence>
+      <Sequence durationInFrames={224}>
+        <BiottaSlidesScene />
+      </Sequence>
+      <Sequence durationInFrames={310}>
+        <BiottaRecipeScene />
+      </Sequence>
+      <Sequence durationInFrames={360}>
+        <BiottaFinalScene />
       </Sequence>
     </AbsoluteFill>
   );

@@ -26,6 +26,7 @@
     "render:preview": "remotion render MaguroTravelReel renders/maguro-travel-reel-preview.mp4 --scale=0.5",
     "render:maguro-healthy": "remotion render MaguroHealthyReel renders/maguro-healthy-reel-preview.mp4 --scale=0.5",
     "render:synergetic": "remotion render SynergeticReel renders/synergetic-reel-preview.mp4 --scale=0.5",
+    "render:biotta": "remotion render BiottaReel renders/biotta-reel-preview.mp4 --scale=0.5",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },

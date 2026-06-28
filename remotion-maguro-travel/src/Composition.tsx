@@ -12,6 +12,7 @@ const asset = (name: string) => staticFile(`maguro-travel/${name}`);
 const healthyAsset = (name: string) => staticFile(`maguro-2018/${name}`);
 const synergeticAsset = (name: string) => staticFile(`synergetic/${name}`);
 const biottaAsset = (name: string) => staticFile(`biotta/${name}`);
+const scotchBriteAsset = (name: string) => staticFile(`scotch-brite/${name}`);
 
 const clamp = {
   extrapolateLeft: "clamp" as const,
@@ -813,6 +814,161 @@ export const BiottaReel: React.FC = () => {
       </Sequence>
       <Sequence durationInFrames={360}>
         <BiottaFinalScene />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
+
+const ScotchBriteHeroScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const opacity = sceneIn(frame, 0) * sceneOut(frame, 98);
+  return (
+    <AbsoluteFill style={{background: "#f5f8f4", opacity}}>
+      <KenBurnsImage resolver={scotchBriteAsset} src="hero-concept.jpg" start={0} end={112} from={1.01} to={1.07} />
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(90deg, rgba(5,84,63,0.84), rgba(5,84,63,0.34) 48%, rgba(5,84,63,0.04))",
+        }}
+      />
+      <AbsoluteFill style={{justifyContent: "center", padding: "0 130px"}}>
+        <div
+          style={{
+            opacity: sceneIn(frame, 8),
+            translate: `${interpolate(frame, [8, 34], [-50, 0], clamp)}px 0px`,
+          }}
+        >
+          <TextBlock
+            body="Scotch-Brite wird als freundlicher Guide fuer Planung, Kochen, Dekoration und Reinigung inszeniert."
+            label="Scotch-Brite · 2017"
+            title={<>Feiertage vorbereiten ohne Stress</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const ScotchBriteTeamScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 90;
+  const end = 206;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  return (
+    <AbsoluteFill style={{background: "#06543f", opacity}}>
+      <KenBurnsImage resolver={scotchBriteAsset} src="team-bg.jpg" start={start} end={end} from={1.01} to={1.06} />
+      <AbsoluteFill style={{background: "linear-gradient(90deg, rgba(6,84,63,0.82), rgba(6,84,63,0.38), rgba(6,84,63,0.1))"}} />
+      <AbsoluteFill style={{justifyContent: "center", padding: "0 130px"}}>
+        <div style={{opacity: sceneIn(frame, start + 8), maxWidth: 980}}>
+          <TextBlock
+            body="Fuenf Rollen verwandeln Haushaltstipps in eine kleine Service-Redaktion fuer das Fest."
+            label="Expertenteam"
+            title={<>Der Story-Motor der Kampagne</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const ScotchBriteModulesScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 194;
+  const end = 302;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  const modules = [
+    ["video-01.jpg", "Video-Tipp", "How-to-Wissen fuer konkrete Situationen."],
+    ["video-02.jpg", "Reinigung", "Kurze Module machen den Nutzen greifbar."],
+    ["product-01.jpg", "Produkt", "Der Helfer bleibt nah an der Aufgabe."],
+  ];
+
+  return (
+    <AbsoluteFill style={{background: "#f5f8f4", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 16% 20%, rgba(184,240,79,0.22), transparent 28%), radial-gradient(circle at 84% 72%, rgba(11,127,91,0.18), transparent 30%)",
+        }}
+      />
+      <AbsoluteFill style={{display: "grid", gap: 52, gridTemplateColumns: "0.76fr 1.24fr", padding: "110px 130px"}}>
+        <div style={{alignSelf: "center", opacity: sceneIn(frame, start + 8)}}>
+          <div style={{color: "#0b7f5b", fontSize: 34, fontWeight: 950, letterSpacing: "0.14em", textTransform: "uppercase"}}>
+            Content-System
+          </div>
+          <div style={{color: "#0a1510", fontSize: 102, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, marginTop: 28}}>
+            Videos, Produkte und Tipps in einem Ablauf
+          </div>
+          <div style={{color: "#53645c", fontSize: 42, fontWeight: 650, lineHeight: 1.2, marginTop: 30}}>
+            Die Kampagne verkauft nicht isoliert. Sie hilft beim Gastgebermoment.
+          </div>
+        </div>
+        <div style={{alignItems: "center", display: "flex", gap: 26}}>
+          {modules.map(([image, title, text], index) => (
+            <div
+              key={image}
+              style={{
+                background: "#fff",
+                borderRadius: 34,
+                boxShadow: "0 32px 80px rgba(6,84,63,0.14)",
+                opacity: sceneIn(frame, start + 12 + index * 10),
+                overflow: "hidden",
+                scale: interpolate(frame, [start + 12 + index * 10, start + 40 + index * 10], [0.9, 1], clamp),
+                width: 340,
+              }}
+            >
+              <Img src={scotchBriteAsset(image)} style={{height: 300, objectFit: "cover", width: "100%"}} />
+              <div style={{padding: 28}}>
+                <div style={{color: "#0b7f5b", fontSize: 30, fontWeight: 950}}>{title}</div>
+                <div style={{color: "#53645c", fontSize: 26, fontWeight: 650, lineHeight: 1.22, marginTop: 12}}>{text}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const ScotchBriteFinalScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 274;
+  const opacity = sceneIn(frame, start);
+  return (
+    <AbsoluteFill style={{background: "#f5f8f4", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 18% 24%, rgba(184,240,79,0.26), transparent 28%), radial-gradient(circle at 82% 70%, rgba(11,127,91,0.2), transparent 30%)",
+        }}
+      />
+      <AbsoluteFill style={{alignItems: "center", justifyContent: "center", padding: "0 130px"}}>
+        <div style={{alignItems: "center", display: "flex", flexDirection: "column", gap: 36, opacity: sceneIn(frame, start + 8), textAlign: "center"}}>
+          <Img src={scotchBriteAsset("logo.svg")} style={{height: 118, objectFit: "contain"}} />
+          <div style={{color: "#0a1510", fontSize: 104, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, maxWidth: 1180}}>
+            Cleaning becomes part of the party story
+          </div>
+          <div style={{color: "#53645c", fontSize: 44, fontWeight: 650, lineHeight: 1.18, maxWidth: 960}}>
+            Der Case verbindet Service, Unterhaltung und Produktnutzen zu einem aktivierenden Content-Hub.
+          </div>
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+export const ScotchBriteReel: React.FC = () => {
+  return (
+    <AbsoluteFill style={{background: "#f5f8f4", fontFamily: "Inter, Arial, sans-serif"}}>
+      <Sequence durationInFrames={112}>
+        <ScotchBriteHeroScene />
+      </Sequence>
+      <Sequence durationInFrames={216}>
+        <ScotchBriteTeamScene />
+      </Sequence>
+      <Sequence durationInFrames={310}>
+        <ScotchBriteModulesScene />
+      </Sequence>
+      <Sequence durationInFrames={360}>
+        <ScotchBriteFinalScene />
       </Sequence>
     </AbsoluteFill>
   );

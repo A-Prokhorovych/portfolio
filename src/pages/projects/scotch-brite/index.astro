@@ -105,6 +105,23 @@ const originalScreens = [
           </div>
         </section>
 
+        <section class="reel-section" aria-labelledby="reel-title">
+          <div class="section-copy">
+            <p class="eyebrow">Remotion Experiment</p>
+            <h2 id="reel-title">Der Party-Guide als kurzer Motion-Reel</h2>
+            <p>
+              Der Preview-Film zeigt die Kampagnenlogik in Bewegung: Hero, Expertenteam,
+              Video-Tipps und Produktnutzen werden zu einer kompakten Gastgebergeschichte.
+            </p>
+          </div>
+          <div class="reel-frame">
+            <video controls preload="metadata" poster={`${media}/hero-concept.jpg`}>
+              <source src={`${media}/reel-preview.mp4`} type="video/mp4" />
+            </video>
+            <span>Remotion Preview · Scotch-Brite Party Guide Reel</span>
+          </div>
+        </section>
+
         <section id="konzept" class="story-section">
           <div class="section-number">02</div>
           <div class="section-copy">
@@ -378,6 +395,36 @@ const originalScreens = [
   }
   .hero-media > img:first-child { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
   .hero-media span { color: var(--accent-dark); display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+
+  .reel-section {
+    background:
+      radial-gradient(circle at 14% 18%, rgba(184, 240, 79, .22), transparent 28%),
+      radial-gradient(circle at 84% 70%, rgba(11, 127, 91, .16), transparent 30%),
+      linear-gradient(135deg, #fff, #eff7f2);
+  }
+  .reel-frame {
+    background: #fff;
+    border: 1px solid rgba(11, 127, 91, .14);
+    border-radius: 24px;
+    box-shadow: 0 28px 84px rgba(6, 84, 63, .12);
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .reel-frame video {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    display: block;
+    width: 100%;
+  }
+  .reel-frame span {
+    color: var(--accent);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
 
   .story-section, .highlights, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }

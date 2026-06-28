@@ -11,6 +11,10 @@ const campaignCover = (url) => {
     return `${base}projects/synergetic/hero-concept.jpg`;
   }
 
+  if (url === `${base}projects/scotch-brite/`) {
+    return `${base}projects/scotch-brite/hero-concept.jpg`;
+  }
+
   if (url.startsWith(`${base}projects/`)) {
     return `${url.replace(/\/?$/, "/")}hero.jpg`;
   }

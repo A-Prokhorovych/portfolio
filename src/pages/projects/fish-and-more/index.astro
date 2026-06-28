@@ -85,6 +85,23 @@ const highlights = [
           </div>
         </section>
 
+        <section class="reel-section" aria-labelledby="reel-title">
+          <div class="section-copy">
+            <p class="eyebrow">Remotion Experiment</p>
+            <h2 id="reel-title">Frozen Seafood als kurzer Frische-Reel</h2>
+            <p>
+              Der Preview-Film verdichtet die Kampagne in vier Momente: Produkt im Hero,
+              frisches Seafood-Mood, drei Content-Aufgaben und ein klares Markenfinale.
+            </p>
+          </div>
+          <div class="reel-frame">
+            <video controls preload="metadata" poster={`${media}/hero.jpg`}>
+              <source src={`${media}/reel-preview.mp4`} type="video/mp4" />
+            </video>
+            <span>Remotion Preview · Fish & More Seafood Reel</span>
+          </div>
+        </section>
+
         <section id="konzept" class="story-section">
           <div class="section-number">02</div>
           <div class="section-copy">
@@ -135,10 +152,16 @@ const highlights = [
           </figure>
           <figure>
             <img src={`${media}/seafood.jpg`} alt="Seafood Mood Visual" loading="lazy" />
+            <figcaption>Frische, Eis und Seafood als Mood Visual</figcaption>
           </figure>
-          <figure>
-            <img src={`${media}/hero.jpg`} alt="Fish & More Produktinszenierung" loading="lazy" />
-          </figure>
+          <article class="system-card">
+            <span>Content-System</span>
+            <h3>Produkt, Rezeptidee und Wettbewerb arbeiten zusammen</h3>
+            <p>
+              Der Case zeigt nicht nur eine Packung. Er fuehrt von schneller Erkennbarkeit
+              zu Frische, Anwendung und Aktivierung.
+            </p>
+          </article>
         </section>
 
         <section id="ergebnis" class="result">
@@ -325,6 +348,36 @@ const highlights = [
     padding: clamp(28px, 5vw, 70px);
   }
 
+  .reel-section {
+    background:
+      radial-gradient(circle at 14% 18%, rgba(10, 121, 184, .2), transparent 28%),
+      radial-gradient(circle at 84% 70%, rgba(255, 122, 58, .16), transparent 30%),
+      linear-gradient(135deg, #fff, #eef8fc);
+  }
+  .reel-frame {
+    background: #fff;
+    border: 1px solid rgba(10, 121, 184, .16);
+    border-radius: var(--radius);
+    box-shadow: 0 28px 84px rgba(6, 24, 39, .12);
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .reel-frame video {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    display: block;
+    width: 100%;
+  }
+  .reel-frame span {
+    color: var(--accent);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
+
   .video-section { background: #111; color: #fff; }
   .video-section .eyebrow { color: #aaa; }
   .video-frame { border: 1px solid #333; border-radius: var(--radius); margin-top: 48px; overflow: hidden; }
@@ -342,6 +395,36 @@ const highlights = [
   .gallery img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
   .gallery .large img { aspect-ratio: 16 / 8; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 800; padding: 16px; text-transform: uppercase; }
+  .system-card {
+    align-content: end;
+    background:
+      radial-gradient(circle at 82% 14%, rgba(255, 122, 58, .18), transparent 28%),
+      linear-gradient(135deg, #fff, #eef8fc);
+    border: 1px solid rgba(10, 121, 184, .14);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(6, 24, 39, .08);
+    display: grid;
+    min-height: 360px;
+    padding: clamp(26px, 4vw, 44px);
+  }
+  .system-card span {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .system-card h3 {
+    font-size: clamp(28px, 3vw, 44px);
+    line-height: 1.02;
+    margin-top: 18px;
+  }
+  .system-card p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 18px;
+  }
 
   .result { background: var(--accent); color: #fff; }
   .result .eyebrow, .result-copy > p { color: #c6d1ce; }

@@ -28,6 +28,7 @@
     "render:synergetic": "remotion render SynergeticReel renders/synergetic-reel-preview.mp4 --scale=0.5",
     "render:biotta": "remotion render BiottaReel renders/biotta-reel-preview.mp4 --scale=0.5",
     "render:scotch-brite": "remotion render ScotchBriteReel renders/scotch-brite-reel-preview.mp4 --scale=0.5",
+    "render:fish-and-more": "remotion render FishAndMoreReel renders/fish-and-more-reel-preview.mp4 --scale=0.5",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },

@@ -7,6 +7,10 @@ const campaignCover = (url) => {
     return `${base}projects/maguro-2018/hero-concept.jpg`;
   }
 
+  if (url === `${base}projects/maguro-travel/`) {
+    return `${base}projects/maguro-travel/hero-original.jpg`;
+  }
+
   if (url === `${base}projects/synergetic/`) {
     return `${base}projects/synergetic/hero-concept.jpg`;
   }
@@ -91,10 +95,11 @@ const featuredProjects = [
     title: "Schatzkiste",
     year: "2025",
     category: "Local Business",
-    image: `${base}projects/old-schatzkiste.webp`,
-    url: "https://prokha.webflow.io/works/schatzkiste",
+    image: `${base}projects/schatzkiste/hero.jpg`,
+    url: `${base}projects/schatzkiste/`,
     description:
       "Webdesign fuer ein lokales Projekt mit warmer Bildsprache, klarer Angebotsstruktur und freundlicher Nutzeransprache.",
+    internal: true,
   },
   {
     title: "Kommunalwahl CDU",
@@ -405,7 +410,7 @@ const brandLogos = [
   ["biotta.svg", "Biotta"],
   ["kapitan vkusov.svg", "Kapitan Vkusov", ["https://www.edimdoma.ru/2019/kapitan-vkusov", "https://www.edimdoma.ru/2019/kapitan-vkusov2", `${base}projects/kapitan-vkusov/`]],
   ["makfa.svg", "Makfa"],
-  ["maguro.svg", "Maguro", ["https://www.edimdoma.ru/magurotravel", "https://www.edimdoma.ru/maguro", `${base}projects/maguro-travel/`, `${base}projects/maguro-2018/`]],
+  ["projects/maguro-travel/logo-gray.png", "Maguro", ["https://www.edimdoma.ru/magurotravel", "https://www.edimdoma.ru/maguro", `${base}projects/maguro-travel/`, `${base}projects/maguro-2018/`]],
   ["dr.oetker.svg", "Dr. Oetker", ["https://www.edimdoma.ru/2017/oetker", `${base}projects/oetker/`]],
   ["moskowskij provansal.svg", "Moskowskij Provansal", "https://www.edimdoma.ru/2019/provancal"],
   ["fish and more.svg", "Fish and More", ["https://www.edimdoma.ru/2021/fishandmore", `${base}projects/fish-and-more/`]],
@@ -435,8 +440,9 @@ const brandLogos = [
   return {
     file,
     name,
-    slug: slugify(file.replace(/\.svg$/i, "")),
-    compact: compactSlug(file.replace(/\.svg$/i, "")),
+    slug: slugify(file.replace(/\.[a-z0-9]+$/i, "").split("/").pop()),
+    compact: compactSlug(file.replace(/\.[a-z0-9]+$/i, "").split("/").pop()),
+    logoSrc: file.includes("/") ? `${base}${file}` : `${base}brands/logotypes/${encodeURIComponent(file)}`,
     projectSlugs: projectUrls.map(slugify).join("|"),
     projectCompacts: projectUrls.map(compactSlug).join("|"),
   };
@@ -601,15 +607,15 @@ const process = [
             <div class="brand-marquee-track">
               <div class="brand-logo-group">
                 {brandLogos.map((brand) => (
-                  <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
-                    <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="eager" decoding="async" />
+                  <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={brand.logoSrc} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                    <img src={brand.logoSrc} alt={brand.name} loading="eager" decoding="async" />
                   </button>
                 ))}
               </div>
               <div class="brand-logo-group" aria-hidden="true">
                 {brandLogos.map((brand) => (
-                  <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`}>
-                    <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt="" loading="eager" decoding="async" />
+                  <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={brand.logoSrc}>
+                    <img src={brand.logoSrc} alt="" loading="eager" decoding="async" />
                   </button>
                 ))}
               </div>
@@ -623,8 +629,8 @@ const process = [
             </div>
             <div class="brand-logo-panel" data-brand-panel>
               {brandLogos.map((brand) => (
-                <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
-                  <img src={`${base}brands/logotypes/${encodeURIComponent(brand.file)}`} alt={brand.name} loading="lazy" />
+                <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={brand.logoSrc} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
+                  <img src={brand.logoSrc} alt={brand.name} loading="lazy" />
                 </button>
               ))}
             </div>

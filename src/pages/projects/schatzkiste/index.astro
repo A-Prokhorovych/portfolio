@@ -1,0 +1,484 @@
+---
+import MotionEnhance from "../../../components/MotionEnhance.astro";
+
+const base = import.meta.env.BASE_URL;
+const media = `${base}projects/schatzkiste`;
+
+const facts = [
+  ["Kunde", "Ulmer Schatzkiste"],
+  ["Plattform", "Website"],
+  ["Jahr", "2025"],
+  ["Rolle", "Webdesign, UX Struktur"],
+];
+
+const processSteps = [
+  ["01", "Verstehen", "Familien muessen sofort begreifen, worum es geht und ob das Angebot zu ihrer Situation passt."],
+  ["02", "Begleiten", "Psycholog:innen, Videoteam und Styling werden als behutsames Support-System erklaert."],
+  ["03", "Erinnern", "Die Video-Botschaft wird als persoenlicher Schatz fuer Kinder und Familie gerahmt."],
+  ["04", "Ermoeglichen", "Spenden und Ehrenamt werden sichtbar, ohne die Hauptgeschichte zu verdraengen."],
+];
+
+const screens = [
+  ["home-preview.jpg", "Home", "Mission, Angebot und Einstieg werden emotional, aber klar gefuehrt."],
+  ["about-preview.jpg", "Ueber uns", "Das Projekt erklaert Haltung, Team und Ort der Begleitung."],
+  ["team-preview.jpg", "Team", "Menschen hinter dem Angebot schaffen Vertrauen und Nahbarkeit."],
+];
+
+const support = [
+  ["Spenden", "Der Spendenbereich erklaert, wie das kostenlose Angebot finanziell getragen wird."],
+  ["Aktuelles", "News und Projektupdates zeigen, dass die Initiative lebendig und lokal verankert ist."],
+  ["Kontakt", "Der Kontaktweg bleibt sichtbar, ruhig und ohne Druck formuliert."],
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Ulmer Schatzkiste Case Study - Website fuer ein sensibles Erinnerungsprojekt fuer Familien." />
+    <title>Ulmer Schatzkiste Website - Andrii Prokhorovych</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={base}>PROKHA</a>
+      <a class="back-link" href={`${base}#projects`}>
+        <span aria-hidden="true">←</span>
+        Zurueck zu den Projekten
+      </a>
+      <div class="header-actions">
+        <a class="button light small edit-page" data-owner-only data-edit-only hidden href={`${base}editor/?project=schatzkiste`}>Редактировать</a>
+        <a class="button dark small" data-owner-only hidden href="https://prokha.webflow.io/works/schatzkiste" target="_blank" rel="noreferrer">Original ansehen</a>
+      </div>
+    </header>
+
+    <main>
+      <aside class="case-sidebar">
+        <div>
+          <p class="eyebrow">Case Study · 2025</p>
+          <img class="client-logo" src={`${media}/cover.webp`} alt="Ulmer Schatzkiste" />
+          <h1>Ein Erinnerungsprojekt braucht Ruhe, Vertrauen und klare Wege</h1>
+          <p class="intro">
+            Die Ulmer Schatzkiste hilft schwer kranken Eltern, persoenliche
+            Videobotschaften fuer ihre Kinder aufzunehmen. Die Website muss
+            informieren, auffangen und zum Kontakt ermutigen, ohne laut zu werden.
+          </p>
+        </div>
+
+        <dl>
+          {facts.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <nav aria-label="Case-Study-Navigation">
+          <a href="#ueberblick">01 Ueberblick</a>
+          <a href="#prozess">02 Prozess</a>
+          <a href="#screens">03 Website</a>
+          <a href="#support">04 Support</a>
+          <a href="#ergebnis">05 Ergebnis</a>
+        </nav>
+      </aside>
+
+      <article class="case-content">
+        <section id="ueberblick" class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Nonprofit · Family Support</p>
+            <h2>Eine Website fuer Erinnerungen, die bleiben</h2>
+            <p>
+              Der Relaunch macht ein sehr sensibles Angebot schnell verstaendlich:
+              Was wird aufgenommen, wer begleitet die Familien, wo findet der Prozess
+              statt und wie kann man das Projekt unterstuetzen?
+            </p>
+          </div>
+          <div class="hero-media">
+            <img src={`${media}/hero.jpg`} alt="Ulmer Schatzkiste Cover mit leuchtender Box und Logo" />
+            <span>Website Relaunch · persoenliche Videobotschaften fuer Kinder</span>
+          </div>
+        </section>
+
+        <section class="quick-read" aria-label="5-second portfolio read">
+          <div>
+            <p class="eyebrow">5-second read</p>
+            <h2>Der Case muss behutsam und klar sein</h2>
+          </div>
+          <div class="quick-grid">
+            <article>
+              <span>Aufgabe</span>
+              <p>Ein emotionales Angebot erklaeren, ohne dramatisch oder schwer zu wirken.</p>
+            </article>
+            <article>
+              <span>Loesung</span>
+              <p>Ruhige Struktur, klare Rollen, echte Menschen und sichtbare Kontaktwege.</p>
+            </article>
+            <article>
+              <span>Rolle</span>
+              <p>UX-Struktur, visuelle Richtung, Seitenrhythmus und vertrauensvolle Bildfuehrung.</p>
+            </article>
+            <article>
+              <span>Ergebnis</span>
+              <p>Eine Website, die Familien, Helfer und Spender ohne Reibung orientiert.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="prozess" class="process-section">
+          <div class="section-number">02</div>
+          <div class="section-copy">
+            <p class="eyebrow">User Journey</p>
+            <h2>Vom ersten Verstehen bis zur Unterstuetzung</h2>
+            <p>
+              Die Informationsarchitektur folgt nicht einer Verkaufslogik, sondern einer
+              vorsichtigen Begleitung. Erst wird die Mission erklaert, dann das Team, der
+              Ablauf und zuletzt die Moeglichkeiten zu Kontakt und Spende.
+            </p>
+          </div>
+          <div class="process-grid">
+            {processSteps.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="screens" class="screens-section">
+          <div class="section-copy">
+            <p class="eyebrow">Website-System</p>
+            <h2>Warme Bildwelt, klare Abschnitte, wenig Reibung</h2>
+            <p>
+              Die Seite arbeitet mit grossen ruhigen Flaechen, kurzen Textgruppen und
+              emotionalen Bildern. Die Gestaltung bleibt bewusst accessible: starke
+              Lesbarkeit, eindeutige Bereiche und kein dekorativer Ueberdruck.
+            </p>
+          </div>
+          <div class="screen-grid">
+            {screens.map(([image, title, text]) => (
+              <article>
+                <img src={`${media}/${image}`} alt={`Ulmer Schatzkiste ${title} Website Screen`} loading="lazy" />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="support" class="support-section">
+          <div class="section-copy">
+            <p class="eyebrow">Trust und Support</p>
+            <h2>Das Projekt braucht Vertrauen und konkrete Handlungswege</h2>
+          </div>
+          <div class="support-layout">
+            <div class="support-images">
+              <img src={`${media}/donate-preview.jpg`} alt="Ulmer Schatzkiste Spenden Website Screen" loading="lazy" />
+              <img src={`${media}/news-preview.jpg`} alt="Ulmer Schatzkiste Aktuelles Website Screen" loading="lazy" />
+              <img src={`${media}/contact-preview.jpg`} alt="Ulmer Schatzkiste Kontakt Website Screen" loading="lazy" />
+            </div>
+            <div class="support-list">
+              {support.map(([title, text]) => (
+                <article>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="ergebnis" class="result">
+          <div class="section-number">05</div>
+          <div class="result-copy">
+            <p class="eyebrow">Ergebnis</p>
+            <h2>Eine lokale Initiative wird als klare, wuerdevolle Website erlebbar</h2>
+            <p>
+              Der Case zeigt Schatzkiste als behutsames digitales Angebot: emotional,
+              aber nicht ueberladen; menschlich, aber strukturiert; zugänglich fuer
+              Familien, Unterstuetzer und Spender.
+            </p>
+          </div>
+        </section>
+      </article>
+    </main>
+    <MotionEnhance />
+  </body>
+</html>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const ownerParam = params.get("owner");
+  const editParam = params.get("edit");
+  if (ownerParam === "1") localStorage.setItem("prokha-owner-mode", "1");
+  if (ownerParam === "0") localStorage.removeItem("prokha-owner-mode");
+  localStorage.removeItem("prokha-edit-links");
+
+  let editLinksVisible = editParam === "1";
+  const revealOwnerControls = () => {
+    const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
+    const showEditLinks = isOwner && editLinksVisible;
+    document.querySelectorAll("[data-owner-only]").forEach((element) => {
+      element.hidden = !isOwner;
+    });
+    document.querySelectorAll("[data-edit-only]").forEach((element) => {
+      element.hidden = !showEditLinks;
+    });
+  };
+
+  revealOwnerControls();
+
+  let editCommand = "";
+  document.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+    editCommand = (editCommand + event.key.toLowerCase()).slice(-4);
+    if (editCommand === "edit") {
+      editLinksVisible = true;
+      revealOwnerControls();
+    }
+  });
+</script>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f8fafc;
+    --paper: #fff;
+    --ink: #0f172a;
+    --muted: #5b6678;
+    --line: rgba(15, 23, 42, .12);
+    --blue: #2563eb;
+    --teal: #0f766e;
+    --amber: #d97706;
+    --soft: #f1f5fd;
+    --night: #08111f;
+    --radius: 8px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  p, h1, h2, h3, dl, dd { margin: 0; }
+  img { display: block; max-width: 100%; }
+  [hidden] { display: none !important; }
+
+  .site-header {
+    align-items: center;
+    background: rgba(248, 250, 252, .92);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    left: 0;
+    padding: 20px clamp(20px, 4vw, 72px);
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 10;
+  }
+  .brand { font-size: 28px; font-weight: 900; }
+  .back-link { font-size: 14px; font-weight: 800; }
+  .back-link span { margin-right: 8px; }
+  .header-actions { display: flex; gap: 8px; justify-self: end; }
+  .button {
+    align-items: center;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+  }
+  .button.dark { background: var(--ink); color: #fff; }
+  .button.light { background: transparent; }
+  .button.small { min-height: 42px; }
+  .edit-page {
+    background: transparent !important;
+    border-color: rgba(15, 23, 42, .18) !important;
+    color: rgba(15, 23, 42, .46) !important;
+  }
+
+  main { display: grid; grid-template-columns: minmax(280px, 25vw) minmax(0, 1fr); }
+  .case-sidebar {
+    align-content: space-between;
+    background: var(--paper);
+    border-right: 1px solid var(--line);
+    display: grid;
+    gap: 44px;
+    height: calc(100vh - 83px);
+    padding: clamp(36px, 4vw, 64px) clamp(24px, 3vw, 48px);
+    position: sticky;
+    top: 83px;
+  }
+  .eyebrow {
+    color: var(--amber);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .client-logo { border-radius: 12px; height: 84px; margin-bottom: 30px; object-fit: cover; width: 84px; }
+  h1 { font-size: clamp(26px, 2.35vw, 40px); line-height: 1.08; }
+  h2 { font-size: clamp(34px, 4.5vw, 72px); letter-spacing: -.055em; line-height: .98; max-width: 980px; }
+  h3 { line-height: 1.14; }
+  .intro, .section-copy > p:last-child, .result-copy > p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 22px;
+  }
+  dl { border-top: 1px solid var(--line); }
+  dl div { border-bottom: 1px solid var(--line); display: flex; gap: 18px; justify-content: space-between; padding: 11px 0; }
+  dt { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  dd { font-size: 13px; font-weight: 800; text-align: right; }
+  nav { display: grid; gap: 10px; }
+  nav a { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  nav a:hover { color: var(--ink); }
+
+  .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
+  .hero { min-height: calc(100vh - 83px); }
+  .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 430px); margin-bottom: 58px; }
+  .hero-copy .eyebrow { grid-column: 1 / -1; }
+  .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
+  .hero-media {
+    background: var(--night);
+    border: 1px solid rgba(15, 23, 42, .1);
+    border-radius: var(--radius);
+    box-shadow: 0 30px 90px rgba(8, 17, 31, .18);
+    overflow: hidden;
+  }
+  .hero-media img { aspect-ratio: 18 / 10; object-fit: cover; object-position: center; width: 100%; }
+  .hero-media span {
+    color: rgba(255, 255, 255, .78);
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
+
+  .quick-read {
+    background: #fff;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  }
+  .quick-read h2 { font-size: clamp(30px, 3.6vw, 56px); }
+  .quick-grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+  .quick-grid article {
+    background: var(--soft);
+    border: 1px solid rgba(37, 99, 235, .14);
+    border-radius: var(--radius);
+    min-height: 178px;
+    padding: 22px;
+  }
+  .quick-grid span { color: var(--blue); display: block; font-size: 11px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+  .quick-grid p { color: var(--ink); font-size: 16px; font-weight: 750; line-height: 1.45; margin-top: 28px; }
+
+  .process-section {
+    background:
+      radial-gradient(circle at 84% 16%, rgba(217, 119, 6, .12), transparent 25%),
+      #f8fafc;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
+  .section-copy { max-width: 900px; }
+  .process-grid { display: grid; gap: 14px; grid-column: 2; grid-template-columns: repeat(4, 1fr); margin-top: 18px; }
+  .process-grid article {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 260px;
+    padding: 24px;
+  }
+  .process-grid span { color: var(--amber); font-size: 12px; font-weight: 950; }
+  .process-grid h3 { font-size: 24px; margin-top: 70px; }
+  .process-grid p { color: var(--muted); font-size: 14px; line-height: 1.58; margin-top: 14px; }
+
+  .screens-section { background: #fff; }
+  .screen-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 48px; }
+  .screen-grid article {
+    background: #f8fafc;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 22px 70px rgba(8, 17, 31, .1);
+    overflow: hidden;
+  }
+  .screen-grid img { aspect-ratio: 4 / 3; object-fit: cover; object-position: top; width: 100%; }
+  .screen-grid div { padding: 24px; }
+  .screen-grid h3 { font-size: 22px; }
+  .screen-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 12px; }
+
+  .support-section {
+    background:
+      linear-gradient(135deg, rgba(37, 99, 235, .08), rgba(217, 119, 6, .08)),
+      #f8fafc;
+  }
+  .support-layout { display: grid; gap: 34px; grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr); margin-top: 48px; }
+  .support-images { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+  .support-images img {
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 22px 70px rgba(8, 17, 31, .12);
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+  }
+  .support-list { display: grid; gap: 12px; }
+  .support-list article { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .support-list h3 { font-size: 21px; }
+  .support-list p { color: var(--muted); font-size: 14px; line-height: 1.62; margin-top: 12px; }
+
+  .result {
+    background:
+      radial-gradient(circle at 76% 16%, rgba(217, 119, 6, .2), transparent 28%),
+      linear-gradient(135deg, #08111f, #16324c);
+    color: #fff;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  .result .eyebrow, .result-copy > p { color: rgba(255, 255, 255, .74); }
+  .result-copy { max-width: 980px; }
+
+  @media (max-width: 1180px) {
+    .site-header { grid-template-columns: 1fr auto; }
+    .back-link { display: none; }
+    main { grid-template-columns: 1fr; }
+    .case-sidebar { height: auto; position: static; }
+    .case-sidebar nav { display: none; }
+    .hero { min-height: auto; }
+    .hero-copy, .quick-read, .support-layout { grid-template-columns: 1fr; }
+    .process-grid, .screen-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 720px) {
+    .site-header { padding: 14px 18px; }
+    .brand { font-size: 20px; }
+    .button.small { font-size: 11px; min-height: 38px; padding: 0 10px; }
+    main, .case-sidebar, .case-content { max-width: 100vw; min-width: 0; width: 100%; }
+    .case-sidebar { overflow: hidden; padding: 36px 18px; }
+    .case-content { overflow: hidden; }
+    .case-content > section { max-width: 100vw; padding-left: 18px; padding-right: 18px; width: 100%; }
+    .process-section, .result { grid-template-columns: minmax(0, 1fr); }
+    .hero-copy .eyebrow, .process-grid { grid-column: 1; }
+    .quick-grid, .process-grid, .screen-grid, .support-images { grid-template-columns: 1fr; }
+    .section-number { display: none; }
+    .hero-media img { aspect-ratio: 4 / 3; }
+    h2 { font-size: clamp(32px, 12vw, 48px); }
+  }
+</style>

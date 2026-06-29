@@ -14,6 +14,7 @@ const synergeticAsset = (name: string) => staticFile(`synergetic/${name}`);
 const biottaAsset = (name: string) => staticFile(`biotta/${name}`);
 const scotchBriteAsset = (name: string) => staticFile(`scotch-brite/${name}`);
 const fishAndMoreAsset = (name: string) => staticFile(`fish-and-more/${name}`);
+const gymeraAsset = (name: string) => staticFile(`gymera/${name}`);
 
 const clamp = {
   extrapolateLeft: "clamp" as const,
@@ -1124,6 +1125,162 @@ export const FishAndMoreReel: React.FC = () => {
       </Sequence>
       <Sequence durationInFrames={360}>
         <FishAndMoreFinalScene />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
+
+const GymeraHeroScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const opacity = sceneIn(frame, 0) * sceneOut(frame, 98);
+  return (
+    <AbsoluteFill style={{background: "#05070a", opacity}}>
+      <KenBurnsImage resolver={gymeraAsset} src="customer-overview.png" start={0} end={112} from={1.01} to={1.07} />
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(90deg, rgba(5,7,10,0.9), rgba(5,7,10,0.48) 52%, rgba(5,7,10,0.08))",
+        }}
+      />
+      <AbsoluteFill style={{justifyContent: "center", padding: "0 130px"}}>
+        <div
+          style={{
+            opacity: sceneIn(frame, 8),
+            translate: `${interpolate(frame, [8, 34], [-50, 0], clamp)}px 0px`,
+          }}
+        >
+          <TextBlock
+            body="Website, App und Dashboard erklaeren Gymera als skalierbares KI-Fitnessprodukt fuer mehrere Nutzungsszenarien."
+            label="Gymera · 2025"
+            title={<>Fitness-Tech als klares Produkt-System</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const GymeraDashboardScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 90;
+  const end = 210;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  return (
+    <AbsoluteFill style={{background: "#edf5ff", opacity}}>
+      <KenBurnsImage resolver={gymeraAsset} src="dashboard-overview.png" start={start} end={end} from={1.01} to={1.06} />
+      <AbsoluteFill style={{background: "linear-gradient(90deg, rgba(5,7,10,0.78), rgba(5,7,10,0.28), rgba(5,7,10,0.04))"}} />
+      <AbsoluteFill style={{justifyContent: "center", padding: "0 130px"}}>
+        <div style={{opacity: sceneIn(frame, start + 8), maxWidth: 1060}}>
+          <TextBlock
+            body="Der Case zeigt die Aufgabe, nicht nur den Screen: Zielgruppen, Training Control, Service und skalierbare Seitenlogik."
+            label="Case Framework"
+            title={<>Kontext, Aufgabe und Entscheidung sind sofort lesbar</>}
+          />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const GymeraSystemScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 196;
+  const end = 304;
+  const opacity = sceneIn(frame, start) * sceneOut(frame, end);
+  const cards = [
+    ["Rolle", "Product Design, Website-System, App UI und kompakter Design Kit."],
+    ["Entscheidung", "Gymera wird als Plattform gezeigt, nicht als einzelnes Fitnessgeraet."],
+    ["Ergebnis", "Screens, Module und Metriken lassen den Nutzen in Sekunden scannen."],
+  ];
+
+  return (
+    <AbsoluteFill style={{background: "#edf5ff", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 15% 18%, rgba(159,92,255,0.24), transparent 30%), radial-gradient(circle at 84% 76%, rgba(152,255,68,0.2), transparent 28%)",
+        }}
+      />
+      <AbsoluteFill style={{display: "grid", gap: 54, gridTemplateColumns: "0.74fr 1.26fr", padding: "110px 130px"}}>
+        <div style={{alignSelf: "center", opacity: sceneIn(frame, start + 8)}}>
+          <div style={{color: "#9f5cff", fontSize: 34, fontWeight: 950, letterSpacing: "0.14em", textTransform: "uppercase"}}>
+            Product Story
+          </div>
+          <div style={{color: "#05070a", fontSize: 104, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, marginTop: 28}}>
+            Nicht mehr Screens, sondern bessere Auswahl
+          </div>
+          <div style={{color: "#607080", fontSize: 42, fontWeight: 650, lineHeight: 1.2, marginTop: 30}}>
+            Der Reel folgt dem Portfolio-Prinzip: schnell verstehen, warum dieser Case relevant ist.
+          </div>
+        </div>
+        <div style={{alignItems: "center", display: "flex", gap: 26}}>
+          {cards.map(([title, text], index) => (
+            <div
+              key={title}
+              style={{
+                background: "#fff",
+                borderRadius: 34,
+                boxShadow: "0 32px 80px rgba(34,58,88,0.14)",
+                minHeight: 450,
+                opacity: sceneIn(frame, start + 12 + index * 10),
+                padding: 36,
+                scale: interpolate(frame, [start + 12 + index * 10, start + 40 + index * 10], [0.9, 1], clamp),
+                width: 330,
+              }}
+            >
+              <div style={{color: index === 1 ? "#3189ff" : "#9f5cff", fontSize: 72, fontWeight: 950}}>0{index + 1}</div>
+              <div style={{color: "#05070a", fontSize: 38, fontWeight: 950, lineHeight: 1, marginTop: 84}}>{title}</div>
+              <div style={{color: "#607080", fontSize: 28, fontWeight: 650, lineHeight: 1.24, marginTop: 22}}>{text}</div>
+            </div>
+          ))}
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const GymeraFinalScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const start = 274;
+  const opacity = sceneIn(frame, start);
+  return (
+    <AbsoluteFill style={{background: "#05070a", opacity}}>
+      <AbsoluteFill
+        style={{
+          background:
+            "radial-gradient(circle at 18% 24%, rgba(159,92,255,0.28), transparent 30%), radial-gradient(circle at 82% 68%, rgba(152,255,68,0.22), transparent 30%)",
+        }}
+      />
+      <AbsoluteFill style={{alignItems: "center", justifyContent: "center", padding: "0 130px"}}>
+        <div style={{alignItems: "center", display: "flex", flexDirection: "column", gap: 36, opacity: sceneIn(frame, start + 8), textAlign: "center"}}>
+          <div style={{background: "#fff", borderRadius: 18, color: "#05070a", fontSize: 54, fontWeight: 950, letterSpacing: "0.08em", padding: "24px 38px"}}>
+            GYMERA
+          </div>
+          <div style={{color: "#fff", fontSize: 104, fontWeight: 950, letterSpacing: "-0.07em", lineHeight: 0.92, maxWidth: 1180}}>
+            A portfolio case built for scanning and interview clarity
+          </div>
+          <div style={{color: "rgba(255,255,255,0.74)", fontSize: 44, fontWeight: 650, lineHeight: 1.18, maxWidth: 980}}>
+            Rolle, Aufgabe, Entscheidung und System werden zusammen sichtbar.
+          </div>
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+export const GymeraReel: React.FC = () => {
+  return (
+    <AbsoluteFill style={{background: "#05070a", fontFamily: "Inter, Arial, sans-serif"}}>
+      <Sequence durationInFrames={112}>
+        <GymeraHeroScene />
+      </Sequence>
+      <Sequence durationInFrames={220}>
+        <GymeraDashboardScene />
+      </Sequence>
+      <Sequence durationInFrames={310}>
+        <GymeraSystemScene />
+      </Sequence>
+      <Sequence durationInFrames={360}>
+        <GymeraFinalScene />
       </Sequence>
     </AbsoluteFill>
   );

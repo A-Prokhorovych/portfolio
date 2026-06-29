@@ -1,0 +1,23 @@
+{
+  "slug": "gymera",
+  "title": "Fitness-Technologie als Produkt, App und Designsystem",
+  "client": "Gymera",
+  "year": "2025",
+  "platform": "Product Website, App UI, Dashboard",
+  "role": "Product Design, Informationsarchitektur, UI Kit",
+  "logoText": "GYMERA",
+  "intro": "Ein Portfolio-Case fuer Gymera: Produktwebsite, App-Screens, Dashboard, mobile Experience und Design Kit in einer klaren Produktstory.",
+  "category": "Fitness Tech · Product Experience",
+  "heroTitle": "Ein KI-Fitnesssystem fuer mehrere Nutzungsszenarien",
+  "heroText": "Gymera verbindet Hardware, Training, KI-Analyse und Zielgruppenlogik zu einer skalierbaren Fitness-Tech-Plattform.",
+  "heroImage": "/portfolio/projects/gymera/customer-overview.png",
+  "section1Title": "Website-System",
+  "section1Text": "Die Landingpages erklaeren Gymera je nach Kontext: Home Fitness, Hotel, Corporate Fitness, Personal Trainer und Rehabilitation.",
+  "section2Title": "App und Dashboard",
+  "section2Text": "Die Interface-Ebene zeigt Training Control, Fortschritt, KI-Feedback und adaptive Programme als nutzbare Produktlogik.",
+  "section3Title": "Design Kit",
+  "section3Text": "Violett, Electric Blue, Signal Green und modulare UI-Komponenten bilden ein erweiterbares System fuer Website und App.",
+  "gallery1": "/portfolio/projects/gymera/customer-overview.png",
+  "gallery2": "/portfolio/projects/gymera/dashboard-overview.png",
+  "gallery3": "/portfolio/projects/gymera/reel-preview.mp4"
+}

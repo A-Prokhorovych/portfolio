@@ -1,0 +1,885 @@
+---
+import MotionEnhance from "../../../components/MotionEnhance.astro";
+
+const base = import.meta.env.BASE_URL;
+const media = `${base}projects/gymera`;
+
+const facts = [
+  ["Projekt", "Gymera"],
+  ["Bereich", "Fitness Tech"],
+  ["Jahr", "2025"],
+  ["Rolle", "Product Website, App UI, Design Kit"],
+];
+
+const highlights = [
+  ["Segmentierte Produktstory", "Die Website zeigt Gymera nicht als einzelnes Geraet, sondern als System fuer Home Fitness, Hotels, Unternehmen, Trainer und Rehabilitation."],
+  ["KI-gestuetzte Trainingslogik", "Dashboard und App-Einstieg machen Betreuung, Training Control, Fortschritt und personalisierte Programme sichtbar."],
+  ["Skalierbarer Designbaukasten", "Farben, dunkle Oberflaechen, hellblaue Informationsflaechen und kompakte UI-Module bilden eine wiederholbare visuelle Sprache."],
+];
+
+const quickRead = [
+  ["Aufgabe", "Gymera als KI-Fitnessprodukt schnell verstaendlich machen: fuer Website-Besucher, App-Nutzer und B2B-Entscheider."],
+  ["Mein Beitrag", "Informationsarchitektur, visuelle Richtung, Landingpage-System, erste App- und Dashboard-Screens, kompakter UI Kit."],
+  ["Ergebnis", "Ein Portfolio-Case, der in wenigen Sekunden Produkt, Zielgruppen, Interface-Logik und Designsystem zeigt."],
+  ["Artefakte", "Produktwebsite, Segment-Landingpages, Dashboard-Konzept, Mobile Flow, Styleguide und Komponentenlogik."],
+];
+
+const contribution = [
+  ["01", "Positionierung", "Ich habe Gymera nicht nur als Fitnessgeraet, sondern als Plattform fuer mehrere Nutzungsszenarien strukturiert."],
+  ["02", "Website-System", "Ich habe die Landingpages so aufgebaut, dass jede Zielgruppe eine eigene Nutzenargumentation bekommt."],
+  ["03", "App-Logik", "Ich habe die ersten UI-Screens auf Training, Feedback, Fortschritt und Steuerung verdichtet."],
+  ["04", "Design Kit", "Ich habe Farben, Komponenten, Datenmodule und mobile Muster zu einem wiederholbaren System zusammengefuehrt."],
+];
+
+const productSections = [
+  ["Home Fitness", "Privates Training mit platzsparendem Setup und persoenlicher Steuerung."],
+  ["Hotel Fitness", "Premium-Fitness als Service fuer Gaeste ohne grossen Raumaufwand."],
+  ["Corporate Fitness", "Gesundheit und Bewegung im Arbeitsalltag mit messbarem Nutzen."],
+  ["Personal Trainer", "Ein System fuer individuelle Betreuung und skalierbare Trainingsplaene."],
+  ["Rehabilitation", "Programme fuer Erholung, Aufbau und kontrollierte Bewegung."],
+];
+
+const metrics = [
+  ["67%", "weniger Platzbedarf"],
+  ["90%", "Funktionen abgedeckt"],
+  ["1000+", "Workouts"],
+  ["24/7", "digitale Betreuung"],
+];
+
+const tokens = [
+  ["Primary", "#9f5cff"],
+  ["Electric", "#3189ff"],
+  ["Signal", "#98ff44"],
+  ["Ink", "#05070a"],
+  ["Cloud", "#edf5ff"],
+  ["Line", "#d8e2ef"],
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Gymera Fitness Tech Case Study - Product Website, App UI und Design Kit von Andrii Prokhorovych." />
+    <title>Gymera Product Design - Andrii Prokhorovych</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={base}>PROKHA</a>
+      <a class="back-link" href={`${base}#projects`}>
+        <span aria-hidden="true">←</span>
+        Zurueck zu den Projekten
+      </a>
+      <div class="header-actions">
+        <a class="button light small edit-page" data-owner-only data-edit-only hidden href={`${base}editor/?project=gymera`}>Редактировать</a>
+      </div>
+    </header>
+
+    <main>
+      <aside class="case-sidebar">
+        <div>
+          <p class="eyebrow">Case Study · 2025</p>
+          <div class="gymera-mark" aria-label="Gymera">GYMERA</div>
+          <h1>Fitness-Technologie als Produkt, App und Designsystem</h1>
+          <p class="intro">
+            Ein Portfolio-Case fuer Gymera: Produktwebsite, erste App-Screens, Dashboard,
+            mobile Experience und ein kompakter Styleguide in einer zusammenhaengenden Story.
+          </p>
+        </div>
+
+        <dl>
+          {facts.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <nav aria-label="Case-Study-Navigation">
+          <a href="#ueberblick">01 Website</a>
+          <a href="#beitrag">02 Beitrag</a>
+          <a href="#produkt">03 Produkt</a>
+          <a href="#app">04 App UI</a>
+          <a href="#kit">05 Design Kit</a>
+        </nav>
+      </aside>
+
+      <article class="case-content">
+        <section id="ueberblick" class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Fitness Tech · Product Experience</p>
+            <h2>Ein KI-Fitnesssystem fuer mehrere Nutzungsszenarien</h2>
+            <p>
+              Gymera brauchte eine visuelle Produktlogik, die Hardware, Training, KI-Analyse
+              und unterschiedliche Zielgruppen zusammenbringt. Der Case zeigt das System als
+              Website, App-Oberflaeche und Designbaukasten.
+            </p>
+          </div>
+          <div class="hero-media">
+            <img src={`${media}/customer-overview.png`} alt="Gymera Produktwebsite mit fuenf Zielgruppen-Landingpages" />
+            <span>Product Website · Zielgruppen und Use Cases</span>
+          </div>
+        </section>
+
+        <section class="reel-section" aria-labelledby="reel-title">
+          <div class="section-copy">
+            <p class="eyebrow">Remotion Experiment</p>
+            <h2 id="reel-title">Product Story als kurzer Motion-Reel</h2>
+            <p>
+              Das Reel folgt der Case-Logik aus dem Portfolio-Framework: Kontext, Aufgabe,
+              Entscheidung und Ergebnis werden in wenigen Sekunden lesbar. So wirkt Gymera
+              nicht wie eine reine Screensammlung, sondern wie ein Produkt mit klarer Rolle.
+            </p>
+          </div>
+          <div class="reel-frame">
+            <video controls preload="metadata" poster={`${media}/customer-overview.png`}>
+              <source src={`${media}/reel-preview.mp4`} type="video/mp4" />
+            </video>
+            <span>Remotion Preview · Gymera Product Story Reel</span>
+          </div>
+        </section>
+
+        <section class="quick-read" aria-label="5-second portfolio read">
+          <div class="section-copy">
+            <p class="eyebrow">5-second read</p>
+            <h2>Was man sofort verstehen soll</h2>
+          </div>
+          <div class="quick-grid">
+            {quickRead.map(([label, text]) => (
+              <article>
+                <span>{label}</span>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="beitrag" class="contribution-section">
+          <div class="section-number">02</div>
+          <div class="section-copy">
+            <p class="eyebrow">Mein Beitrag</p>
+            <h2>Ich zeige nicht nur Screens, sondern meine Design-Entscheidungen</h2>
+            <p>
+              Der Case ist bewusst wie ein Hiring-Review aufgebaut: erst Kontext und Rolle,
+              dann die wichtigsten Produktentscheidungen, danach Screens und System. So wird
+              sichtbar, welche Probleme ich geloest habe und nicht nur, wie die Oberflaeche aussieht.
+            </p>
+          </div>
+          <div class="contribution-grid">
+            {contribution.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="produkt" class="product-section">
+          <div class="section-copy">
+            <p class="eyebrow">Product Website</p>
+            <h2>Eine Website, die verschiedene Fitness-Kontexte bedienen kann</h2>
+            <p>
+              Die Landingpages arbeiten mit derselben visuellen Grammatik, wechseln aber die
+              Tonalitaet je nach Einsatzbereich: privat, Hotel, Unternehmen, Training oder
+              Rehabilitation.
+            </p>
+          </div>
+          <div class="segment-grid">
+            {productSections.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+          <figure class="wide-frame">
+            <img src={`${media}/dashboard-overview.png`} alt="Gymera Website-System mit langen Produktseiten und Service-Modulen" loading="lazy" />
+            <figcaption>Website-System · Produktseiten, Service Center, Showrooms und Vision</figcaption>
+          </figure>
+        </section>
+
+        <section class="metrics-section" aria-label="Produktmetriken">
+          <div class="metric-grid">
+            {metrics.map(([value, label]) => (
+              <article>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="app" class="app-section">
+          <div class="section-copy">
+            <p class="eyebrow">App und Dashboard</p>
+            <h2>Erste Screens fuer Training, Steuerung und Fortschritt</h2>
+            <p>
+              Die App-Ebene konzentriert sich auf das, was Nutzer sofort verstehen muessen:
+              aktueller Trainingsstatus, Programm, Bewegungskontrolle, KI-Feedback und
+              Fortschritt ueber Zeit.
+            </p>
+          </div>
+
+          <div class="interface-stage">
+            <div class="dashboard-mock" aria-label="Gymera Dashboard Mockup">
+              <div class="dashboard-top">
+                <div>
+                  <span>GYMERA Control</span>
+                  <h3>Training Dashboard</h3>
+                </div>
+                <button type="button">Live Session</button>
+              </div>
+              <div class="dashboard-layout">
+                <div class="panel session-panel">
+                  <p class="panel-label">Current program</p>
+                  <h4>Full Body AI</h4>
+                  <div class="progress-ring"><span>86</span></div>
+                  <p>Form score · adaptive resistance active</p>
+                </div>
+                <div class="panel chart-panel">
+                  <p class="panel-label">Weekly load</p>
+                  <div class="bars">
+                    <span style="height: 44%"></span>
+                    <span style="height: 62%"></span>
+                    <span style="height: 38%"></span>
+                    <span style="height: 74%"></span>
+                    <span style="height: 88%"></span>
+                    <span style="height: 57%"></span>
+                    <span style="height: 69%"></span>
+                  </div>
+                </div>
+                <div class="panel feed-panel">
+                  <p class="panel-label">AI Coaching</p>
+                  <ul>
+                    <li>Balance correction detected</li>
+                    <li>Resistance lowered for left shoulder</li>
+                    <li>Next block: controlled rotation</li>
+                  </ul>
+                </div>
+                <div class="panel control-panel">
+                  <p class="panel-label">Device</p>
+                  <h4>Gymera One</h4>
+                  <div class="device-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-mock" aria-label="Gymera Mobile Mockup">
+              <div class="phone-screen">
+                <div class="phone-status">
+                  <span>9:41</span>
+                  <span>● ● ●</span>
+                </div>
+                <div class="mobile-hero">
+                  <span>Today</span>
+                  <h3>Strength Control</h3>
+                  <p>32 min · upper body</p>
+                </div>
+                <div class="mobile-score">
+                  <strong>92%</strong>
+                  <span>movement quality</span>
+                </div>
+                <div class="mobile-list">
+                  <article>
+                    <span></span>
+                    <div>
+                      <strong>Cable row</strong>
+                      <p>3 sets · smart resistance</p>
+                    </div>
+                  </article>
+                  <article>
+                    <span></span>
+                    <div>
+                      <strong>Core rotation</strong>
+                      <p>2 sets · posture control</p>
+                    </div>
+                  </article>
+                  <article>
+                    <span></span>
+                    <div>
+                      <strong>Recovery</strong>
+                      <p>breathing and cooldown</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="highlights">
+          <div class="section-number">04</div>
+          <div class="section-copy">
+            <p class="eyebrow">Highlights</p>
+            <h2>Was der Case sichtbar macht</h2>
+          </div>
+          <div class="highlight-grid">
+            {highlights.map(([title, text], index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="kit" class="kit-section">
+          <div class="section-copy">
+            <p class="eyebrow">Styleguide und UI Kit</p>
+            <h2>Ein kompakter Designbaukasten fuer Website und App</h2>
+            <p>
+              Der Kit verbindet dunkle Produktinszenierung mit hellen Informationsflaechen.
+              Violett, Blau und Signalgruen setzen Akzente fuer Aktionen, KI-Feedback und
+              Trainingsmetriken.
+            </p>
+          </div>
+          <div class="kit-grid">
+            <article class="token-card">
+              <h3>Color Tokens</h3>
+              <div class="token-list">
+                {tokens.map(([name, value]) => (
+                  <div>
+                    <span style={`background: ${value}`}></span>
+                    <strong>{name}</strong>
+                    <code>{value}</code>
+                  </div>
+                ))}
+              </div>
+            </article>
+            <article class="component-card">
+              <h3>Components</h3>
+              <button type="button">Start workout</button>
+              <button class="secondary" type="button">View analytics</button>
+              <div class="mini-card">
+                <span>AI recommendation</span>
+                <strong>Reduce load by 8%</strong>
+                <p>Detected asymmetry in the last set.</p>
+              </div>
+            </article>
+            <article class="type-card">
+              <h3>Typography</h3>
+              <p class="display">Training intelligence</p>
+              <p class="body-copy">Clear hierarchy for dense data, product storytelling and compact mobile controls.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="result">
+          <div class="section-number">05</div>
+          <div class="result-copy">
+            <p class="eyebrow">Ergebnis</p>
+            <h2>Gymera wird als skalierbares Fitness-Tech-Produkt erlebbar</h2>
+            <p>
+              Der Portfolio-Case zeigt nicht nur einzelne Screens, sondern eine Produktwelt:
+              Website-Story, App-Einstieg, Dashboard-Logik, mobile Nutzung und ein Styleguide,
+              der die visuelle Sprache fuer weitere Screens tragfaehig macht.
+            </p>
+          </div>
+        </section>
+      </article>
+    </main>
+    <MotionEnhance />
+  </body>
+</html>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const ownerParam = params.get("owner");
+  const editParam = params.get("edit");
+  if (ownerParam === "1") localStorage.setItem("prokha-owner-mode", "1");
+  if (ownerParam === "0") localStorage.removeItem("prokha-owner-mode");
+  localStorage.removeItem("prokha-edit-links");
+
+  let editLinksVisible = editParam === "1";
+  const revealOwnerControls = () => {
+    const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
+    const showEditLinks = isOwner && editLinksVisible;
+    document.querySelectorAll("[data-owner-only]").forEach((element) => {
+      element.hidden = !isOwner;
+    });
+    document.querySelectorAll("[data-edit-only]").forEach((element) => {
+      element.hidden = !showEditLinks;
+    });
+  };
+
+  revealOwnerControls();
+
+  let editCommand = "";
+  document.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+    editCommand = (editCommand + event.key.toLowerCase()).slice(-4);
+    if (editCommand === "edit") {
+      editLinksVisible = true;
+      revealOwnerControls();
+    }
+  });
+</script>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #eef4fb;
+    --paper: #fff;
+    --ink: #05070a;
+    --muted: #607080;
+    --line: rgba(5, 7, 10, .12);
+    --accent: #9f5cff;
+    --blue: #3189ff;
+    --signal: #98ff44;
+    --cloud: #edf5ff;
+    --radius: 8px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  p, h1, h2, h3, h4, dl, dd, figure, ul { margin: 0; }
+  ul { list-style: none; padding: 0; }
+  img, video { display: block; max-width: 100%; }
+  button { font: inherit; }
+  [hidden] { display: none !important; }
+
+  .site-header {
+    align-items: center;
+    background: rgba(238, 244, 251, .92);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    left: 0;
+    padding: 20px clamp(20px, 4vw, 72px);
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(18px);
+  }
+
+  .brand { font-size: 28px; font-weight: 900; }
+  .back-link { font-size: 14px; font-weight: 800; }
+  .back-link span { margin-right: 8px; }
+  .button {
+    align-items: center;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+  }
+  .button.light { background: transparent; }
+  .button.small { justify-self: end; min-height: 42px; }
+  .header-actions { display: flex; gap: 8px; justify-self: end; }
+  .edit-page {
+    background: transparent !important;
+    border-color: rgba(5, 7, 10, .18) !important;
+    color: rgba(5, 7, 10, .46) !important;
+  }
+
+  main { display: grid; grid-template-columns: minmax(280px, 25vw) minmax(0, 1fr); }
+  .case-sidebar {
+    align-content: space-between;
+    background: var(--paper);
+    border-right: 1px solid var(--line);
+    display: grid;
+    gap: 44px;
+    height: calc(100vh - 83px);
+    padding: clamp(36px, 4vw, 64px) clamp(24px, 3vw, 48px);
+    position: sticky;
+    top: 83px;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .gymera-mark {
+    align-items: center;
+    background: var(--ink);
+    border-radius: 6px;
+    color: #fff;
+    display: inline-flex;
+    font-size: 18px;
+    font-weight: 950;
+    height: 44px;
+    letter-spacing: .05em;
+    margin-bottom: 32px;
+    padding: 0 18px;
+  }
+  h1 { font-size: clamp(25px, 2.25vw, 38px); hyphens: auto; line-height: 1.08; overflow-wrap: anywhere; }
+  h2 { font-size: clamp(32px, 4.5vw, 68px); line-height: 1.02; max-width: 940px; }
+  .intro, .section-copy > p:last-child, .result-copy > p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 22px;
+  }
+  dl { border-top: 1px solid var(--line); }
+  dl div { border-bottom: 1px solid var(--line); display: flex; gap: 18px; justify-content: space-between; padding: 11px 0; }
+  dt { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  dd { font-size: 13px; font-weight: 800; text-align: right; }
+  nav { display: grid; gap: 10px; }
+  nav a { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  nav a:hover { color: var(--ink); }
+
+  .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
+  .hero { min-height: calc(100vh - 83px); }
+  .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
+  .hero-copy .eyebrow { grid-column: 1 / -1; }
+  .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
+  .hero-media, .wide-frame {
+    background: var(--ink);
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: var(--radius);
+    box-shadow: 0 26px 80px rgba(42, 59, 88, .18);
+    overflow: hidden;
+  }
+  .hero-media img { aspect-ratio: 21 / 9; object-fit: cover; object-position: center; width: 100%; }
+  .hero-media span, figcaption {
+    color: rgba(255, 255, 255, .82);
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
+
+  .reel-section {
+    background:
+      radial-gradient(circle at 82% 10%, rgba(152, 255, 68, .16), transparent 28%),
+      linear-gradient(135deg, #05070a, #121b2b);
+    color: #fff;
+  }
+  .reel-section .eyebrow,
+  .reel-section .section-copy > p:last-child {
+    color: rgba(255, 255, 255, .74);
+  }
+  .reel-frame {
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: var(--radius);
+    box-shadow: 0 30px 90px rgba(5, 7, 10, .26);
+    margin-top: 48px;
+    overflow: hidden;
+  }
+  .reel-frame video {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    object-fit: cover;
+    width: 100%;
+  }
+  .reel-frame span {
+    color: rgba(255, 255, 255, .78);
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
+
+  .quick-read {
+    background: #fff;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  }
+  .quick-read h2 {
+    font-size: clamp(30px, 3.6vw, 54px);
+  }
+  .quick-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .quick-grid article {
+    background: var(--cloud);
+    border: 1px solid rgba(49, 137, 255, .16);
+    border-radius: var(--radius);
+    min-height: 174px;
+    padding: 22px;
+  }
+  .quick-grid span {
+    color: var(--blue);
+    display: block;
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .quick-grid p {
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 750;
+    line-height: 1.45;
+    margin-top: 28px;
+  }
+
+  .contribution-section {
+    background:
+      radial-gradient(circle at 84% 16%, rgba(159, 92, 255, .14), transparent 24%),
+      #f7faff;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  .contribution-grid {
+    display: grid;
+    gap: 14px;
+    grid-column: 2;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 18px;
+  }
+  .contribution-grid article {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 250px;
+    padding: 24px;
+  }
+  .contribution-grid span {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 950;
+  }
+  .contribution-grid h3 {
+    font-size: 21px;
+    line-height: 1.12;
+    margin-top: 58px;
+  }
+  .contribution-grid p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.58;
+    margin-top: 14px;
+  }
+
+  .product-section { background: #fff; }
+  .section-copy { max-width: 880px; }
+  .segment-grid { display: grid; gap: 14px; grid-template-columns: repeat(5, 1fr); margin-top: 44px; }
+  .segment-grid article {
+    background: var(--cloud);
+    border: 1px solid rgba(49, 137, 255, .15);
+    border-radius: var(--radius);
+    min-height: 190px;
+    padding: 22px;
+  }
+  .segment-grid h3 { font-size: 18px; line-height: 1.18; }
+  .segment-grid p { color: var(--muted); font-size: 14px; line-height: 1.55; margin-top: 14px; }
+  .wide-frame { margin-top: 44px; }
+  .wide-frame img { aspect-ratio: 16 / 8.5; object-fit: cover; object-position: center; width: 100%; }
+
+  .metrics-section {
+    background:
+      radial-gradient(circle at 80% 10%, rgba(152, 255, 68, .18), transparent 28%),
+      linear-gradient(135deg, #05070a, #111b2b);
+    color: #fff;
+  }
+  .metric-grid { display: grid; gap: 18px; grid-template-columns: repeat(4, 1fr); }
+  .metric-grid article { border: 1px solid rgba(255, 255, 255, .14); border-radius: var(--radius); min-width: 0; overflow: hidden; padding: 28px; }
+  .metric-grid strong { color: var(--signal); display: block; font-size: clamp(34px, 4vw, 64px); line-height: 1; overflow-wrap: anywhere; }
+  .metric-grid span { color: rgba(255, 255, 255, .72); display: block; font-size: 14px; font-weight: 800; margin-top: 14px; text-transform: uppercase; }
+
+  .app-section {
+    background:
+      linear-gradient(180deg, #edf5ff 0%, #fff 100%);
+  }
+  .interface-stage { align-items: end; display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr) minmax(260px, 340px); margin-top: 48px; }
+  .dashboard-mock {
+    background: #05070a;
+    border-radius: 18px;
+    box-shadow: 0 30px 90px rgba(5, 7, 10, .22);
+    color: #fff;
+    overflow: hidden;
+    padding: 26px;
+  }
+  .dashboard-top { align-items: center; display: flex; justify-content: space-between; margin-bottom: 24px; }
+  .dashboard-top span, .panel-label { color: #8fa0b8; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  .dashboard-top h3 { font-size: 32px; margin-top: 6px; }
+  .dashboard-top button, .component-card button {
+    background: var(--accent);
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+    min-height: 44px;
+    padding: 0 18px;
+  }
+  .dashboard-layout { display: grid; gap: 14px; grid-template-columns: 1.2fr 1fr; }
+  .panel {
+    background: #0d1420;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 10px;
+    min-height: 190px;
+    padding: 20px;
+  }
+  .panel h4 { font-size: 23px; margin-top: 10px; }
+  .panel p:last-child, .feed-panel li { color: #b7c4d7; font-size: 13px; line-height: 1.55; }
+  .progress-ring {
+    align-items: center;
+    background: conic-gradient(var(--signal) 0 86%, rgba(255, 255, 255, .12) 86% 100%);
+    border-radius: 50%;
+    display: flex;
+    height: 128px;
+    justify-content: center;
+    margin: 22px 0;
+    width: 128px;
+  }
+  .progress-ring span {
+    align-items: center;
+    background: #0d1420;
+    border-radius: 50%;
+    color: var(--signal);
+    display: flex;
+    font-size: 34px;
+    font-weight: 950;
+    height: 92px;
+    justify-content: center;
+    width: 92px;
+  }
+  .bars { align-items: end; display: flex; gap: 10px; height: 148px; margin-top: 24px; }
+  .bars span { background: linear-gradient(180deg, var(--blue), var(--accent)); border-radius: 999px 999px 4px 4px; flex: 1; min-height: 28px; }
+  .feed-panel ul { display: grid; gap: 12px; margin-top: 22px; }
+  .feed-panel li { border-bottom: 1px solid rgba(255, 255, 255, .08); padding-bottom: 12px; }
+  .device-lines { display: grid; gap: 16px; margin-top: 28px; }
+  .device-lines span { background: linear-gradient(90deg, var(--blue), transparent); border-radius: 999px; height: 8px; }
+  .device-lines span:nth-child(2) { width: 72%; }
+  .device-lines span:nth-child(3) { width: 48%; }
+
+  .phone-mock {
+    background: #121820;
+    border: 10px solid #05070a;
+    border-radius: 36px;
+    box-shadow: 0 28px 80px rgba(5, 7, 10, .22);
+    padding: 10px;
+  }
+  .phone-screen {
+    background: #f6f9fd;
+    border-radius: 24px;
+    min-height: 640px;
+    overflow: hidden;
+    padding: 18px;
+  }
+  .phone-status { display: flex; font-size: 12px; font-weight: 900; justify-content: space-between; }
+  .mobile-hero {
+    background: linear-gradient(135deg, #05070a, #182337);
+    border-radius: 18px;
+    color: #fff;
+    margin-top: 18px;
+    min-height: 180px;
+    padding: 22px;
+  }
+  .mobile-hero span { color: var(--signal); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+  .mobile-hero h3 { font-size: 31px; line-height: 1.03; margin-top: 38px; }
+  .mobile-hero p { color: rgba(255, 255, 255, .72); font-size: 13px; margin-top: 10px; }
+  .mobile-score {
+    align-items: center;
+    background: #fff;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding: 18px;
+  }
+  .mobile-score strong { color: var(--blue); font-size: 34px; }
+  .mobile-score span { color: var(--muted); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+  .mobile-list { display: grid; gap: 10px; margin-top: 14px; }
+  .mobile-list article {
+    align-items: center;
+    background: #fff;
+    border-radius: 14px;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 38px 1fr;
+    padding: 14px;
+  }
+  .mobile-list article > span { background: var(--cloud); border-radius: 10px; height: 38px; }
+  .mobile-list strong { font-size: 14px; }
+  .mobile-list p { color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+  .highlights { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
+  .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
+  .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
+  .highlight-grid article { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-height: 260px; padding: 26px; }
+  .highlight-grid span { color: var(--blue); font-size: 12px; font-weight: 900; }
+  .highlight-grid h3 { font-size: 20px; line-height: 1.2; margin-top: 54px; }
+  .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .kit-section { background: #fff; }
+  .kit-grid { display: grid; gap: 18px; grid-template-columns: 1fr 1fr 1fr; margin-top: 46px; }
+  .kit-grid article { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .kit-grid h3 { font-size: 22px; margin-bottom: 24px; }
+  .token-list { display: grid; gap: 12px; }
+  .token-list div { align-items: center; display: grid; gap: 10px; grid-template-columns: 34px 1fr auto; }
+  .token-list span { border: 1px solid rgba(5, 7, 10, .12); border-radius: 50%; height: 34px; width: 34px; }
+  code { color: var(--muted); font-size: 12px; }
+  .component-card { display: grid; gap: 12px; align-content: start; }
+  .component-card .secondary { background: #eef4fb; color: var(--ink); }
+  .mini-card { background: #05070a; border-radius: 8px; color: #fff; margin-top: 8px; padding: 18px; }
+  .mini-card span { color: var(--signal); font-size: 11px; font-weight: 900; text-transform: uppercase; }
+  .mini-card strong { display: block; font-size: 19px; margin-top: 12px; }
+  .mini-card p { color: rgba(255, 255, 255, .68); font-size: 13px; line-height: 1.45; margin-top: 8px; }
+  .display { font-size: clamp(38px, 4vw, 56px); font-weight: 950; letter-spacing: 0; line-height: .95; }
+  .body-copy { color: var(--muted); font-size: 16px; line-height: 1.7; margin-top: 24px; }
+
+  .result {
+    background:
+      radial-gradient(circle at 80% 18%, rgba(152, 255, 68, .16), transparent 28%),
+      linear-gradient(135deg, #05070a, #121b2b);
+    color: #fff;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  .result .eyebrow, .result-copy > p { color: rgba(255, 255, 255, .74); }
+  .result-copy { max-width: 920px; }
+
+  @media (max-width: 1180px) {
+    .site-header { grid-template-columns: 1fr auto; }
+    .back-link { display: none; }
+    main { grid-template-columns: 1fr; }
+    .case-sidebar { height: auto; position: static; }
+    .case-sidebar nav { display: none; }
+    .hero { min-height: auto; }
+    .segment-grid { grid-template-columns: repeat(2, 1fr); }
+    .quick-read { grid-template-columns: 1fr; }
+    .contribution-grid { grid-template-columns: repeat(2, 1fr); }
+    .interface-stage, .kit-grid { grid-template-columns: 1fr; }
+    .phone-mock { max-width: 360px; }
+  }
+
+  @media (max-width: 720px) {
+    .site-header { padding: 14px 18px; }
+    .brand { font-size: 20px; }
+    .button.small { font-size: 11px; min-height: 38px; padding: 0 10px; }
+    main, .case-sidebar, .case-content { max-width: 100vw; min-width: 0; width: 100%; }
+    .case-sidebar { overflow: hidden; padding: 36px 18px; }
+    .case-content { overflow: hidden; }
+    .case-content > section { max-width: 100vw; padding-left: 18px; padding-right: 18px; width: 100%; }
+    .hero-copy, .contribution-section, .highlights, .result { grid-template-columns: minmax(0, 1fr); }
+    .hero-copy > *, .section-copy > *, .result-copy > * { min-width: 0; max-width: 100%; }
+    .hero-copy .eyebrow, .contribution-grid, .highlight-grid { grid-column: 1; }
+    .quick-grid, .contribution-grid, .segment-grid, .metric-grid, .dashboard-layout, .highlight-grid { grid-template-columns: 1fr; }
+    .section-number { display: none; }
+    .hero-media img, .wide-frame img { aspect-ratio: 4 / 3; }
+    h2 { font-size: clamp(32px, 12vw, 48px); }
+  }
+</style>

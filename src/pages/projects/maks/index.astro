@@ -1,0 +1,498 @@
+---
+import MotionEnhance from "../../../components/MotionEnhance.astro";
+
+const base = import.meta.env.BASE_URL;
+const media = `${base}projects/maks`;
+
+const facts = [
+  ["Kunde", "MAKS-Therapien"],
+  ["Plattform", "Website"],
+  ["Jahr", "2024"],
+  ["Rolle", "Webdesign, UX Struktur"],
+];
+
+const pillars = [
+  ["Motorik", "Bewegung wird als aktivierende, alltagsnahe Therapiekomponente sichtbar."],
+  ["Alltag", "Praktische Faehigkeiten und Selbststaendigkeit bleiben ein eigener Schwerpunkt."],
+  ["Kognition", "Uebungen und Inhalte werden klar als geistige Aktivierung eingeordnet."],
+  ["Soziales", "Die Therapie wird nicht isoliert, sondern als betreute Gruppenerfahrung verstanden."],
+];
+
+const screens = [
+  ["home-preview.jpg", "Startseite", "Schneller Einstieg in Nutzen, Zielgruppen und wissenschaftliche Grundlage."],
+  ["therapien-preview.jpg", "Therapieangebot", "Die vier MAKS-Bausteine werden als verstaendliches System praesentiert."],
+  ["about-preview.jpg", "Ueber MAKS", "Hintergrund, Entwicklung und fachliche Einordnung schaffen Orientierung."],
+];
+
+const trustItems = [
+  ["Zertifizierung", "Qualitaetssicherung und Partner werden frueh sichtbar, damit das Angebot serioes und belastbar wirkt."],
+  ["Aktuelles & Media", "News, Materialien und externe Beitraege geben dem Projekt einen lebendigen Informationsbereich."],
+  ["Navigation", "Die Seite fuehrt unterschiedliche Zielgruppen: Pflegeeinrichtungen, Tagespflege, Gemeinden und Angehoerige."],
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="MAKS-Therapien Case Study - Website und UX Struktur fuer ein nicht-medikamentoeses Therapieangebot bei Demenz." />
+    <title>MAKS-Therapien Website - Andrii Prokhorovych</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={base}>PROKHA</a>
+      <a class="back-link" href={`${base}#projects`}>
+        <span aria-hidden="true">←</span>
+        Zurueck zu den Projekten
+      </a>
+      <div class="header-actions">
+        <a class="button light small edit-page" data-owner-only data-edit-only hidden href={`${base}editor/?project=maks`}>Редактировать</a>
+        <a class="button dark small" data-owner-only hidden href="https://prokha.webflow.io/works/demenz-bremsen-durch-aktivierung" target="_blank" rel="noreferrer">Original ansehen</a>
+      </div>
+    </header>
+
+    <main>
+      <aside class="case-sidebar">
+        <div>
+          <p class="eyebrow">Case Study · 2024</p>
+          <img class="client-logo" src={`${media}/logo.png`} alt="MAKS" />
+          <h1>Demenztherapie als klare, vertrauensvolle Website</h1>
+          <p class="intro">
+            MAKS ist eine nicht-medikamentoese Therapie fuer Menschen mit Demenz.
+            Der Case zeigt, wie ein komplexes Pflege- und Wissenschaftsthema
+            verstaendlich, ruhig und zielgruppenfreundlich strukturiert wurde.
+          </p>
+        </div>
+
+        <dl>
+          {facts.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <nav aria-label="Case-Study-Navigation">
+          <a href="#ueberblick">01 Ueberblick</a>
+          <a href="#system">02 Therapiesystem</a>
+          <a href="#screens">03 Website</a>
+          <a href="#vertrauen">04 Vertrauen</a>
+          <a href="#ergebnis">05 Ergebnis</a>
+        </nav>
+      </aside>
+
+      <article class="case-content">
+        <section id="ueberblick" class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Healthcare · Dementia Therapy</p>
+            <h2>Ein sensibles Thema braucht schnelle Orientierung</h2>
+            <p>
+              Die Website muss mehrere Dinge gleichzeitig leisten: wissenschaftliche
+              Seriositaet vermitteln, das MAKS-Prinzip erklaeren und Pflegeeinrichtungen,
+              Tagespflege, Gemeinden und Angehoerige ohne Ueberforderung fuehren.
+            </p>
+          </div>
+          <div class="hero-media">
+            <img src={`${media}/hero.jpg`} alt="MAKS Website Cover mit aelterem Paar und Logo" />
+            <span>Website Relaunch · Demenz bremsen durch Aktivierung</span>
+          </div>
+        </section>
+
+        <section class="quick-read" aria-label="5-second portfolio read">
+          <div>
+            <p class="eyebrow">5-second read</p>
+            <h2>Was sofort klar werden soll</h2>
+          </div>
+          <div class="quick-grid">
+            <article>
+              <span>Aufgabe</span>
+              <p>Ein fachliches Therapieangebot in eine ruhige, verstaendliche Website uebersetzen.</p>
+            </article>
+            <article>
+              <span>Loesung</span>
+              <p>Vier klare Therapiebausteine, kurze Nutzenargumente und sichtbare Vertrauenssignale.</p>
+            </article>
+            <article>
+              <span>Rolle</span>
+              <p>Informationsarchitektur, visuelle Ordnung, Seitenstruktur und UI-Rhythmus.</p>
+            </article>
+            <article>
+              <span>Ergebnis</span>
+              <p>Ein Healthcare-Auftritt, der seriös wirkt und trotzdem menschlich bleibt.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="system" class="pillar-section">
+          <div class="section-number">02</div>
+          <div class="section-copy">
+            <p class="eyebrow">Therapieprinzip</p>
+            <h2>Vier Bausteine werden zur einfachen Erklaerstruktur</h2>
+            <p>
+              Statt die Methode nur als Textblock zu beschreiben, wird MAKS als System
+              aus Motorik, Alltag, Kognition und sozialer Interaktion lesbar. Das hilft
+              Besuchern, den Ansatz schnell einzuordnen.
+            </p>
+          </div>
+          <div class="pillar-grid">
+            {pillars.map(([title, text], index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="screens" class="screens-section">
+          <div class="section-copy">
+            <p class="eyebrow">Website-System</p>
+            <h2>Die Seiten arbeiten wie ein gefuehrter Informationsweg</h2>
+            <p>
+              Die Gestaltung bleibt bewusst hell, weich und aufgeraeumt. Grosszuegige
+              Abstaende, klare Abschnitte und wiederholbare Module helfen dabei, ein
+              komplexes Thema freundlich zu strukturieren.
+            </p>
+          </div>
+          <div class="screen-grid">
+            {screens.map(([image, title, text]) => (
+              <article>
+                <img src={`${media}/${image}`} alt={`MAKS ${title} Website Screen`} loading="lazy" />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="vertrauen" class="trust-section">
+          <div class="section-copy">
+            <p class="eyebrow">Vertrauen und Aktivierung</p>
+            <h2>Healthcare Design muss belegen, nicht nur behaupten</h2>
+          </div>
+          <div class="trust-layout">
+            <div class="trust-images">
+              <img src={`${media}/certification-preview.jpg`} alt="MAKS Zertifizierung Website Screen" loading="lazy" />
+              <img src={`${media}/media-preview.jpg`} alt="MAKS Aktuelles und Media Website Screen" loading="lazy" />
+            </div>
+            <div class="trust-list">
+              {trustItems.map(([title, text]) => (
+                <article>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="ergebnis" class="result">
+          <div class="section-number">05</div>
+          <div class="result-copy">
+            <p class="eyebrow">Ergebnis</p>
+            <h2>Aus einem fachlichen Angebot wird eine klare, menschliche Website</h2>
+            <p>
+              Der Case zeigt MAKS als vertrauenswuerdiges Therapie-System: wissenschaftlich
+              fundiert, visuell ruhig, modular aufgebaut und fuer mehrere Zielgruppen
+              schnell verstaendlich.
+            </p>
+          </div>
+        </section>
+      </article>
+    </main>
+    <MotionEnhance />
+  </body>
+</html>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const ownerParam = params.get("owner");
+  const editParam = params.get("edit");
+  if (ownerParam === "1") localStorage.setItem("prokha-owner-mode", "1");
+  if (ownerParam === "0") localStorage.removeItem("prokha-owner-mode");
+  localStorage.removeItem("prokha-edit-links");
+
+  let editLinksVisible = editParam === "1";
+  const revealOwnerControls = () => {
+    const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
+    const showEditLinks = isOwner && editLinksVisible;
+    document.querySelectorAll("[data-owner-only]").forEach((element) => {
+      element.hidden = !isOwner;
+    });
+    document.querySelectorAll("[data-edit-only]").forEach((element) => {
+      element.hidden = !showEditLinks;
+    });
+  };
+
+  revealOwnerControls();
+
+  let editCommand = "";
+  document.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+    editCommand = (editCommand + event.key.toLowerCase()).slice(-4);
+    if (editCommand === "edit") {
+      editLinksVisible = true;
+      revealOwnerControls();
+    }
+  });
+</script>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4f7f5;
+    --paper: #fff;
+    --ink: #1b2420;
+    --muted: #66736d;
+    --line: rgba(27, 36, 32, .12);
+    --blue: #1595d3;
+    --green: #42a62a;
+    --red: #dd0040;
+    --yellow: #f7b712;
+    --soft: #edf7f1;
+    --radius: 8px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  p, h1, h2, h3, dl, dd, figure { margin: 0; }
+  img { display: block; max-width: 100%; }
+  [hidden] { display: none !important; }
+
+  .site-header {
+    align-items: center;
+    background: rgba(244, 247, 245, .92);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    left: 0;
+    padding: 20px clamp(20px, 4vw, 72px);
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 10;
+  }
+  .brand { font-size: 28px; font-weight: 900; }
+  .back-link { font-size: 14px; font-weight: 800; }
+  .back-link span { margin-right: 8px; }
+  .header-actions { display: flex; gap: 8px; justify-self: end; }
+  .button {
+    align-items: center;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+  }
+  .button.dark { background: var(--ink); color: #fff; }
+  .button.light { background: transparent; }
+  .button.small { min-height: 42px; }
+  .edit-page {
+    background: transparent !important;
+    border-color: rgba(27, 36, 32, .18) !important;
+    color: rgba(27, 36, 32, .46) !important;
+  }
+
+  main { display: grid; grid-template-columns: minmax(280px, 25vw) minmax(0, 1fr); }
+  .case-sidebar {
+    align-content: space-between;
+    background: var(--paper);
+    border-right: 1px solid var(--line);
+    display: grid;
+    gap: 44px;
+    height: calc(100vh - 83px);
+    padding: clamp(36px, 4vw, 64px) clamp(24px, 3vw, 48px);
+    position: sticky;
+    top: 83px;
+  }
+  .eyebrow {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .client-logo { height: 76px; margin-bottom: 30px; object-fit: contain; width: 76px; }
+  h1 { font-size: clamp(26px, 2.35vw, 40px); line-height: 1.08; }
+  h2 { font-size: clamp(34px, 4.5vw, 72px); letter-spacing: -.055em; line-height: .98; max-width: 940px; }
+  h3 { line-height: 1.14; }
+  .intro, .section-copy > p:last-child, .result-copy > p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 22px;
+  }
+  dl { border-top: 1px solid var(--line); }
+  dl div { border-bottom: 1px solid var(--line); display: flex; gap: 18px; justify-content: space-between; padding: 11px 0; }
+  dt { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  dd { font-size: 13px; font-weight: 800; text-align: right; }
+  nav { display: grid; gap: 10px; }
+  nav a { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  nav a:hover { color: var(--ink); }
+
+  .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
+  .hero { min-height: calc(100vh - 83px); }
+  .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
+  .hero-copy .eyebrow { grid-column: 1 / -1; }
+  .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
+  .hero-media {
+    background: #dfe9e4;
+    border: 1px solid rgba(27, 36, 32, .1);
+    border-radius: var(--radius);
+    box-shadow: 0 30px 90px rgba(42, 68, 54, .14);
+    overflow: hidden;
+  }
+  .hero-media img { aspect-ratio: 18 / 10; object-fit: cover; object-position: center; width: 100%; }
+  .hero-media span {
+    color: var(--muted);
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
+
+  .quick-read {
+    background: #fff;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  }
+  .quick-read h2 { font-size: clamp(30px, 3.6vw, 56px); }
+  .quick-grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+  .quick-grid article {
+    background: var(--soft);
+    border: 1px solid rgba(66, 166, 42, .16);
+    border-radius: var(--radius);
+    min-height: 178px;
+    padding: 22px;
+  }
+  .quick-grid span { color: var(--green); display: block; font-size: 11px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+  .quick-grid p { color: var(--ink); font-size: 16px; font-weight: 750; line-height: 1.45; margin-top: 28px; }
+
+  .pillar-section {
+    background:
+      radial-gradient(circle at 84% 16%, rgba(21, 149, 211, .12), transparent 25%),
+      #f7fbf8;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
+  .section-copy { max-width: 900px; }
+  .pillar-grid { display: grid; gap: 14px; grid-column: 2; grid-template-columns: repeat(4, 1fr); margin-top: 18px; }
+  .pillar-grid article {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 250px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-grid article::before {
+    background: var(--blue);
+    border-radius: 0 0 16px 0;
+    content: "";
+    height: 8px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .pillar-grid article:nth-child(2)::before { background: var(--green); }
+  .pillar-grid article:nth-child(3)::before { background: var(--red); }
+  .pillar-grid article:nth-child(4)::before { background: var(--yellow); }
+  .pillar-grid span { color: var(--muted); font-size: 12px; font-weight: 950; }
+  .pillar-grid h3 { font-size: 26px; margin-top: 68px; }
+  .pillar-grid p { color: var(--muted); font-size: 14px; line-height: 1.58; margin-top: 14px; }
+
+  .screens-section { background: #fff; }
+  .screen-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 48px; }
+  .screen-grid article {
+    background: #f8faf9;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 22px 70px rgba(42, 68, 54, .1);
+    overflow: hidden;
+  }
+  .screen-grid img { aspect-ratio: 4 / 3; object-fit: cover; object-position: top; width: 100%; }
+  .screen-grid div { padding: 24px; }
+  .screen-grid h3 { font-size: 22px; }
+  .screen-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 12px; }
+
+  .trust-section {
+    background:
+      linear-gradient(135deg, rgba(21, 149, 211, .08), rgba(66, 166, 42, .08)),
+      #f4f7f5;
+  }
+  .trust-layout { display: grid; gap: 34px; grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr); margin-top: 48px; }
+  .trust-images { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
+  .trust-images img {
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 22px 70px rgba(42, 68, 54, .12);
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+  }
+  .trust-list { display: grid; gap: 12px; }
+  .trust-list article { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .trust-list h3 { font-size: 21px; }
+  .trust-list p { color: var(--muted); font-size: 14px; line-height: 1.62; margin-top: 12px; }
+
+  .result {
+    background:
+      radial-gradient(circle at 76% 16%, rgba(247, 183, 18, .16), transparent 28%),
+      linear-gradient(135deg, #1b2420, #314238);
+    color: #fff;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  .result .eyebrow, .result-copy > p { color: rgba(255, 255, 255, .74); }
+  .result-copy { max-width: 940px; }
+
+  @media (max-width: 1180px) {
+    .site-header { grid-template-columns: 1fr auto; }
+    .back-link { display: none; }
+    main { grid-template-columns: 1fr; }
+    .case-sidebar { height: auto; position: static; }
+    .case-sidebar nav { display: none; }
+    .hero { min-height: auto; }
+    .hero-copy, .quick-read, .trust-layout { grid-template-columns: 1fr; }
+    .pillar-grid, .screen-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 720px) {
+    .site-header { padding: 14px 18px; }
+    .brand { font-size: 20px; }
+    .button.small { font-size: 11px; min-height: 38px; padding: 0 10px; }
+    main, .case-sidebar, .case-content { max-width: 100vw; min-width: 0; width: 100%; }
+    .case-sidebar { overflow: hidden; padding: 36px 18px; }
+    .case-content { overflow: hidden; }
+    .case-content > section { max-width: 100vw; padding-left: 18px; padding-right: 18px; width: 100%; }
+    .pillar-section, .result { grid-template-columns: minmax(0, 1fr); }
+    .hero-copy .eyebrow, .pillar-grid { grid-column: 1; }
+    .quick-grid, .pillar-grid, .screen-grid, .trust-images { grid-template-columns: 1fr; }
+    .section-number { display: none; }
+    .hero-media img { aspect-ratio: 4 / 3; }
+    h2 { font-size: clamp(32px, 12vw, 48px); }
+  }
+</style>

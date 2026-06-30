@@ -17,6 +17,12 @@ const scenarios = [
   ["heading-kvasenok.jpg", "Kinderfest", "Kvasenok oeffnet die Familienperspektive mit Getraenkeideen, Food-Pairings und Geburtstagscontent.", "bottle-kvasenok.png"],
 ];
 
+const hoverStages = [
+  ["heading-secrets.jpg", "can-secrets.png", "01", "Familienrezept", "Hover oeffnet den Rezeptbereich mit Okroshka, Gemuese und Familien-Kvas."],
+  ["heading-ochakovo.jpg", "can-ochakovo.png", "02", "Sommerparty", "Der zweite Hover fuehrt in den Partybereich mit kaltem Kvas, Snacks und Sommerlaune."],
+  ["heading-kvasenok.jpg", "bottle-kvasenok.png", "03", "Kinderfest", "Der dritte Hover verschiebt die Geschichte zu Kvasenok und Familiencontent."],
+];
+
 const contentBlocks = [
   ["Okroshka-Rezepte", "Eine grosse Rezeptstrecke macht den Nutzen von Kvas konkret und fuehrt direkt zum Produkt."],
   ["Sommer-Tipps", "Artikel zu Snacks, Erfrischung und Partyplanung geben der Marke einen saisonalen Lebenskontext."],
@@ -73,9 +79,10 @@ const contentBlocks = [
         <nav aria-label="Case-Study-Navigation">
           <a href="#ueberblick">01 Ueberblick</a>
           <a href="#system">02 System</a>
-          <a href="#szenarien">03 Szenarien</a>
-          <a href="#content">04 Content</a>
-          <a href="#ergebnis">05 Ergebnis</a>
+          <a href="#hover-demo">03 Hover Demo</a>
+          <a href="#szenarien">04 Szenarien</a>
+          <a href="#content">05 Content</a>
+          <a href="#ergebnis">06 Ergebnis</a>
         </nav>
       </aside>
 
@@ -116,6 +123,61 @@ const contentBlocks = [
                 wirkt der Kvas nicht wie ein isoliertes Packshot-Produkt, sondern wie ein
                 Bestandteil einer sommerlichen Esssituation.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="hover-demo" class="hover-demo-section">
+          <div class="section-number">03</div>
+          <div class="section-copy">
+            <p class="eyebrow">Originalmechanik · Hover-Reveals</p>
+            <h2>Der Hero reagiert wie eine kleine Sommerbuehne</h2>
+            <p>
+              Im Originalprojekt war der Startscreen nicht nur Bild, sondern Interaktion:
+              Beim Hover oeffneten sich drei Produktgeschichten. Hier laeuft diese Mechanik
+              als kurze Demo automatisch durch und bleibt trotzdem per Hover steuerbar.
+            </p>
+          </div>
+
+          <div class="hover-reveal" data-hover-reveal>
+            <div class="hover-stage">
+              <img class="hover-base" src={`${media}/cover.jpg`} alt="Ochakovo Hero Startscreen vor dem Hover" loading="lazy" />
+              {hoverStages.map(([image, product, step, title, text], index) => (
+                <article
+                  class:list={["hover-layer", { "is-active": index === 0 }]}
+                  aria-hidden={index === 0 ? "false" : "true"}
+                  data-hover-layer
+                  data-title={title}
+                  data-text={text}
+                  tabindex={index === 0 ? "0" : "-1"}
+                >
+                  <img class="hover-layer-image" src={`${media}/${image}`} alt={`Ochakovo Hover ${title}`} loading="lazy" />
+                  <div class="hover-product-card">
+                    <span>{step}</span>
+                    <img src={`${media}/${product}`} alt={`Ochakovo ${title} Produkt`} loading="lazy" />
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div class="hover-panel">
+              <div>
+                <p class="eyebrow">Aktiver Hover</p>
+                <h3 data-hover-title>{hoverStages[0][3]}</h3>
+                <p data-hover-text>{hoverStages[0][4]}</p>
+              </div>
+              <div class="hover-dots" aria-label="Hover-Zustand auswaehlen">
+                {hoverStages.map(([, , step, title], index) => (
+                  <button
+                    class:list={{ "is-active": index === 0 }}
+                    type="button"
+                    aria-label={`${step} ${title}`}
+                    aria-current={index === 0 ? "true" : "false"}
+                    data-hover-dot
+                  >
+                    {step}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -214,6 +276,53 @@ const contentBlocks = [
       revealOwnerControls();
     }
   });
+
+  const hoverReveal = document.querySelector("[data-hover-reveal]");
+  const hoverLayers = Array.from(document.querySelectorAll("[data-hover-layer]"));
+  const hoverDots = Array.from(document.querySelectorAll("[data-hover-dot]"));
+  const hoverTitle = document.querySelector("[data-hover-title]");
+  const hoverText = document.querySelector("[data-hover-text]");
+
+  if (hoverReveal && hoverLayers.length > 1) {
+    let activeHover = 0;
+    let hoverAutoplay;
+
+    const showHover = (nextIndex) => {
+      hoverLayers[activeHover].classList.remove("is-active");
+      hoverLayers[activeHover].setAttribute("aria-hidden", "true");
+      hoverLayers[activeHover].setAttribute("tabindex", "-1");
+      hoverDots[activeHover]?.classList.remove("is-active");
+      hoverDots[activeHover]?.setAttribute("aria-current", "false");
+
+      activeHover = (nextIndex + hoverLayers.length) % hoverLayers.length;
+      const activeLayer = hoverLayers[activeHover];
+      activeLayer.classList.add("is-active");
+      activeLayer.setAttribute("aria-hidden", "false");
+      activeLayer.setAttribute("tabindex", "0");
+      hoverDots[activeHover]?.classList.add("is-active");
+      hoverDots[activeHover]?.setAttribute("aria-current", "true");
+      if (hoverTitle) hoverTitle.textContent = activeLayer.dataset.title || "";
+      if (hoverText) hoverText.textContent = activeLayer.dataset.text || "";
+    };
+
+    const stopHoverAutoplay = () => clearInterval(hoverAutoplay);
+    const startHoverAutoplay = () => {
+      stopHoverAutoplay();
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        hoverAutoplay = setInterval(() => showHover(activeHover + 1), 2600);
+      }
+    };
+
+    hoverDots.forEach((dot, index) => dot.addEventListener("click", () => {
+      showHover(index);
+      startHoverAutoplay();
+    }));
+    hoverReveal.addEventListener("pointerenter", stopHoverAutoplay);
+    hoverReveal.addEventListener("pointerleave", startHoverAutoplay);
+    hoverReveal.addEventListener("focusin", stopHoverAutoplay);
+    hoverReveal.addEventListener("focusout", startHoverAutoplay);
+    startHoverAutoplay();
+  }
 </script>
 
 <style>
@@ -370,6 +479,144 @@ const contentBlocks = [
   .wide-shot h3 { font-size: clamp(26px, 3vw, 44px); letter-spacing: -.04em; line-height: 1; }
   .wide-shot p { color: var(--muted); line-height: 1.65; margin-top: 18px; }
 
+  .hover-demo-section {
+    background:
+      radial-gradient(circle at 18% 10%, rgba(237, 186, 32, .18), transparent 26%),
+      linear-gradient(180deg, #fff, #f6fbeb);
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  .hover-reveal {
+    background: #102018;
+    border-radius: var(--radius);
+    box-shadow: 0 34px 100px rgba(20, 32, 49, .18);
+    grid-column: 2;
+    margin-top: 18px;
+    overflow: hidden;
+  }
+  .hover-stage {
+    aspect-ratio: 16 / 9;
+    background: #e8f1db;
+    isolation: isolate;
+    overflow: hidden;
+    position: relative;
+  }
+  .hover-base,
+  .hover-layer-image {
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    width: 100%;
+  }
+  .hover-base {
+    filter: saturate(.82) brightness(.78);
+    transform: scale(1.015);
+    z-index: 0;
+  }
+  .hover-layer {
+    border: 0;
+    inset: clamp(18px, 4vw, 54px);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translateY(24px) scale(.965);
+    transition: opacity .6s ease, transform .7s cubic-bezier(.2, .8, .2, 1);
+    z-index: 1;
+  }
+  .hover-layer::before {
+    background: linear-gradient(90deg, rgba(16, 32, 24, .34), transparent 46%);
+    border-radius: 22px;
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 2;
+  }
+  .hover-layer.is-active,
+  .hover-layer:hover,
+  .hover-layer:focus-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+  .hover-layer:focus-visible { outline: 2px solid #fff; outline-offset: 6px; }
+  .hover-layer-image {
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .3);
+    position: absolute;
+  }
+  .hover-product-card {
+    align-items: center;
+    background: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(255, 255, 255, .55);
+    border-radius: 22px;
+    bottom: clamp(18px, 4vw, 44px);
+    box-shadow: 0 22px 54px rgba(20, 32, 49, .24);
+    display: grid;
+    gap: 10px;
+    left: clamp(18px, 4vw, 44px);
+    min-width: 150px;
+    padding: 16px;
+    position: absolute;
+    z-index: 3;
+  }
+  .hover-product-card span {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .1em;
+  }
+  .hover-product-card img {
+    filter: drop-shadow(0 14px 20px rgba(20, 32, 49, .18));
+    height: 145px;
+    object-fit: contain;
+    width: 110px;
+  }
+  .hover-panel {
+    align-items: end;
+    color: #fff;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: clamp(22px, 3vw, 34px);
+  }
+  .hover-panel .eyebrow {
+    color: rgba(255, 255, 255, .62);
+    margin-bottom: 12px;
+  }
+  .hover-panel h3 {
+    font-size: clamp(28px, 3vw, 44px);
+    letter-spacing: -.04em;
+    line-height: 1;
+  }
+  .hover-panel p:not(.eyebrow) {
+    color: rgba(255, 255, 255, .72);
+    line-height: 1.6;
+    margin-top: 12px;
+    max-width: 620px;
+  }
+  .hover-dots { display: flex; gap: 8px; }
+  .hover-dots button {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 900;
+    height: 42px;
+    transition: background .2s ease, transform .2s ease;
+    width: 42px;
+  }
+  .hover-dots button:hover,
+  .hover-dots button.is-active {
+    background: #fff;
+    color: #102018;
+    transform: translateY(-2px);
+  }
+
   .scenario-section {
     background:
       radial-gradient(circle at 88% 12%, rgba(237, 27, 72, .12), transparent 24%),
@@ -440,11 +687,16 @@ const contentBlocks = [
     .case-sidebar { overflow: hidden; padding: 36px 18px; }
     .case-content { overflow: hidden; }
     .case-content > section { max-width: 100vw; padding-left: 18px; padding-right: 18px; width: 100%; }
-    .system-section, .content-section, .result { grid-template-columns: minmax(0, 1fr); }
-    .hero-copy .eyebrow, .wide-shot, .content-grid { grid-column: 1; }
+    .system-section, .hover-demo-section, .content-section, .result { grid-template-columns: minmax(0, 1fr); }
+    .hero-copy .eyebrow, .wide-shot, .hover-reveal, .content-grid { grid-column: 1; }
     .scenario-grid, .content-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
     .hero-media img { aspect-ratio: 4 / 3; }
+    .hover-stage { aspect-ratio: 4 / 5; }
+    .hover-layer { inset: 14px; }
+    .hover-panel { align-items: start; grid-template-columns: 1fr; }
+    .hover-product-card { bottom: 14px; left: 14px; padding: 12px; }
+    .hover-product-card img { height: 100px; width: 82px; }
     .scenario-product { bottom: 112px; max-height: 140px; }
     h2 { font-size: clamp(32px, 12vw, 48px); }
   }

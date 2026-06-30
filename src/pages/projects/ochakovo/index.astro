@@ -18,9 +18,9 @@ const scenarios = [
 ];
 
 const hoverStages = [
-  ["heading-ochakovo.jpg", "heading-ochakovo-hover.jpg", "01", "Sommerparty", "Die linke Karte oeffnet den Partybereich mit Freunden, Rauch, Grill und kaltem Ochakovskiy Kvas.", "yellow"],
-  ["heading-secrets.jpg", "heading-secrets-hover.jpg", "02", "Familienrezept", "Die mittlere Karte bleibt schmaler und fuehrt in den Rezeptbereich mit Okroshka und Familien-Kvas.", "green"],
-  ["heading-kvasenok.jpg", "heading-kvasenok-hover.jpg", "03", "Kinderfest", "Die rechte Karte zeigt Kvasenok als hellen Kinderbereich mit eigener Figur und Familienanlass.", "blue"],
+  ["heading-ochakovo-hover.jpg", "01", "Sommerparty", "Die linke Karte zeigt, wie der Partybereich beim Hover direkt im Startscreen aufgeht.", "party"],
+  ["heading-secrets-hover.jpg", "02", "Familienrezept", "Die mittlere Karte oeffnet den Rezeptbereich, ohne den ruhigen Hero neu zu erfinden.", "secrets"],
+  ["heading-kvasenok-hover.jpg", "03", "Kinderfest", "Die rechte Karte zeigt den Kvasenok-Hover als leichten Wechsel im bestehenden Bild.", "kvasenok"],
 ];
 
 const contentBlocks = [
@@ -140,36 +140,29 @@ const contentBlocks = [
           </div>
 
           <div class="hover-reveal" data-hover-reveal>
-            <div class="original-hero">
-              <p class="original-title">В ритме лета вместе с <span>Очаково!</span></p>
-              <div class="original-cards" aria-label="Ochakovo Hover-Mechanik">
-                <span class="original-word" aria-hidden="true">OCHAKOVO</span>
-                {hoverStages.map(([image, hoverImage, step, title, text, tone], index) => (
-                  <article
-                    class:list={["original-card", `tone-${tone}`, { "is-active": index === 0 }]}
-                    aria-hidden={index === 0 ? "false" : "true"}
-                    data-hover-layer
-                    data-title={title}
-                    data-text={text}
-                    tabindex={index === 0 ? "0" : "-1"}
-                  >
-                    <div class="original-card-image">
-                      <img class="original-normal" src={`${media}/${image}`} alt={`Ochakovo ${title} normaler Zustand`} loading="lazy" />
-                      <img class="original-hover" src={`${media}/${hoverImage}`} alt={`Ochakovo ${title} Hover-Zustand`} loading="lazy" />
-                    </div>
-                    <button class="original-more" type="button" tabindex="-1">{step}</button>
-                  </article>
-                ))}
-              </div>
+            <div class="hover-composition" aria-label="Ochakovo Startscreen mit wechselnden Hover-Zustaenden">
+              <img class="hover-static" src={`${media}/cover.jpg`} alt="Ochakovo statischer Startscreen vor dem Hover" loading="lazy" />
+              {hoverStages.map(([image, step, title, text, position], index) => (
+                <figure
+                  class:list={["hover-slide", `hover-${position}`, { "is-active": index === 0 }]}
+                  aria-hidden={index === 0 ? "false" : "true"}
+                  data-hover-layer
+                  data-title={title}
+                  data-text={text}
+                  tabindex={index === 0 ? "0" : "-1"}
+                >
+                  <img src={`${media}/${image}`} alt={`Ochakovo ${title} Hover-Zustand`} loading="lazy" />
+                </figure>
+              ))}
             </div>
             <div class="hover-panel">
               <div>
                 <p class="eyebrow">Aktiver Hover</p>
-                <h3 data-hover-title>{hoverStages[0][3]}</h3>
-                <p data-hover-text>{hoverStages[0][4]}</p>
+                <h3 data-hover-title>{hoverStages[0][2]}</h3>
+                <p data-hover-text>{hoverStages[0][3]}</p>
               </div>
               <div class="hover-dots" aria-label="Hover-Zustand auswaehlen">
-                {hoverStages.map(([, , step, title], index) => (
+                {hoverStages.map(([, step, title], index) => (
                   <button
                     class:list={{ "is-active": index === 0 }}
                     type="button"
@@ -497,110 +490,44 @@ const contentBlocks = [
     margin-top: 18px;
     overflow: hidden;
   }
-  .original-hero {
+  .hover-composition {
+    aspect-ratio: 16 / 9;
     background: #fff;
-    padding: clamp(34px, 5vw, 72px) clamp(18px, 5vw, 70px) clamp(28px, 4vw, 54px);
-  }
-  .original-title {
-    color: var(--green);
-    font-family: "Arial Narrow", "Helvetica Neue", sans-serif;
-    font-size: clamp(34px, 5.2vw, 82px);
-    font-stretch: condensed;
-    font-weight: 900;
-    letter-spacing: .16em;
-    line-height: .95;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  .original-title span { color: var(--red); }
-  .original-cards {
-    align-items: end;
-    display: flex;
-    justify-content: center;
-    margin: clamp(26px, 4vw, 54px) auto 0;
-    max-width: 1080px;
-    min-height: 470px;
     overflow: hidden;
     position: relative;
   }
-  .original-word {
-    color: rgba(20, 32, 49, .065);
-    font-size: clamp(82px, 16vw, 220px);
-    font-weight: 950;
-    left: 50%;
-    letter-spacing: -.08em;
-    line-height: 1;
-    position: absolute;
-    top: 41%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    z-index: 0;
-  }
-  .original-card {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    display: grid;
-    flex: 0 1 31%;
-    justify-items: center;
-    min-width: 0;
-    position: absolute;
-    top: 0;
-    transition: transform .58s cubic-bezier(.2, .8, .2, 1), filter .35s ease;
-    z-index: 1;
-  }
-  .original-card:nth-child(2) { left: 7%; width: 37%; }
-  .original-card:nth-child(3) { left: 39%; width: 21.5%; }
-  .original-card:nth-child(4) { right: 7%; width: 37%; }
-  .original-card.is-active,
-  .original-card:hover,
-  .original-card:focus-visible {
-    filter: saturate(1.08);
-    transform: translateY(-7px);
-    z-index: 2;
-  }
-  .original-card:focus-visible { outline: 2px solid var(--green); outline-offset: 8px; }
-  .original-card-image {
-    height: min(34vw, 388px);
-    max-height: 388px;
-    min-height: 310px;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-  .original-card-image img {
+  .hover-static {
     height: 100%;
     inset: 0;
-    object-fit: contain;
-    object-position: center bottom;
+    object-fit: cover;
+    object-position: center;
     position: absolute;
-    transition: opacity .36s ease, transform .5s cubic-bezier(.2, .8, .2, 1);
     width: 100%;
   }
-  .original-hover {
+  .hover-slide {
+    margin: 0;
     opacity: 0;
-    transform: scale(.985);
+    pointer-events: none;
+    position: absolute;
+    transform: translateY(14px) scale(.985);
+    transition: opacity .5s ease, transform .6s cubic-bezier(.2, .8, .2, 1);
   }
-  .original-card.is-active .original-normal,
-  .original-card:hover .original-normal,
-  .original-card:focus-visible .original-normal { opacity: 0; transform: scale(1.012); }
-  .original-card.is-active .original-hover,
-  .original-card:hover .original-hover,
-  .original-card:focus-visible .original-hover { opacity: 1; transform: scale(1); }
-  .original-more {
-    border: 0;
-    border-radius: 999px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 850;
-    height: 44px;
-    margin-top: min(36vw, 404px);
-    width: 132px;
+  .hover-slide.is-active,
+  .hover-slide:hover,
+  .hover-slide:focus-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
   }
-  .tone-yellow .original-more { background: var(--yellow); }
-  .tone-green .original-more { background: var(--green); }
-  .tone-blue .original-more { background: var(--blue); }
+  .hover-slide:focus-visible { outline: 2px solid var(--green); outline-offset: 6px; }
+  .hover-slide img {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+  }
+  .hover-party { height: 44.8%; left: 29.4%; top: 19.5%; width: 25.9%; }
+  .hover-secrets { height: 44.8%; left: 44.9%; top: 21.6%; width: 15.1%; }
+  .hover-kvasenok { height: 44.8%; left: 59.8%; top: 19.5%; width: 25.9%; }
   .hover-panel {
     align-items: end;
     background: #102018;
@@ -720,33 +647,10 @@ const contentBlocks = [
     .scenario-grid, .content-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
     .hero-media img { aspect-ratio: 4 / 3; }
-    .original-hero { padding: 28px 14px 24px; }
-    .original-title { font-size: clamp(28px, 9vw, 42px); letter-spacing: .1em; }
-    .original-cards {
-      align-items: center;
-      display: grid;
-      gap: 16px;
-      min-height: auto;
-      overflow: visible;
-    }
-    .original-word { display: none; }
-    .original-card,
-    .original-card:nth-child(2),
-    .original-card:nth-child(3),
-    .original-card:nth-child(4) {
-      left: auto;
-      position: relative;
-      right: auto;
-      width: 100%;
-    }
-    .original-card-image {
-      height: auto;
-      min-height: 0;
-      padding-top: 97%;
-      position: relative;
-      width: 100%;
-    }
-    .original-more { margin-top: 10px; }
+    .hover-composition { aspect-ratio: 4 / 3; }
+    .hover-party { height: 44%; left: 29%; top: 20%; width: 26%; }
+    .hover-secrets { height: 44%; left: 45%; top: 22%; width: 15%; }
+    .hover-kvasenok { height: 44%; left: 60%; top: 20%; width: 26%; }
     .hover-panel { align-items: start; grid-template-columns: 1fr; }
     .scenario-product { bottom: 112px; max-height: 140px; }
     h2 { font-size: clamp(32px, 12vw, 48px); }

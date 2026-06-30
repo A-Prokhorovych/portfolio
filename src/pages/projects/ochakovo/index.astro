@@ -18,9 +18,9 @@ const scenarios = [
 ];
 
 const hoverStages = [
-  ["heading-secrets.jpg", "can-secrets.png", "01", "Familienrezept", "Hover oeffnet den Rezeptbereich mit Okroshka, Gemuese und Familien-Kvas."],
-  ["heading-ochakovo.jpg", "can-ochakovo.png", "02", "Sommerparty", "Der zweite Hover fuehrt in den Partybereich mit kaltem Kvas, Snacks und Sommerlaune."],
-  ["heading-kvasenok.jpg", "bottle-kvasenok.png", "03", "Kinderfest", "Der dritte Hover verschiebt die Geschichte zu Kvasenok und Familiencontent."],
+  ["heading-ochakovo.jpg", "heading-ochakovo-hover.jpg", "01", "Sommerparty", "Die linke Karte oeffnet den Partybereich mit Freunden, Rauch, Grill und kaltem Ochakovskiy Kvas.", "yellow"],
+  ["heading-secrets.jpg", "heading-secrets-hover.jpg", "02", "Familienrezept", "Die mittlere Karte bleibt schmaler und fuehrt in den Rezeptbereich mit Okroshka und Familien-Kvas.", "green"],
+  ["heading-kvasenok.jpg", "heading-kvasenok-hover.jpg", "03", "Kinderfest", "Die rechte Karte zeigt Kvasenok als hellen Kinderbereich mit eigener Figur und Familienanlass.", "blue"],
 ];
 
 const contentBlocks = [
@@ -140,24 +140,27 @@ const contentBlocks = [
           </div>
 
           <div class="hover-reveal" data-hover-reveal>
-            <div class="hover-stage">
-              <img class="hover-base" src={`${media}/cover.jpg`} alt="Ochakovo Hero Startscreen vor dem Hover" loading="lazy" />
-              {hoverStages.map(([image, product, step, title, text], index) => (
-                <article
-                  class:list={["hover-layer", { "is-active": index === 0 }]}
-                  aria-hidden={index === 0 ? "false" : "true"}
-                  data-hover-layer
-                  data-title={title}
-                  data-text={text}
-                  tabindex={index === 0 ? "0" : "-1"}
-                >
-                  <img class="hover-layer-image" src={`${media}/${image}`} alt={`Ochakovo Hover ${title}`} loading="lazy" />
-                  <div class="hover-product-card">
-                    <span>{step}</span>
-                    <img src={`${media}/${product}`} alt={`Ochakovo ${title} Produkt`} loading="lazy" />
-                  </div>
-                </article>
-              ))}
+            <div class="original-hero">
+              <p class="original-title">В ритме лета вместе с <span>Очаково!</span></p>
+              <div class="original-cards" aria-label="Ochakovo Hover-Mechanik">
+                <span class="original-word" aria-hidden="true">OCHAKOVO</span>
+                {hoverStages.map(([image, hoverImage, step, title, text, tone], index) => (
+                  <article
+                    class:list={["original-card", `tone-${tone}`, { "is-active": index === 0 }]}
+                    aria-hidden={index === 0 ? "false" : "true"}
+                    data-hover-layer
+                    data-title={title}
+                    data-text={text}
+                    tabindex={index === 0 ? "0" : "-1"}
+                  >
+                    <div class="original-card-image">
+                      <img class="original-normal" src={`${media}/${image}`} alt={`Ochakovo ${title} normaler Zustand`} loading="lazy" />
+                      <img class="original-hover" src={`${media}/${hoverImage}`} alt={`Ochakovo ${title} Hover-Zustand`} loading="lazy" />
+                    </div>
+                    <button class="original-more" type="button" tabindex="-1">{step}</button>
+                  </article>
+                ))}
+              </div>
             </div>
             <div class="hover-panel">
               <div>
@@ -480,102 +483,127 @@ const contentBlocks = [
   .wide-shot p { color: var(--muted); line-height: 1.65; margin-top: 18px; }
 
   .hover-demo-section {
-    background:
-      radial-gradient(circle at 18% 10%, rgba(237, 186, 32, .18), transparent 26%),
-      linear-gradient(180deg, #fff, #f6fbeb);
+    background: #fff;
     display: grid;
     gap: 36px;
     grid-template-columns: 70px minmax(0, 1fr);
   }
   .hover-reveal {
-    background: #102018;
+    background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
-    box-shadow: 0 34px 100px rgba(20, 32, 49, .18);
+    box-shadow: 0 34px 100px rgba(20, 32, 49, .11);
     grid-column: 2;
     margin-top: 18px;
     overflow: hidden;
   }
-  .hover-stage {
-    aspect-ratio: 16 / 9;
-    background: #e8f1db;
-    isolation: isolate;
+  .original-hero {
+    background: #fff;
+    padding: clamp(34px, 5vw, 72px) clamp(18px, 5vw, 70px) clamp(28px, 4vw, 54px);
+  }
+  .original-title {
+    color: var(--green);
+    font-family: "Arial Narrow", "Helvetica Neue", sans-serif;
+    font-size: clamp(34px, 5.2vw, 82px);
+    font-stretch: condensed;
+    font-weight: 900;
+    letter-spacing: .16em;
+    line-height: .95;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .original-title span { color: var(--red); }
+  .original-cards {
+    align-items: end;
+    display: flex;
+    justify-content: center;
+    margin: clamp(26px, 4vw, 54px) auto 0;
+    max-width: 1080px;
+    min-height: 470px;
     overflow: hidden;
     position: relative;
   }
-  .hover-base,
-  .hover-layer-image {
-    height: 100%;
-    inset: 0;
-    object-fit: cover;
-    object-position: center;
+  .original-word {
+    color: rgba(20, 32, 49, .065);
+    font-size: clamp(82px, 16vw, 220px);
+    font-weight: 950;
+    left: 50%;
+    letter-spacing: -.08em;
+    line-height: 1;
     position: absolute;
-    width: 100%;
-  }
-  .hover-base {
-    filter: saturate(.82) brightness(.78);
-    transform: scale(1.015);
+    top: 41%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
     z-index: 0;
   }
-  .hover-layer {
+  .original-card {
+    align-items: center;
+    background: transparent;
     border: 0;
-    inset: clamp(18px, 4vw, 54px);
-    opacity: 0;
-    pointer-events: none;
+    display: grid;
+    flex: 0 1 31%;
+    justify-items: center;
+    min-width: 0;
     position: absolute;
-    transform: translateY(24px) scale(.965);
-    transition: opacity .6s ease, transform .7s cubic-bezier(.2, .8, .2, 1);
+    top: 0;
+    transition: transform .58s cubic-bezier(.2, .8, .2, 1), filter .35s ease;
     z-index: 1;
   }
-  .hover-layer::before {
-    background: linear-gradient(90deg, rgba(16, 32, 24, .34), transparent 46%);
-    border-radius: 22px;
-    content: "";
-    inset: 0;
-    position: absolute;
+  .original-card:nth-child(2) { left: 7%; width: 37%; }
+  .original-card:nth-child(3) { left: 39%; width: 21.5%; }
+  .original-card:nth-child(4) { right: 7%; width: 37%; }
+  .original-card.is-active,
+  .original-card:hover,
+  .original-card:focus-visible {
+    filter: saturate(1.08);
+    transform: translateY(-7px);
     z-index: 2;
   }
-  .hover-layer.is-active,
-  .hover-layer:hover,
-  .hover-layer:focus-visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0) scale(1);
-  }
-  .hover-layer:focus-visible { outline: 2px solid #fff; outline-offset: 6px; }
-  .hover-layer-image {
-    border-radius: 22px;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, .3);
+  .original-card:focus-visible { outline: 2px solid var(--green); outline-offset: 8px; }
+  .original-card-image {
+    height: min(34vw, 388px);
+    max-height: 388px;
+    min-height: 310px;
     position: absolute;
+    top: 0;
+    width: 100%;
   }
-  .hover-product-card {
-    align-items: center;
-    background: rgba(255, 255, 255, .9);
-    border: 1px solid rgba(255, 255, 255, .55);
-    border-radius: 22px;
-    bottom: clamp(18px, 4vw, 44px);
-    box-shadow: 0 22px 54px rgba(20, 32, 49, .24);
-    display: grid;
-    gap: 10px;
-    left: clamp(18px, 4vw, 44px);
-    min-width: 150px;
-    padding: 16px;
-    position: absolute;
-    z-index: 3;
-  }
-  .hover-product-card span {
-    color: var(--green);
-    font-size: 12px;
-    font-weight: 950;
-    letter-spacing: .1em;
-  }
-  .hover-product-card img {
-    filter: drop-shadow(0 14px 20px rgba(20, 32, 49, .18));
-    height: 145px;
+  .original-card-image img {
+    height: 100%;
+    inset: 0;
     object-fit: contain;
-    width: 110px;
+    object-position: center bottom;
+    position: absolute;
+    transition: opacity .36s ease, transform .5s cubic-bezier(.2, .8, .2, 1);
+    width: 100%;
   }
+  .original-hover {
+    opacity: 0;
+    transform: scale(.985);
+  }
+  .original-card.is-active .original-normal,
+  .original-card:hover .original-normal,
+  .original-card:focus-visible .original-normal { opacity: 0; transform: scale(1.012); }
+  .original-card.is-active .original-hover,
+  .original-card:hover .original-hover,
+  .original-card:focus-visible .original-hover { opacity: 1; transform: scale(1); }
+  .original-more {
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 850;
+    height: 44px;
+    margin-top: min(36vw, 404px);
+    width: 132px;
+  }
+  .tone-yellow .original-more { background: var(--yellow); }
+  .tone-green .original-more { background: var(--green); }
+  .tone-blue .original-more { background: var(--blue); }
   .hover-panel {
     align-items: end;
+    background: #102018;
     color: #fff;
     display: grid;
     gap: 24px;
@@ -692,11 +720,34 @@ const contentBlocks = [
     .scenario-grid, .content-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
     .hero-media img { aspect-ratio: 4 / 3; }
-    .hover-stage { aspect-ratio: 4 / 5; }
-    .hover-layer { inset: 14px; }
+    .original-hero { padding: 28px 14px 24px; }
+    .original-title { font-size: clamp(28px, 9vw, 42px); letter-spacing: .1em; }
+    .original-cards {
+      align-items: center;
+      display: grid;
+      gap: 16px;
+      min-height: auto;
+      overflow: visible;
+    }
+    .original-word { display: none; }
+    .original-card,
+    .original-card:nth-child(2),
+    .original-card:nth-child(3),
+    .original-card:nth-child(4) {
+      left: auto;
+      position: relative;
+      right: auto;
+      width: 100%;
+    }
+    .original-card-image {
+      height: auto;
+      min-height: 0;
+      padding-top: 97%;
+      position: relative;
+      width: 100%;
+    }
+    .original-more { margin-top: 10px; }
     .hover-panel { align-items: start; grid-template-columns: 1fr; }
-    .hover-product-card { bottom: 14px; left: 14px; padding: 12px; }
-    .hover-product-card img { height: 100px; width: 82px; }
     .scenario-product { bottom: 112px; max-height: 140px; }
     h2 { font-size: clamp(32px, 12vw, 48px); }
   }

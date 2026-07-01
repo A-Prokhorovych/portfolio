@@ -18,9 +18,10 @@ const scenarios = [
 ];
 
 const hoverStages = [
-  ["heading-ochakovo-hover.jpg", "01", "Sommerparty", "Die linke Karte zeigt, wie der Partybereich beim Hover direkt im Startscreen aufgeht.", "party"],
-  ["heading-secrets-hover.jpg", "02", "Familienrezept", "Die mittlere Karte oeffnet den Rezeptbereich, ohne den ruhigen Hero neu zu erfinden.", "secrets"],
-  ["heading-kvasenok-hover.jpg", "03", "Kinderfest", "Die rechte Karte zeigt den Kvasenok-Hover als leichten Wechsel im bestehenden Bild.", "kvasenok"],
+  ["hover-screen-01.png", "01", "Statischer Hero", "Der Originalscreen im ruhigen Zustand, bevor ein Hover eine der drei Karten oeffnet."],
+  ["hover-screen-02.png", "02", "Hover Sommerparty", "Der erste Hover zeigt die linke Karte als vergroesserten Party-Einstieg."],
+  ["hover-screen-03.png", "03", "Hover Familienrezept", "Der zweite Hover oeffnet die mittlere Karte mit dem Familienrezept-Bereich."],
+  ["hover-screen-04.png", "04", "Hover Kinderfest", "Der dritte Hover zeigt die rechte Karte als Kvasenok-Kinderbereich."],
 ];
 
 const contentBlocks = [
@@ -140,18 +141,17 @@ const contentBlocks = [
           </div>
 
           <div class="hover-reveal" data-hover-reveal>
-            <div class="hover-composition" aria-label="Ochakovo Startscreen mit wechselnden Hover-Zustaenden">
-              <img class="hover-static" src={`${media}/cover.jpg`} alt="Ochakovo statischer Startscreen vor dem Hover" loading="lazy" />
-              {hoverStages.map(([image, step, title, text, position], index) => (
+            <div class="hover-screens" aria-label="Ochakovo Startscreen mit wechselnden Hover-Zustaenden">
+              {hoverStages.map(([image, step, title, text], index) => (
                 <figure
-                  class:list={["hover-slide", `hover-${position}`, { "is-active": index === 0 }]}
+                  class:list={["hover-screen", { "is-active": index === 0 }]}
                   aria-hidden={index === 0 ? "false" : "true"}
                   data-hover-layer
                   data-title={title}
                   data-text={text}
                   tabindex={index === 0 ? "0" : "-1"}
                 >
-                  <img src={`${media}/${image}`} alt={`Ochakovo ${title} Hover-Zustand`} loading="lazy" />
+                  <img src={`${media}/${image}`} alt={`Ochakovo ${title}`} loading={index === 0 ? "eager" : "lazy"} />
                 </figure>
               ))}
             </div>
@@ -490,44 +490,33 @@ const contentBlocks = [
     margin-top: 18px;
     overflow: hidden;
   }
-  .hover-composition {
-    aspect-ratio: 16 / 9;
+  .hover-screens {
+    aspect-ratio: 3456 / 2234;
     background: #fff;
     overflow: hidden;
     position: relative;
   }
-  .hover-static {
-    height: 100%;
+  .hover-screen {
     inset: 0;
-    object-fit: cover;
-    object-position: center;
-    position: absolute;
-    width: 100%;
-  }
-  .hover-slide {
     margin: 0;
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    transform: translateY(14px) scale(.985);
-    transition: opacity .5s ease, transform .6s cubic-bezier(.2, .8, .2, 1);
+    transition: opacity .55s ease;
   }
-  .hover-slide.is-active,
-  .hover-slide:hover,
-  .hover-slide:focus-visible {
+  .hover-screen.is-active,
+  .hover-screen:hover,
+  .hover-screen:focus-visible {
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(0) scale(1);
   }
-  .hover-slide:focus-visible { outline: 2px solid var(--green); outline-offset: 6px; }
-  .hover-slide img {
+  .hover-screen:focus-visible { outline: 2px solid var(--green); outline-offset: -6px; }
+  .hover-screen img {
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
     width: 100%;
   }
-  .hover-party { height: 44.8%; left: 29.4%; top: 19.5%; width: 25.9%; }
-  .hover-secrets { height: 44.8%; left: 44.9%; top: 21.6%; width: 15.1%; }
-  .hover-kvasenok { height: 44.8%; left: 59.8%; top: 19.5%; width: 25.9%; }
   .hover-panel {
     align-items: end;
     background: #102018;
@@ -647,10 +636,7 @@ const contentBlocks = [
     .scenario-grid, .content-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
     .hero-media img { aspect-ratio: 4 / 3; }
-    .hover-composition { aspect-ratio: 4 / 3; }
-    .hover-party { height: 44%; left: 29%; top: 20%; width: 26%; }
-    .hover-secrets { height: 44%; left: 45%; top: 22%; width: 15%; }
-    .hover-kvasenok { height: 44%; left: 60%; top: 20%; width: 26%; }
+    .hover-screens { aspect-ratio: 3456 / 2234; }
     .hover-panel { align-items: start; grid-template-columns: 1fr; }
     .scenario-product { bottom: 112px; max-height: 140px; }
     h2 { font-size: clamp(32px, 12vw, 48px); }

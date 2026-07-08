@@ -1,8 +1,8 @@
 <svg width="1000" height="1000" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
 <style>
-path { fill: #000; }
+path { fill: #2457F5; }
 @media (prefers-color-scheme: dark) {
-  path { fill: #fff; }
+  path { fill: #2457F5; }
 }
 </style>
 <path d="M738.665 1000L786.231 557.173H953.273L1000 1000H906.826L899.831 928.545H840.513L834.357 1000H738.665ZM847.508 857.843H892.276L870.731 632.655H866.254L847.508 857.843Z"/>

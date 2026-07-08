@@ -1,0 +1,1823 @@
+---
+import MotionEnhance from "../../../components/MotionEnhance.astro";
+
+const base = import.meta.env.BASE_URL;
+const media = `${base}projects/dr-langhammer`;
+
+const facts = [
+  ["Client", "Dr. Langhammer"],
+  ["Role", "Lead Web Designer"],
+  ["Timeline", "6 weeks"],
+  ["Platform", "WordPress"],
+  ["Responsibilities", "UX, UI, IA, Design System, Handoff"],
+];
+
+const metrics = [
+  ["12", "current sitemap pages"],
+  ["10", "Figma layout screens"],
+  ["8", "service areas"],
+  ["6", "handoff responsibilities"],
+];
+
+const audit = [
+  ["Last old snapshot", "The July 8, 2025 Wayback snapshot still shows the old WordPress site before the redesign work became visible."],
+  ["Template-heavy first impression", "The archived site relied on a classic WordPress theme, WPBakery and Slider Revolution."],
+  ["Services were present, but nested", "Implantology, aesthetics and prophylaxis existed, yet the choice still felt menu-heavy and slow to scan."],
+  ["Mobile needed faster orientation", "Patients needed quick answers: who is the doctor, what is offered, how do I call, where is the practice."],
+];
+
+const changes = [
+  ["Homepage", "General welcome page with slider-led presentation.", "A trust-first landing page with hero, service spectrum, practice tour, jameda/job teasers and direct contact."],
+  ["Zahnarztpraxis", "Practice page with philosophy and team anchors.", "Clearer practice story: philosophy, team, atmosphere and doctor-led trust signals."],
+  ["Implantologie", "One core page with anchors for Implantate and Navigierte Implantologie.", "A stronger treatment pillar with visible subtopics, plus CEREC 3D as an additional high-value technology page."],
+  ["Aesthetische Zahnheilkunde", "One service page with Veneers, Kronen and Bleaching anchors.", "A more scannable service family where each treatment feels reachable from navigation and page modules."],
+  ["Prophylaxe", "Prophylaxis page with Zahnreinigung and Implantatprophylaxe.", "Modernized prevention story with AIRFLOW Zahnreinigung and implant aftercare as explicit user journeys."],
+  ["Praxislabor", "A separate advantage, but not central to the first impression.", "In-house lab reframed as a differentiator for precision, speed and quality control."],
+  ["Kontakt & Anfahrt", "Functional contact page.", "Conversion module with address, phone, email, opening hours and appointment intent available early."],
+  ["Jobs", "Not a strong visible destination in the older navigation.", "Recruiting becomes part of the website product: the site now serves patients and potential employees."],
+];
+
+const newPages = [
+  ["Home", "/"],
+  ["Zahnarztpraxis", "/zahnarztpraxis/"],
+  ["Implantologie", "/implantologie/"],
+  ["Aesthetische Zahnheilkunde", "/asthetische-zahnheilkunde/"],
+  ["Prophylaxe", "/prophylaxe/"],
+  ["Praxislabor", "/praxislabor/"],
+  ["Services", "/services/"],
+  ["Jobs", "/jobs/"],
+  ["Kontakt", "/kontakt/"],
+  ["CEREC 3D", "/cerec-3d/"],
+  ["AIRFLOW Zahnreinigung", "/airflow-zahnreinigung/"],
+  ["Impressum & Datenschutz", "/impressum-datenschutz/"],
+];
+
+const principles = [
+  ["Calm before conversion", "A dental website has to reduce tension before asking for action."],
+  ["Services as orientation", "The service structure is built around patient questions, not internal categories."],
+  ["Real practice atmosphere", "Photography carries proof: rooms, reception, lab and people feel more trustworthy than generic claims."],
+  ["Accessible rhythm", "Large type, short paragraphs and repeated contact patterns support older patients and mobile use."],
+];
+
+const components = [
+  ["Hero system", "Logo, doctor-led headline, appointment CTA, real practice photography."],
+  ["Service cards", "Three main pillars with subtopics and short benefit-led descriptions."],
+  ["Before/after map", "A portfolio-friendly table that explains what changed instead of only showing visuals."],
+  ["Contact module", "Phone, email, address and opening hours in a stable reusable block."],
+];
+
+const serviceCards = [
+  ["Implantologie", "Fixed teeth, guided planning and CEREC technology.", "implantologie.jpg"],
+  ["Aesthetik", "Veneers, inlays, crowns and whitening with a natural appearance.", "aesthetic.jpg"],
+  ["Prophylaxe", "Professional cleaning, AIRFLOW and long-term implant care.", "current-chairs.jpg"],
+];
+
+const slideNotes = [
+  ["First screen", "Before uses the archived WordPress homepage. After shows the 2025 redesign as a full page with clearer hierarchy, photography and service entry points."],
+  ["Service choice", "Instead of making people decode a wide dropdown, the redesign gives them simple directions: implants, aesthetics, prophylaxis and lab."],
+  ["Appointment path", "On mobile the page stops behaving like a brochure. Phone, address, opening hours and appointment intent become the fastest route."],
+];
+
+const beforePhotos = [
+  ["Old doctor slide", "before-doctor.jpg"],
+  ["Old waiting area", "before-waiting.jpg"],
+  ["Old reception slide", "before-reception.jpg"],
+];
+
+const afterPhotos = [
+  ["New hero", "hero-current.jpg"],
+  ["Practice tour", "current-tour-01.jpg"],
+  ["Treatment room", "current-chairs.jpg"],
+  ["Practice corridor", "current-gang.jpg"],
+];
+
+const figmaLayouts = [
+  ["Home page", "home-preview.jpg", "home.jpg"],
+  ["Zahnarztpraxis", "zahnarztpraxis-preview.jpg", "zahnarztpraxis.jpg"],
+  ["Implantologie", "implantologie-preview.jpg", "implantologie.jpg"],
+  ["CEREC 3D", "cerec-3d-preview.jpg", "cerec-3d.jpg"],
+  ["Aesthetische Zahnheilkunde", "aesthetische-zahnheilkunde-preview.jpg", "aesthetische-zahnheilkunde.jpg"],
+  ["Prophylaxe", "prophylaxe-preview.jpg", "prophylaxe.jpg"],
+  ["AIRFLOW Zahnreinigung", "airflow-zahnreinigung-preview.jpg", "airflow-zahnreinigung.jpg"],
+  ["Praxislabor", "praxislabor-preview.jpg", "praxislabor.jpg"],
+  ["Services", "services-preview.jpg", "services.jpg"],
+  ["Kontakt", "kontakt-preview.jpg", "kontakt.jpg"],
+];
+
+const designTokens = [
+  ["h1", "Lora Regular", "160 / 90 / -2"],
+  ["h2", "Lora Regular", "64 / 120 / -2"],
+  ["h3", "Raleway Bold", "30 / 120"],
+  ["h4", "Raleway Bold", "16 / 100 / 10"],
+  ["h5", "Raleway Italic", "18 / 160 / 3"],
+  ["h6", "Raleway Regular", "14 / 160 / 3"],
+  ["p", "Raleway Regular", "20 / 160 / 1"],
+];
+
+const figmaColors = [
+  ["#F78F21", "#F78F21"],
+  ["#005588", "#005588"],
+  ["#2C3941", "#2C3941"],
+  ["#E6F2F9", "#E6F2F9"],
+  ["#FAF5EF", "#FAF5EF"],
+  ["#F78F21", "#F78F21 50%"],
+  ["#FFFFFF", "#FFFFFF"],
+];
+
+const clientFixes = [
+  "Remove hero H1 titles on image banners",
+  "Fix stretched square doctor photos across browsers",
+  "Replace the Jameda homepage banner with the current image",
+  "Improve link visibility and dropdown font sizing",
+  "Compress footer navigation spacing",
+  "Make appointment buttons call-ready",
+  "Tune headline-to-paragraph spacing",
+  "Fix slider cropping to 1500 x 844",
+];
+
+const sitemapGroups = [
+  ["Core", ["Home", "Zahnarztpraxis", "Kontakt"]],
+  ["Treatments", ["Implantologie", "CEREC 3D", "Aesthetische Zahnheilkunde", "Prophylaxe", "AIRFLOW Zahnreinigung"]],
+  ["Practice proof", ["Praxislabor", "Services", "Jobs"]],
+  ["Legal", ["Impressum", "Datenschutz"]],
+];
+
+const prototypeSteps = [
+  ["01", "Audit old navigation", "Map what patients had to decode in the 2024/old WordPress structure."],
+  ["02", "Group repeated page logic", "Use one reusable service-page pattern for treatments with similar content needs."],
+  ["03", "Prototype mobile intent", "Prioritize phone, address, opening hours and appointment CTA on small screens."],
+  ["04", "Handoff page system", "Document typography, colors, components, spacing and QA fixes in Figma."],
+];
+
+const roleCards = [
+  ["Role", "Lead Web Designer"],
+  ["Client", "Dental Clinic"],
+  ["Timeline", "6 weeks"],
+  ["Platform", "WordPress"],
+  ["Responsibilities", "UX · UI · Information Architecture · Design System · Developer Handoff"],
+];
+
+const constraints = [
+  ["Existing WordPress", "The redesign had to work with a production CMS and real implementation limits."],
+  ["Large legacy content", "Old service content needed a clearer structure without losing useful information."],
+  ["Existing branding", "Logo, color direction and medical trust cues stayed recognizable."],
+  ["SEO preservation", "The new sitemap had to respect existing page intent and patient search behavior."],
+];
+
+const outcomeSkills = [
+  "Information Architecture",
+  "UX Strategy",
+  "Responsive Design",
+  "UI System",
+  "Developer Handoff",
+  "WordPress Production",
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Dr. Langhammer website redesign case study by Andrii Prokhorovych: UX audit, information architecture, healthcare UI system and responsive design."
+    />
+    <title>Dr. Langhammer Website Case Study - Andrii Prokhorovych</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={base}>PROKHA</a>
+      <a class="back-link" href={`${base}#work`}>
+        <span aria-hidden="true">←</span>
+        Back to portfolio
+      </a>
+      <a class="button small" href={`${base}archive/`}>Archive</a>
+    </header>
+
+    <main>
+      <aside class="case-sidebar">
+        <div>
+          <p class="eyebrow">Case Study · Healthcare</p>
+          <img class="client-logo" src={`${media}/logo.png`} alt="Dr. Langhammer logo" width="300" height="114" />
+          <h1>Dr. Langhammer website redesign</h1>
+          <p class="intro">
+            From outdated navigation to a calmer patient journey.
+          </p>
+        </div>
+
+        <dl>
+          {facts.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <nav aria-label="Case-study navigation">
+          <a href="#overview">01 Overview</a>
+          <a href="#audit">02 Audit</a>
+          <a href="#figma">03 Figma</a>
+          <a href="#structure">04 Structure</a>
+          <a href="#visual">05 Visual System</a>
+          <a href="#result">06 Result</a>
+        </nav>
+      </aside>
+
+      <article class="case-content">
+        <section id="overview" class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Website redesign · 2025</p>
+            <h2>A calmer website system for Dr. Langhammer</h2>
+            <p>
+              I redesigned the website structure and visual system so patients can
+              understand the practice, choose a treatment area and reach the appointment
+              path without decoding a large menu.
+            </p>
+          </div>
+
+          <div class="hero-stage">
+            <figure class="hero-media">
+              <img src={`${media}/before-woman.jpg`} alt="Archived waiting area hero image with patient from the previous Dr. Langhammer website" width="1800" height="1059" />
+              <figcaption>Homepage visual reference · patient-facing practice atmosphere</figcaption>
+            </figure>
+            <div class="hero-panel">
+              <img src={`${media}/logo.png`} alt="" width="300" height="114" />
+              <p>Dental Practice in Ulm</p>
+              <strong>Implantology · Aesthetic dentistry · Prophylaxis · In-house dental lab</strong>
+            </div>
+          </div>
+
+          <div class="metric-grid" aria-label="Project summary">
+            {metrics.map(([value, label]) => (
+              <article>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="role-section">
+          <div class="role-card-grid" aria-label="Project role and scope">
+            {roleCards.map(([label, value]) => (
+              <article>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="audit" class="split-section">
+          <div class="section-number">02</div>
+          <div class="section-copy">
+            <p class="eyebrow">Before audit</p>
+            <h2>The old site had useful content. It just did not show the story fast enough.</h2>
+            <p>
+              The Wayback snapshot from July 8, 2025 is the latest old version I found
+              before the new 2025 visual system appeared. It still had the old slider,
+              old photography and menu-heavy service structure.
+            </p>
+          </div>
+          <div class="audit-grid">
+            {audit.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="structure" class="sitemap-prototype-section">
+          <div class="section-copy">
+            <p class="eyebrow">Sitemap & prototyping</p>
+            <h2>The redesign starts with a cleaner site map, then repeats one strong page pattern.</h2>
+            <p>
+              Most pages share the same logic: trust signal, service explanation, proof,
+              contact route. That makes the website easier to maintain and easier for
+              patients to learn as they move between services.
+            </p>
+          </div>
+
+          <div class="sitemap-prototype-grid">
+            <div class="sitemap-board" aria-label="Current website map">
+              {sitemapGroups.map(([group, items]) => (
+                <article>
+                  <span>{group}</span>
+                  <ul>
+                    {items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            <div class="prototype-board" aria-label="Prototype stages">
+              {prototypeSteps.map(([number, title, text]) => (
+                <article>
+                  <span>{number}</span>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section class="slide-story" aria-label="Visual before and after slides">
+          <div class="section-copy slide-intro">
+            <p class="eyebrow">Visual story</p>
+            <h2>Before and after, shown as pages instead of paragraphs.</h2>
+            <p>
+              I turned the case into a set of presentation-like slides, so the change is
+              visible at a glance: what the user saw first, how services were reorganized
+              and how the mobile path became shorter.
+            </p>
+          </div>
+
+          <article class="case-slide hero-compare">
+            <div class="slide-label">
+              <span>Slide 01</span>
+              <h3>Full homepage: old WordPress page vs 2025 redesign</h3>
+            </div>
+            <div class="browser-pair long-page-pair">
+              <figure class="browser-frame before-frame long-page-frame">
+                <figcaption>Before · Wayback February 27, 2024</figcaption>
+                <div class="browser-chrome"><i></i><i></i><i></i></div>
+                <img src={`${media}/before-2024-fullpage.png`} alt="Full old Dr. Langhammer homepage screenshot from February 2024 Wayback archive" width="1440" height="7835" loading="lazy" />
+              </figure>
+              <figure class="browser-frame after-frame long-page-frame">
+                <figcaption>After · 2025 redesign</figcaption>
+                <div class="browser-chrome"><i></i><i></i><i></i></div>
+                <img src={`${media}/after-2025-fullpage.png`} alt="Full new Dr. Langhammer homepage screenshot from the 2025 redesign" width="1440" height="7159" loading="lazy" />
+              </figure>
+            </div>
+            <p class="slide-note">{slideNotes[0][1]}</p>
+          </article>
+
+          <article class="case-slide photo-compare-slide">
+            <div class="slide-label">
+              <span>Slide 02</span>
+              <h3>Photography: old archive atmosphere vs new 2025 material</h3>
+            </div>
+            <div class="photo-compare-grid">
+              <div class="photo-column before-photos">
+                <span>Before · archive</span>
+                {beforePhotos.map(([label, image]) => (
+                  <figure>
+                    <img src={`${media}/${image}`} alt={`${label} from old Dr. Langhammer website`} width="1800" height="1059" loading="lazy" />
+                    <figcaption>{label}</figcaption>
+                  </figure>
+                ))}
+              </div>
+              <div class="photo-column after-photos">
+                <span>After · Figma / new site</span>
+                {afterPhotos.map(([label, image]) => (
+                  <figure>
+                    <img src={`${media}/${image}`} alt={`${label} from new Dr. Langhammer visual system`} width="1860" height="1047" loading="lazy" />
+                    <figcaption>{label}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+            <p class="slide-note">The case now shows the real visual change: old archived slider photography against the cleaner 2025 image system used in Figma and on the new site.</p>
+          </article>
+
+          <article class="case-slide service-compare">
+            <div class="slide-label">
+              <span>Slide 03</span>
+              <h3>Services: from nested anchors to scannable choices</h3>
+            </div>
+            <div class="service-before-after">
+              <div class="old-menu">
+                <span>Before navigation</span>
+                <strong>Leistungen</strong>
+                <ul>
+                  <li>Implantologie → Implantate → Navigierte Implantologie</li>
+                  <li>Aesthetische Zahnheilkunde → Veneers → Kronen → Bleaching</li>
+                  <li>Prophylaxe → Zahnreinigung → Implantatprophylaxe</li>
+                </ul>
+              </div>
+              <div class="new-services">
+                {serviceCards.map(([title, text, image]) => (
+                  <article>
+                    <img src={`${media}/${image}`} alt={`${title} service page visual`} width="1860" height="1047" loading="lazy" />
+                    <div>
+                      <span>After</span>
+                      <h4>{title}</h4>
+                      <p>{text}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <p class="slide-note">{slideNotes[1][1]}</p>
+          </article>
+
+          <article class="case-slide mobile-compare">
+            <div class="slide-label">
+              <span>Slide 04</span>
+              <h3>Mobile: from browsing to booking intent</h3>
+            </div>
+            <div class="video-kicker">
+              <span>Responsive prototype</span>
+              <p>Homepage, treatments and contact pages scroll in a loop as real mobile screenshots.</p>
+            </div>
+            <figure class="mobile-video-showcase">
+              <video
+                src={`${media}/langhammer-mobile-showcase.mp4`}
+                poster={`${media}/langhammer-mobile-showcase-poster.jpg`}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+            </figure>
+            <p class="slide-note">{slideNotes[2][1]}</p>
+          </article>
+
+          <article class="case-slide desktop-compare">
+            <div class="slide-label">
+              <span>Slide 05</span>
+              <h3>Desktop: new page system working across key sections</h3>
+            </div>
+            <div class="video-kicker">
+              <span>Desktop prototype</span>
+              <p>Homepage, treatment, lab and contact pages move as a compact desktop overview.</p>
+            </div>
+            <figure class="mobile-video-showcase desktop-video-showcase">
+              <video
+                src={`${media}/langhammer-desktop-showcase.mp4`}
+                poster={`${media}/langhammer-desktop-showcase-poster.jpg`}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+            </figure>
+          </article>
+        </section>
+
+        <section id="figma" class="figma-section">
+          <div class="section-copy">
+            <p class="eyebrow">Figma deliverables</p>
+            <h2>This was designed as a full website system, not a single landing screen.</h2>
+            <p>
+              The Figma file contains the page layouts, a style guide, responsive states,
+              mobile menu screens, components, photo assets and review notes. I turned
+              those ingredients into a portfolio-friendly story so the design work is visible.
+            </p>
+          </div>
+
+          <div class="figma-deck">
+            <article class="style-guide-card">
+              <div class="figma-window-head">
+                <span>Style guide</span>
+                <strong>1908 x 1941</strong>
+              </div>
+              <div class="type-specimen">
+                <span>Fonts</span>
+                <strong>h1 - Lora: Reg. 160/90/-2</strong>
+                <p>h2 - Lora: Regular 64/120/-2</p>
+              </div>
+              <div class="token-list">
+                {designTokens.map(([label, font, spec]) => (
+                  <div>
+                    <span>{label}</span>
+                    <strong>{font}</strong>
+                    <em>{spec}</em>
+                  </div>
+                ))}
+              </div>
+              <div class="style-colors">
+                <span>Colors</span>
+                <div class="figma-color-grid">
+                  {figmaColors.map(([color, label]) => (
+                    <i style={`--swatch:${color}`}>
+                      <em>{label}</em>
+                    </i>
+                  ))}
+                </div>
+              </div>
+            </article>
+
+            <article class="layout-index-card">
+              <div class="figma-window-head">
+                <span>Layouts</span>
+                <strong>10 page previews</strong>
+              </div>
+              <div class="layout-preview-grid">
+                {figmaLayouts.map(([label, preview, full], index) => (
+                  <a href={`${media}/layout-screens/${full}`} target="_blank" rel="noreferrer">
+                    <img src={`${media}/layout-screens/${preview}`} alt={`${label} mobile layout preview`} width="520" height="650" loading="lazy" />
+                    <span>{index + 1}. {label}</span>
+                  </a>
+                ))}
+              </div>
+            </article>
+
+            <article class="review-notes-card">
+              <div class="figma-window-head">
+                <span>Client iteration</span>
+                <strong>QA notes</strong>
+              </div>
+              <ul>
+                {clientFixes.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="photo-strip" aria-label="Practice photography">
+          <figure>
+            <img src={`${media}/waiting-room.jpg`} alt="Waiting room of Dr. Langhammer dental practice" width="1501" height="845" loading="lazy" />
+            <figcaption>New waiting area</figcaption>
+          </figure>
+          <figure>
+            <img src={`${media}/current-gang.jpg`} alt="Corridor in Dr. Langhammer dental practice" width="1860" height="1047" loading="lazy" />
+            <figcaption>Practice corridor</figcaption>
+          </figure>
+          <figure>
+            <img src={`${media}/lab.jpg`} alt="In-house dental lab at Dr. Langhammer" width="1860" height="1047" loading="lazy" />
+            <figcaption>In-house lab</figcaption>
+          </figure>
+        </section>
+
+        <section class="comparison-section">
+          <div class="section-copy">
+            <p class="eyebrow">Information architecture</p>
+            <h2>Old pages became a clearer patient decision map.</h2>
+            <p>
+              I used the old navigation and the current sitemap as the base for a
+              portfolio-readable before/after story. This makes the redesign concrete:
+              not just a prettier interface, but a better structure for decisions.
+            </p>
+          </div>
+
+          <div class="comparison-table" role="table" aria-label="Before and after website structure">
+            <div class="table-row table-head" role="row">
+              <span role="columnheader">Area</span>
+              <span role="columnheader">Before</span>
+              <span role="columnheader">After / my change</span>
+            </div>
+            {changes.map(([area, before, after]) => (
+              <div class="table-row" role="row">
+                <strong role="cell">{area}</strong>
+                <p role="cell">{before}</p>
+                <p role="cell">{after}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="visual" class="visual-section">
+          <div class="section-number">04</div>
+          <div class="section-copy">
+            <p class="eyebrow">Visual system</p>
+            <h2>A quiet healthcare UI kit built from real brand material.</h2>
+            <p>
+              The design language avoids a cold clinic feeling. It combines the
+              Langhammer logo, warm neutral surfaces, deep blue type and real practice
+              images, so the site feels professional without becoming anonymous.
+            </p>
+          </div>
+
+          <div class="system-grid">
+            <article class="logo-card">
+              <span>Logo usage</span>
+              <img src={`${media}/logo.png`} alt="Dr. Langhammer logo" width="300" height="114" loading="lazy" />
+            </article>
+            <article class="palette-card">
+              <span>Color tokens</span>
+              <div class="swatches">
+                <i style="background:#f3f7f7"></i>
+                <i style="background:#ffffff"></i>
+                <i style="background:#143044"></i>
+                <i style="background:#6f8f9f"></i>
+                <i style="background:#cbdce0"></i>
+              </div>
+              <p>Light, clinical, warm and high-contrast enough for healthcare reading.</p>
+            </article>
+            <article class="type-card">
+              <span>Typography</span>
+              <p class="display">Calm clarity over decoration.</p>
+              <p>Large headlines, short paragraphs, strong labels and predictable spacing.</p>
+            </article>
+          </div>
+
+          <div class="principle-grid">
+            {principles.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="services-section">
+          <div class="section-copy">
+            <p class="eyebrow">Service system</p>
+            <h2>Three pillars make complex dentistry easier to scan.</h2>
+          </div>
+          <div class="service-grid">
+            {serviceCards.map(([title, text, image]) => (
+              <article>
+                <img src={`${media}/${image}`} alt={`${title} visual for Dr. Langhammer website`} width="1860" height="1047" loading="lazy" />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="handoff-section">
+          <div class="section-number">05</div>
+          <div class="section-copy">
+            <p class="eyebrow">Handoff</p>
+            <h2>The case shows design taste and production thinking.</h2>
+            <p>
+              For portfolio review, the important part is not only the final look. The
+              page explains how the website is structured, how components repeat, how
+              images are used and how the experience adapts from desktop to mobile.
+            </p>
+          </div>
+          <div class="component-grid">
+            {components.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="constraints-section">
+          <div class="section-copy">
+            <p class="eyebrow">Constraints</p>
+            <h2>Real website work means improving the system without losing what already works.</h2>
+          </div>
+          <div class="constraints-grid">
+            {constraints.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="result" class="result">
+          <div class="section-number">06</div>
+          <div class="result-copy">
+            <p class="eyebrow">Result</p>
+            <h2>A stronger healthcare case for employers who scan portfolios quickly.</h2>
+            <p>
+              The redesigned presentation makes the project understandable in two minutes:
+              a real client, a visible before/after problem, a clearer site structure,
+              real brand assets, responsive thinking and a UI system that fits a medical
+              service instead of looking like a generic landing page.
+            </p>
+            <div class="outcome-list" aria-label="What this project demonstrates">
+              <span>What this project demonstrates</span>
+              <ul>
+                {outcomeSkills.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+    <MotionEnhance />
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f3f7f7;
+    --paper: #ffffff;
+    --ink: #102233;
+    --muted: #667380;
+    --line: rgba(16, 34, 51, .13);
+    --accent: #143044;
+    --blue-soft: #e6eff2;
+    --sage: #6f8f9f;
+    --mist: #cbdce0;
+    --radius: 8px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  p, h1, h2, h3, h4, dl, dd, figure, ul { margin: 0; }
+  ul { list-style: none; padding: 0; }
+  img { display: block; max-width: 100%; }
+
+  .site-header {
+    align-items: center;
+    background: rgba(243, 247, 247, .92);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    left: 0;
+    padding: 20px clamp(20px, 4vw, 72px);
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(18px);
+  }
+
+  .brand { font-size: 28px; font-weight: 900; letter-spacing: 0; }
+  .back-link { font-size: 14px; font-weight: 800; }
+  .back-link span { margin-right: 8px; }
+  .button {
+    align-items: center;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 20px;
+  }
+  .button.small { justify-self: end; }
+
+  main { display: grid; grid-template-columns: minmax(300px, 27vw) minmax(0, 1fr); }
+  .case-sidebar {
+    align-content: space-between;
+    background: var(--paper);
+    border-right: 1px solid var(--line);
+    display: grid;
+    gap: 44px;
+    height: calc(100vh - 83px);
+    overflow-y: auto;
+    padding: clamp(36px, 4vw, 64px) clamp(24px, 3vw, 48px);
+    position: sticky;
+    top: 83px;
+  }
+  .eyebrow {
+    color: var(--sage);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .client-logo {
+    height: auto;
+    margin-bottom: 32px;
+    max-width: 190px;
+    width: 58%;
+  }
+  h1 { font-size: clamp(26px, 2.35vw, 40px); hyphens: auto; line-height: 1.06; overflow-wrap: anywhere; }
+  h2 { font-size: clamp(34px, 4.6vw, 72px); line-height: 1.02; max-width: 980px; }
+  h3 { line-height: 1.12; }
+  .intro,
+  .section-copy > p:last-child,
+  .result-copy > p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 22px;
+  }
+  dl { border-top: 1px solid var(--line); }
+  dl div { border-bottom: 1px solid var(--line); display: flex; gap: 18px; justify-content: space-between; padding: 11px 0; }
+  dt { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  dd { font-size: 13px; font-weight: 800; text-align: right; }
+  aside nav { display: grid; gap: 10px; }
+  aside nav a { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  aside nav a:hover { color: var(--ink); }
+
+  .case-content > section {
+    border-bottom: 1px solid var(--line);
+    padding: clamp(58px, 7vw, 112px) clamp(24px, 6vw, 104px);
+  }
+  .hero { min-height: calc(100vh - 83px); }
+  .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 440px); margin-bottom: 58px; }
+  .hero-copy .eyebrow { grid-column: 1 / -1; }
+  .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
+  .hero-stage { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr) 300px; }
+  .hero-media,
+  .hero-panel,
+  .photo-strip figure,
+  .desktop-screen,
+  .mobile-screen {
+    box-shadow: 0 24px 80px rgba(16, 34, 51, .12);
+  }
+  .hero-media {
+    background: var(--accent);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .hero-media img { aspect-ratio: 16 / 8.4; object-fit: cover; object-position: center; width: 100%; }
+  figcaption {
+    color: rgba(255, 255, 255, .84);
+    display: block;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    padding: 15px 18px;
+    text-transform: uppercase;
+  }
+  .hero-panel {
+    align-content: end;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    display: grid;
+    min-height: 100%;
+    padding: 26px;
+  }
+  .hero-panel img { height: auto; margin-bottom: 28px; max-width: 180px; width: 72%; }
+  .hero-panel p { color: var(--muted); font-size: 13px; font-weight: 850; margin-bottom: 12px; text-transform: uppercase; }
+  .hero-panel strong { color: var(--accent); font-size: 22px; line-height: 1.2; }
+  .metric-grid { display: grid; gap: 12px; grid-template-columns: repeat(4, 1fr); margin-top: 18px; }
+  .metric-grid article { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); min-height: 130px; padding: 20px; }
+  .metric-grid strong { display: block; font-size: clamp(34px, 3.8vw, 54px); line-height: 1; }
+  .metric-grid span { color: var(--muted); display: block; font-size: 13px; font-weight: 750; line-height: 1.35; margin-top: 14px; }
+
+  .role-section {
+    background: #fff;
+    padding-bottom: clamp(34px, 4vw, 58px) !important;
+    padding-top: clamp(34px, 4vw, 58px) !important;
+  }
+  .role-card-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .role-card-grid article {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 132px;
+    padding: 20px;
+  }
+  .role-card-grid span {
+    color: var(--sage);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .role-card-grid strong {
+    color: var(--accent);
+    display: block;
+    font-size: 20px;
+    line-height: 1.18;
+  }
+
+  .section-copy { max-width: 940px; }
+  .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
+  .split-section,
+  .visual-section,
+  .handoff-section,
+  .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
+  .audit-grid,
+  .principle-grid,
+  .component-grid {
+    display: grid;
+    gap: 14px;
+    grid-column: 2;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 18px;
+  }
+  .audit-grid article,
+  .principle-grid article,
+  .component-grid article {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 238px;
+    padding: 24px;
+  }
+  .audit-grid h3,
+  .principle-grid h3,
+  .component-grid h3 { font-size: 22px; }
+  .audit-grid p,
+  .principle-grid p,
+  .component-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 18px; }
+
+  .sitemap-prototype-section {
+    background: #fff;
+  }
+  .sitemap-prototype-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+    margin-top: 42px;
+  }
+  .sitemap-board {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 18px;
+  }
+  .sitemap-board article,
+  .prototype-board article {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+  .sitemap-board span,
+  .prototype-board > article > span,
+  .video-kicker span {
+    color: var(--sage);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .sitemap-board ul {
+    display: grid;
+    gap: 8px;
+  }
+  .sitemap-board li {
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 850;
+    line-height: 1.25;
+  }
+  .prototype-board {
+    display: grid;
+    gap: 12px;
+  }
+  .prototype-board article {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+  .prototype-board > article > span {
+    align-items: center;
+    background: var(--blue-soft);
+    border-radius: 50%;
+    display: inline-flex;
+    height: 48px;
+    justify-content: center;
+    margin-bottom: 0;
+    width: 48px;
+  }
+  .prototype-board h3 {
+    color: var(--accent);
+    font-size: 20px;
+  }
+  .prototype-board p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-top: 8px;
+  }
+
+  .slide-story {
+    background: #fff;
+    display: grid;
+    gap: clamp(26px, 4vw, 54px);
+  }
+  .slide-intro { margin-bottom: 8px; }
+  .case-slide {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 28px 90px rgba(16, 34, 51, .1);
+    overflow: hidden;
+    padding: clamp(22px, 4vw, 46px);
+  }
+  .slide-label {
+    align-items: end;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 140px minmax(0, 1fr);
+    margin-bottom: 26px;
+  }
+  .slide-label span {
+    color: var(--sage);
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .slide-label h3 {
+    color: var(--accent);
+    font-size: clamp(28px, 4vw, 56px);
+    line-height: 1;
+    max-width: 940px;
+  }
+  .browser-pair {
+    align-items: stretch;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: .85fr 1.15fr;
+  }
+  .browser-frame {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    min-height: 420px;
+    overflow: hidden;
+    position: relative;
+  }
+  .browser-frame figcaption {
+    background: var(--accent);
+    color: #fff;
+    padding: 13px 16px;
+  }
+  .browser-chrome {
+    align-items: center;
+    background: #edf4f6;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 7px;
+    height: 34px;
+    padding: 0 14px;
+  }
+  .browser-chrome i {
+    background: var(--mist);
+    border-radius: 50%;
+    display: block;
+    height: 9px;
+    width: 9px;
+  }
+  .browser-frame > img {
+    height: 100%;
+    min-height: 360px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .long-page-pair {
+    align-items: start;
+    grid-template-columns: 1fr 1fr;
+  }
+  .long-page-frame {
+    max-height: 720px;
+  }
+  .long-page-frame > img {
+    height: auto;
+    min-height: 0;
+    object-fit: contain;
+    object-position: top center;
+    width: 100%;
+  }
+  .before-frame > img { filter: saturate(.86) contrast(.92); }
+  .old-overlay,
+  .new-overlay {
+    background: rgba(255, 255, 255, .94);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    bottom: 22px;
+    left: 22px;
+    max-width: min(360px, calc(100% - 44px));
+    padding: 18px;
+    position: absolute;
+  }
+  .new-overlay {
+    background: rgba(20, 48, 68, .94);
+    color: #fff;
+  }
+  .new-overlay img {
+    background: #fff;
+    border-radius: 6px;
+    height: auto;
+    margin-bottom: 18px;
+    padding: 10px;
+    width: 150px;
+  }
+  .old-overlay strong,
+  .new-overlay strong {
+    display: block;
+    font-size: 19px;
+    line-height: 1.15;
+  }
+  .old-overlay span,
+  .new-overlay span {
+    color: var(--muted);
+    display: block;
+    font-size: 13px;
+    font-weight: 750;
+    line-height: 1.45;
+    margin-top: 10px;
+  }
+  .new-overlay span { color: rgba(255, 255, 255, .74); }
+  .slide-note {
+    border-top: 1px solid var(--line);
+    color: var(--accent);
+    font-size: clamp(18px, 2vw, 27px);
+    font-weight: 850;
+    line-height: 1.25;
+    margin-top: 26px;
+    max-width: 1000px;
+    padding-top: 22px;
+  }
+  .service-before-after {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr);
+  }
+  .old-menu,
+  .new-services article,
+  .phone-mock,
+  .mobile-photo {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .old-menu {
+    align-content: center;
+    display: grid;
+    min-height: 520px;
+    padding: 30px;
+  }
+  .old-menu span,
+  .new-services span {
+    color: var(--sage);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .old-menu strong {
+    color: var(--accent);
+    display: block;
+    font-size: clamp(34px, 4vw, 62px);
+    line-height: .98;
+    margin-bottom: 30px;
+  }
+  .old-menu li {
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1.45;
+    padding: 16px 0;
+  }
+  .new-services {
+    display: grid;
+    gap: 14px;
+  }
+  .new-services article {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    min-height: 164px;
+  }
+  .new-services img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+  .new-services div { padding: 22px; }
+  .new-services h4 {
+    color: var(--accent);
+    font-size: clamp(24px, 3vw, 40px);
+    line-height: 1;
+  }
+  .new-services p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.55;
+    margin-top: 12px;
+  }
+  .mobile-comparison {
+    align-items: end;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 270px 300px minmax(0, 1fr);
+    margin-top: 18px;
+  }
+  .mobile-video-showcase {
+    background: #101a20;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 18px;
+    box-shadow: 0 28px 70px rgba(12, 32, 42, .18);
+    overflow: hidden;
+  }
+  .video-kicker {
+    align-items: end;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 220px minmax(0, 1fr);
+    margin-bottom: 16px;
+  }
+  .video-kicker p {
+    color: var(--muted);
+    font-size: 16px;
+    font-weight: 760;
+    line-height: 1.5;
+    max-width: 660px;
+  }
+  .mobile-video-showcase video {
+    aspect-ratio: 16 / 9;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+  .desktop-video-showcase {
+    background: #f8fbfc;
+  }
+  .mobile-video-showcase figcaption {
+    background: rgba(255, 255, 255, .94);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.45;
+    padding: 14px 18px;
+  }
+  .phone-mock {
+    border: 10px solid var(--accent);
+    border-radius: 34px;
+    min-height: 560px;
+    padding: 20px;
+  }
+  .old-phone {
+    border-color: #aebfc5;
+    opacity: .82;
+  }
+  .phone-status {
+    display: flex;
+    font-size: 12px;
+    font-weight: 900;
+    justify-content: space-between;
+    margin-bottom: 34px;
+  }
+  .phone-mock img {
+    height: auto;
+    margin-bottom: 40px;
+    width: 142px;
+  }
+  .phone-lines { display: grid; gap: 12px; margin: 34px 0; }
+  .phone-lines i {
+    background: var(--blue-soft);
+    border-radius: 999px;
+    display: block;
+    height: 13px;
+    width: 100%;
+  }
+  .phone-lines i:nth-child(2) { width: 82%; }
+  .phone-lines i:nth-child(3) { width: 68%; }
+  .phone-lines i:nth-child(4) { width: 90%; }
+  .phone-mock h4 {
+    color: var(--accent);
+    font-size: 34px;
+    line-height: 1;
+    margin-top: 74px;
+  }
+  .phone-mock p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+  .phone-cta {
+    background: var(--accent);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 900;
+    margin: 30px 0 14px;
+    min-height: 48px;
+    padding: 14px 18px;
+    text-align: center;
+  }
+  .phone-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 850;
+    margin-top: 10px;
+    padding: 16px;
+  }
+  .muted-card {
+    background: var(--bg);
+    color: var(--muted);
+  }
+  .mobile-photo {
+    background: var(--accent);
+  }
+  .mobile-photo img {
+    aspect-ratio: 4 / 3;
+    height: 100%;
+    min-height: 430px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .photo-compare-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: .9fr 1.1fr;
+  }
+  .photo-column {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    display: grid;
+    gap: 12px;
+    overflow: hidden;
+    padding: 16px;
+  }
+  .photo-column > span {
+    color: var(--sage);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    padding: 4px 4px 8px;
+    text-transform: uppercase;
+  }
+  .photo-column figure {
+    background: var(--accent);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-column img {
+    aspect-ratio: 16 / 9.2;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+  .before-photos img {
+    filter: saturate(.82) contrast(.94);
+  }
+  .photo-column figcaption {
+    background: linear-gradient(180deg, rgba(16, 34, 51, 0), rgba(16, 34, 51, .78));
+    bottom: 0;
+    color: #fff;
+    left: 0;
+    padding-top: 44px;
+    position: absolute;
+    right: 0;
+  }
+  .after-photos {
+    grid-template-columns: 1fr 1fr;
+  }
+  .after-photos > span {
+    grid-column: 1 / -1;
+  }
+  .after-photos figure:first-of-type {
+    grid-column: 1 / -1;
+  }
+
+  .figma-section {
+    background: #f8fbfc;
+  }
+  .figma-deck {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+    margin-top: 44px;
+  }
+  .figma-deck > article {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 22px 70px rgba(16, 34, 51, .1);
+    overflow: hidden;
+  }
+  .style-guide-card {
+    grid-row: span 2;
+    min-height: 620px;
+    padding: clamp(24px, 4vw, 44px);
+  }
+  .figma-window-head {
+    align-items: center;
+    border-bottom: 1px solid rgba(247, 143, 33, .38);
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+  }
+  .figma-window-head span {
+    color: var(--sage);
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .figma-window-head strong {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 850;
+  }
+  .type-specimen span {
+    color: var(--accent);
+    display: block;
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .type-specimen strong {
+    color: #2c3941;
+    display: block;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(50px, 6.5vw, 96px);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: .9;
+  }
+  .type-specimen p {
+    color: #2c3941;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(26px, 3vw, 40px);
+    line-height: 1.15;
+    margin-top: 16px;
+  }
+  .style-colors {
+    border-top: 1px solid rgba(247, 143, 33, .38);
+    margin-top: 40px;
+    padding-top: 28px;
+  }
+  .style-colors > span {
+    color: var(--accent);
+    display: block;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .figma-color-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(7, minmax(70px, 1fr));
+  }
+  .figma-color-grid i {
+    align-items: end;
+    background: var(--swatch);
+    border: 1px solid rgba(247, 143, 33, .86);
+    display: flex;
+    font-style: normal;
+    min-height: 130px;
+    padding: 14px;
+  }
+  .figma-color-grid i:nth-child(6) {
+    background: rgba(247, 143, 33, .5);
+  }
+  .figma-color-grid em {
+    color: #2c3941;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 750;
+  }
+  .token-list {
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 0;
+    margin-top: 38px;
+  }
+  .token-list div {
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+    padding: 12px 0;
+  }
+  .token-list span {
+    color: var(--sage);
+    font-size: 12px;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+  .token-list strong {
+    color: var(--accent);
+    font-size: 14px;
+  }
+  .token-list em {
+    color: var(--muted);
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+  }
+  .figma-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .figma-swatches i {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    display: block;
+    height: 46px;
+    width: 46px;
+  }
+  .layout-index-card,
+  .review-notes-card {
+    padding: 26px;
+  }
+  .layout-preview-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .layout-preview-grid a {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: #005588;
+    display: grid;
+    gap: 10px;
+    overflow: hidden;
+    padding: 10px;
+  }
+  .layout-preview-grid img {
+    aspect-ratio: 4 / 4.35;
+    background: #fff;
+    border-radius: 7px;
+    object-fit: cover;
+    object-position: top center;
+    width: 100%;
+  }
+  .layout-preview-grid span {
+    color: #005588;
+    font-size: 14px;
+    font-weight: 900;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .review-notes-card ul {
+    display: grid;
+    gap: 10px;
+  }
+  .review-notes-card li {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 780;
+    line-height: 1.35;
+    padding: 12px 14px;
+  }
+
+  .photo-strip {
+    background: #fff;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1.2fr .8fr 1fr;
+  }
+  .photo-strip figure { background: var(--accent); border-radius: var(--radius); overflow: hidden; }
+  .photo-strip img { aspect-ratio: 4 / 3; height: 100%; object-fit: cover; width: 100%; }
+  .photo-strip figure:nth-child(1) img { aspect-ratio: 5 / 3; }
+  .photo-strip figure:nth-child(3) img { aspect-ratio: 5 / 3; }
+
+  .comparison-section { background: #fff; }
+  .comparison-table { border: 1px solid var(--line); border-radius: var(--radius); margin-top: 44px; overflow: hidden; }
+  .table-row {
+    background: #fff;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 20px;
+    grid-template-columns: .65fr 1fr 1.25fr;
+    padding: 18px 20px;
+  }
+  .table-row:first-child { border-top: 0; }
+  .table-head { background: var(--accent); color: #fff; font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  .table-row strong { color: var(--accent); font-size: 15px; }
+  .table-row p { color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+  .map-section { background: var(--bg); }
+  .page-map { display: grid; gap: 12px; grid-template-columns: repeat(4, 1fr); margin-top: 42px; }
+  .page-map article { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); min-height: 120px; padding: 18px; }
+  .page-map span { color: var(--muted); display: block; font-size: 12px; font-weight: 850; margin-bottom: 26px; overflow-wrap: anywhere; }
+  .page-map strong { color: var(--accent); font-size: 20px; line-height: 1.1; }
+
+  .visual-section { background: linear-gradient(180deg, #f3f7f7 0%, #fff 100%); }
+  .system-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: .9fr 1fr 1.1fr; margin-top: 20px; }
+  .system-grid article { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); min-height: 280px; padding: 26px; }
+  .system-grid span { color: var(--sage); display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; margin-bottom: 26px; text-transform: uppercase; }
+  .logo-card img { height: auto; margin-top: 54px; max-width: 220px; width: 85%; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px; }
+  .swatches i { border: 1px solid var(--line); border-radius: 50%; display: block; height: 44px; width: 44px; }
+  .palette-card p,
+  .type-card p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .display { color: var(--accent) !important; font-size: clamp(34px, 3.8vw, 54px) !important; font-weight: 900; line-height: .98 !important; margin-bottom: 24px; }
+
+  .services-section { background: #fff; }
+  .service-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); margin-top: 44px; }
+  .service-grid article { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .service-grid img { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; }
+  .service-grid div { padding: 24px; }
+  .service-grid h3 { color: var(--accent); font-size: 27px; }
+  .service-grid p { color: var(--muted); font-size: 15px; line-height: 1.55; margin-top: 12px; }
+
+  .screens-section { background: var(--bg); }
+  .screen-stage { align-items: end; display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) minmax(260px, 330px); margin-top: 46px; }
+  .desktop-screen,
+  .mobile-screen {
+    background: #f8fbfc;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .desktop-screen { padding: 28px; }
+  .screen-top { align-items: center; display: flex; gap: 24px; justify-content: space-between; margin-bottom: 28px; }
+  .screen-top img { height: auto; width: 150px; }
+  .screen-top nav { color: var(--muted); display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; font-weight: 750; }
+  .mock-hero { background: white; border-radius: 12px; display: grid; gap: 22px; grid-template-columns: 1.15fr .85fr; min-height: 330px; padding: 30px; }
+  .mock-hero span { color: var(--sage); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+  .mock-hero h3 { font-size: clamp(30px, 4vw, 58px); line-height: .98; margin-top: 34px; }
+  .mock-hero p { color: var(--muted); font-size: 15px; line-height: 1.6; margin-top: 18px; max-width: 420px; }
+  .mock-hero img { border-radius: 12px; height: 100%; max-height: 340px; object-fit: cover; object-position: center top; width: 100%; }
+  .mock-cards { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); margin-top: 14px; }
+  .mock-cards article { background: #fff; border-radius: 10px; color: var(--accent); font-weight: 850; min-height: 82px; padding: 18px; }
+  .mobile-screen { border: 10px solid var(--accent); border-radius: 36px; min-height: 610px; padding: 20px; }
+  .mobile-bar { display: flex; font-size: 12px; font-weight: 900; justify-content: space-between; margin-bottom: 38px; }
+  .mobile-screen img { height: auto; margin-bottom: 42px; width: 145px; }
+  .mobile-screen h3 { font-size: 32px; line-height: 1.02; }
+  .mobile-screen p { color: var(--muted); font-size: 14px; line-height: 1.5; margin-top: 12px; }
+  .mobile-cta { background: var(--accent); border-radius: 999px; color: #fff; font-size: 14px; font-weight: 900; margin-top: 30px; min-height: 48px; padding: 14px 18px; text-align: center; }
+  .mobile-list { display: grid; gap: 10px; margin-top: 22px; }
+  .mobile-list span { background: #fff; border: 1px solid var(--line); border-radius: 12px; font-size: 14px; font-weight: 850; padding: 16px; }
+
+  .component-grid { grid-template-columns: repeat(4, 1fr); }
+  .constraints-section {
+    background: #fff;
+  }
+  .constraints-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 34px;
+  }
+  .constraints-grid article {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 190px;
+    padding: 24px;
+  }
+  .constraints-grid h3 {
+    color: var(--accent);
+    font-size: 22px;
+  }
+  .constraints-grid p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 14px;
+  }
+  .result { background: var(--accent); color: white; }
+  .result .eyebrow,
+  .result-copy > p { color: rgba(255, 255, 255, .76); }
+  .result-copy { max-width: 960px; }
+  .outcome-list {
+    border-top: 1px solid rgba(255, 255, 255, .22);
+    margin-top: 34px;
+    padding-top: 26px;
+  }
+  .outcome-list span {
+    color: rgba(255, 255, 255, .76);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .outcome-list ul {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .outcome-list li {
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 850;
+    padding: 14px 16px;
+  }
+
+  @media (max-width: 1220px) {
+    .site-header { grid-template-columns: 1fr auto; }
+    .back-link { display: none; }
+    main { grid-template-columns: 1fr; }
+    .case-sidebar { height: auto; position: static; }
+    .case-sidebar nav { display: none; }
+    .hero { min-height: auto; }
+    .hero-copy,
+    .hero-stage,
+    .browser-pair,
+    .photo-compare-grid,
+    .service-before-after,
+    .sitemap-prototype-grid,
+    .screen-stage { grid-template-columns: 1fr; }
+    .metric-grid,
+    .role-card-grid,
+    .audit-grid,
+    .principle-grid,
+    .component-grid,
+    .constraints-grid,
+    .outcome-list ul,
+    .page-map { grid-template-columns: repeat(2, 1fr); }
+    .system-grid,
+    .photo-strip,
+    .figma-deck,
+    .sitemap-board,
+    .mobile-comparison { grid-template-columns: 1fr; }
+    .style-guide-card { grid-row: auto; }
+    .mobile-screen { max-width: 340px; }
+    .phone-mock { max-width: 340px; }
+    .mobile-photo img { min-height: 320px; }
+  }
+
+  @media (max-width: 780px) {
+    .site-header { padding: 14px 18px; }
+    .brand { font-size: 20px; }
+    .button.small { font-size: 12px; min-height: 38px; padding: 0 12px; }
+    main,
+    .case-sidebar,
+    .case-content { max-width: 100vw; min-width: 0; width: 100%; }
+    .case-sidebar { overflow: hidden; padding: 36px 18px; }
+    .case-content { overflow: hidden; }
+    .case-content > section { max-width: 100vw; padding-left: 18px; padding-right: 18px; width: 100%; }
+    .split-section,
+    .visual-section,
+    .handoff-section,
+    .result { grid-template-columns: minmax(0, 1fr); }
+    .section-copy > *,
+    .result-copy > * { min-width: 0; max-width: 100%; }
+    .audit-grid,
+    .principle-grid,
+    .component-grid,
+    .system-grid { grid-column: 1; }
+    .metric-grid,
+    .role-card-grid,
+    .audit-grid,
+    .principle-grid,
+    .component-grid,
+    .constraints-grid,
+    .outcome-list ul,
+    .page-map,
+    .service-grid,
+    .mock-hero,
+    .mock-cards,
+    .slide-label,
+    .new-services article,
+    .after-photos,
+    .layout-preview-grid,
+    .figma-color-grid,
+    .video-kicker,
+    .token-list div { grid-template-columns: 1fr; }
+    .after-photos figure:first-of-type,
+    .after-photos > span { grid-column: auto; }
+    .case-slide { border-radius: 12px; padding: 18px; }
+    .slide-label { gap: 10px; }
+    .style-guide-card,
+    .layout-index-card,
+    .review-notes-card { padding: 18px; }
+    .type-specimen strong { font-size: clamp(38px, 13vw, 58px); }
+    .browser-frame { min-height: 340px; }
+    .browser-frame > img { min-height: 280px; }
+    .long-page-frame { max-height: 560px; }
+    .long-page-frame > img { min-height: 0; }
+    .old-overlay,
+    .new-overlay {
+      bottom: 14px;
+      left: 14px;
+      max-width: calc(100% - 28px);
+      padding: 14px;
+    }
+    .new-overlay img { width: 120px; }
+    .old-menu { min-height: auto; padding: 22px; }
+    .new-services img { aspect-ratio: 16 / 9; }
+    .phone-mock { min-height: 500px; }
+    .phone-mock h4 { margin-top: 48px; }
+    .table-row {
+      gap: 10px;
+      grid-template-columns: 1fr;
+      padding: 18px;
+    }
+    .table-head { display: none; }
+    .table-row strong { font-size: 18px; }
+    .section-number { display: none; }
+    .hero-media img { aspect-ratio: 4 / 3; }
+    h2 { font-size: clamp(32px, 12vw, 48px); }
+  }
+</style>

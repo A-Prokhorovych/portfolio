@@ -1,1755 +1,669 @@
 ---
-import MotionEnhance from "../components/MotionEnhance.astro";
-
 const base = import.meta.env.BASE_URL;
-const campaignCover = (url) => {
-  if (url === `${base}projects/maguro-2018/`) {
-    return `${base}projects/maguro-2018/hero-concept.jpg`;
-  }
 
-  if (url === `${base}projects/maguro-travel/`) {
-    return `${base}projects/maguro-travel/hero-original.jpg`;
-  }
-
-  if (url === `${base}projects/synergetic/`) {
-    return `${base}projects/synergetic/hero-concept.jpg`;
-  }
-
-  if (url === `${base}projects/scotch-brite/`) {
-    return `${base}projects/scotch-brite/hero-concept.jpg`;
-  }
-
-  if (url.startsWith(`${base}projects/`)) {
-    return `${url.replace(/\/?$/, "/")}hero.jpg`;
-  }
-
-  const slug = url
-    .replace("https://www.edimdoma.ru/", "")
-    .replace(/#.*$/, "")
-    .replace(/[^a-zA-Z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
-    .toLowerCase();
-
-  return `${base}projects/covers/${slug}.jpg`;
-};
-
-const slugify = (value) =>
-  value
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-
-const compactSlug = (value) => slugify(value).replace(/-/g, "");
-
-const featuredProjects = [
+const projects = [
   {
-    title: "Djadja Vanja Special Project",
-    year: "2021",
-    category: "Food & Beverage",
-    image: `${base}projects/covers/2021-dv.jpg`,
-    url: `${base}projects/djadja-vanja/`,
-    description:
-      "Branded Storytelling, Rezeptinspiration und eine atmosphaerische Video-Buehne fuer die Traditionsmarke Djadja Vanja.",
-    internal: true,
-  },
-  {
-    title: "Zahnarztpraxis Website",
+    number: "01",
+    title: "Dr. Langhammer",
+    displayTitle: "Dr. Lang\u00ADhammer",
     year: "2025",
-    category: "Healthcare",
+    type: "Healthcare Website",
     image: `${base}projects/old-zahnarzt.jpg`,
-    url: "https://prokha.webflow.io/works/zahnarztpraxis",
-    description:
-      "Website-Konzept fuer eine Zahnarztpraxis mit klarer Struktur, vertrauensvoller Bildsprache und responsivem Layout.",
+    width: 1000,
+    height: 1000,
+    href: `${base}projects/dr-langhammer/`,
+    summary: "Vertrauen, Orientierung und eine ruhige Nutzerführung für eine sensible Entscheidung.",
+    contribution: "UX Struktur · UI Design · Responsive Handoff",
   },
   {
-    title: "ADHS Website",
-    year: "2024",
-    category: "Healthcare",
-    image: `${base}projects/old-adhs.webp`,
-    url: "https://prokha.webflow.io/works/adhs",
-    description:
-      "Webdesign fuer ein Informationsangebot mit ruhiger visueller Sprache und nutzerfreundlicher Inhaltsstruktur.",
-  },
-  {
-    title: "Gymera",
-    year: "2025",
-    category: "Product Design",
-    image: `${base}projects/gymera/customer-overview.png`,
-    url: `${base}projects/gymera/`,
-    description:
-      "Product Website, App-Einstieg, Dashboard, mobile Experience und Design Kit fuer ein KI-gestuetztes Fitness-System.",
-    internal: true,
-  },
-  {
-    title: "MAKS-Therapien",
-    year: "2024",
-    category: "Healthcare",
-    image: `${base}projects/maks/hero.jpg`,
-    url: `${base}projects/maks/`,
-    description:
-      "Website-Konzept fuer ein Therapieangebot mit Fokus auf Verstaendlichkeit, Vertrauen und strukturierter Nutzerfuehrung.",
-    internal: true,
-  },
-  {
-    title: "Schatzkiste",
-    year: "2025",
-    category: "Local Business",
-    image: `${base}projects/schatzkiste/hero.jpg`,
-    url: `${base}projects/schatzkiste/`,
-    description:
-      "Webdesign fuer ein lokales Projekt mit warmer Bildsprache, klarer Angebotsstruktur und freundlicher Nutzeransprache.",
-    internal: true,
-  },
-  {
-    title: "Kommunalwahl CDU",
-    year: "2024",
-    category: "Political Campaign",
-    image: `${base}projects/kommunalwahl/hero.jpg`,
-    url: `${base}projects/kommunalwahl/`,
-    description:
-      "Landing Page fuer eine kommunale Kampagne mit direkter Kommunikation, Kandidatenfokus und klaren Informationsbereichen.",
-    internal: true,
-  },
-  {
-    title: "Abundance Cove",
-    year: "2024",
-    category: "Branding",
-    image: `${base}projects/old-abundance-cove.png`,
-    url: "https://prokha.webflow.io/works/sove",
-    description:
-      "Visuelles Website-Konzept fuer ein Lifestyle-Projekt mit ruhiger Aesthetik und markenorientierter Gestaltung.",
-  },
-  {
-    title: "Seafood",
-    year: "2024",
-    category: "Food & Beverage",
-    image: `${base}projects/old-seafood.jpg`,
-    url: "https://prokha.webflow.io/works/seafood",
-    description:
-      "Food-orientiertes Webdesign mit starker Produktinszenierung, appetitlicher Bildwelt und klarer Landing-Page-Struktur.",
-  },
-  {
-    title: "Palm Oil",
-    year: "2024",
-    category: "Food & Beverage",
-    image: `${base}projects/old-palm-oil.jpg`,
-    url: "https://prokha.webflow.io/works/oil",
-    description:
-      "Landing-Page-Konzept fuer ein Food-Produkt mit visueller Produktpraesentation und kommerzieller Seitenstruktur.",
-  },
-  {
-    title: "Velle Yogurt Campaign",
-    year: "2022",
-    category: "Food & Beverage",
-    url: `${base}projects/velle/`,
-    image: campaignCover("https://www.edimdoma.ru/2022/velle"),
-    description:
-      "Kampagnenseite zur Produkteinfuehrung mit Rezeptinspiration, Markenkommunikation und Aktionsmechanik.",
-    internal: true,
-  },
-  {
-    title: "Maslenitsa Campaign",
-    year: "2022",
-    category: "Saisonale Kampagne",
-    url: `${base}projects/hochland/`,
-    image: campaignCover("https://www.edimdoma.ru/2022/maslenica"),
-    description:
-      "Saisonale Kampagnenseite mit Rezepten, Food-Visuals und interaktiven Inhalten.",
-    internal: true,
-  },
-  {
-    title: "Kapitan Vkusov Special Project",
-    year: "2019",
-    category: "Food & Beverage",
-    url: `${base}projects/kapitan-vkusov/`,
-    image: campaignCover("https://www.edimdoma.ru/2019/kapitan-vkusov"),
-    description:
-      "Maritime Kampagnenwelt mit starkem Storytelling, Produktinszenierung und interaktiven Entdeckungen.",
-    internal: true,
-  },
-  {
-    title: "Agama Seasonal Campaigns",
-    year: "2020",
-    category: "Food & Beverage",
-    url: `${base}projects/agama/`,
-    image: campaignCover("https://www.edimdoma.ru/2020/zima/agama"),
-    description:
-      "Saisonale Seafood-Kampagnen mit klarer Produktkommunikation, Rezeptideen und nuetzlichem Fischwissen.",
-    internal: true,
-  },
-  {
-    title: "Parmalat Campaign",
+    number: "02",
+    title: "Panasonic",
     year: "2021",
-    category: "Food & Beverage",
-    url: `${base}projects/parmalat/`,
-    image: campaignCover("https://www.edimdoma.ru/2021/parmalat"),
-    description:
-      "Branded Landing Page mit Fokus auf Produktkommunikation und content-orientierte Struktur.",
-    internal: true,
+    type: "Digital Product Campaign",
+    image: `${base}projects/panasonic/hero.jpg`,
+    width: 1920,
+    height: 899,
+    href: `${base}projects/panasonic/`,
+    summary: "Technologie, Beratung und Rezeptinspiration in einer klaren digitalen Produktwelt.",
+    contribution: "Art Direction · Campaign Design · Handoff",
   },
   {
-    title: "Fish & More Campaign",
-    year: "2021",
-    category: "Food & Beverage",
-    url: `${base}projects/fish-and-more/`,
-    image: campaignCover("https://www.edimdoma.ru/2021/fishandmore"),
-    description:
-      "Frische Seafood-Kampagne mit Produktfokus, Rezeptideen und leicht verstaendlicher Markenkommunikation.",
-    internal: true,
-  },
-  {
-    title: "Nasha Ptichka Campaigns",
+    number: "03",
+    title: "Luminarc",
     year: "2020–2021",
-    category: "Food & Beverage",
-    url: `${base}projects/nasha-ptichka/`,
-    image: campaignCover("https://www.edimdoma.ru/2021/nashaptichka"),
-    description:
-      "Freundliche Produktkampagnen mit Food-Fotografie, Illustrationen und einer flexiblen saisonalen Markenwelt.",
-    internal: true,
-  },
-  {
-    title: "Gribnaja Raduga Campaign",
-    year: "2021",
-    category: "Food & Beverage",
-    url: `${base}projects/gribnaja-raduga/`,
-    image: campaignCover("https://www.edimdoma.ru/2021/GR"),
-    description:
-      "Markante Produktkampagne mit direkter Botschaft, naturbezogener Bildwelt und praktischen Content-Bereichen.",
-    internal: true,
-  },
-  {
-    title: "National Campaign Platform",
-    year: "2018–2020",
-    category: "Food & Beverage",
-    url: `${base}projects/national/`,
-    image: campaignCover("https://www.edimdoma.ru/2020/osen/national"),
-    description:
-      "Langfristige Food-Plattform mit Online-Marathon, Chef-Content und internationalen kulinarischen Geschichten.",
-    internal: true,
-  },
-  {
-    title: "Hill's Pet Care Campaign",
-    year: "2020",
-    category: "Lifestyle",
-    url: `${base}projects/hills/`,
-    image: campaignCover("https://www.edimdoma.ru/2020/hills"),
-    description:
-      "Pet-Care-Kampagne mit sympathischem Markencharakter, Gesundheitstipps und persoenlichem Storytelling.",
-    internal: true,
-  },
-  {
-    title: "Pomidorka Product Campaign",
-    year: "2016",
-    category: "Food & Beverage",
-    url: `${base}projects/pomidorka/`,
-    image: campaignCover("https://www.edimdoma.ru/pomidorka"),
-    description:
-      "Warme Produktkampagne mit klarer Sortimentspraesentation, Markenfigur und rustikaler Food-Aesthetik.",
-    internal: true,
-  },
-  {
-    title: "Kenwood Campaign Platform",
-    year: "2019",
-    category: "Kuechengeraete",
-    url: `${base}projects/kenwood/`,
-    image: campaignCover("https://www.edimdoma.ru/2019/kenwood"),
-    description:
-      "Kampagnenseite fuer Kuechengeraete mit Rezeptintegration und visueller Produktpraesentation.",
-    internal: true,
-  },
-  {
-    title: "Panasonic Campaign",
-    year: "2021",
-    category: "Kuechengeraete",
-    url: `${base}projects/panasonic/`,
-    image: campaignCover("https://www.edimdoma.ru/2021/panasonic"),
-    description:
-      "Produktorientierte Kampagnenseite mit cleaner visueller Richtung und Rezeptkontext.",
-    internal: true,
-  },
-  {
-    title: "Hochland Seasonal Campaigns",
-    year: "2020",
-    category: "Food & Beverage",
-    url: `${base}projects/hochland/`,
-    image: campaignCover("https://www.edimdoma.ru/2020/hochland"),
-    description:
-      "Branded Food-Kampagne mit saisonalem Storytelling, Rezeptinhalten und Markeninszenierung.",
-    internal: true,
-  },
-  {
-    title: "Luminarc Seasonal Campaigns",
-    year: "2020",
-    category: "Lifestyle",
-    url: `${base}projects/luminarc/`,
-    image: campaignCover("https://www.edimdoma.ru/2020/luminarc"),
-    description:
-      "Lifestyle-orientierte Kampagnenseite mit Fokus auf Produktaesthetik und saisonale Inspiration.",
-    internal: true,
-  },
-  {
-    title: "Dr. Oetker Campaign",
-    year: "2017",
-    category: "Food & Beverage",
-    url: `${base}projects/oetker/`,
-    image: campaignCover("https://www.edimdoma.ru/2017/oetker"),
-    description:
-      "Rezept- und Backkampagne mit emotionaler Food-Inszenierung und klarer Inhaltsstruktur.",
-    internal: true,
+    type: "Seasonal Brand Campaigns",
+    image: `${base}projects/luminarc/hero.jpg`,
+    width: 1920,
+    height: 1080,
+    href: `${base}projects/luminarc/`,
+    summary: "Zwei saisonale Markenwelten, die Produkt, Anwendung und Atmosphäre verbinden.",
+    contribution: "Visual Concept · Web Design · Content System",
   },
 ];
 
-const campaignArchive = [
-  ["Calendar Special Project", "2021", "Saisonale Kampagne", `${base}projects/calendar/`, "prokha-maslenitsa.png"],
-  ["Palm Oil Campaign", "2021", "Food & Beverage", `${base}projects/palm-oil/`, "prokha-parmalat.png"],
-  ["Nasha Ptichka Campaign", "2021", "Food & Beverage", `${base}projects/nasha-ptichka/`, "prokha-velle.png"],
-  ["Fish & More Campaign", "2021", "Food & Beverage", `${base}projects/fish-and-more/`, "old-seafood.jpg"],
-  ["Luminarc Summer Campaign", "2021", "Lifestyle", `${base}projects/luminarc/`, "prokha-luminarc.png"],
-  ["Gribnaja Raduga Campaign", "2021", "Food & Beverage", `${base}projects/gribnaja-raduga/`, "prokha-hochland.png"],
-  ["Hill's Campaign", "2020", "Lifestyle", `${base}projects/hills/`, "old-abundance-cove.png"],
-  ["Agama Winter Campaign", "2020", "Food & Beverage", `${base}projects/agama/`, "old-seafood.jpg"],
-  ["National Campaign", "2020", "Food & Beverage", `${base}projects/national/`, "prokha-kenwood.png"],
-  ["Agama Autumn Campaign", "2020", "Food & Beverage", `${base}projects/agama/`, "old-seafood.jpg"],
-  ["National Campaign", "2019", "Food & Beverage", `${base}projects/national/`, "prokha-panasonic.png"],
-  ["Provancal Campaign", "2019", "Food & Beverage", `${base}projects/provancal/`, "prokha-oetker.png"],
-  ["Makfa Campaign", "2018", "Food & Beverage", `${base}projects/makfa/`, "prokha-maslenitsa.png"],
-  ["Frau Marta Campaign", "2018", "Food & Beverage", `${base}projects/frau-marta/`, "prokha-parmalat.png"],
-  ["Vitamin Campaign", "2018", "Food & Beverage", `${base}projects/vitamin/`, "prokha-velle.png"],
-  ["National Travel Campaign", "2018", "Food & Beverage", `${base}projects/national/`, "prokha-panasonic.png"],
-  ["Faberlic Campaign", "2018", "Lifestyle", `${base}projects/faberlic/`, "old-abundance-cove.png"],
-  ["Udarnitsa Campaign", "2018", "Food & Beverage", `${base}projects/udarnitsa/`, "prokha-oetker.png"],
-  ["Hochland Campaign", "2018", "Food & Beverage", `${base}projects/hochland-2018/`, "prokha-hochland.png"],
-  ["Semushka Campaign", "2018", "Food & Beverage", `${base}projects/semushka/`, "prokha-velle.png"],
-  ["Maguro Campaign", "2018", "Food & Beverage", `${base}projects/maguro-2018/`, "old-seafood.jpg"],
-  ["Synergetic Campaign", "2018", "Lifestyle", `${base}projects/synergetic/`, "old-abundance-cove.png"],
-  ["Biotta Campaign", "2017", "Food & Beverage", `${base}projects/biotta/`, "prokha-velle.png"],
-  ["Scotch-Brite Campaign", "2017", "Lifestyle", `${base}projects/scotch-brite/`, "old-abundance-cove.png"],
-  ["Maheev Campaign", "2017", "Food & Beverage", `${base}projects/maheev/`, "prokha-oetker.png"],
-  ["Maguro Travel Campaign", "2017", "Food & Beverage", `${base}projects/maguro-travel/`, "old-seafood.jpg"],
-  ["Brita Campaign", "2017", "Lifestyle", `${base}projects/brita/`, "prokha-luminarc.png"],
-  ["SAF Campaign", "2017", "Food & Beverage", `${base}projects/saf/`, "prokha-maslenitsa.png"],
-  ["Ochakovo Campaign", "2017", "Food & Beverage", `${base}projects/ochakovo/`, "prokha-parmalat.png"],
-  ["Ezidri Campaign", "2017", "Kuechengeraete", "https://www.edimdoma.ru/2017/ezidri", "prokha-kenwood.png"],
-  ["Tojiro Campaign", "2017", "Kuechengeraete", "https://www.edimdoma.ru/2017/tojiro", "prokha-kenwood.png"],
-  ["Forester Campaign", "2017", "Lifestyle", "https://www.edimdoma.ru/2017/forester", "old-abundance-cove.png"],
-  ["Leonardo Campaign", "2016", "Lifestyle", "https://www.edimdoma.ru/leonardo", "prokha-luminarc.png"],
-  ["Sloboda Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/sloboda", "prokha-oetker.png"],
-  ["Hot Drinks Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/hotdrinks", "prokha-parmalat.png"],
-  ["Kitchen Special Project", "2016", "Kuechengeraete", "https://www.edimdoma.ru/kitchen", "prokha-kenwood.png"],
-  ["Cherkizovo Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/cherkizovo", "prokha-hochland.png"],
-  ["Kenwood Campaign", "2021", "Kuechengeraete", `${base}projects/kenwood/`, "prokha-kenwood.png"],
-  ["Nasha Ptichka Campaign", "2020", "Food & Beverage", `${base}projects/nasha-ptichka/`, "prokha-velle.png"],
-  ["Hochland Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/hochland", "prokha-hochland.png"],
-  ["Luminarc Campaign", "2019", "Lifestyle", "https://www.edimdoma.ru/2019/luminarc", "prokha-luminarc.png"],
-  ["Maheev New Year Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/maheevNY", "prokha-oetker.png"],
-  ["Petruha Gotovo Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhagotovo", "prokha-hochland.png"],
-  ["Petruha Master Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhamaster", "prokha-hochland.png"],
-  ["Astra Tomat Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/astratomat#1", "prokha-parmalat.png"],
-  ["Petruha Prosto Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhaprosto", "prokha-hochland.png"],
-  ["Picnic Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/picnic", "prokha-velle.png"],
-  ["Kapitan Vkusov Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/kapitan-vkusov2", "old-seafood.jpg"],
-  ["Schedroe Leto Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/shedroeleto", "prokha-oetker.png"],
-  ["Vivid Campaign", "2019", "Lifestyle", "https://www.edimdoma.ru/2019/vivid", "old-abundance-cove.png"],
-  ["Kapitan Vkusov Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/kapitan-vkusov", "old-seafood.jpg"],
-  ["M-Znak Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/m-znak", "prokha-maslenitsa.png"],
-  ["Olala Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/olala", "prokha-oetker.png"],
-  ["Football Campaign", "2018", "Saisonale Kampagne", "https://www.edimdoma.ru/2018/football", "old-abundance-cove.png"],
-  ["Schedroe Leto Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2019/shedroeleto", "prokha-oetker.png"],
-  ["Kenwood Campaign", "2018", "Kuechengeraete", `${base}projects/kenwood/`, "prokha-kenwood.png"],
-  ["Frau Marta Campaign", "2018", "Food & Beverage", "https://www.edimdoma.ru/2018/fraumarta", "prokha-parmalat.png"],
-  ["National Campaign", "2018", "Food & Beverage", `${base}projects/national/`, "prokha-panasonic.png"],
-  ["Hochland Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/hochland", "prokha-hochland.png"],
-  ["Kenwood Campaign", "2017", "Kuechengeraete", `${base}projects/kenwood/`, "prokha-kenwood.png"],
-  ["Brita Campaign", "2017", "Lifestyle", "https://www.edimdoma.ru/2017/brita", "prokha-luminarc.png"],
-  ["Lito Campaign", "2017", "Saisonale Kampagne", "https://www.edimdoma.ru/2017/lito", "prokha-maslenitsa.png"],
-  ["Macho Gazpacho Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/machogazpacho", "prokha-parmalat.png"],
-  ["Biolio Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/biolio", "prokha-oetker.png"],
-  ["Grovo Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/grovo", "prokha-velle.png"],
-  ["Yablokov Campaign", "2017", "Food & Beverage", "https://www.edimdoma.ru/2017/yablokov", "prokha-maslenitsa.png"],
-  ["Domik v Derevne Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/domikvderevne", "prokha-parmalat.png"],
-  ["National Campaign", "2016", "Food & Beverage", `${base}projects/national/`, "prokha-panasonic.png"],
-  ["Biolio New Year Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/biolionewyear", "prokha-oetker.png"],
-  ["Maguro Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/maguro", "old-seafood.jpg"],
-  ["Agrivolga Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/agrivolga", "prokha-hochland.png"],
-  ["Candy Campaign", "2016", "Food & Beverage", "https://www.edimdoma.ru/candy3", "prokha-oetker.png"],
-  ["Pomidorka Campaign", "2016", "Food & Beverage", `${base}projects/pomidorka/`, "prokha-parmalat.png"],
-].map(([title, year, category, url]) => ({
-  title,
-  year,
-  category,
-  image: campaignCover(url),
-  url,
-  internal: url.startsWith(base),
-  description:
-    "Kommerzielle Kampagnenseite fuer eine Marke auf einer grossen Food- und Lifestyle-Plattform.",
-}));
+const services = [
+  ["01", "Campaign & Landing Pages", "Digitale Kampagnen, die Markenbotschaft und Nutzerführung in eine klare Dramaturgie übersetzen."],
+  ["02", "Responsive Web Design", "Strukturierte Websites mit präziser Hierarchie, konsistentem Designsystem und sauberem Mobile-Verhalten."],
+  ["03", "Design-to-Launch", "Prototyping, produktionsnahe Layouts und verlässliche Übergabe in enger Zusammenarbeit mit Entwicklungsteams."],
+];
 
-const projects = [...featuredProjects, ...campaignArchive];
-const visibleProjectCount = 8;
-
-const brandLogos = [
-  ["ugleche pole.svg", "Ugleche Pole", "https://www.edimdoma.ru/agrivolga"],
-  ["panasonic.svg", "Panasonic", ["https://www.edimdoma.ru/2021/panasonic", `${base}projects/panasonic/`]],
-  ["petruha.svg", "Petruha"],
-  ["luminarc.svg", "Luminarc", ["https://www.edimdoma.ru/2020/luminarc", "https://www.edimdoma.ru/2021/leto/luminarc", `${base}projects/luminarc/`]],
-  ["nasha ptichka.svg", "Nasha Ptichka", ["https://www.edimdoma.ru/2021/nashaptichka", "https://www.edimdoma.ru/2020/nashaptichka", `${base}projects/nasha-ptichka/`]],
-  ["kenwood.svg", "Kenwood", ["https://www.edimdoma.ru/2021/kenwood", "https://www.edimdoma.ru/2019/kenwood", "https://www.edimdoma.ru/2018/kenwood", `${base}projects/kenwood/`]],
-  ["frau marta.svg", "Frau Marta"],
-  ["brita.svg", "Brita", ["https://www.edimdoma.ru/2017/brita4", "https://www.edimdoma.ru/2017/brita", `${base}projects/brita/`]],
-  ["gribnaja raduga.svg", "Gribnaja Raduga", ["https://www.edimdoma.ru/2021/GR", `${base}projects/gribnaja-raduga/`]],
+const brands = [
+  ["panasonic.svg", "Panasonic"],
+  ["luminarc.svg", "Luminarc"],
+  ["hochland.svg", "Hochland"],
+  ["kenwood.svg", "Kenwood"],
+  ["brita.svg", "Brita"],
+  ["dr.oetker.svg", "Dr. Oetker"],
   ["faberlic.svg", "Faberlic"],
-  ["hills.svg", "Hill's", ["https://www.edimdoma.ru/2020/hills", `${base}projects/hills/`]],
-  ["tojiro.svg", "Tojiro"],
-  ["djadja vanja.svg", "Djadja Vanja", ["https://www.edimdoma.ru/2021/dv", `${base}projects/djadja-vanja/`]],
-  ["agama.svg", "Agama", ["https://www.edimdoma.ru/2020/zima/agama", "https://www.edimdoma.ru/2020/osen/agama", `${base}projects/agama/`]],
-  ["velle.svg", "Velle", ["https://www.edimdoma.ru/2022/velle", `${base}projects/velle/`]],
-  ["ochakovo.svg", "Ochakovo", ["https://www.edimdoma.ru/2017/machogazpacho", "https://www.edimdoma.ru/2017/ochakovo", `${base}projects/ochakovo/`]],
-  ["Vitamin Planet.svg", "Vitamin Planet", "https://www.edimdoma.ru/2018/vitamin"],
-  ["ezidri.svg", "Ezidri"],
-  ["grovo.svg", "Grovo"],
-  ["biotta.svg", "Biotta"],
-  ["kapitan vkusov.svg", "Kapitan Vkusov", ["https://www.edimdoma.ru/2019/kapitan-vkusov", "https://www.edimdoma.ru/2019/kapitan-vkusov2", `${base}projects/kapitan-vkusov/`]],
-  ["makfa.svg", "Makfa"],
-  ["projects/maguro-travel/logo-gray.png", "Maguro", ["https://www.edimdoma.ru/magurotravel", "https://www.edimdoma.ru/maguro", `${base}projects/maguro-travel/`, `${base}projects/maguro-2018/`]],
-  ["dr.oetker.svg", "Dr. Oetker", ["https://www.edimdoma.ru/2017/oetker", `${base}projects/oetker/`]],
-  ["moskowskij provansal.svg", "Moskowskij Provansal", "https://www.edimdoma.ru/2019/provancal"],
-  ["fish and more.svg", "Fish and More", ["https://www.edimdoma.ru/2021/fishandmore", `${base}projects/fish-and-more/`]],
-  ["national.svg", "National", ["https://www.edimdoma.ru/2020/osen/national", "https://www.edimdoma.ru/2019/national", "https://www.edimdoma.ru/2018/nationaltravel", "https://www.edimdoma.ru/2018/national", "https://www.edimdoma.ru/national", `${base}projects/national/`]],
-  ["mjagkij znak.svg", "Mjagkij Znak", "https://www.edimdoma.ru/2018/m-znak"],
-  ["maheev.svg", "Maheev", ["https://www.edimdoma.ru/2017/maheev", `${base}projects/maheev/`]],
-  ["lesaffre.svg", "Lesaffre", ["https://www.edimdoma.ru/2017/saf", `${base}projects/saf/`]],
-  ["biolio.svg", "Biolio"],
-  ["scotch-brite.svg", "Scotch-Brite", ["https://www.edimdoma.ru/2017/scotch-brite", `${base}projects/scotch-brite/`]],
-  ["semushka.svg", "Semushka"],
-  ["cherkizovo.svg", "Cherkizovo"],
-  ["edim doma.svg", "Edim Doma"],
-  ["shedroeleto.svg", "Shedroe Leto", "https://www.edimdoma.ru/2019/shedroeleto"],
-  ["parmalat.svg", "Parmalat", ["https://www.edimdoma.ru/2021/parmalat", `${base}projects/parmalat/`]],
-  ["synergetic.svg", "Synergetic"],
-  ["green ray.svg", "Green Ray", "https://www.edimdoma.ru/2019/astratomat#1"],
-  ["vivid.svg", "Vivid"],
-  ["hochland.svg", "Hochland", ["https://www.edimdoma.ru/2022/maslenica", "https://www.edimdoma.ru/2020/hochland", `${base}projects/hochland/`]],
-  ["udarniza.svg", "Udarniza", "https://www.edimdoma.ru/2018/udarnitsa"],
-  ["biokor.svg", "Biokor", "https://www.edimdoma.ru/2017/lito"],
-  ["leonardo.svg", "Leonardo", "https://www.edimdoma.ru/leonardo"],
-  ["pomidorka.svg", "Pomidorka", ["https://www.edimdoma.ru/pomidorka", `${base}projects/pomidorka/`]],
-  ["sloboda.svg", "Sloboda", "https://www.edimdoma.ru/sloboda"],
-].map(([file, name, projectUrl = ""]) => {
-  const projectUrls = Array.isArray(projectUrl) ? projectUrl : projectUrl ? [projectUrl] : [];
-
-  return {
-    file,
-    name,
-    slug: slugify(file.replace(/\.[a-z0-9]+$/i, "").split("/").pop()),
-    compact: compactSlug(file.replace(/\.[a-z0-9]+$/i, "").split("/").pop()),
-    logoSrc: file.includes("/") ? `${base}${file}` : `${base}brands/logotypes/${encodeURIComponent(file)}`,
-    projectSlugs: projectUrls.map(slugify).join("|"),
-    projectCompacts: projectUrls.map(compactSlug).join("|"),
-  };
-});
-
-const competencies = [
-  ["Digital Campaign Design", "Landing Pages und Special Projects fuer Marken, Produkte und saisonale Kampagnen."],
-  ["Web Design", "Responsive Websites und Kampagnenseiten mit klarer Struktur und visueller Konsistenz."],
-  ["Visual Design", "Starke visuelle Konzepte, Bildwelten, Layouts und Marketing-Grafiken."],
-  ["Responsive Layouts", "Desktop- und Mobile-Layouts fuer content-heavy Kampagnenseiten."],
-  ["Prototyping", "Interaktive Prototypen, Wireframes und Layout-Konzepte in Figma."],
-  ["Developer Handoff", "Saubere Uebergabe, Abstimmung mit Entwicklern und produktionsnahe Umsetzung."],
-];
-
-const process = [
-  ["Verstehen", "Ziele, Zielgruppe, Marke und Projektanforderungen klaeren."],
-  ["Konzept", "Seitenstruktur, visuelle Richtung und zentrale Inhalte definieren."],
-  ["Design", "Responsive Layouts, Kampagnenmodule und visuelle Assets gestalten."],
-  ["Uebergabe", "Designs, Assets und Spezifikationen fuer Entwickler vorbereiten."],
-  ["Launch & Support", "Umsetzung begleiten, pruefen und bei Optimierungen unterstuetzen."],
+  ["parmalat.svg", "Parmalat"],
 ];
 ---
 
+<!doctype html>
 <html lang="de">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portfolio von Andrii Prokhorovych, Web Designer und Digital Campaign Designer in Ulm."
+    />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Andrii Prokhorovych - Web Designer und Digital Campaign Designer in Ulm, Deutschland." />
-    <meta name="generator" content={Astro.generator} />
-    <title>Andrii Prokhorovych - Web Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Andrii Prokhorovych — Web Designer in Ulm</title>
   </head>
   <body>
+    <a class="skip-link" href="#content">Zum Inhalt springen</a>
+
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Startseite">PROKHA</a>
+      <a class="wordmark" href={base} aria-label="Portfolio Startseite">
+        <span>A/</span>PROKHA
+      </a>
+      <p class="concept-label">Web Designer · Ulm</p>
       <nav aria-label="Hauptnavigation">
-        <a href="#projects">Projekte</a>
-        <a href="#about">Ueber mich</a>
-        <a href="#process">Prozess</a>
+        <a href="#work">Arbeiten</a>
+        <a href="#profile">Profil</a>
         <a href="#contact">Kontakt</a>
       </nav>
-      <a class="button dark small" href={`${base}cv/andrii-prokhorovych-lebenslauf.pdf`} download>CV herunterladen</a>
+      <a class="original-link" href={`${base}archive/`}>Archiv ansehen <span aria-hidden="true">↗</span></a>
     </header>
 
-    <main id="top">
-      <section class="hero section">
+    <main id="content">
+      <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Hallo, ich bin</p>
-          <h1>Andrii Prokhorovych</h1>
-          <p class="role">Web Designer & Digital Campaign Designer</p>
-          <p class="lead">
-            Ich gestalte branded Landing Pages, responsive Websites und digitale Kampagnen fuer Produkte,
-            Marken und Content-Plattformen.
-          </p>
-          <p class="lead muted">
-            Mit ueber 10 Jahren Erfahrung in kommerzieller Webproduktion habe ich an 70+ digitalen Kampagnen
-            und Promo-Projekten fuer Food-, Lifestyle-, Home- und Consumer-Brands gearbeitet.
-          </p>
-          <div class="actions">
-            <a class="button dark" href="#projects">Projekte ansehen</a>
-            <a class="button light" href="#about">Ueber mich</a>
+          <p class="kicker"><span></span> Web & Campaign Designer · Ulm</p>
+          <h1 id="hero-title">
+            Digitale Marken brauchen mehr als <em>schöne Seiten.</em>
+          </h1>
+          <div class="hero-intro">
+            <p>
+              Ich verbinde klare Nutzerführung, starke visuelle Konzepte und produktionsnahe Umsetzung zu
+              digitalen Erlebnissen, die Marken verständlich und relevant machen.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#work">Ausgewählte Arbeiten</a>
+              <a class="button button-secondary" href="mailto:prohorovichandrey@gmail.com">Projekt anfragen</a>
+            </div>
           </div>
         </div>
-        <div class="portrait-wrap">
-          <img src={`${base}avatar.png`} alt="Portrait von Andrii Prokhorovych" />
-        </div>
-        <div class="stats" aria-label="Erfahrung in Zahlen">
-          <div>
-            <svg class="stat-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="4.5" width="18" height="16" rx="2"></rect>
-              <path d="M8 2.5v4M16 2.5v4M3 9h18"></path>
-            </svg>
-            <strong data-count-target="10">10+</strong>
-            <span>Jahre Erfahrung</span>
-          </div>
-          <div>
-            <svg class="stat-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m12 3 9 5-9 5-9-5 9-5Z"></path>
-              <path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path>
-            </svg>
-            <strong data-count-target="70">70+</strong>
-            <span>Kampagnen & Projekte</span>
-          </div>
-          <div>
-            <svg class="stat-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-            <strong data-count-target="40">40+</strong>
-            <span>Marken</span>
-          </div>
-          <div>
-            <svg class="stat-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="13" rx="2"></rect>
-              <path d="M8 21h8M12 17v4M8 10l2.5 2.5L16 7"></path>
-            </svg>
-            <strong>Design-to-Launch</strong>
-            <span>Zusammenarbeit mit Entwicklern</span>
-          </div>
-        </div>
+
+        <figure class="hero-portrait">
+          <img
+            src={`${base}avatar.png`}
+            alt="Portrait von Andrii Prokhorovych"
+            width="1360"
+            height="1100"
+            fetchpriority="high"
+          />
+          <figcaption class="portrait-meta">
+            <span>Andrii Prokhorovych</span>
+            <span>Verfügbar für ausgewählte Projekte</span>
+          </figcaption>
+        </figure>
+
+        <dl class="proof" aria-label="Erfahrung in Zahlen">
+          <div><dt>Erfahrung</dt><dd>10+ Jahre</dd></div>
+          <div><dt>Projekte</dt><dd>70+ Kampagnen</dd></div>
+          <div><dt>Marken</dt><dd>40+ Kunden</dd></div>
+          <div><dt>Fokus</dt><dd>Design → Launch</dd></div>
+        </dl>
       </section>
 
-      <section id="projects" class="section projects">
-        <div class="section-head" data-project-results>
+      <section class="work section" id="work" aria-labelledby="work-title">
+        <header class="section-heading">
+          <p class="section-index">01 / Selected work</p>
           <div>
-            <p class="eyebrow">Ausgewaehlte Projekte</p>
-            <h2>Websites und digitale Kampagnen fuer starke Marken</h2>
+            <h2 id="work-title">Drei Projekte.<br />Drei unterschiedliche Aufgaben.</h2>
+            <p>
+              Nicht die Menge steht im Vordergrund, sondern die Entscheidung hinter dem Design: Kontext
+              verstehen, Komplexität reduzieren und eine eigenständige Markenwelt aufbauen.
+            </p>
           </div>
-          <p>
-            Eine kuratierte Auswahl aus Webdesign-Projekten, Landing Pages, Kampagnenseiten und kommerziellen
-            Special Projects fuer deutsche Kunden und bekannte Marken.
-          </p>
-        </div>
+        </header>
 
-        <div class="filters" aria-label="Projektkategorien">
-          <button class="filter-button is-active" type="button" data-category-filter="all">Alle</button>
-          <button class="filter-button" type="button" data-category-filter="web-design">Web Design</button>
-          <button class="filter-button" type="button" data-category-filter="product-design">Product Design</button>
-          <button class="filter-button" type="button" data-category-filter="healthcare">Healthcare</button>
-          <button class="filter-button" type="button" data-category-filter="food-and-beverage">Food & Beverage</button>
-          <button class="filter-button" type="button" data-category-filter="lifestyle">Lifestyle</button>
-          <button class="filter-button" type="button" data-category-filter="kuechengeraete">Kuechengeraete</button>
-          <button class="filter-button" type="button" data-category-filter="saisonale-kampagne">Saisonale Kampagnen</button>
-        </div>
-
-        <div class="active-brand-filter" data-active-brand hidden>
-          <span>Aktiver Markenfilter</span>
-          <img src="" alt="" data-active-brand-logo />
-          <strong data-active-brand-name></strong>
-          <button type="button" data-clear-brand-filter aria-label="Markenfilter entfernen">×</button>
-        </div>
-
-        <div class="project-grid">
+        <div class="project-list">
           {projects.map((project, index) => (
-            <article class={`project-card ${index >= visibleProjectCount ? "is-hidden" : ""}`} data-project-card data-project-year={project.year} data-project-category={slugify(project.category)} data-project-search={slugify(`${project.title} ${project.category} ${project.url}`)} data-project-compact={compactSlug(`${project.title} ${project.category} ${project.url}`)}>
-              <a href={project.url} target={project.internal ? undefined : "_blank"} rel={project.internal ? undefined : "noreferrer"}>
-                <img src={project.image} alt={`${project.title} Vorschau`} loading="lazy" />
-                <div class="project-body">
-                  <p class="meta">{project.year} · {project.category}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <span>{project.internal ? "Case Study ansehen" : "Live ansehen"}</span>
-                </div>
+            <article class={`project project-${index + 1}`}>
+              <a
+                class="project-media"
+                href={project.href}
+                target={project.external ? "_blank" : undefined}
+                rel={project.external ? "noreferrer" : undefined}
+                aria-label={`${project.title} Case Study ansehen`}
+              >
+                <img
+                  src={project.image}
+                  alt={`${project.title} Projektvorschau`}
+                  width={project.width}
+                  height={project.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="project-open" aria-hidden="true">Case ansehen ↗</span>
               </a>
+              <div class="project-info">
+                <p class="project-number">{project.number}</p>
+                <div>
+                  <p class="project-meta">{project.year} · {project.type}</p>
+                  <h3>{project.displayTitle ?? project.title}</h3>
+                  <p class="project-summary">{project.summary}</p>
+                  <p class="project-contribution">{project.contribution}</p>
+                </div>
+              </div>
             </article>
           ))}
         </div>
 
-        <div class="show-more-wrap">
-          <button class="button light show-more-button" type="button" data-show-projects data-visible-count={visibleProjectCount}>
-            Mehr Projekte anzeigen
-          </button>
-        </div>
-
-        <div class="brand-strip" aria-label="Marken" data-brand-strip>
-          <p>
-            <span>Marken, fuer die ich</span>
-            <span>gearbeitet habe</span>
-          </p>
-          <div class="brand-marquee">
-            <div class="brand-marquee-track">
-              <div class="brand-logo-group">
-                {brandLogos.map((brand) => (
-                  <button class="brand-logo" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={brand.logoSrc} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
-                    <img src={brand.logoSrc} alt={brand.name} loading="eager" decoding="async" />
-                  </button>
-                ))}
-              </div>
-              <div class="brand-logo-group" aria-hidden="true">
-                {brandLogos.map((brand) => (
-                  <button class="brand-logo" type="button" tabindex="-1" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={brand.logoSrc}>
-                    <img src={brand.logoSrc} alt="" loading="eager" decoding="async" />
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div class="brand-expanded-content">
-            <div class="brand-toggle-dock">
-              <button class="button light brand-toggle" type="button" data-toggle-brands aria-expanded="false">
-                Alle Marken
-              </button>
-            </div>
-            <div class="brand-logo-panel" data-brand-panel>
-              {brandLogos.map((brand) => (
-                <button class="brand-logo static" type="button" data-brand-filter={brand.slug} data-brand-compact={brand.compact} data-brand-project-slugs={brand.projectSlugs} data-brand-project-compacts={brand.projectCompacts} data-brand-name={brand.name} data-brand-logo={brand.logoSrc} aria-label={`Projekte fuer ${brand.name} anzeigen`}>
-                  <img src={brand.logoSrc} alt={brand.name} loading="lazy" />
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <a class="archive-link" href={`${base}archive/`}>
+          <span>Weitere Projekte im vollständigen Archiv</span>
+          <span aria-hidden="true">→</span>
+        </a>
       </section>
 
-      <section id="about" class="section about">
-        <div>
-          <p class="eyebrow">Ueber mich</p>
-          <h2>Webdesign fuer Marken, Kampagnen und digitale Kommunikation</h2>
-          <p>
-            Seit ueber 10 Jahren entwerfe ich digitale Kampagnen, Landing Pages und responsive Websites fuer
-            Marken und Content-Plattformen.
-          </p>
-          <p>
-            Mein Schwerpunkt liegt auf kommerzieller Webproduktion: klare Seitenstrukturen, starke visuelle
-            Konzepte, responsive Layouts und saubere Uebergabe an Entwickler.
-          </p>
-        </div>
-        <div class="competencies">
-          {competencies.map(([title, text]) => (
-            <article>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="process" class="section process">
-        <div class="section-head">
+      <section class="profile section" id="profile" aria-labelledby="profile-title">
+        <header class="section-heading profile-heading">
+          <p class="section-index">02 / Profile</p>
           <div>
-            <p class="eyebrow">Mein Prozess</p>
-            <h2>Strukturiert vom Konzept bis zum Launch</h2>
+            <h2 id="profile-title">Erfahrung ist wertvoll, wenn sie Entscheidungen schneller macht.</h2>
           </div>
-          <p>
-            Ein klarer Ablauf, enge Zusammenarbeit und Liebe zum Detail bilden die Basis fuer erfolgreiche
-            digitale Projekte.
+        </header>
+
+        <div class="profile-grid">
+          <p class="profile-lead">
+            Seit mehr als zehn Jahren gestalte ich digitale Kampagnen und Websites für Consumer Brands,
+            Produkte und Content-Plattformen.
           </p>
+          <div class="profile-copy">
+            <p>
+              Mein Schwerpunkt liegt zwischen visueller Idee und realer Produktion: Ich entwickle Konzepte,
+              strukturiere Inhalte, gestalte responsive Interfaces und begleite die Übergabe an Entwickler.
+            </p>
+            <p>
+              So entstehen Lösungen, die nicht nur in einer Präsentation funktionieren, sondern auch im
+              Browser, auf kleinen Screens und unter echten Projektbedingungen.
+            </p>
+            <a href={`${base}cv/andrii-prokhorovych-lebenslauf.pdf`} download>Lebenslauf herunterladen ↘</a>
+          </div>
         </div>
-        <div class="process-grid">
-          {process.map(([title, text], index) => (
+
+        <div class="services" aria-label="Leistungen">
+          {services.map(([number, title, description]) => (
             <article>
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span>{number}</span>
               <h3>{title}</h3>
-              <p>{text}</p>
+              <p>{description}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="contact" class="section contact">
-        <div>
-          <p class="eyebrow">Kontakt</p>
-          <h2>Lassen Sie uns gemeinsam Ihr naechstes Projekt umsetzen</h2>
-          <p>Ich freue mich auf Ihre Anfrage und eine erfolgreiche Zusammenarbeit.</p>
+      <section class="brands section" aria-labelledby="brands-title">
+        <div class="brands-copy">
+          <p class="section-index">03 / Selected clients</p>
+          <h2 id="brands-title">Marken, für die ich digitale Kommunikation gestaltet habe.</h2>
         </div>
-        <div class="contact-links">
-          <a href="mailto:prohorovichandrey@gmail.com">prohorovichandrey@gmail.com</a>
-          <a href="https://www.linkedin.com/in/andrii-prokhorovych-216846204" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://prokha.webflow.io/" target="_blank" rel="noreferrer">Altes Portfolio</a>
+        <ul class="brand-grid" aria-label="Ausgewählte Kunden">
+          {brands.map(([file, name]) => (
+            <li>
+              <img
+                src={`${base}brands/logotypes/${encodeURIComponent(file)}`}
+                alt={name}
+                loading="lazy"
+                decoding="async"
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="contact section" id="contact" aria-labelledby="contact-title">
+        <p class="section-index">04 / Contact</p>
+        <div class="contact-main">
+          <h2 id="contact-title">Lassen Sie uns über das nächste digitale Projekt sprechen.</h2>
+          <a class="contact-mail" href="mailto:prohorovichandrey@gmail.com">
+            prohorovichandrey@gmail.com <span aria-hidden="true">↗</span>
+          </a>
         </div>
+        <footer>
+          <p>Andrii Prokhorovych · Web & Campaign Designer · Ulm</p>
+          <div>
+            <a href="https://www.linkedin.com/in/andrii-prokhorovych-216846204" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href={`${base}archive/`}>Archiv aller Arbeiten</a>
+          </div>
+        </footer>
       </section>
     </main>
-    <MotionEnhance />
-    <script>
-      const counters = Array.from(document.querySelectorAll("[data-count-target]"));
-      const showProjectsButton = document.querySelector("[data-show-projects]");
-      const projectCards = Array.from(document.querySelectorAll("[data-project-card]"));
-      const categoryButtons = Array.from(document.querySelectorAll("[data-category-filter]"));
-      const brandToggle = document.querySelector("[data-toggle-brands]");
-      const brandPanel = document.querySelector("[data-brand-panel]");
-      const brandStrip = document.querySelector("[data-brand-strip]");
-      const brandFilterButtons = Array.from(document.querySelectorAll("[data-brand-filter]"));
-      const activeBrand = document.querySelector("[data-active-brand]");
-      const activeBrandLogo = document.querySelector("[data-active-brand-logo]");
-      const activeBrandName = document.querySelector("[data-active-brand-name]");
-      const clearBrandFilter = document.querySelector("[data-clear-brand-filter]");
-      let visibleProjects = getFilteredRevealStep();
-      let visibleFilteredProjects = getFilteredRevealStep();
-      let currentBrand = null;
-      let currentCategory = "all";
-      const projectGrid = document.querySelector(".project-grid");
-      const randomProjectOrder = [...projectCards];
-
-      function animateCounter(counter) {
-        const target = Number(counter.getAttribute("data-count-target") || 0);
-        const duration = 3600;
-        const startTime = performance.now();
-
-        function updateCounter(currentTime) {
-          const progress = Math.min((currentTime - startTime) / duration, 1);
-          const easedProgress = progress * progress * (3 - 2 * progress);
-          counter.textContent = `${Math.round(target * easedProgress)}+`;
-
-          if (progress < 1) {
-            requestAnimationFrame(updateCounter);
-          }
-        }
-
-        requestAnimationFrame(updateCounter);
-      }
-
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
-        counters.forEach((counter) => {
-          counter.textContent = `${counter.getAttribute("data-count-target")}+`;
-        });
-      } else {
-        counters.forEach((counter) => {
-          counter.textContent = "0+";
-        });
-
-        const counterObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.6 });
-
-        counters.forEach((counter) => counterObserver.observe(counter));
-      }
-
-      for (let index = randomProjectOrder.length - 1; index > 0; index -= 1) {
-        const randomIndex = Math.floor(Math.random() * (index + 1));
-        [randomProjectOrder[index], randomProjectOrder[randomIndex]] = [randomProjectOrder[randomIndex], randomProjectOrder[index]];
-      }
-
-      function orderProjectCards(cards) {
-        cards.forEach((card) => projectGrid?.append(card));
-      }
-
-      function getFilteredRevealStep() {
-        if (window.matchMedia("(max-width: 780px)").matches) {
-          return 2;
-        }
-
-        if (window.matchMedia("(max-width: 1100px)").matches) {
-          return 4;
-        }
-
-        return 8;
-      }
-
-      function resetAllFilters(showAllProjects = true) {
-        currentBrand = null;
-        currentCategory = "all";
-        visibleProjects = showAllProjects ? projectCards.length : getFilteredRevealStep();
-        visibleFilteredProjects = getFilteredRevealStep();
-
-        if (activeBrand) {
-          activeBrand.hidden = true;
-        }
-
-        categoryButtons.forEach((button) => {
-          button.classList.toggle("is-active", button.getAttribute("data-category-filter") === "all");
-        });
-
-        updateProjects();
-      }
-
-      function updateProjects() {
-        const hasActiveFilter = Boolean(currentBrand) || currentCategory !== "all";
-
-        if (hasActiveFilter) {
-          const sortedProjects = [...projectCards].sort((a, b) =>
-            Number(b.getAttribute("data-project-year") || 0) - Number(a.getAttribute("data-project-year") || 0)
-          );
-          orderProjectCards(sortedProjects);
-
-          const matchingProjects = sortedProjects.filter((card) => {
-            const search = card.getAttribute("data-project-search") || "";
-            const compact = card.getAttribute("data-project-compact") || "";
-            const category = card.getAttribute("data-project-category") || "";
-            const matchesBrand = !currentBrand ||
-              (currentBrand.projectSlugs.length
-                ? currentBrand.projectSlugs.some((slug) => search.includes(slug)) ||
-                  currentBrand.projectCompacts.some((projectCompact) => compact.includes(projectCompact))
-                : search.includes(currentBrand.slug) || compact.includes(currentBrand.compact));
-            const matchesCategory = currentCategory === "all" || category === currentCategory;
-            return matchesBrand && matchesCategory;
-          });
-
-          sortedProjects.forEach((card) => {
-            const matchingIndex = matchingProjects.indexOf(card);
-            card.classList.toggle("is-hidden", matchingIndex < 0 || matchingIndex >= visibleFilteredProjects);
-          });
-
-          if (showProjectsButton) {
-            showProjectsButton.hidden = false;
-            showProjectsButton.textContent = visibleFilteredProjects < matchingProjects.length
-              ? "Mehr Projekte anzeigen"
-              : "Alle Projekte anzeigen";
-          }
-
-          return;
-        }
-
-        orderProjectCards(randomProjectOrder);
-
-        randomProjectOrder.forEach((card, index) => {
-          card.classList.toggle("is-hidden", index >= visibleProjects);
-        });
-
-        if (showProjectsButton) {
-          showProjectsButton.textContent = "Mehr Projekte anzeigen";
-          showProjectsButton.hidden = visibleProjects >= projectCards.length;
-        }
-      }
-
-      function setBrandFilter(button) {
-        visibleFilteredProjects = getFilteredRevealStep();
-        currentCategory = "all";
-        categoryButtons.forEach((item) => {
-          item.classList.remove("is-active");
-        });
-        currentBrand = {
-          slug: button.getAttribute("data-brand-filter") || "",
-          compact: button.getAttribute("data-brand-compact") || "",
-          projectSlugs: (button.getAttribute("data-brand-project-slugs") || "").split("|").filter(Boolean),
-          projectCompacts: (button.getAttribute("data-brand-project-compacts") || "").split("|").filter(Boolean),
-          name: button.getAttribute("data-brand-name") || "",
-          logo: button.getAttribute("data-brand-logo") || "",
-        };
-
-        if (activeBrand && activeBrandLogo && activeBrandName) {
-          activeBrand.hidden = false;
-          activeBrandLogo.setAttribute("src", currentBrand.logo);
-          activeBrandLogo.setAttribute("alt", currentBrand.name);
-          activeBrandName.textContent = currentBrand.name;
-        }
-
-        updateProjects();
-        document.querySelector("[data-project-results]")?.scrollIntoView({ block: "start" });
-      }
-
-      function resetBrandFilter() {
-        resetAllFilters(false);
-      }
-
-      showProjectsButton?.addEventListener("click", () => {
-        if (currentBrand || currentCategory !== "all") {
-          if (showProjectsButton.textContent?.trim() === "Alle Projekte anzeigen") {
-            resetAllFilters();
-          } else {
-            visibleFilteredProjects += getFilteredRevealStep();
-            updateProjects();
-          }
-          return;
-        }
-
-        visibleProjects += getFilteredRevealStep();
-        updateProjects();
-      });
-
-      categoryButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          currentCategory = button.getAttribute("data-category-filter") || "all";
-
-          if (currentCategory === "all") {
-            resetAllFilters(false);
-            return;
-          }
-
-          currentBrand = null;
-          if (activeBrand) {
-            activeBrand.hidden = true;
-          }
-
-          visibleFilteredProjects = getFilteredRevealStep();
-          categoryButtons.forEach((item) => item.classList.toggle("is-active", item === button));
-          updateProjects();
-        });
-      });
-
-      brandFilterButtons.forEach((button) => {
-        button.addEventListener("click", () => setBrandFilter(button));
-      });
-
-      clearBrandFilter?.addEventListener("click", resetBrandFilter);
-
-      window.addEventListener("resize", () => {
-        if (currentBrand || currentCategory !== "all") {
-          visibleFilteredProjects = getFilteredRevealStep();
-        } else {
-          visibleProjects = getFilteredRevealStep();
-        }
-
-        updateProjects();
-      });
-
-      brandToggle?.addEventListener("click", () => {
-        const isOpen = brandPanel?.classList.toggle("is-open");
-        brandStrip?.classList.toggle("is-expanded", Boolean(isOpen));
-        brandToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
-        brandToggle.textContent = isOpen ? "Marken ausblenden" : "Alle Marken";
-      });
-
-      updateProjects();
-    </script>
   </body>
 </html>
 
 <style>
   :root {
     color-scheme: light;
-    --bg: #f7f7f5;
+    --bg: #fafafa;
     --paper: #ffffff;
-    --ink: #080808;
-    --muted: #5f5f5f;
-    --line: #dededb;
-    --soft: #eeeeeb;
-    --radius: 8px;
-    font-family:
-      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --ink: #09090b;
+    --muted: #5b5b63;
+    --line: #d9d9df;
+    --accent: #2457f5;
+    --accent-dark: #173bb6;
+    --soft: #eef1ff;
+    --display: "Archivo", Arial, sans-serif;
+    --body: "Space Grotesk", Arial, sans-serif;
   }
 
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
   }
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  p, h1, h2, h3, dl, dd { margin: 0; }
+
+  .skip-link {
+    background: var(--ink);
+    color: white;
+    left: 16px;
+    padding: 12px 16px;
+    position: fixed;
+    top: 16px;
+    transform: translateY(-180%);
+    z-index: 100;
   }
 
-  p,
-  h1,
-  h2,
-  h3 {
-    margin: 0;
-  }
+  .skip-link:focus { transform: translateY(0); }
 
-  img {
-    display: block;
-    max-width: 100%;
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
   }
 
   .site-header {
     align-items: center;
-    background: rgba(247, 247, 245, 0.88);
-    border-bottom: 1px solid rgba(222, 222, 219, 0.7);
+    background: rgba(250, 250, 250, 0.94);
+    border-bottom: 1px solid var(--line);
     display: grid;
     gap: 24px;
-    grid-template-columns: 1fr auto 1fr;
-    left: 0;
-    padding: 20px clamp(20px, 4vw, 72px);
+    grid-template-columns: 1fr auto auto auto;
+    min-height: 72px;
+    padding: 0 clamp(20px, 4vw, 64px);
     position: sticky;
-    right: 0;
     top: 0;
-    z-index: 10;
-    backdrop-filter: blur(18px);
+    z-index: 20;
+    backdrop-filter: blur(16px);
   }
 
-  .brand {
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 0;
+  .wordmark {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
   }
 
-  nav {
+  .wordmark span { color: var(--accent); }
+
+  .concept-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  nav { display: flex; gap: 28px; }
+  nav a, .original-link { font-size: 13px; font-weight: 600; }
+  nav a, .original-link, .archive-link, .profile-copy a { transition: color 180ms ease; }
+  nav a:hover, .original-link:hover, .profile-copy a:hover { color: var(--accent); }
+
+  .original-link {
+    align-items: center;
+    border-left: 1px solid var(--line);
     display: flex;
-    gap: 34px;
-    font-size: 14px;
-    font-weight: 700;
+    gap: 10px;
+    min-height: 72px;
+    padding-left: 28px;
   }
+
+  .hero {
+    --hero-bottom-gap: clamp(44px, 6vw, 80px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.55fr);
+    min-height: calc(100svh - 72px);
+    padding: clamp(48px, 6vw, 96px) clamp(20px, 4vw, 64px) 0;
+  }
+
+  .hero-copy {
+    align-content: space-between;
+    border-right: 1px solid var(--line);
+    display: grid;
+    padding: 0 clamp(28px, 5vw, 80px) var(--hero-bottom-gap) 0;
+  }
+
+  .kicker, .section-index {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .kicker { align-items: center; display: flex; gap: 10px; }
+  .kicker span { background: var(--accent); border-radius: 50%; height: 8px; width: 8px; }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    hyphens: auto;
+    overflow-wrap: normal;
+    word-break: normal;
+    -webkit-hyphens: auto;
+  }
+
+  h1 {
+    font-size: clamp(52px, 7.4vw, 126px);
+    font-weight: 600;
+    letter-spacing: -0.065em;
+    line-height: 0.9;
+    margin: clamp(56px, 9vh, 120px) 0 64px;
+    max-width: 1320px;
+  }
+
+  h1 em {
+    color: var(--accent);
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .hero-intro {
+    align-items: end;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: minmax(260px, 560px) auto;
+  }
+
+  .hero-intro > p {
+    font-size: clamp(18px, 1.45vw, 24px);
+    line-height: 1.5;
+  }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
 
   .button {
     align-items: center;
     border: 1px solid var(--ink);
-    border-radius: var(--radius);
     display: inline-flex;
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 600;
     justify-content: center;
     min-height: 48px;
-    padding: 0 24px;
+    padding: 0 20px;
+    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
   }
 
-  .button.dark {
-    background: var(--ink);
-    color: white;
-  }
+  .button-primary { background: var(--ink); color: white; }
+  .button-primary:hover { background: var(--accent); border-color: var(--accent); }
+  .button-secondary:hover { background: var(--ink); color: white; }
 
-  .button.light {
-    background: transparent;
-  }
-
-  .button.small {
-    justify-self: end;
-    min-height: 42px;
-  }
-
-  .section {
-    border-bottom: 1px solid var(--line);
-    padding: clamp(56px, 7vw, 96px) clamp(20px, 4vw, 72px);
-  }
-
-  .hero {
+  .hero-portrait {
+    align-self: stretch;
+    background: var(--bg);
     display: grid;
-    gap: 52px;
-    grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
-    min-height: 720px;
-    padding-top: 64px;
-    position: relative;
+    grid-template-rows: minmax(0, 1fr) auto;
+    margin: 0;
+    min-height: 0;
+    overflow: hidden;
+    padding-bottom: var(--hero-bottom-gap);
   }
 
-  .eyebrow {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    margin-bottom: 16px;
+  .hero-portrait img {
+    filter: grayscale(1) contrast(1.06);
+    height: 100%;
+    min-height: 540px;
+    mix-blend-mode: multiply;
+    object-fit: cover;
+    object-position: 54% bottom;
+    width: 100%;
+  }
+
+  .portrait-meta {
+    align-items: center;
+    background: var(--accent);
+    border-top: 0;
+    color: white;
+    display: flex;
+    font-size: 10px;
+    font-weight: 600;
+    justify-content: space-between;
+    letter-spacing: 0.06em;
+    min-height: 48px;
+    padding: 0 14px;
     text-transform: uppercase;
   }
 
-  h1 {
-    font-size: clamp(44px, 6vw, 84px);
-    line-height: 0.98;
-    max-width: 820px;
-  }
-
-  h2 {
-    font-size: clamp(30px, 4vw, 52px);
-    line-height: 1.05;
-    max-width: 760px;
-  }
-
-  .role {
-    font-size: clamp(20px, 2vw, 28px);
-    margin-top: 20px;
-  }
-
-  .lead {
-    color: #303030;
-    font-size: 18px;
-    line-height: 1.7;
-    margin-top: 28px;
-    max-width: 700px;
-  }
-
-  .muted {
-    color: var(--muted);
-    margin-top: 14px;
-  }
-
-  .actions {
-    display: flex;
-    gap: 18px;
-    margin-top: 38px;
-  }
-
-  .portrait-wrap {
+  .proof {
     align-self: end;
-    filter: grayscale(1) contrast(1.08);
-    justify-self: end;
-    max-width: min(792px, 58vw);
-    mix-blend-mode: multiply;
-    width: 100%;
-  }
-
-  .portrait-wrap img {
-    height: auto;
-    object-fit: contain;
-    object-position: top center;
-    width: 100%;
-  }
-
-  .stats {
-    align-self: end;
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
+    border-top: 1px solid var(--line);
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: repeat(4, 1fr);
-    padding: 26px;
   }
 
-  .stats div {
-    border-right: 1px solid var(--line);
-    padding: 0 24px;
+  .proof div { border-right: 1px solid var(--line); padding: 22px 20px 24px 0; }
+  .proof div:not(:first-child) { padding-left: 20px; }
+  .proof div:last-child { border-right: 0; }
+  .proof dt { color: var(--muted); font-size: 11px; margin-bottom: 8px; text-transform: uppercase; }
+  .proof dd { font-family: var(--display); font-size: clamp(18px, 2vw, 28px); font-weight: 600; letter-spacing: -0.04em; }
+
+  .section {
+    border-top: 1px solid var(--line);
+    padding: clamp(80px, 10vw, 150px) clamp(20px, 4vw, 64px);
   }
 
-  .stats div:last-child {
-    border-right: 0;
-  }
-
-  .stat-icon {
-    color: var(--muted);
-    fill: none;
-    height: 22px;
-    margin-bottom: 14px;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.8;
-    width: 22px;
-  }
-
-  .stats strong {
-    display: block;
-    font-size: 28px;
-    font-variant-numeric: tabular-nums;
-    line-height: 1.15;
-  }
-
-  .stats span {
-    color: var(--muted);
-    display: block;
-    font-size: 14px;
-    line-height: 1.45;
-    margin-top: 8px;
-  }
-
-  .section-head {
-    align-items: end;
+  .section-heading {
     display: grid;
     gap: 32px;
-    grid-template-columns: 1fr minmax(280px, 520px);
-    margin-bottom: 34px;
+    grid-template-columns: minmax(180px, 0.33fr) minmax(0, 1fr);
+    margin-bottom: clamp(64px, 8vw, 120px);
   }
 
-  .section-head p {
+  .section-heading > div {
+    align-items: end;
+    display: grid;
+    gap: 28px;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.45fr);
+  }
+
+  h2 {
+    font-size: clamp(40px, 5.4vw, 86px);
+    font-weight: 600;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+  }
+
+  .section-heading > div > p {
     color: var(--muted);
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 540px;
   }
 
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 32px;
-  }
+  .project-list { display: grid; gap: clamp(80px, 10vw, 160px); }
 
-  .filter-button {
-    appearance: none;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    color: var(--ink);
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 800;
-    padding: 12px 18px;
-  }
-
-  .filter-button.is-active {
-    background: var(--ink);
-    color: white;
-  }
-
-  .project-grid {
+  .project {
     display: grid;
     gap: 24px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.5fr);
   }
 
-  .project-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
+  .project-2 { grid-template-columns: minmax(280px, 0.55fr) minmax(0, 1.45fr); }
+  .project-2 .project-media { grid-column: 2; }
+  .project-2 .project-info { grid-column: 1; grid-row: 1; }
 
-  .project-card.is-hidden {
-    display: none;
-  }
+  .project-media { background: #e9e9ec; display: block; overflow: hidden; position: relative; }
+  .project-media img { aspect-ratio: 16 / 9; height: 100%; object-fit: cover; transition: transform 350ms ease; width: 100%; }
+  .project-1 .project-media img { aspect-ratio: 16 / 10; object-position: center 24%; }
+  .project-media:hover img { transform: scale(1.018); }
 
-  .project-card img {
-    aspect-ratio: 16 / 9;
-    border-bottom: 1px solid var(--line);
-    object-fit: cover;
-    object-position: top center;
-    width: 100%;
-  }
-
-  .project-body {
-    min-height: 210px;
-    padding: 20px;
-  }
-
-  .meta {
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-
-  .project-body h3,
-  .competencies h3,
-  .process-grid h3 {
-    font-size: 18px;
-    line-height: 1.25;
-  }
-
-  .project-body p {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.6;
-    margin-top: 12px;
-  }
-
-  .project-body span {
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 900;
-    margin-top: 22px;
-  }
-
-  .show-more-wrap {
-    display: flex;
-    justify-content: center;
-    margin-top: 34px;
-  }
-
-  .show-more-button {
-    min-width: 220px;
-  }
-
-  .brand-strip {
-    border-top: 1px solid var(--line);
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    margin-top: 64px;
-    padding-top: 28px;
-  }
-
-  .brand-strip p {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    line-height: 1.35;
-    text-transform: uppercase;
-  }
-
-  .brand-strip p span {
-    display: block;
-  }
-
-  .brand-marquee {
-    mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%);
-    overflow: hidden;
-    padding: 4px 0;
-    position: relative;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%);
-    width: 100%;
-  }
-
-  .brand-strip.is-expanded .brand-marquee {
-    display: none;
-  }
-
-  .brand-marquee-track {
-    animation: logo-marquee 82s linear infinite;
-    display: flex;
-    will-change: transform;
-    width: max-content;
-  }
-
-  .brand-logo-group {
-    align-items: center;
-    display: flex;
-    gap: 100px;
-    padding-right: 100px;
-  }
-
-  .brand-logo {
-    align-items: center;
-    appearance: none;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    display: inline-flex;
-    flex: 0 0 auto;
-    height: 98px;
-    justify-content: center;
-    min-width: 151px;
-    padding: 0;
-  }
-
-  .brand-logo img {
-    display: block;
-    height: auto;
-    max-height: 80px;
-    max-width: 100%;
-    object-fit: contain;
-    opacity: 0.9;
-    transition: opacity 180ms ease, transform 180ms ease;
-    width: 100%;
-  }
-
-  .brand-logo:hover img,
-  .brand-logo:focus-visible img {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-
-  .brand-toggle {
-    align-self: center;
-    min-width: 180px;
-  }
-
-  .brand-toggle-dock {
-    align-self: center;
-  }
-
-  .brand-expanded-content {
-    display: contents;
-  }
-
-  .brand-strip.is-expanded .brand-expanded-content {
-    display: grid;
-    position: relative;
-  }
-
-  .brand-strip.is-expanded .brand-toggle-dock {
-    align-self: start;
-    background: linear-gradient(to top, var(--bg) 0%, rgba(247, 247, 245, 0.96) 42%, rgba(247, 247, 245, 0) 100%);
-    display: flex;
-    grid-area: 1 / 1;
-    height: 116px;
-    justify-content: center;
-    padding: 52px clamp(18px, 4vw, 48px) max(16px, env(safe-area-inset-bottom));
-    position: sticky;
-    top: calc(100dvh - 116px);
-    width: 100%;
-    z-index: 9;
-  }
-
-  .brand-strip.is-expanded .brand-toggle {
-    background: var(--ink);
-    color: #fff;
-    margin: 0 auto;
-    pointer-events: auto;
-    width: auto;
-  }
-
-  .brand-logo-panel {
-    display: none;
-    gap: 44px 52px;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    padding-top: 10px;
-    width: 100%;
-  }
-
-  .brand-logo-panel.is-open {
-    display: grid;
-  }
-
-  .brand-strip.is-expanded .brand-logo-panel {
-    grid-area: 1 / 1;
-  }
-
-  .brand-strip.is-expanded .brand-logo-panel {
-    padding-bottom: 112px;
-  }
-
-  .brand-logo.static {
-    height: 98px;
-    justify-self: center;
-    min-width: 151px;
-    width: 151px;
-  }
-
-  .active-brand-filter {
-    align-items: center;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    display: inline-flex;
-    gap: 16px;
-    margin-bottom: 28px;
-    padding: 12px 14px 12px 16px;
-    width: fit-content;
-  }
-
-  .active-brand-filter[hidden] {
-    display: none;
-  }
-
-  .active-brand-filter span {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .active-brand-filter img {
-    max-height: 42px;
-    max-width: 130px;
-    object-fit: contain;
-  }
-
-  .active-brand-filter strong {
-    font-size: 15px;
-  }
-
-  .active-brand-filter button {
-    align-items: center;
-    appearance: none;
-    background: var(--ink);
-    border: 0;
-    border-radius: 999px;
+  .project-open {
+    background: var(--accent);
+    bottom: 0;
     color: white;
-    cursor: pointer;
-    display: inline-flex;
-    font-size: 28px;
+    font-size: 12px;
     font-weight: 600;
-    height: 38px;
-    justify-content: center;
-    line-height: 1;
-    width: 38px;
+    padding: 14px 18px;
+    position: absolute;
+    right: 0;
+    transform: translateY(100%);
+    transition: transform 220ms ease;
   }
 
-  @keyframes logo-marquee {
-    from {
-      transform: translate3d(0, 0, 0);
-    }
+  .project-media:hover .project-open, .project-media:focus-visible .project-open { transform: translateY(0); }
 
-    to {
-      transform: translate3d(-50%, 0, 0);
-    }
+  .project-info { border-top: 1px solid var(--ink); display: grid; gap: 20px; grid-template-columns: 44px 1fr; padding-top: 16px; }
+  .project-info > div { min-width: 0; }
+  .project-number, .project-meta, .project-contribution { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .project-info h3 { font-size: clamp(34px, 4vw, 64px); letter-spacing: -0.055em; line-height: 1; margin: 18px 0 24px; }
+  .project-summary { font-size: 17px; line-height: 1.55; max-width: 480px; }
+  .project-contribution { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 14px; }
+
+  .archive-link {
+    align-items: center;
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    font-family: var(--display);
+    font-size: clamp(22px, 3vw, 42px);
+    font-weight: 600;
+    justify-content: space-between;
+    margin-top: clamp(80px, 10vw, 150px);
+    padding-bottom: 18px;
+  }
+
+  .archive-link:hover { color: var(--accent); }
+
+  .profile { background: var(--ink); color: white; }
+  .profile .section-index { color: #96969e; }
+  .profile-heading > div { display: block; }
+  .profile-heading h2 { max-width: 1120px; }
+
+  .profile-grid {
+    border-top: 1px solid #35353a;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 42px;
+  }
+
+  .profile-lead { font-family: var(--display); font-size: clamp(28px, 3.3vw, 52px); letter-spacing: -0.04em; line-height: 1.12; }
+  .profile-copy { max-width: 650px; }
+  .profile-copy p { color: #b8b8c0; font-size: 18px; line-height: 1.65; margin-bottom: 22px; }
+  .profile-copy a { border-bottom: 1px solid white; display: inline-block; font-weight: 600; margin-top: 18px; padding-bottom: 7px; }
+  .profile-copy a:hover { color: #8ca7ff; }
+
+  .services { display: grid; gap: 1px; grid-template-columns: repeat(3, 1fr); margin-top: clamp(80px, 10vw, 140px); }
+  .services article { border: 1px solid #35353a; margin-right: -1px; padding: 28px; }
+  .services span { color: #8ca7ff; font-size: 12px; }
+  .services h3 { font-size: clamp(22px, 2vw, 31px); letter-spacing: -0.035em; margin: 70px 0 20px; }
+  .services p { color: #a9a9b2; line-height: 1.6; }
+
+  .brands { display: grid; gap: 64px; grid-template-columns: minmax(260px, 0.55fr) minmax(0, 1.45fr); }
+  .brands-copy h2 { font-size: clamp(34px, 4vw, 62px); margin-top: 32px; }
+  .brand-grid { display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; margin: 0; padding: 0; }
+  .brand-grid li { align-items: center; border: 1px solid var(--line); display: flex; justify-content: center; margin: 0 -1px -1px 0; min-height: 150px; padding: 28px; }
+  .brand-grid img { filter: grayscale(1); max-height: 46px; max-width: 130px; opacity: 0.7; width: 100%; }
+
+  .contact { background: var(--accent); color: white; padding-bottom: 32px; }
+  .contact .section-index { color: #dbe3ff; }
+  .contact-main { align-items: end; display: grid; gap: 40px; grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr); margin: clamp(60px, 9vw, 130px) 0; }
+  .contact h2 { font-size: clamp(48px, 7vw, 112px); max-width: 1200px; }
+  .contact-mail { border-bottom: 1px solid white; display: flex; font-size: clamp(16px, 1.5vw, 22px); justify-content: space-between; overflow-wrap: anywhere; padding-bottom: 14px; }
+  .contact footer { border-top: 1px solid rgba(255, 255, 255, 0.45); display: flex; font-size: 12px; justify-content: space-between; padding-top: 24px; }
+  .contact footer div { display: flex; gap: 28px; }
+  .contact a:hover { color: #dbe3ff; }
+
+  @media (max-width: 1050px) {
+    .concept-label { display: none; }
+    .site-header { grid-template-columns: 1fr auto auto; }
+    .hero { grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr); }
+    .hero-intro { align-items: start; grid-template-columns: 1fr; }
+    .hero-actions { justify-content: flex-start; }
+    .section-heading > div { align-items: start; grid-template-columns: 1fr; }
+    .project, .project-2 { grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr); }
+    .brand-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 760px) {
+    .site-header { grid-template-columns: 1fr auto; min-height: 64px; }
+    nav { display: none; }
+    .original-link { min-height: 64px; padding-left: 18px; }
+    .hero { display: flex; flex-direction: column; min-height: auto; padding-top: 40px; }
+    .hero-copy { border-right: 0; display: block; padding: 0 0 42px; }
+    h1 { font-size: clamp(48px, 15.5vw, 70px); line-height: 0.92; margin: 56px 0 38px; }
+    .hero-intro > p { font-size: 18px; }
+    .hero-actions { margin-top: 30px; }
+    .button { flex: 1 1 160px; }
+    .hero-portrait { min-height: 0; order: 2; padding-bottom: 0; }
+    .hero-portrait img { aspect-ratio: 5 / 4; height: auto; min-height: 0; object-position: 52% 14%; }
+    .portrait-meta { font-size: 8px; }
+    .proof { grid-template-columns: repeat(2, 1fr); order: 3; }
+    .proof div { border-bottom: 1px solid var(--line); padding: 18px 14px 18px 0; }
+    .proof div:nth-child(2) { border-right: 0; }
+    .proof div:not(:first-child) { padding-left: 14px; }
+    .proof div:nth-child(3) { padding-left: 0; }
+    .section { padding: 80px 20px; }
+    .section-heading, .brands { grid-template-columns: 1fr; }
+    .section-heading { margin-bottom: 56px; }
+    .section-heading > div { gap: 22px; }
+    h2 { font-size: clamp(38px, 11.5vw, 54px); }
+    .project, .project-2 { display: flex; flex-direction: column; }
+    .project-2 .project-media, .project-2 .project-info { grid-column: auto; grid-row: auto; }
+    .project-media { order: 1; }
+    .project-info { order: 2; }
+    .project-info h3 { font-size: 40px; }
+    .project-open { transform: none; }
+    .profile-grid, .services { grid-template-columns: 1fr; }
+    .profile-copy p { font-size: 17px; }
+    .services article { margin: 0 0 -1px; }
+    .services h3 { margin-top: 42px; }
+    .brand-grid li { min-height: 120px; padding: 22px; }
+    .contact-main { align-items: start; grid-template-columns: 1fr; }
+    .contact h2 { font-size: clamp(46px, 13vw, 64px); }
+    .contact footer { align-items: flex-start; flex-direction: column; gap: 24px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .brand-marquee-track {
-      animation: none;
-    }
-  }
-
-  .about {
-    display: grid;
-    gap: 56px;
-    grid-template-columns: minmax(280px, 0.8fr) 1.2fr;
-  }
-
-  .about > div > p:not(.eyebrow) {
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.75;
-    margin-top: 24px;
-    max-width: 620px;
-  }
-
-  .competencies {
-    display: grid;
-    gap: 18px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .competencies article,
-  .process-grid article {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 24px;
-  }
-
-  .competencies p,
-  .process-grid p {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.65;
-    margin-top: 10px;
-  }
-
-  .process-grid {
-    display: grid;
-    gap: 18px;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .process-grid span {
-    color: var(--muted);
-    display: block;
-    font-size: 12px;
-    font-weight: 900;
-    margin-bottom: 44px;
-  }
-
-  .contact {
-    align-items: center;
-    background: var(--ink);
-    color: white;
-    display: grid;
-    gap: 32px;
-    grid-template-columns: 1fr auto;
-  }
-
-  .contact .eyebrow,
-  .contact p {
-    color: #c7c7c7;
-  }
-
-  .contact p:not(.eyebrow) {
-    font-size: 17px;
-    line-height: 1.7;
-    margin-top: 18px;
-  }
-
-  .contact-links {
-    display: grid;
-    gap: 12px;
-    min-width: 280px;
-  }
-
-  .contact-links a {
-    background: white;
-    border-radius: var(--radius);
-    color: var(--ink);
-    font-weight: 900;
-    padding: 16px 18px;
-  }
-
-  @media (min-width: 1101px) {
-    .eyebrow,
-    .section-head .eyebrow,
-    .brand-strip p {
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 1100px) {
-    .site-header {
-      grid-template-columns: 1fr auto;
-    }
-
-    .active-brand-filter {
-      display: grid;
-      gap: 10px;
-      grid-template-columns: auto minmax(36px, auto) minmax(0, 1fr) 38px;
-      width: 100%;
-    }
-
-    .active-brand-filter span,
-    .active-brand-filter strong {
-      white-space: nowrap;
-    }
-
-    .active-brand-filter strong {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    nav {
-      display: none;
-    }
-
-    .project-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .process-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .brand-logo-panel {
-      gap: 36px 32px;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .brand-logo.static {
-      min-width: 0;
-      width: min(151px, 100%);
-    }
-
-    .brand-strip.is-expanded .brand-toggle {
-      margin: 0;
-      max-width: none;
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 780px) {
-    .site-header {
-      gap: 8px;
-      padding: 14px 18px;
-    }
-
-    .brand {
-      font-size: 20px;
-    }
-
-    .section,
-    .hero {
-      padding-left: 18px;
-      padding-right: 18px;
-    }
-
-    .hero,
-    .section-head,
-    .about,
-    .contact {
-      grid-template-columns: 1fr;
-    }
-
-    .hero {
-      min-height: auto;
-      padding-top: 0;
-    }
-
-    .portrait-wrap {
-      justify-self: center;
-      margin-left: -18px;
-      margin-right: -18px;
-      max-width: none;
-      order: -1;
-      width: calc(100% + 36px);
-    }
-
-    .portrait-wrap img {
-      height: auto;
-      object-fit: contain;
-      object-position: center top;
-      width: 100%;
-    }
-
-    .stats {
-      grid-template-columns: 1fr;
-      padding: 0;
-    }
-
-    .stats div {
-      border-bottom: 1px solid var(--line);
-      border-right: 0;
-      padding: 20px;
-    }
-
-    .stats div:last-child {
-      border-bottom: 0;
-    }
-
-    .project-grid,
-    .competencies,
-    .process-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .brand-strip {
-      grid-template-columns: 1fr;
-    }
-
-    .brand-logo {
-      height: 75px;
-      min-width: 115px;
-    }
-
-    .brand-logo img {
-      max-height: 62px;
-    }
-
-    .brand-logo-panel {
-      gap: 28px 12px;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .brand-logo.static {
-      height: 75px;
-      min-width: 0;
-      width: min(115px, 100%);
-    }
-
-    .active-brand-filter {
-      gap: 8px;
-      grid-template-columns: auto minmax(32px, 52px) minmax(0, 1fr) 34px;
-      padding: 10px 10px 10px 12px;
-    }
-
-    .active-brand-filter span {
-      font-size: 10px;
-      letter-spacing: 0.04em;
-    }
-
-    .active-brand-filter img {
-      max-height: 34px;
-      max-width: 52px;
-    }
-
-    .active-brand-filter strong {
-      font-size: 13px;
-    }
-
-    .active-brand-filter button {
-      font-size: 24px;
-      height: 34px;
-      width: 34px;
-    }
-
-    .actions {
-      flex-direction: column;
-    }
-
-    .button {
-      width: 100%;
-    }
-
-    .site-header .button.small {
-      font-size: 11px;
-      min-height: 38px;
-      padding: 0 10px;
-      white-space: nowrap;
-      width: auto;
-    }
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
   }
 </style>

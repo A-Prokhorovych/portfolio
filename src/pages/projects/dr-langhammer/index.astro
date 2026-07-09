@@ -19,11 +19,26 @@ const metrics = [
   ["6", "handoff responsibilities"],
 ];
 
-const audit = [
-  ["Last old snapshot", "The July 8, 2025 Wayback snapshot still shows the old WordPress site before the redesign work became visible."],
-  ["Template-heavy first impression", "The archived site relied on a classic WordPress theme, WPBakery and Slider Revolution."],
-  ["Services were present, but nested", "Implantology, aesthetics and prophylaxis existed, yet the choice still felt menu-heavy and slow to scan."],
+const contextPoints = [
+  ["The clinic had grown", "New services, treatment pages and practice content had been added over time."],
+  ["Navigation became inconsistent", "Patients could find information, but the structure asked them to understand the clinic before choosing a path."],
+  ["Trust signals were scattered", "Doctor, rooms, lab, reviews and service proof existed, but did not work as one calm first impression."],
   ["Mobile needed faster orientation", "Patients needed quick answers: who is the doctor, what is offered, how do I call, where is the practice."],
+];
+
+const businessGoals = [
+  ["Increase trust", "Use real photography, a calmer hierarchy and visible practice proof."],
+  ["Simplify navigation", "Turn nested services into clear patient-facing destinations."],
+  ["Improve service discovery", "Make implants, aesthetics, prophylaxis and lab easier to scan."],
+  ["Support appointment requests", "Keep contact and appointment intent close to decision points."],
+  ["Preserve SEO intent", "Respect existing page topics while making the structure easier to understand."],
+];
+
+const discoveryItems = [
+  ["Content audit", "Reviewed old service content and identified repeated page needs."],
+  ["Navigation audit", "Mapped the legacy menu and the choices patients had to decode."],
+  ["Competitor review", "Compared local healthcare sites to keep the result calm, credible and familiar."],
+  ["Photography review", "Selected real practice images that could carry trust instead of generic clinic claims."],
 ];
 
 const changes = [
@@ -57,13 +72,17 @@ const principles = [
   ["Services as orientation", "The service structure is built around patient questions, not internal categories."],
   ["Real practice atmosphere", "Photography carries proof: rooms, reception, lab and people feel more trustworthy than generic claims."],
   ["Accessible rhythm", "Large type, short paragraphs and repeated contact patterns support older patients and mobile use."],
+  ["Minimal by purpose", "The interface stays quiet so medical information, trust signals and contact actions remain easy to read."],
 ];
 
 const components = [
-  ["Hero system", "Logo, doctor-led headline, appointment CTA, real practice photography."],
-  ["Service cards", "Three main pillars with subtopics and short benefit-led descriptions."],
-  ["Before/after map", "A portfolio-friendly table that explains what changed instead of only showing visuals."],
-  ["Contact module", "Phone, email, address and opening hours in a stable reusable block."],
+  ["Hero", "Logo, headline, appointment CTA and real practice photography."],
+  ["Service cards", "Treatment pillars with subtopics and benefit-led descriptions."],
+  ["Navigation", "A clearer structure for core pages, treatments, proof and legal content."],
+  ["CTA", "Repeated appointment and phone patterns for decision moments."],
+  ["Forms", "Contact entry points prepared as reusable WordPress sections."],
+  ["Gallery", "Practice photography modules for rooms, lab and treatment atmosphere."],
+  ["Testimonials", "Review and trust areas positioned as supporting proof, not decoration."],
 ];
 
 const serviceCards = [
@@ -160,17 +179,34 @@ const roleCards = [
 const constraints = [
   ["Existing WordPress", "The redesign had to work with a production CMS and real implementation limits."],
   ["Large legacy content", "Old service content needed a clearer structure without losing useful information."],
+  ["Limited budget", "The system had to improve the experience without treating every page as a custom one-off."],
+  ["Legacy navigation", "The old menu had many valid topics, but the grouping needed to become easier for patients."],
   ["Existing branding", "Logo, color direction and medical trust cues stayed recognizable."],
   ["SEO preservation", "The new sitemap had to respect existing page intent and patient search behavior."],
 ];
 
 const outcomeSkills = [
   "Information Architecture",
-  "UX Strategy",
+  "UX Thinking",
   "Responsive Design",
   "UI System",
+  "Design System",
   "Developer Handoff",
   "WordPress Production",
+  "Developer Collaboration",
+];
+
+const developmentItems = [
+  ["Prepared for WordPress", "Sections were designed to work as reusable production blocks."],
+  ["Component-based", "Repeated page patterns reduced implementation decisions for similar service pages."],
+  ["Responsive grid", "Desktop and mobile layouts use the same content logic with adapted density."],
+  ["Developer handoff", "Typography, colors, components, spacing and QA notes were documented in Figma."],
+];
+
+const reflectionItems = [
+  ["What worked", "The strongest decision was treating the project as a website system, not as a single homepage redesign."],
+  ["What I would simplify next", "I would make the appointment flow even more direct by testing one persistent contact pattern across treatment pages."],
+  ["What it proves", "The case demonstrates project ownership: context, constraints, structure, UI system and production handoff."],
 ];
 ---
 
@@ -202,7 +238,7 @@ const outcomeSkills = [
           <img class="client-logo" src={`${media}/logo.png`} alt="Dr. Langhammer logo" width="300" height="114" />
           <h1>Dr. Langhammer website redesign</h1>
           <p class="intro">
-            From outdated navigation to a calmer patient journey.
+            Designing a calmer patient journey through information architecture.
           </p>
         </div>
 
@@ -217,11 +253,11 @@ const outcomeSkills = [
 
         <nav aria-label="Case-study navigation">
           <a href="#overview">01 Overview</a>
-          <a href="#audit">02 Audit</a>
-          <a href="#figma">03 Figma</a>
-          <a href="#structure">04 Structure</a>
-          <a href="#visual">05 Visual System</a>
-          <a href="#result">06 Result</a>
+          <a href="#context">02 Context</a>
+          <a href="#strategy">03 Strategy</a>
+          <a href="#figma">04 UI System</a>
+          <a href="#development">05 Development</a>
+          <a href="#result">06 Outcome</a>
         </nav>
       </aside>
 
@@ -229,11 +265,11 @@ const outcomeSkills = [
         <section id="overview" class="hero">
           <div class="hero-copy">
             <p class="eyebrow">Website redesign · 2025</p>
-            <h2>A calmer website system for Dr. Langhammer</h2>
+            <h2>Designing a calmer patient journey through information architecture.</h2>
             <p>
-              I redesigned the website structure and visual system so patients can
-              understand the practice, choose a treatment area and reach the appointment
-              path without decoding a large menu.
+              The work focused on business clarity: helping patients understand the
+              clinic, discover the right treatment area and move toward contact without
+              decoding a large legacy menu.
             </p>
           </div>
 
@@ -270,19 +306,19 @@ const outcomeSkills = [
           </div>
         </section>
 
-        <section id="audit" class="split-section">
+        <section id="context" class="split-section">
           <div class="section-number">02</div>
           <div class="section-copy">
-            <p class="eyebrow">Before audit</p>
-            <h2>The old site had useful content. It just did not show the story fast enough.</h2>
+            <p class="eyebrow">Context</p>
+            <h2>The clinic had grown over time. The website needed a clearer way to guide patients.</h2>
             <p>
-              The Wayback snapshot from July 8, 2025 is the latest old version I found
-              before the new 2025 visual system appeared. It still had the old slider,
-              old photography and menu-heavy service structure.
+              The old site already contained useful service information, practice proof
+              and appointment details. The challenge was to make those pieces work as
+              one understandable system instead of a collection of pages.
             </p>
           </div>
           <div class="audit-grid">
-            {audit.map(([title, text]) => (
+            {contextPoints.map(([title, text]) => (
               <article>
                 <h3>{title}</h3>
                 <p>{text}</p>
@@ -291,12 +327,57 @@ const outcomeSkills = [
           </div>
         </section>
 
-        <section id="structure" class="sitemap-prototype-section">
+        <section class="goals-section">
           <div class="section-copy">
-            <p class="eyebrow">Sitemap & prototyping</p>
-            <h2>The redesign starts with a cleaner site map, then repeats one strong page pattern.</h2>
+            <p class="eyebrow">Business goals</p>
+            <h2>The redesign had to solve orientation, trust and appointment intent at the same time.</h2>
+          </div>
+          <div class="goal-grid">
+            {businessGoals.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="constraints-section">
+          <div class="section-copy">
+            <p class="eyebrow">Constraints</p>
+            <h2>Real website work means improving the system without losing what already works.</h2>
+          </div>
+          <div class="constraints-grid">
+            {constraints.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="discovery-section">
+          <div class="section-copy">
+            <p class="eyebrow">Discovery</p>
+            <h2>Before designing screens, I audited content, navigation and visual trust signals.</h2>
+          </div>
+          <div class="audit-grid discovery-grid">
+            {discoveryItems.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="strategy" class="sitemap-prototype-section">
+          <div class="section-copy">
+            <p class="eyebrow">Strategy & information architecture</p>
+            <h2>Instead of redesigning isolated pages, I built a scalable website system.</h2>
             <p>
-              Most pages share the same logic: trust signal, service explanation, proof,
+              Most pages share one logic: trust signal, service explanation, proof and
               contact route. That makes the website easier to maintain and easier for
               patients to learn as they move between services.
             </p>
@@ -466,7 +547,7 @@ const outcomeSkills = [
 
         <section id="figma" class="figma-section">
           <div class="section-copy">
-            <p class="eyebrow">Figma deliverables</p>
+            <p class="eyebrow">UI system</p>
             <h2>This was designed as a full website system, not a single landing screen.</h2>
             <p>
               The Figma file contains the page layouts, a style guide, responsive states,
@@ -579,7 +660,7 @@ const outcomeSkills = [
         <section id="visual" class="visual-section">
           <div class="section-number">04</div>
           <div class="section-copy">
-            <p class="eyebrow">Visual system</p>
+            <p class="eyebrow">Design principles</p>
             <h2>A quiet healthcare UI kit built from real brand material.</h2>
             <p>
               The design language avoids a cold clinic feeling. It combines the
@@ -639,15 +720,15 @@ const outcomeSkills = [
           </div>
         </section>
 
-        <section class="handoff-section">
+        <section id="development" class="handoff-section">
           <div class="section-number">05</div>
           <div class="section-copy">
-            <p class="eyebrow">Handoff</p>
-            <h2>The case shows design taste and production thinking.</h2>
+            <p class="eyebrow">Components & development</p>
+            <h2>The system was prepared for WordPress, reusable sections and developer handoff.</h2>
             <p>
-              For portfolio review, the important part is not only the final look. The
-              page explains how the website is structured, how components repeat, how
-              images are used and how the experience adapts from desktop to mobile.
+              The important part is not only the final look. The design explains how
+              sections repeat, how content adapts from desktop to mobile and how the
+              implementation team can turn the work into production pages.
             </p>
           </div>
           <div class="component-grid">
@@ -658,15 +739,23 @@ const outcomeSkills = [
               </article>
             ))}
           </div>
+          <div class="development-grid">
+            {developmentItems.map(([title, text]) => (
+              <article>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
-        <section class="constraints-section">
+        <section class="reflection-section">
           <div class="section-copy">
-            <p class="eyebrow">Constraints</p>
-            <h2>Real website work means improving the system without losing what already works.</h2>
+            <p class="eyebrow">Reflection</p>
+            <h2>The strongest decision was to treat the project as a website system.</h2>
           </div>
-          <div class="constraints-grid">
-            {constraints.map(([title, text]) => (
+          <div class="reflection-grid">
+            {reflectionItems.map(([title, text]) => (
               <article>
                 <h3>{title}</h3>
                 <p>{text}</p>
@@ -678,13 +767,13 @@ const outcomeSkills = [
         <section id="result" class="result">
           <div class="section-number">06</div>
           <div class="result-copy">
-            <p class="eyebrow">Result</p>
-            <h2>A stronger healthcare case for employers who scan portfolios quickly.</h2>
+            <p class="eyebrow">Outcome</p>
+            <h2>What this project demonstrates.</h2>
             <p>
               The redesigned presentation makes the project understandable in two minutes:
-              a real client, a visible before/after problem, a clearer site structure,
-              real brand assets, responsive thinking and a UI system that fits a medical
-              service instead of looking like a generic landing page.
+              a real client, visible constraints, a clearer site structure, responsive
+              thinking, production handoff and a UI system that fits a medical service
+              instead of looking like a generic landing page.
             </p>
             <div class="outcome-list" aria-label="What this project demonstrates">
               <span>What this project demonstrates</span>
@@ -890,17 +979,28 @@ const outcomeSkills = [
   .handoff-section,
   .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .audit-grid,
+  .goal-grid,
   .principle-grid,
-  .component-grid {
+  .component-grid,
+  .development-grid,
+  .reflection-grid {
     display: grid;
     gap: 14px;
-    grid-column: 2;
     grid-template-columns: repeat(4, 1fr);
     margin-top: 18px;
   }
+  .split-section .audit-grid,
+  .visual-section .principle-grid,
+  .handoff-section .component-grid,
+  .handoff-section .development-grid {
+    grid-column: 2;
+  }
   .audit-grid article,
+  .goal-grid article,
   .principle-grid article,
-  .component-grid article {
+  .component-grid article,
+  .development-grid article,
+  .reflection-grid article {
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -908,11 +1008,34 @@ const outcomeSkills = [
     padding: 24px;
   }
   .audit-grid h3,
+  .goal-grid h3,
   .principle-grid h3,
-  .component-grid h3 { font-size: 22px; }
+  .component-grid h3,
+  .development-grid h3,
+  .reflection-grid h3 { font-size: 22px; }
   .audit-grid p,
+  .goal-grid p,
   .principle-grid p,
-  .component-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 18px; }
+  .component-grid p,
+  .development-grid p,
+  .reflection-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 18px; }
+
+  .goals-section,
+  .discovery-section,
+  .reflection-section {
+    background: #fff;
+  }
+  .goal-grid {
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 34px;
+  }
+  .goal-grid article {
+    background: var(--bg);
+    min-height: 210px;
+  }
+  .discovery-grid {
+    margin-top: 34px;
+  }
 
   .sitemap-prototype-section {
     background: #fff;
@@ -1656,6 +1779,14 @@ const outcomeSkills = [
   .mobile-list span { background: #fff; border: 1px solid var(--line); border-radius: 12px; font-size: 14px; font-weight: 850; padding: 16px; }
 
   .component-grid { grid-template-columns: repeat(4, 1fr); }
+  .development-grid {
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 14px;
+  }
+  .development-grid article {
+    background: var(--bg);
+    min-height: 190px;
+  }
   .constraints-section {
     background: #fff;
   }
@@ -1681,6 +1812,16 @@ const outcomeSkills = [
     font-size: 14px;
     line-height: 1.6;
     margin-top: 14px;
+  }
+  .reflection-section {
+    background: var(--bg);
+  }
+  .reflection-grid {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 34px;
+  }
+  .reflection-grid article {
+    min-height: 210px;
   }
   .result { background: var(--accent); color: white; }
   .result .eyebrow,
@@ -1731,9 +1872,12 @@ const outcomeSkills = [
     .metric-grid,
     .role-card-grid,
     .audit-grid,
+    .goal-grid,
     .principle-grid,
     .component-grid,
+    .development-grid,
     .constraints-grid,
+    .reflection-grid,
     .outcome-list ul,
     .page-map { grid-template-columns: repeat(2, 1fr); }
     .system-grid,
@@ -1764,15 +1908,21 @@ const outcomeSkills = [
     .section-copy > *,
     .result-copy > * { min-width: 0; max-width: 100%; }
     .audit-grid,
+    .goal-grid,
     .principle-grid,
     .component-grid,
+    .development-grid,
+    .reflection-grid,
     .system-grid { grid-column: 1; }
     .metric-grid,
     .role-card-grid,
     .audit-grid,
+    .goal-grid,
     .principle-grid,
     .component-grid,
+    .development-grid,
     .constraints-grid,
+    .reflection-grid,
     .outcome-list ul,
     .page-map,
     .service-grid,

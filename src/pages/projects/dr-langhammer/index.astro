@@ -12,11 +12,11 @@ const facts = [
   ["Responsibilities", "UX, UI, IA, Design System, Handoff"],
 ];
 
-const metrics = [
-  ["12", "current sitemap pages"],
-  ["10", "Figma layout screens"],
-  ["8", "service areas"],
-  ["6", "handoff responsibilities"],
+const heroFacts = [
+  ["Role", "Lead Web Designer"],
+  ["Duration", "6 weeks"],
+  ["Platform", "WordPress"],
+  ["Deliverables", "UX · UI · Information Architecture · Design System · Developer Handoff"],
 ];
 
 const contextPoints = [
@@ -27,11 +27,11 @@ const contextPoints = [
 ];
 
 const businessGoals = [
-  ["Increase trust", "Use real photography, a calmer hierarchy and visible practice proof."],
-  ["Simplify navigation", "Turn nested services into clear patient-facing destinations."],
-  ["Improve service discovery", "Make implants, aesthetics, prophylaxis and lab easier to scan."],
-  ["Support appointment requests", "Keep contact and appointment intent close to decision points."],
-  ["Preserve SEO intent", "Respect existing page topics while making the structure easier to understand."],
+  ["Understand services faster", "Make treatment areas easier to scan without reading through a large menu first."],
+  ["Reduce information overload", "Shorten the decision path by repeating one clear content structure across service pages."],
+  ["Increase trust", "Use real photography, calm hierarchy and visible practice proof."],
+  ["Support appointment booking", "Keep contact and appointment intent close to the moments where patients decide."],
+  ["Prepare scalable content", "Create a page system that can support future treatments without becoming inconsistent again."],
 ];
 
 const discoveryItems = [
@@ -179,7 +179,7 @@ const roleCards = [
 const constraints = [
   ["Existing WordPress", "The redesign had to work with a production CMS and real implementation limits."],
   ["Large legacy content", "Old service content needed a clearer structure without losing useful information."],
-  ["Limited budget", "The system had to improve the experience without treating every page as a custom one-off."],
+  ["Limited photography", "The image system had to rely on existing brand and practice material instead of generic stock visuals."],
   ["Legacy navigation", "The old menu had many valid topics, but the grouping needed to become easier for patients."],
   ["Existing branding", "Logo, color direction and medical trust cues stayed recognizable."],
   ["SEO preservation", "The new sitemap had to respect existing page intent and patient search behavior."],
@@ -198,9 +198,11 @@ const outcomeSkills = [
 
 const developmentItems = [
   ["Prepared for WordPress", "Sections were designed to work as reusable production blocks."],
-  ["Component-based", "Repeated page patterns reduced implementation decisions for similar service pages."],
-  ["Responsive grid", "Desktop and mobile layouts use the same content logic with adapted density."],
-  ["Developer handoff", "Typography, colors, components, spacing and QA notes were documented in Figma."],
+  ["Reusable components", "Repeated page patterns reduced implementation decisions for similar service pages."],
+  ["Responsive behaviour", "Desktop and mobile layouts use the same content logic with adapted density."],
+  ["Spacing rules", "Section rhythm, card spacing and footer density were tuned for implementation."],
+  ["Typography scale", "The Figma style guide documents headline, label and paragraph hierarchy."],
+  ["Developer handoff", "Components, page logic and QA notes were prepared for production work."],
 ];
 
 const reflectionItems = [
@@ -264,12 +266,11 @@ const reflectionItems = [
       <article class="case-content">
         <section id="overview" class="hero">
           <div class="hero-copy">
-            <p class="eyebrow">Website redesign · 2025</p>
-            <h2>Designing a calmer patient journey through information architecture.</h2>
+            <p class="eyebrow">Dr. Langhammer · Healthcare Website System</p>
+            <h2>Redesigned information architecture for a growing dental clinic.</h2>
             <p>
-              The work focused on business clarity: helping patients understand the
-              clinic, discover the right treatment area and move toward contact without
-              decoding a large legacy menu.
+              I helped turn a content-heavy dental website into a clearer system for
+              service discovery, trust building and appointment intent.
             </p>
           </div>
 
@@ -286,7 +287,7 @@ const reflectionItems = [
           </div>
 
           <div class="metric-grid" aria-label="Project summary">
-            {metrics.map(([value, label]) => (
+            {heroFacts.map(([value, label]) => (
               <article>
                 <strong>{value}</strong>
                 <span>{label}</span>
@@ -369,6 +370,17 @@ const reflectionItems = [
                 <p>{text}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section class="decision-section">
+          <div class="decision-card">
+            <p class="eyebrow">Key design decision</p>
+            <h2>Instead of redesigning pages, the project focused on creating one scalable website system.</h2>
+            <p>
+              This decision connected the sitemap, service cards, typography, photography
+              and responsive layouts into one reusable structure for future WordPress pages.
+            </p>
           </div>
         </section>
 
@@ -935,9 +947,24 @@ const reflectionItems = [
   .hero-panel p { color: var(--muted); font-size: 13px; font-weight: 850; margin-bottom: 12px; text-transform: uppercase; }
   .hero-panel strong { color: var(--accent); font-size: 22px; line-height: 1.2; }
   .metric-grid { display: grid; gap: 12px; grid-template-columns: repeat(4, 1fr); margin-top: 18px; }
-  .metric-grid article { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); min-height: 130px; padding: 20px; }
-  .metric-grid strong { display: block; font-size: clamp(34px, 3.8vw, 54px); line-height: 1; }
-  .metric-grid span { color: var(--muted); display: block; font-size: 13px; font-weight: 750; line-height: 1.35; margin-top: 14px; }
+  .metric-grid article { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); min-height: 142px; padding: 20px; }
+  .metric-grid strong {
+    color: var(--sage);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+  .metric-grid span {
+    color: var(--accent);
+    display: block;
+    font-size: clamp(18px, 1.55vw, 26px);
+    font-weight: 850;
+    line-height: 1.15;
+    margin-top: 18px;
+  }
 
   .role-section {
     background: #fff;
@@ -1021,6 +1048,7 @@ const reflectionItems = [
   .reflection-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 18px; }
 
   .goals-section,
+  .decision-section,
   .discovery-section,
   .reflection-section {
     background: #fff;
@@ -1035,6 +1063,23 @@ const reflectionItems = [
   }
   .discovery-grid {
     margin-top: 34px;
+  }
+  .decision-section {
+    background: var(--accent);
+    color: #fff;
+  }
+  .decision-card {
+    max-width: 1120px;
+  }
+  .decision-card .eyebrow,
+  .decision-card p {
+    color: rgba(255, 255, 255, .74);
+  }
+  .decision-card p {
+    font-size: 18px;
+    line-height: 1.65;
+    margin-top: 28px;
+    max-width: 760px;
   }
 
   .sitemap-prototype-section {

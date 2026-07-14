@@ -20,10 +20,35 @@ const highlights = [
   ["Content Cards", "Kurze Wissens- und Rezeptmodule machen das Produkt konkreter und geben der Seite redaktionellen Nutzen."],
 ];
 
-const recipeCards = [
-  ["Spaghetti mit Tomatensauce", "Ein schnelles Rezept, das den Produktnutzen direkt zeigt: Tomate als Basis fuer ein alltaegliches Gericht."],
-  ["Tomatenwissen", "Kleine redaktionelle Karten erklaeren Herkunft, Qualitaet und Einsatzmoeglichkeiten der Tomatenprodukte."],
-  ["Produkt im Kontext", "Food-Fotografie, Navigation und Markenlogo halten die Kampagne eng an der Green-Ray-Welt."],
+const benefitCards = [
+  ["natural-product.jpg", "100% натуральный продукт"],
+  ["seven-kg-tomatoes.jpg", "1 кг пасты это 7 кг томата"],
+  ["lycopene.jpg", "Суточная норма ликопина"],
+  ["only-tomatoes.jpg", "Только помидоры"],
+  ["no-starch.jpg", "Без крахмала"],
+  ["no-sugar.jpg", "Без сахара"],
+  ["no-salt.jpg", "Без соли"],
+  ["no-e.jpg", "Без Е"],
+  ["grown-in-russia.jpg", "Выращено в России"],
+];
+
+const editorialCards = [
+  ["seven-myths.jpg", "7 мифов о томатной пасте"],
+  ["how-to-choose.jpg", "Как выбрать качественный продукт"],
+  ["health-elixir.jpg", "Эликсир здоровья и молодости"],
+];
+
+const tokenCards = [
+  ["color-yellow.svg", "FEE934"],
+  ["color-green.svg", "00A717"],
+  ["color-red.svg", "E12229"],
+  ["color-brown.svg", "5E2A2C"],
+];
+
+const stateCards = [
+  ["state-passive.svg", "Passive"],
+  ["state-hover.svg", "Hover"],
+  ["state-active.svg", "Active"],
 ];
 ---
 
@@ -112,6 +137,23 @@ const recipeCards = [
           </div>
         </section>
 
+        <section class="product-video-section" aria-labelledby="product-video-title">
+          <div class="section-copy">
+            <p class="eyebrow">Product Video</p>
+            <h2 id="product-video-title">Kurzer Produktmoment fuer den Einstieg in die Food-Welt</h2>
+            <p>
+              Neben dem langen Screen Recording zeigt das Material auch einen kompakten
+              Produktclip. Er funktioniert als atmosphaerischer Auftakt und gibt der Kampagne
+              mehr Bewegung, ohne die Seite zu ueberladen.
+            </p>
+          </div>
+          <div class="product-video-frame">
+            <video autoplay muted loop playsinline controls poster={`${media}/video-frame-02.jpg`}>
+              <source src={`${media}/productvideo.mp4`} type="video/mp4" />
+            </video>
+          </div>
+        </section>
+
         <section id="system" class="story-section">
           <div class="section-number">03</div>
           <div class="section-copy">
@@ -134,34 +176,82 @@ const recipeCards = [
           </div>
         </section>
 
-        <section class="recipe-section" aria-labelledby="recipe-title">
+        <section class="assets-section" aria-labelledby="assets-title">
           <div class="section-copy">
-            <p class="eyebrow">Recipe & Content Cards</p>
-            <h2 id="recipe-title">Rezeptkarten machen das Produkt sofort nutzbar</h2>
+            <p class="eyebrow">Campaign Content Modules</p>
+            <h2 id="assets-title">Die Kampagne lebt von modularen Wissens- und Produktkarten</h2>
             <p>
-              Fuer die Portfolio-Seite sind die Kernmodule sichtbar gemacht: ein grosses Food-Visual,
-              kurze Content-Karten und eine Kartenlogik, die aus Produktkommunikation konkrete
-              Anwendung macht.
+              Die Originalmaterialien zeigen ein klares visuelles System: quadratische
+              Benefit-Karten fuer Produktargumente und kleinere redaktionelle Teaser fuer
+              vertiefende Inhalte rund um Tomatenpaste.
             </p>
           </div>
-          <div class="recipe-grid">
-            <article class="recipe-card large">
-              <img src={`${media}/video-frame-02.jpg`} alt="Green Ray Rezeptmoment aus dem Video" loading="lazy" />
-              <div>
-                <p>Featured recipe</p>
-                <h3>Tomaten als Basis fuer einfache Gerichte</h3>
-              </div>
-            </article>
-            {recipeCards.map(([title, text], index) => (
-              <article class="recipe-card">
-                <img src={`${media}/video-frame-0${index + 1}.jpg`} alt={`Green Ray Kampagnenelement: ${title}`} loading="lazy" />
-                <div>
-                  <p>{String(index + 1).padStart(2, "0")}</p>
-                  <h3>{title}</h3>
-                  <span>{text}</span>
-                </div>
-              </article>
+          <div class="benefit-grid">
+            {benefitCards.map(([file, label]) => (
+              <figure>
+                <img src={`${media}/${file}`} alt={`Green Ray: ${label}`} loading="lazy" />
+              </figure>
             ))}
+          </div>
+        </section>
+
+        <section class="editorial-section" aria-labelledby="editorial-title">
+          <div class="section-copy">
+            <p class="eyebrow">Editorial Cards</p>
+            <h2 id="editorial-title">Redaktionelle Teaser ergaenzen die Produktargumente</h2>
+            <p>
+              Diese kleineren Karten fuehren zu Wissensinhalten: Mythen, Produktauswahl und
+              gesundheitliche Benefits. So bekommt die Kampagne eine Content-Ebene statt nur
+              eine reine Produktpraesentation.
+            </p>
+          </div>
+          <div class="editorial-grid">
+            {editorialCards.map(([file, label]) => (
+              <figure>
+                <img src={`${media}/${file}`} alt={`Green Ray Editorial Card: ${label}`} loading="lazy" />
+                <figcaption>{label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section class="kit-section" aria-labelledby="kit-title">
+          <div class="section-copy">
+            <p class="eyebrow">Visual Kit</p>
+            <h2 id="kit-title">Farben, Typografie und States aus den Kampagnenmaterialien</h2>
+            <p>
+              Die Seite nutzt die Materiallogik des Originals: Gelb als Kampagnenflaeche,
+              Gruen und Rot fuer Food- und Markenakzente, handschriftliche Display-Typografie
+              und einfache Button-States.
+            </p>
+          </div>
+          <div class="kit-grid">
+            <div class="token-grid" aria-label="Color tokens">
+              {tokenCards.map(([file, label]) => (
+                <figure>
+                  <img src={`${media}/${file}`} alt={`Green Ray color token ${label}`} loading="lazy" />
+                  <figcaption>#{label}</figcaption>
+                </figure>
+              ))}
+            </div>
+            <div class="type-grid" aria-label="Typography samples">
+              <figure>
+                <img src={`${media}/type-amatic-bold.svg`} alt="Amatic SC Bold typography sample" loading="lazy" />
+                <figcaption>Amatic SC Bold</figcaption>
+              </figure>
+              <figure>
+                <img src={`${media}/type-montserrat-semibold.svg`} alt="Montserrat SemiBold typography sample" loading="lazy" />
+                <figcaption>Montserrat SemiBold</figcaption>
+              </figure>
+            </div>
+            <div class="state-grid" aria-label="Button states">
+              {stateCards.map(([file, label]) => (
+                <figure>
+                  <img src={`${media}/${file}`} alt={`Green Ray button state ${label}`} loading="lazy" />
+                  <figcaption>{label}</figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -376,28 +466,66 @@ const recipeCards = [
   .highlight-grid h3 { font-size: 20px; margin-top: 52px; }
   .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
 
-  .recipe-section { background: #f4f8ee; }
-  .recipe-grid { display: grid; gap: 18px; grid-template-columns: 1.25fr 1fr 1fr; margin-top: 48px; }
-  .recipe-card {
+  .product-video-section {
+    background: #f4f8ee;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: minmax(280px, 520px) minmax(0, 1fr);
+  }
+  .product-video-frame {
+    align-self: start;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(35, 65, 27, .12);
+    overflow: hidden;
+  }
+  .product-video-frame video { aspect-ratio: 16 / 9; background: #111; object-fit: cover; width: 100%; }
+
+  .assets-section { background: #fffdf0; }
+  .benefit-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 48px; }
+  .benefit-grid figure,
+  .editorial-grid figure,
+  .kit-grid figure {
     background: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     overflow: hidden;
   }
-  .recipe-card.large { grid-row: span 2; }
-  .recipe-card img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
-  .recipe-card.large img { aspect-ratio: 4 / 4.3; }
-  .recipe-card div { padding: 22px; }
-  .recipe-card p {
-    color: var(--green);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: .08em;
-    margin-bottom: 14px;
-    text-transform: uppercase;
+  .benefit-grid img { aspect-ratio: 1; object-fit: cover; width: 100%; }
+
+  .editorial-section { background: #f4f8ee; }
+  .editorial-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 48px; }
+  .editorial-grid img { aspect-ratio: 487 / 325; object-fit: cover; width: 100%; }
+
+  .kit-section { background: #fff; }
+  .kit-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1.25fr;
+    margin-top: 48px;
   }
-  .recipe-card h3 { font-size: clamp(20px, 2vw, 30px); }
-  .recipe-card span { color: var(--muted); display: block; font-size: 14px; line-height: 1.6; margin-top: 14px; }
+  .token-grid,
+  .type-grid,
+  .state-grid {
+    display: grid;
+    gap: 18px;
+  }
+  .token-grid { grid-template-columns: repeat(2, 1fr); }
+  .type-grid { grid-template-columns: 1fr; }
+  .state-grid { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
+  .kit-grid figure { display: grid; }
+  .token-grid img,
+  .type-grid img,
+  .state-grid img {
+    aspect-ratio: 16 / 7;
+    background: #fff8df;
+    object-fit: contain;
+    padding: 20px;
+    width: 100%;
+  }
+  .token-grid img { aspect-ratio: 4 / 3; padding: 0; }
+  .state-grid img { aspect-ratio: 16 / 5; }
 
   .gallery { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
   .gallery figure { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
@@ -416,7 +544,9 @@ const recipeCards = [
     .case-sidebar { height: auto; position: static; }
     .case-sidebar nav { display: none; }
     .hero { min-height: auto; }
-    .recipe-grid { grid-template-columns: 1fr 1fr; }
+    .product-video-section { grid-template-columns: 1fr; }
+    .benefit-grid, .editorial-grid { grid-template-columns: repeat(2, 1fr); }
+    .kit-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 720px) {
@@ -428,7 +558,7 @@ const recipeCards = [
     .case-content > section { padding-left: 18px; padding-right: 18px; }
     .hero-copy, .story-section, .result { grid-template-columns: 1fr; }
     .hero-copy .eyebrow, .highlight-grid { grid-column: 1; }
-    .highlight-grid, .recipe-grid, .gallery { grid-template-columns: 1fr; }
+    .highlight-grid, .benefit-grid, .editorial-grid, .gallery, .token-grid, .state-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
   }
 </style>

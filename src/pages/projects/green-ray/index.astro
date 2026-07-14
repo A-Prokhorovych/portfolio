@@ -6,6 +6,10 @@ const media = `${base}projects/green-ray`;
 const cover = `${base}projects/covers/2019-astratomat.jpg`;
 const logo = `${base}brands/logotypes/${encodeURIComponent("green ray.svg")}`;
 const originalUrl = "https://www.edimdoma.ru/2019/astratomat#1";
+const canonicalUrl = "https://a-prokhorovych.github.io/portfolio/projects/green-ray/";
+const seoTitle = "Green Ray Astra Tomat Campaign Case Study - Andrii Prokhorovych";
+const seoDescription =
+  "Green Ray Astra Tomat case study by Andrii Prokhorovych: food campaign design, video-led landing page, yellow visual direction, content modules, recipe photography and UI kit for Edim Doma.";
 
 const facts = [
   ["Kunde", "Green Ray"],
@@ -50,15 +54,30 @@ const stateCards = [
   ["state-hover.svg", "Hover"],
   ["state-active.svg", "Active"],
 ];
+
+const recipePhotos = [
+  ["recipe-photo-01.jpg", "Tomato rice dish with Green Ray tomato paste"],
+  ["recipe-photo-02.jpg", "Vegetable pasta recipe with Green Ray packaging"],
+  ["recipe-photo-03.jpg", "Grilled chicken recipe with tomato paste"],
+];
 ---
 
 <html lang="de">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Green Ray Astra Tomat Campaign - Case Study von Andrii Prokhorovych." />
-    <title>Green Ray Astra Tomat - Andrii Prokhorovych</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={seoDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content="https://a-prokhorovych.github.io/portfolio/projects/green-ray/background-yellow.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seoTitle} />
+    <meta name="twitter:description" content={seoDescription} />
+    <title>{seoTitle}</title>
   </head>
   <body>
     <header class="site-header">
@@ -115,14 +134,14 @@ const stateCards = [
             </p>
           </div>
           <div class="hero-media">
-            <video autoplay muted loop playsinline controls poster={cover}>
+            <video autoplay muted loop playsinline preload="auto" poster={cover}>
               <source src={`${media}/screenvideo.mp4`} type="video/mp4" />
             </video>
             <span>Screen recording · Green Ray Special Project</span>
           </div>
         </section>
 
-        <section id="video" class="yellow-stage">
+        <section id="video" class="yellow-stage" style={`--astratomat-bg: url("${media}/background-yellow.jpg")`}>
           <div class="stage-copy">
             <p class="eyebrow">Astratomat Visual Direction</p>
             <h2>Der gelbe Hintergrund macht die Kampagne sofort wiedererkennbar</h2>
@@ -131,9 +150,6 @@ const stateCards = [
               genug Energie fuer eine Food-Kampagne, aber klar genug fuer kleine redaktionelle
               Inhalte und Rezeptkarten.
             </p>
-          </div>
-          <div class="browser-frame">
-            <img src={cover} alt="Green Ray Astratomat Kampagnenseite mit gelbem Hintergrund" />
           </div>
         </section>
 
@@ -148,7 +164,7 @@ const stateCards = [
             </p>
           </div>
           <div class="product-video-frame">
-            <video autoplay muted loop playsinline controls poster={`${media}/video-frame-02.jpg`}>
+            <video autoplay muted loop playsinline preload="auto" poster={`${media}/video-frame-02.jpg`}>
               <source src={`${media}/productvideo.mp4`} type="video/mp4" />
             </video>
           </div>
@@ -181,9 +197,9 @@ const stateCards = [
             <p class="eyebrow">Campaign Content Modules</p>
             <h2 id="assets-title">Die Kampagne lebt von modularen Wissens- und Produktkarten</h2>
             <p>
-              Die Originalmaterialien zeigen ein klares visuelles System: quadratische
-              Benefit-Karten fuer Produktargumente und kleinere redaktionelle Teaser fuer
-              vertiefende Inhalte rund um Tomatenpaste.
+              Die Originalmaterialien zeigen ein klares visuelles System: Benefit-Karten fuer
+              Produktargumente und redaktionelle Teaser fuer vertiefende Inhalte rund um
+              Tomatenpaste.
             </p>
           </div>
           <div class="benefit-grid">
@@ -255,19 +271,12 @@ const stateCards = [
           </div>
         </section>
 
-        <section class="gallery" aria-label="Green Ray Kampagnenansichten">
-          <figure>
-            <img src={`${media}/video-frame-01.jpg`} alt="Green Ray Startsequenz" loading="lazy" />
-            <figcaption>Video intro</figcaption>
-          </figure>
-          <figure>
-            <img src={`${media}/video-frame-02.jpg`} alt="Green Ray Food-Visual" loading="lazy" />
-            <figcaption>Food visual</figcaption>
-          </figure>
-          <figure>
-            <img src={`${media}/video-frame-03.jpg`} alt="Green Ray Inhaltsbereich" loading="lazy" />
-            <figcaption>Content section</figcaption>
-          </figure>
+        <section class="gallery" aria-label="Green Ray recipe photography">
+          {recipePhotos.map(([file, label]) => (
+            <figure>
+              <img src={`${media}/${file}`} alt={label} loading="lazy" />
+            </figure>
+          ))}
         </section>
 
         <section id="ergebnis" class="result">
@@ -280,7 +289,7 @@ const stateCards = [
               die gelbe Astratomat-Buehne und die Content-Karten zeigen den Charakter des Projekts,
               bevor Nutzer optional das Original auf Edim Doma oeffnen.
             </p>
-            <a class="button light" href={originalUrl} target="_blank" rel="noreferrer">Originalprojekt oeffnen</a>
+            <a class="button project-button" href={originalUrl} target="_blank" rel="noreferrer">Originalprojekt oeffnen</a>
           </div>
         </section>
       </article>
@@ -430,26 +439,21 @@ const stateCards = [
   .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
   .hero-media { background: var(--green); border-radius: var(--radius); box-shadow: 0 24px 80px rgba(62, 70, 29, .16); overflow: hidden; }
   .hero-media video { aspect-ratio: 16 / 10; background: #111; object-fit: cover; width: 100%; }
+  .hero-media video,
+  .product-video-frame video { pointer-events: none; }
   .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
 
   .yellow-stage {
     background:
-      radial-gradient(circle at 8% 18%, rgba(255, 255, 255, .55), transparent 20%),
-      radial-gradient(circle at 92% 72%, rgba(255, 255, 255, .35), transparent 24%),
+      linear-gradient(90deg, rgba(254, 233, 52, .92), rgba(254, 233, 52, .72)),
+      var(--astratomat-bg) center / cover no-repeat,
       var(--accent);
-    display: grid;
-    gap: 48px;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
   }
-  .stage-copy { max-width: 900px; }
+  .stage-copy { max-width: 980px; }
   .yellow-stage .eyebrow { color: rgba(23, 43, 32, .58); }
-  .browser-frame {
-    background: #fff;
-    border: 1px solid rgba(23, 43, 32, .2);
-    border-radius: var(--radius);
-    box-shadow: 0 28px 80px rgba(91, 82, 8, .18);
-    overflow: hidden;
-  }
-  .browser-frame img { aspect-ratio: 16 / 9; object-fit: cover; object-position: top center; width: 100%; }
 
   .story-section, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
   .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
@@ -468,34 +472,25 @@ const stateCards = [
 
   .product-video-section {
     background: #f4f8ee;
-    display: grid;
-    gap: 48px;
-    grid-template-columns: minmax(280px, 520px) minmax(0, 1fr);
   }
   .product-video-frame {
-    align-self: start;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: 0 24px 70px rgba(35, 65, 27, .12);
+    margin-top: 48px;
     overflow: hidden;
   }
-  .product-video-frame video { aspect-ratio: 16 / 9; background: #111; object-fit: cover; width: 100%; }
+  .product-video-frame video { aspect-ratio: 16 / 10; background: #111; object-fit: cover; width: 100%; }
 
-  .assets-section { background: #fffdf0; }
+  .assets-section { background: #fee934; }
   .benefit-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 48px; }
-  .benefit-grid figure,
-  .editorial-grid figure,
-  .kit-grid figure {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
+  .benefit-grid figure { overflow: hidden; }
   .benefit-grid img { aspect-ratio: 1; object-fit: cover; width: 100%; }
 
   .editorial-section { background: #f4f8ee; }
   .editorial-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 48px; }
+  .editorial-grid figure { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
   .editorial-grid img { aspect-ratio: 487 / 325; object-fit: cover; width: 100%; }
 
   .kit-section { background: #fff; }
@@ -514,12 +509,12 @@ const stateCards = [
   .token-grid { grid-template-columns: repeat(2, 1fr); }
   .type-grid { grid-template-columns: 1fr; }
   .state-grid { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
-  .kit-grid figure { display: grid; }
+  .kit-grid figure { display: grid; overflow: hidden; }
   .token-grid img,
   .type-grid img,
   .state-grid img {
     aspect-ratio: 16 / 7;
-    background: #fff8df;
+    background: #fff;
     object-fit: contain;
     padding: 20px;
     width: 100%;
@@ -528,14 +523,19 @@ const stateCards = [
   .state-grid img { aspect-ratio: 16 / 5; }
 
   .gallery { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
-  .gallery figure { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .gallery figure { overflow: hidden; }
   .gallery img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
   figcaption { color: var(--muted); font-size: 12px; font-weight: 900; padding: 16px; text-transform: uppercase; }
 
   .result { background: var(--ink); color: #fff; }
   .result .eyebrow, .result-copy > p { color: rgba(255, 255, 255, .72); }
   .result-copy { max-width: 960px; }
-  .result .button { border-color: #fff; margin-top: 34px; }
+  .result .button { margin-top: 34px; }
+  .project-button {
+    background: #fee934;
+    border-color: #fee934;
+    color: #172b20;
+  }
 
   @media (max-width: 1100px) {
     .site-header { grid-template-columns: 1fr auto; }

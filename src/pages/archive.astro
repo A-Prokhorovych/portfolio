@@ -44,6 +44,16 @@ const compactSlug = (value) => slugify(value).replace(/-/g, "");
 
 const featuredProjects = [
   {
+    title: "Green Ray Special Project",
+    year: "2019",
+    category: "Food & Beverage",
+    image: campaignCover("https://www.edimdoma.ru/2019/astratomat#1"),
+    video: `${base}projects/green-ray/screenvideo.mp4`,
+    url: "https://www.edimdoma.ru/2019/astratomat#1",
+    description:
+      "Produktkampagne fuer Green Ray mit animierter Landing Page, Food-Visuals und direkter Markenkommunikation auf Edim Doma.",
+  },
+  {
     title: "Djadja Vanja Special Project",
     year: "2021",
     category: "Food & Beverage",
@@ -346,7 +356,7 @@ const campaignArchive = [
   ["Maheev New Year Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/maheevNY", "prokha-oetker.png"],
   ["Petruha Gotovo Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhagotovo", "prokha-hochland.png"],
   ["Petruha Master Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhamaster", "prokha-hochland.png"],
-  ["Astra Tomat Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/astratomat#1", "prokha-parmalat.png"],
+  ["Green Ray Astra Tomat Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/astratomat#1", "prokha-parmalat.png"],
   ["Petruha Prosto Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/petruhaprosto", "prokha-hochland.png"],
   ["Picnic Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/picnic", "prokha-velle.png"],
   ["Kapitan Vkusov Campaign", "2019", "Food & Beverage", "https://www.edimdoma.ru/2019/kapitan-vkusov2", "old-seafood.jpg"],
@@ -582,7 +592,21 @@ const process = [
           {projects.map((project, index) => (
             <article class={`project-card ${index >= visibleProjectCount ? "is-hidden" : ""}`} data-project-card data-project-year={project.year} data-project-category={slugify(project.category)} data-project-search={slugify(`${project.title} ${project.category} ${project.url}`)} data-project-compact={compactSlug(`${project.title} ${project.category} ${project.url}`)}>
               <a href={project.url} target={project.internal ? undefined : "_blank"} rel={project.internal ? undefined : "noreferrer"}>
-                <img src={project.image} alt={`${project.title} Vorschau`} loading="lazy" />
+                {project.video ? (
+                  <video
+                    class="project-video"
+                    src={project.video}
+                    poster={project.image}
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    aria-label={`${project.title} Video Vorschau`}
+                  ></video>
+                ) : (
+                  <img src={project.image} alt={`${project.title} Vorschau`} loading="lazy" />
+                )}
                 <div class="project-body">
                   <p class="meta">{project.year} · {project.category}</p>
                   <h3>{project.title}</h3>
@@ -1215,12 +1239,18 @@ const process = [
     display: none;
   }
 
-  .project-card img {
+  .project-card img,
+  .project-card video {
     aspect-ratio: 16 / 9;
     border-bottom: 1px solid var(--line);
     object-fit: cover;
     object-position: top center;
     width: 100%;
+  }
+
+  .project-card video {
+    background: #101820;
+    display: block;
   }
 
   .project-body {

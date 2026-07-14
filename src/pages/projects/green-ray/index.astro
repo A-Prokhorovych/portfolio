@@ -1,0 +1,434 @@
+---
+import MotionEnhance from "../../../components/MotionEnhance.astro";
+
+const base = import.meta.env.BASE_URL;
+const media = `${base}projects/green-ray`;
+const cover = `${base}projects/covers/2019-astratomat.jpg`;
+const logo = `${base}brands/logotypes/${encodeURIComponent("green ray.svg")}`;
+const originalUrl = "https://www.edimdoma.ru/2019/astratomat#1";
+
+const facts = [
+  ["Kunde", "Green Ray"],
+  ["Plattform", "Edim Doma"],
+  ["Jahr", "2019"],
+  ["Rolle", "Web & Campaign Design"],
+];
+
+const highlights = [
+  ["Video als Einstieg", "Die Kampagne beginnt mit einem appetitlichen, bewegten Produktmoment statt mit einer statischen Anzeige."],
+  ["Gelbe Themenwelt", "Der Astratomat-Hintergrund wird als klare, sofort wiedererkennbare Kampagnenbuehne genutzt."],
+  ["Content Cards", "Kurze Wissens- und Rezeptmodule machen das Produkt konkreter und geben der Seite redaktionellen Nutzen."],
+];
+
+const recipeCards = [
+  ["Spaghetti mit Tomatensauce", "Ein schnelles Rezept, das den Produktnutzen direkt zeigt: Tomate als Basis fuer ein alltaegliches Gericht."],
+  ["Tomatenwissen", "Kleine redaktionelle Karten erklaeren Herkunft, Qualitaet und Einsatzmoeglichkeiten der Tomatenprodukte."],
+  ["Produkt im Kontext", "Food-Fotografie, Navigation und Markenlogo halten die Kampagne eng an der Green-Ray-Welt."],
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Green Ray Astra Tomat Campaign - Case Study von Andrii Prokhorovych." />
+    <title>Green Ray Astra Tomat - Andrii Prokhorovych</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={base}>PROKHA</a>
+      <a class="back-link" href={`${base}archive/#projects`}>
+        <span aria-hidden="true">←</span>
+        Zurueck zum Archiv
+      </a>
+      <div class="header-actions">
+        <a class="button light small edit-page" data-owner-only data-edit-only hidden href={`${base}editor/?project=green-ray`}>Редактировать</a>
+        <a class="button dark small" href={originalUrl} target="_blank" rel="noreferrer">Original ansehen</a>
+      </div>
+    </header>
+
+    <main>
+      <aside class="case-sidebar">
+        <div>
+          <p class="eyebrow">Case Study · 2019</p>
+          <img class="client-logo" src={logo} alt="Green Ray" />
+          <h1>Eine gelbe Food-Kampagne rund um Tomaten und Rezeptideen</h1>
+          <p class="intro">
+            Ein Special Project fuer Green Ray auf Edim Doma: bewegter Einstieg, markante
+            Astratomat-Farbwelt, kurze Content-Module und Rezeptkarten als schneller Weg vom
+            Produkt zur Anwendung.
+          </p>
+        </div>
+
+        <dl>
+          {facts.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <nav aria-label="Case-Study-Navigation">
+          <a href="#ueberblick">01 Überblick</a>
+          <a href="#video">02 Video</a>
+          <a href="#system">03 Elemente</a>
+          <a href="#ergebnis">04 Ergebnis</a>
+        </nav>
+      </aside>
+
+      <article class="case-content">
+        <section id="ueberblick" class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Food & Beverage · Digital Campaign</p>
+            <h2>Green Ray als interaktive Produktgeschichte</h2>
+            <p>
+              Die Kampagne fuehrt Nutzer nicht nur zu einer Marke, sondern zu einem kleinen
+              Produktkosmos: Tomaten, Gerichte, kurze Wissenskarten und visuelle Produktmomente
+              werden auf einer kompakten Landing Page zusammengefuehrt.
+            </p>
+          </div>
+          <div class="hero-media">
+            <video autoplay muted loop playsinline controls poster={cover}>
+              <source src={`${media}/screenvideo.mp4`} type="video/mp4" />
+            </video>
+            <span>Screen recording · Green Ray Special Project</span>
+          </div>
+        </section>
+
+        <section id="video" class="yellow-stage">
+          <div class="stage-copy">
+            <p class="eyebrow">Astratomat Visual Direction</p>
+            <h2>Der gelbe Hintergrund macht die Kampagne sofort wiedererkennbar</h2>
+            <p>
+              Der gelbe Astratomat-Bereich aus dem Projekt wird als visuelles Zentrum genutzt:
+              genug Energie fuer eine Food-Kampagne, aber klar genug fuer kleine redaktionelle
+              Inhalte und Rezeptkarten.
+            </p>
+          </div>
+          <div class="browser-frame">
+            <img src={cover} alt="Green Ray Astratomat Kampagnenseite mit gelbem Hintergrund" />
+          </div>
+        </section>
+
+        <section id="system" class="story-section">
+          <div class="section-number">03</div>
+          <div class="section-copy">
+            <p class="eyebrow">Page System</p>
+            <h2>Aus einer Produktkampagne wird eine kleine Content-Seite</h2>
+            <p>
+              Die Seite kombiniert Markenmoment, Produktvorteile und Rezeptideen. Dadurch wirkt
+              sie nicht wie ein Banner, sondern wie ein kurzer redaktioneller Einstieg in die
+              Green-Ray-Welt.
+            </p>
+          </div>
+          <div class="highlight-grid">
+            {highlights.map(([title, text], index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="recipe-section" aria-labelledby="recipe-title">
+          <div class="section-copy">
+            <p class="eyebrow">Recipe & Content Cards</p>
+            <h2 id="recipe-title">Rezeptkarten machen das Produkt sofort nutzbar</h2>
+            <p>
+              Fuer die Portfolio-Seite sind die Kernmodule sichtbar gemacht: ein grosses Food-Visual,
+              kurze Content-Karten und eine Kartenlogik, die aus Produktkommunikation konkrete
+              Anwendung macht.
+            </p>
+          </div>
+          <div class="recipe-grid">
+            <article class="recipe-card large">
+              <img src={`${media}/video-frame-02.jpg`} alt="Green Ray Rezeptmoment aus dem Video" loading="lazy" />
+              <div>
+                <p>Featured recipe</p>
+                <h3>Tomaten als Basis fuer einfache Gerichte</h3>
+              </div>
+            </article>
+            {recipeCards.map(([title, text], index) => (
+              <article class="recipe-card">
+                <img src={`${media}/video-frame-0${index + 1}.jpg`} alt={`Green Ray Kampagnenelement: ${title}`} loading="lazy" />
+                <div>
+                  <p>{String(index + 1).padStart(2, "0")}</p>
+                  <h3>{title}</h3>
+                  <span>{text}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="gallery" aria-label="Green Ray Kampagnenansichten">
+          <figure>
+            <img src={`${media}/video-frame-01.jpg`} alt="Green Ray Startsequenz" loading="lazy" />
+            <figcaption>Video intro</figcaption>
+          </figure>
+          <figure>
+            <img src={`${media}/video-frame-02.jpg`} alt="Green Ray Food-Visual" loading="lazy" />
+            <figcaption>Food visual</figcaption>
+          </figure>
+          <figure>
+            <img src={`${media}/video-frame-03.jpg`} alt="Green Ray Inhaltsbereich" loading="lazy" />
+            <figcaption>Content section</figcaption>
+          </figure>
+        </section>
+
+        <section id="ergebnis" class="result">
+          <div class="section-number">04</div>
+          <div class="result-copy">
+            <p class="eyebrow">Ergebnis</p>
+            <h2>Ein Green-Ray-Projekt, das jetzt als Case Study statt nur als Link funktioniert</h2>
+            <p>
+              Im Archiv fuehrt Green Ray nun zuerst auf diese interne Portfolio-Seite. Das Video,
+              die gelbe Astratomat-Buehne und die Content-Karten zeigen den Charakter des Projekts,
+              bevor Nutzer optional das Original auf Edim Doma oeffnen.
+            </p>
+            <a class="button light" href={originalUrl} target="_blank" rel="noreferrer">Originalprojekt oeffnen</a>
+          </div>
+        </section>
+      </article>
+    </main>
+    <MotionEnhance />
+
+    <script>
+      const params = new URLSearchParams(location.search);
+      const ownerParam = params.get("owner");
+      const editParam = params.get("edit");
+      if (ownerParam === "1") localStorage.setItem("prokha-owner-mode", "1");
+      if (ownerParam === "0") localStorage.removeItem("prokha-owner-mode");
+      localStorage.removeItem("prokha-edit-links");
+
+      let editLinksVisible = editParam === "1";
+      const revealOwnerControls = () => {
+        const isOwner = localStorage.getItem("prokha-owner-mode") === "1";
+        const showEditLinks = isOwner && editLinksVisible;
+        document.querySelectorAll("[data-owner-only]").forEach((element) => {
+          element.hidden = !isOwner;
+        });
+        document.querySelectorAll("[data-edit-only]").forEach((element) => {
+          element.hidden = !showEditLinks;
+        });
+      };
+
+      revealOwnerControls();
+
+      let editCommand = "";
+      document.addEventListener("keydown", (event) => {
+        if (event.metaKey || event.ctrlKey || event.altKey || event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+        editCommand = (editCommand + event.key.toLowerCase()).slice(-4);
+        if (editCommand === "edit") {
+          editLinksVisible = true;
+          revealOwnerControls();
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fff8df;
+    --paper: #fff;
+    --ink: #172b20;
+    --muted: #6d6a58;
+    --line: rgba(23, 43, 32, .16);
+    --accent: #ffe233;
+    --green: #4f8f40;
+    --red: #e64231;
+    --radius: 8px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  p, h1, h2, h3, dl, dd, figure { margin: 0; }
+  img, video { display: block; max-width: 100%; }
+  [hidden] { display: none !important; }
+
+  .site-header {
+    align-items: center;
+    background: rgba(255, 248, 223, .9);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    left: 0;
+    padding: 20px clamp(20px, 4vw, 72px);
+    position: sticky;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(18px);
+  }
+
+  .brand { font-size: 28px; font-weight: 900; letter-spacing: 0; }
+  .back-link { font-size: 14px; font-weight: 800; }
+  .back-link span { margin-right: 8px; }
+  .button {
+    align-items: center;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 900;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+  }
+  .button.dark { background: var(--ink); color: #fff; }
+  .button.light { background: #fff; }
+  .button.small { justify-self: end; min-height: 42px; }
+  .header-actions { display: flex; gap: 8px; justify-self: end; }
+  .edit-page {
+    background: transparent !important;
+    border-color: rgba(23, 43, 32, .2) !important;
+    color: rgba(23, 43, 32, .5) !important;
+  }
+
+  main { display: grid; grid-template-columns: minmax(280px, 25vw) minmax(0, 1fr); }
+  .case-sidebar {
+    align-content: space-between;
+    background: var(--paper);
+    border-right: 1px solid var(--line);
+    display: grid;
+    gap: 44px;
+    height: calc(100vh - 83px);
+    padding: clamp(36px, 4vw, 64px) clamp(24px, 3vw, 48px);
+    position: sticky;
+    top: 83px;
+  }
+  .eyebrow {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .client-logo { height: 72px; margin-bottom: 32px; object-fit: contain; object-position: left center; width: 130px; }
+  h1 { font-size: clamp(25px, 2.25vw, 38px); hyphens: auto; line-height: 1.08; overflow-wrap: anywhere; }
+  h2 { font-size: clamp(34px, 4.8vw, 76px); line-height: 1.02; max-width: 980px; }
+  h3 { line-height: 1.18; }
+  .intro, .section-copy > p:last-child, .result-copy > p, .stage-copy p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 22px;
+  }
+  dl { border-top: 1px solid var(--line); }
+  dl div { border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 18px; padding: 11px 0; }
+  dt { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+  dd { font-size: 13px; font-weight: 900; text-align: right; }
+  nav { display: grid; gap: 10px; }
+  nav a { color: var(--muted); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+  nav a:hover { color: var(--ink); }
+
+  .case-content > section { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 110px) clamp(24px, 6vw, 100px); }
+  .hero { min-height: calc(100vh - 83px); }
+  .hero-copy { display: grid; gap: 28px; grid-template-columns: 1fr minmax(260px, 420px); margin-bottom: 58px; }
+  .hero-copy .eyebrow { grid-column: 1 / -1; }
+  .hero-copy p:last-child { align-self: end; color: var(--muted); font-size: 17px; line-height: 1.7; }
+  .hero-media { background: var(--green); border-radius: var(--radius); box-shadow: 0 24px 80px rgba(62, 70, 29, .16); overflow: hidden; }
+  .hero-media video { aspect-ratio: 16 / 10; background: #111; object-fit: cover; width: 100%; }
+  .hero-media span { color: #fff; display: block; font-size: 12px; font-weight: 900; letter-spacing: .08em; padding: 16px 18px; text-transform: uppercase; }
+
+  .yellow-stage {
+    background:
+      radial-gradient(circle at 8% 18%, rgba(255, 255, 255, .55), transparent 20%),
+      radial-gradient(circle at 92% 72%, rgba(255, 255, 255, .35), transparent 24%),
+      var(--accent);
+    display: grid;
+    gap: 48px;
+  }
+  .stage-copy { max-width: 900px; }
+  .yellow-stage .eyebrow { color: rgba(23, 43, 32, .58); }
+  .browser-frame {
+    background: #fff;
+    border: 1px solid rgba(23, 43, 32, .2);
+    border-radius: var(--radius);
+    box-shadow: 0 28px 80px rgba(91, 82, 8, .18);
+    overflow: hidden;
+  }
+  .browser-frame img { aspect-ratio: 16 / 9; object-fit: cover; object-position: top center; width: 100%; }
+
+  .story-section, .result { display: grid; gap: 36px; grid-template-columns: 70px minmax(0, 1fr); }
+  .section-number { color: var(--muted); font-size: 13px; font-weight: 900; padding-top: 4px; }
+  .section-copy { max-width: 860px; }
+  .highlight-grid { display: grid; gap: 18px; grid-column: 2; grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
+  .highlight-grid article {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 260px;
+    padding: 26px;
+  }
+  .highlight-grid span { color: var(--green); font-size: 12px; font-weight: 900; }
+  .highlight-grid h3 { font-size: 20px; margin-top: 52px; }
+  .highlight-grid p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .recipe-section { background: #f4f8ee; }
+  .recipe-grid { display: grid; gap: 18px; grid-template-columns: 1.25fr 1fr 1fr; margin-top: 48px; }
+  .recipe-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .recipe-card.large { grid-row: span 2; }
+  .recipe-card img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+  .recipe-card.large img { aspect-ratio: 4 / 4.3; }
+  .recipe-card div { padding: 22px; }
+  .recipe-card p {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .recipe-card h3 { font-size: clamp(20px, 2vw, 30px); }
+  .recipe-card span { color: var(--muted); display: block; font-size: 14px; line-height: 1.6; margin-top: 14px; }
+
+  .gallery { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+  .gallery figure { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .gallery img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+  figcaption { color: var(--muted); font-size: 12px; font-weight: 900; padding: 16px; text-transform: uppercase; }
+
+  .result { background: var(--ink); color: #fff; }
+  .result .eyebrow, .result-copy > p { color: rgba(255, 255, 255, .72); }
+  .result-copy { max-width: 960px; }
+  .result .button { border-color: #fff; margin-top: 34px; }
+
+  @media (max-width: 1100px) {
+    .site-header { grid-template-columns: 1fr auto; }
+    .back-link { display: none; }
+    main { grid-template-columns: 1fr; }
+    .case-sidebar { height: auto; position: static; }
+    .case-sidebar nav { display: none; }
+    .hero { min-height: auto; }
+    .recipe-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 720px) {
+    .site-header { padding: 14px 18px; }
+    .brand { font-size: 20px; }
+    .button.small { font-size: 11px; min-height: 38px; padding: 0 10px; }
+    .header-actions { gap: 5px; }
+    .case-sidebar { padding: 36px 18px; }
+    .case-content > section { padding-left: 18px; padding-right: 18px; }
+    .hero-copy, .story-section, .result { grid-template-columns: 1fr; }
+    .hero-copy .eyebrow, .highlight-grid { grid-column: 1; }
+    .highlight-grid, .recipe-grid, .gallery { grid-template-columns: 1fr; }
+    .section-number { display: none; }
+  }
+</style>

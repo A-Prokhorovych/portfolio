@@ -54,6 +54,26 @@ const tokens = [
   ["Cloud", "#edf5ff"],
   ["Line", "#d8e2ef"],
 ];
+
+const productProof = [
+  ["Hardware first", "Der Case beginnt nicht bei einem abstrakten Screen, sondern beim realen Geraet: Rahmen, Display, Plattform und Seilzugmechanik."],
+  ["Visual direction", "Graphit, schwarzer Screen, aqua Glas und kontrollierte Studio-Lichter bilden die visuelle Bruecke zwischen Foto, 3D und Interface."],
+  ["Website-ready story", "Die Produktinszenierung kann als Hero, Motion-Clip oder interaktive WebGL/canvas Szene in eine Landingpage ueberfuehrt werden."],
+];
+
+const caseFlow = [
+  ["01", "Reference", "Fotos und Figma-Boards klaeren Material, Kontext und visuelle Tonalitaet."],
+  ["02", "Render", "Die 3D-Geometrie wird auf einen dunklen Produktlook mit Macro-Fokus und Lichtkanten uebersetzt."],
+  ["03", "Interface", "Dashboard, App und Website ergaenzen das Geraet um KI-Coaching, Training Control und Fortschritt."],
+  ["04", "Portfolio", "Der Case zeigt Hardware, Motion, UI und Systemlogik als zusammenhaengende Produktentscheidung."],
+];
+
+const figmaScreens = [
+  ["Homepage system", "figma-home.jpg", "Eine lange Produktstory mit Hero, Nutzenargumentation, Social Proof, Use Cases und Store-Einstieg."],
+  ["Product functions", "figma-functions.jpg", "Funktionsseite fuer Platzersparnis, Geraetesteuerung, technische Daten und Vergleich zum Fitnessstudio."],
+  ["AI functions", "figma-ai-functions.jpg", "AI Mirror, Echtzeit-Analyse, Fitnessprogramm, Dokumentation und Ernaehrungsplan als eigene Produktlogik."],
+  ["Training control", "figma-training-control.jpg", "Realtime-Metriken, Leistungsfeedback und adaptive Trainingsdaten als visuelle Interface-Sprache."],
+];
 ---
 
 <html lang="de">
@@ -67,7 +87,7 @@ const tokens = [
   <body>
     <header class="site-header">
       <a class="brand" href={base}>PROKHA</a>
-      <a class="back-link" href={`${base}#projects`}>
+      <a class="back-link" href={`${base}#work`}>
         <span aria-hidden="true">←</span>
         Zurueck zu den Projekten
       </a>
@@ -117,9 +137,52 @@ const tokens = [
               Website, App-Oberflaeche und Designbaukasten.
             </p>
           </div>
-          <div class="hero-media">
-            <img src={`${media}/customer-overview.png`} alt="Gymera Produktwebsite mit fuenf Zielgruppen-Landingpages" />
-            <span>Product Website · Zielgruppen und Use Cases</span>
+          <div class="hero-media hero-3d" data-gymera-hero>
+            <canvas id="gymera-hero-canvas" aria-hidden="true"></canvas>
+            <img class="hero-3d-fallback" src={`${media}/product-detail.jpg`} alt="Gymera 3D Produktinszenierung mit graphitfarbenem Trainingsgeraet" />
+            <div class="hero-3d-copy">
+              <span class="hero-3d-kicker">Interactive product render</span>
+              <strong>Graphite hardware · aqua glass · AI training interface</strong>
+            </div>
+            <span>3D Hero · Produktmodell, Lichtkanten und Macro-Fokus</span>
+          </div>
+        </section>
+
+        <section class="product-render-section" aria-labelledby="product-render-title">
+          <div class="section-copy">
+            <p class="eyebrow">Hardware Story</p>
+            <h2 id="product-render-title">Vom realen Geraet zur dunklen Produktinszenierung</h2>
+            <p>
+              Fuer den Case habe ich die Referenzfotos, den Figma-Look und die 3D-Dateien als
+              eine gemeinsame Produktwelt gedacht: ein graphitfarbenes Trainingssystem mit
+              schwarzem Display, aqua Plattform und praezisen Lichtkanten fuer Website-Hero,
+              Motion und Macro-Details.
+            </p>
+          </div>
+
+          <div class="render-gallery">
+            <figure class="render-main">
+              <img src={`${media}/product-detail.jpg`} alt="Gymera Produktdetail mit graphitfarbenem Rahmen und aqua Trainingsplattform" loading="lazy" />
+              <figcaption>Reference detail · graphite body and aqua glass platform</figcaption>
+            </figure>
+            <figure>
+              <img src={`${media}/rehab-context.jpg`} alt="Gymera Geraet im Rehabilitationskontext mit Patient und Therapeut" loading="lazy" />
+              <figcaption>Context visual · rehabilitation and assisted training</figcaption>
+            </figure>
+            <figure>
+              <img src={`${media}/home-training.jpg`} alt="Gymera Training in einem hellen Wohnraum" loading="lazy" />
+              <figcaption>Use case · home training setup</figcaption>
+            </figure>
+          </div>
+
+          <div class="proof-grid product-proof">
+            {productProof.map(([title, text], index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -139,6 +202,61 @@ const tokens = [
             </video>
             <span>Remotion Preview · Gymera Product Story Reel</span>
           </div>
+        </section>
+
+        <section class="flow-section" aria-labelledby="flow-title">
+          <div class="section-copy">
+            <p class="eyebrow">Case Aufbau</p>
+            <h2 id="flow-title">Die Story fuehrt von Hardware zu Interface</h2>
+            <p>
+              Der Case ist so aufgebaut, dass Recruiter oder Kunden den Denkprozess schnell
+              erkennen: erst Produkt und Kontext, dann die visuelle Richtung, danach Website,
+              App-Logik und Designsystem.
+            </p>
+          </div>
+          <div class="flow-grid">
+            {caseFlow.map(([number, title, text]) => (
+              <article>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="figma-system-section" aria-labelledby="figma-system-title">
+          <div class="section-copy">
+            <p class="eyebrow">Figma Screens</p>
+            <h2 id="figma-system-title">Aus den Figma-Frames wird eine klare Produktarchitektur</h2>
+            <p>
+              Die exportierten Frames zeigen, wie Gymera als Website-System gedacht ist:
+              Einstieg, Funktionen, KI-Ebene, Training Control und reale Einsatzkontexte
+              folgen derselben dunklen High-Tech-Sprache.
+            </p>
+          </div>
+
+          <figure class="context-frame">
+            <img src={`${media}/figma-gym-context.jpg`} alt="Gymera in einem hellen Fitnessraum als Einsatzkontext" loading="lazy" />
+            <figcaption>Context frame · gym environment and product placement</figcaption>
+          </figure>
+
+          <div class="figma-screen-grid">
+            {figmaScreens.map(([title, image, text]) => (
+              <figure>
+                <img src={`${media}/${image}`} alt={`Gymera Figma screen: ${title}`} loading="lazy" />
+                <figcaption>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <figure class="context-frame product-stage-frame">
+            <img src={`${media}/figma-product-stage.jpg`} alt="Gymera Produktinszenierung mit dunklem Studio-Look und Interface-Screen" loading="lazy" />
+            <figcaption>Product stage · dark render direction and interface atmosphere</figcaption>
+          </figure>
         </section>
 
         <section class="quick-read" aria-label="5-second portfolio read">
@@ -388,6 +506,7 @@ const tokens = [
       </article>
     </main>
     <MotionEnhance />
+    <script src={`${media}/hero-mesh.js`}></script>
   </body>
 </html>
 
@@ -422,6 +541,168 @@ const tokens = [
       revealOwnerControls();
     }
   });
+
+  const initGymeraHero = () => {
+    const stage = document.querySelector("[data-gymera-hero]");
+    const canvas = document.getElementById("gymera-hero-canvas");
+    const mesh = window.GYMERA_HERO_MESH;
+    document.documentElement.dataset.gymeraHeroMesh = String(mesh?.points?.length || 0);
+    if (!stage || !(canvas instanceof HTMLCanvasElement) || !mesh?.points?.length) {
+      stage?.classList.add("is-fallback");
+      document.documentElement.dataset.gymeraHeroMode = "fallback";
+      return;
+    }
+
+    const context = canvas.getContext("2d", { alpha: true });
+    if (!context) {
+      stage.classList.add("is-fallback");
+      document.documentElement.dataset.gymeraHeroMode = "fallback";
+      return;
+    }
+    document.documentElement.dataset.gymeraHeroMode = "canvas";
+
+    const fills = [[34, 39, 46], [116, 214, 205], [15, 17, 21], [24, 27, 32], [92, 101, 112], [38, 43, 51]];
+    const strokes = [[142, 156, 169], [190, 255, 248], [82, 86, 94], [82, 90, 99], [214, 220, 222], [154, 166, 178]];
+    let camera = { p: [-0.08, -0.03, 0.04], d: 1.78, yaw: -0.72, pitch: 0.12 };
+    let points2d = [];
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const mix3 = (a, b, t) => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
+    const rgba = (rgb, alpha) => `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const project = (point, time) => {
+      const target = { p: [-0.08, -0.03, 0.04], d: 1.78, yaw: -0.72 + Math.sin(time * .0002) * .05, pitch: .12 + Math.cos(time * .00016) * .035 };
+      camera.p = mix3(camera.p, target.p, .035);
+      camera.d = lerp(camera.d, target.d, .035);
+      camera.yaw = lerp(camera.yaw, target.yaw, .035);
+      camera.pitch = lerp(camera.pitch, target.pitch, .035);
+
+      const cy = Math.cos(camera.yaw);
+      const sy = Math.sin(camera.yaw);
+      const cp = Math.cos(camera.pitch);
+      const sp = Math.sin(camera.pitch);
+      const x = point[0] - camera.p[0];
+      const y = point[1] - camera.p[1];
+      const z = point[2] - camera.p[2];
+      const x1 = x * cy - z * sy;
+      const z1 = x * sy + z * cy;
+      const y1 = y * cp - z1 * sp;
+      const z2 = y * sp + z1 * cp;
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      const scale = Math.min(width, height) * camera.d;
+      const depth = 2.66 + z2;
+
+      return {
+        x: width * .66 + (x1 / depth) * scale,
+        y: height * .59 - (y1 / depth) * scale,
+        z: z2,
+        depth,
+      };
+    };
+
+    const normal = (a, b, c) => {
+      const ux = b[0] - a[0];
+      const uy = b[1] - a[1];
+      const uz = b[2] - a[2];
+      const vx = c[0] - a[0];
+      const vy = c[1] - a[1];
+      const vz = c[2] - a[2];
+      const nx = uy * vz - uz * vy;
+      const ny = uz * vx - ux * vz;
+      const nz = ux * vy - uy * vx;
+      const length = Math.hypot(nx, ny, nz) || 1;
+      return [nx / length, ny / length, nz / length];
+    };
+
+    const drawPath = (poly) => {
+      context.beginPath();
+      context.moveTo(points2d[poly[0]].x, points2d[poly[0]].y);
+      for (let index = 1; index < poly.length; index += 1) {
+        context.lineTo(points2d[poly[index]].x, points2d[poly[index]].y);
+      }
+      context.closePath();
+    };
+
+    const draw = (time) => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      context.clearRect(0, 0, width, height);
+
+      const glow = context.createRadialGradient(width * .62, height * .34, 0, width * .62, height * .34, Math.max(width, height) * .65);
+      glow.addColorStop(0, "rgba(218,238,242,.16)");
+      glow.addColorStop(.34, "rgba(70,91,98,.07)");
+      glow.addColorStop(1, "rgba(0,0,0,0)");
+      context.fillStyle = glow;
+      context.fillRect(0, 0, width, height);
+
+      points2d = mesh.points.map((point) => project(point, time));
+      const polys = mesh.polys
+        .map((entry) => [entry, entry[0].reduce((sum, index) => sum + points2d[index].z, 0) / entry[0].length])
+        .sort((a, b) => a[1] - b[1]);
+
+      for (const [entry] of polys) {
+        const poly = entry[0];
+        const tag = entry[1];
+        if (poly.some((index) => points2d[index].depth <= .2 || !Number.isFinite(points2d[index].x + points2d[index].y))) continue;
+        const n = normal(mesh.points[poly[0]], mesh.points[poly[1]], mesh.points[poly[2]]);
+        const key = Math.max(0, n[0] * -.34 + n[1] * .5 + n[2] * .76);
+        const rim = Math.pow(Math.max(0, 1 - Math.abs(n[2])), 2.4);
+        const base = fills[tag] || fills[0];
+        const red = Math.min(255, base[0] + key * 64 + rim * 44);
+        const green = Math.min(255, base[1] + key * 64 + rim * 44);
+        const blue = Math.min(255, base[2] + key * 68 + rim * 50);
+        drawPath(poly);
+        context.fillStyle = `rgba(${red | 0},${green | 0},${blue | 0},${tag === 1 ? .7 : .84})`;
+        context.fill();
+      }
+
+      context.save();
+      context.globalCompositeOperation = "lighter";
+      context.lineCap = "round";
+      for (const edge of mesh.edges) {
+        const a = points2d[edge[0]];
+        const b = points2d[edge[1]];
+        if (a.depth <= .2 || b.depth <= .2) continue;
+        const tag = edge[2];
+        const depth = Math.max(0, Math.min(1, (a.z + b.z) * .18 + .5));
+        context.strokeStyle = rgba(strokes[tag] || strokes[0], tag === 1 ? .34 : .13 + depth * .18);
+        context.lineWidth = tag === 1 ? 1.05 : .45;
+        context.beginPath();
+        context.moveTo(a.x, a.y);
+        context.lineTo(b.x, b.y);
+        context.stroke();
+      }
+      context.restore();
+
+      const floor = context.createLinearGradient(0, height * .62, 0, height);
+      floor.addColorStop(0, "rgba(122,222,214,0)");
+      floor.addColorStop(.72, "rgba(122,222,214,.1)");
+      floor.addColorStop(1, "rgba(122,222,214,.18)");
+      context.fillStyle = floor;
+      context.fillRect(0, height * .62, width, height * .38);
+
+      requestAnimationFrame(draw);
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+    requestAnimationFrame(draw);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initGymeraHero, { once: true });
+  } else {
+    initGymeraHero();
+  }
 </script>
 
 <style>
@@ -551,6 +832,76 @@ const tokens = [
     overflow: hidden;
   }
   .hero-media img { aspect-ratio: 21 / 9; object-fit: cover; object-position: center; width: 100%; }
+  .hero-3d {
+    position: relative;
+    min-height: min(68vh, 720px);
+    background:
+      radial-gradient(circle at 72% 24%, rgba(210, 236, 241, .16), transparent 22%),
+      radial-gradient(circle at 48% 84%, rgba(142, 232, 222, .14), transparent 28%),
+      linear-gradient(180deg, #060909, #010202);
+    isolation: isolate;
+  }
+  .hero-3d::after {
+    background: linear-gradient(180deg, transparent, rgba(1, 2, 2, .68));
+    bottom: 0;
+    content: "";
+    height: 32%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+  }
+  #gymera-hero-canvas {
+    display: block;
+    height: min(68vh, 720px);
+    min-height: 520px;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+  }
+  .hero-3d-fallback {
+    display: none;
+    inset: 0;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% center;
+    opacity: .86;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+  }
+  .hero-3d-copy {
+    bottom: 56px;
+    color: #fff;
+    left: clamp(22px, 4vw, 48px);
+    max-width: 420px;
+    position: absolute;
+    text-shadow: 0 20px 54px rgba(0, 0, 0, .95);
+    z-index: 3;
+  }
+  .hero-3d-copy strong {
+    display: block;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 950;
+    letter-spacing: -.03em;
+    line-height: .96;
+    margin-top: 10px;
+  }
+  .hero-3d-kicker {
+    color: rgba(190, 255, 248, .78);
+    display: block;
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .hero-3d.is-fallback #gymera-hero-canvas {
+    display: none;
+  }
+  .hero-3d.is-fallback .hero-3d-fallback {
+    display: block;
+  }
   .hero-media span, figcaption {
     color: rgba(255, 255, 255, .82);
     display: block;
@@ -566,6 +917,79 @@ const tokens = [
       radial-gradient(circle at 82% 10%, rgba(152, 255, 68, .16), transparent 28%),
       linear-gradient(135deg, #05070a, #121b2b);
     color: #fff;
+  }
+  .product-render-section {
+    background:
+      radial-gradient(circle at 82% 12%, rgba(49, 137, 255, .12), transparent 28%),
+      linear-gradient(180deg, #fff 0%, #eef4fb 100%);
+  }
+  .render-gallery {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+    margin-top: 48px;
+  }
+  .render-gallery figure {
+    background: #05070a;
+    border: 1px solid rgba(5, 7, 10, .12);
+    border-radius: var(--radius);
+    box-shadow: 0 26px 80px rgba(42, 59, 88, .16);
+    overflow: hidden;
+  }
+  .render-gallery figure:not(.render-main) img {
+    aspect-ratio: 4 / 3;
+  }
+  .render-main {
+    grid-row: span 2;
+  }
+  .render-main img {
+    aspect-ratio: 4 / 3;
+  }
+  .render-gallery img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+  .render-main img {
+    object-position: 72% center;
+  }
+  .product-proof {
+    margin-top: 18px;
+  }
+  .proof-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .proof-grid article {
+    background: rgba(255, 255, 255, .78);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    min-height: 230px;
+    padding: 24px;
+  }
+  .proof-grid span,
+  .flow-grid span {
+    color: var(--blue);
+    display: block;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .proof-grid h3,
+  .flow-grid h3 {
+    font-size: 21px;
+    line-height: 1.12;
+    margin-top: 48px;
+  }
+  .proof-grid p,
+  .flow-grid p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.58;
+    margin-top: 14px;
   }
   .reel-section .eyebrow,
   .reel-section .section-copy > p:last-child {
@@ -600,6 +1024,86 @@ const tokens = [
     display: grid;
     gap: 36px;
     grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  }
+  .flow-section {
+    background: #fff;
+  }
+  .figma-system-section {
+    background:
+      radial-gradient(circle at 16% 8%, rgba(159, 92, 255, .12), transparent 26%),
+      radial-gradient(circle at 86% 20%, rgba(49, 137, 255, .1), transparent 26%),
+      #f7faff;
+  }
+  .context-frame {
+    background: #05070a;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 26px 80px rgba(42, 59, 88, .16);
+    margin-top: 46px;
+    overflow: hidden;
+  }
+  .context-frame img {
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+  .figma-screen-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 18px;
+  }
+  .figma-screen-grid figure {
+    background: #05070a;
+    border: 1px solid rgba(5, 7, 10, .14);
+    border-radius: var(--radius);
+    box-shadow: 0 18px 60px rgba(42, 59, 88, .12);
+    overflow: hidden;
+  }
+  .figma-screen-grid img {
+    aspect-ratio: 3 / 4.2;
+    object-fit: cover;
+    object-position: top center;
+    width: 100%;
+  }
+  .figma-screen-grid figcaption {
+    background: #05070a;
+    display: grid;
+    gap: 8px;
+    min-height: 128px;
+  }
+  .figma-screen-grid figcaption strong {
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .figma-screen-grid figcaption span {
+    color: rgba(255, 255, 255, .62);
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.45;
+    text-transform: none;
+  }
+  .product-stage-frame {
+    margin-top: 18px;
+  }
+  .flow-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 44px;
+  }
+  .flow-grid article {
+    background: var(--cloud);
+    border: 1px solid rgba(49, 137, 255, .16);
+    border-radius: var(--radius);
+    min-height: 250px;
+    padding: 24px;
   }
   .quick-read h2 {
     font-size: clamp(30px, 3.6vw, 54px);
@@ -862,6 +1366,9 @@ const tokens = [
     .segment-grid { grid-template-columns: repeat(2, 1fr); }
     .quick-read { grid-template-columns: 1fr; }
     .contribution-grid { grid-template-columns: repeat(2, 1fr); }
+    .render-gallery { grid-template-columns: 1fr; }
+    .render-main { grid-row: auto; }
+    .proof-grid, .flow-grid, .figma-screen-grid { grid-template-columns: repeat(2, 1fr); }
     .interface-stage, .kit-grid { grid-template-columns: 1fr; }
     .phone-mock { max-width: 360px; }
   }
@@ -877,9 +1384,19 @@ const tokens = [
     .hero-copy, .contribution-section, .highlights, .result { grid-template-columns: minmax(0, 1fr); }
     .hero-copy > *, .section-copy > *, .result-copy > * { min-width: 0; max-width: 100%; }
     .hero-copy .eyebrow, .contribution-grid, .highlight-grid { grid-column: 1; }
-    .quick-grid, .contribution-grid, .segment-grid, .metric-grid, .dashboard-layout, .highlight-grid { grid-template-columns: 1fr; }
+    .quick-grid, .contribution-grid, .segment-grid, .metric-grid, .dashboard-layout, .highlight-grid, .proof-grid, .flow-grid, .figma-screen-grid { grid-template-columns: 1fr; }
     .section-number { display: none; }
     .hero-media img, .wide-frame img { aspect-ratio: 4 / 3; }
+    .context-frame img { aspect-ratio: 4 / 3; }
+    .figma-screen-grid img { aspect-ratio: 4 / 3; }
+    .figma-screen-grid figcaption { min-height: 0; }
+    .hero-3d { min-height: 560px; }
+    #gymera-hero-canvas { height: 560px; min-height: 560px; }
+    .hero-3d-copy { bottom: 48px; }
+    .render-gallery figure img,
+    .render-main img {
+      aspect-ratio: 4 / 3;
+    }
     h2 { font-size: clamp(32px, 12vw, 48px); }
   }
 </style>

@@ -281,6 +281,64 @@ const coverageSlides = [
           </div>
         </section>
 
+        <section class="motor-system-section" aria-labelledby="motor-system-title">
+          <div class="section-copy">
+            <p class="eyebrow">AI resistance system</p>
+            <h2 id="motor-system-title">Der Motor musste sichtbar werden, ohne das Produkt zu zerlegen</h2>
+            <p>
+              Fuer die Produktstory habe ich eine technische Visualisierung geplant: Das Gehaeuse
+              wird halbtransparent, die Motorrollen werden sichtbar und Lichtimpulse zeigen, wie
+              der Widerstand digital gesteuert wird. So wird aus einer abstrakten AI-Funktion ein
+              verstaendliches Hardware-Versprechen.
+            </p>
+          </div>
+
+          <div class="motor-system-stage" aria-label="Gymera motor system concept visualization">
+            <div class="motor-product-shell">
+              <div class="motor-frame-upright"></div>
+              <div class="motor-console"></div>
+              <div class="motor-tower"></div>
+              <div class="motor-base">
+                <div class="motor-glass-panel"></div>
+                <div class="motor-rail motor-rail-top"></div>
+                <div class="motor-rail motor-rail-bottom"></div>
+                <div class="motor-pulse motor-pulse-top"></div>
+                <div class="motor-pulse motor-pulse-bottom"></div>
+                <div class="motor-wheel motor-wheel-left">
+                  <span></span>
+                </div>
+                <div class="motor-wheel motor-wheel-right">
+                  <span></span>
+                </div>
+                <div class="motor-belt"></div>
+                <div class="motor-control-unit">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+              </div>
+              <div class="motor-bench"></div>
+            </div>
+            <div class="motor-callouts">
+              <article>
+                <span>01</span>
+                <h3>Semi-transparent base</h3>
+                <p>Das Gehaeuse wird als Glaslayer gedacht, damit die technische Logik sofort sichtbar ist.</p>
+              </article>
+              <article>
+                <span>02</span>
+                <h3>Dual motor resistance</h3>
+                <p>Zwei Motorrollen visualisieren Kraft, Zugrichtung und adaptive Trainingslast.</p>
+              </article>
+              <article>
+                <span>03</span>
+                <h3>AI control signal</h3>
+                <p>Lichtimpulse verbinden Mechanik und Interface: der Widerstand reagiert digital auf das Training.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section class="source-strategy-section" aria-labelledby="source-strategy-title">
           <div class="section-copy">
             <p class="eyebrow">Process</p>
@@ -1493,6 +1551,234 @@ const coverageSlides = [
   .product-proof {
     margin-top: 18px;
   }
+  .motor-system-section {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(159, 92, 255, .18), transparent 28%),
+      radial-gradient(circle at 82% 22%, rgba(80, 237, 220, .18), transparent 30%),
+      linear-gradient(145deg, #05070a 0%, #0b111b 52%, #05070a 100%);
+    color: #fff;
+  }
+  .motor-system-section .section-copy > p:last-child {
+    color: rgba(255, 255, 255, .68);
+  }
+  .motor-system-stage {
+    align-items: stretch;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1.28fr) minmax(260px, .72fr);
+    margin-top: 48px;
+  }
+  .motor-product-shell {
+    aspect-ratio: 16 / 9;
+    background:
+      radial-gradient(ellipse at 30% 82%, rgba(159, 92, 255, .24), transparent 32%),
+      radial-gradient(ellipse at 72% 82%, rgba(80, 237, 220, .28), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .015));
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: var(--radius);
+    box-shadow: 0 34px 120px rgba(0, 0, 0, .34);
+    min-height: 420px;
+    overflow: hidden;
+    position: relative;
+  }
+  .motor-product-shell::before {
+    background:
+      linear-gradient(90deg, transparent, rgba(255, 255, 255, .16), transparent),
+      linear-gradient(180deg, rgba(255, 255, 255, .06), transparent 42%);
+    content: "";
+    inset: 0;
+    opacity: .62;
+    pointer-events: none;
+    position: absolute;
+  }
+  .motor-product-shell::after {
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .72));
+    bottom: 0;
+    content: "";
+    height: 34%;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+  .motor-frame-upright,
+  .motor-console,
+  .motor-tower,
+  .motor-base,
+  .motor-bench {
+    position: absolute;
+    z-index: 2;
+  }
+  .motor-frame-upright {
+    border: 10px solid rgba(200, 236, 236, .28);
+    border-bottom: 0;
+    border-radius: 38px 38px 0 0;
+    height: 49%;
+    left: 27%;
+    top: 14%;
+    width: 30%;
+  }
+  .motor-console {
+    background:
+      linear-gradient(145deg, rgba(178, 255, 248, .22), rgba(5, 7, 10, .92)),
+      radial-gradient(circle at 24% 20%, rgba(255, 255, 255, .58), transparent 20%);
+    border: 1px solid rgba(190, 255, 248, .24);
+    border-radius: 8px;
+    box-shadow: 0 0 36px rgba(80, 237, 220, .18);
+    height: 21%;
+    left: 36%;
+    top: 18%;
+    transform: skewY(-2deg);
+    width: 15%;
+  }
+  .motor-tower {
+    background: linear-gradient(90deg, rgba(236, 248, 252, .16), rgba(236, 248, 252, .34), rgba(5, 7, 10, .08));
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 8px 8px 18px 18px;
+    bottom: 25%;
+    height: 43%;
+    left: 31%;
+    width: 21%;
+  }
+  .motor-base {
+    background:
+      linear-gradient(100deg, rgba(198, 233, 240, .18), rgba(198, 233, 240, .05)),
+      linear-gradient(180deg, rgba(8, 16, 22, .16), rgba(8, 16, 22, .56));
+    border: 1px solid rgba(190, 255, 248, .28);
+    border-radius: 18px;
+    bottom: 19%;
+    box-shadow:
+      inset 0 0 42px rgba(190, 255, 248, .09),
+      0 0 70px rgba(49, 137, 255, .16);
+    height: 25%;
+    left: 22%;
+    overflow: hidden;
+    width: 53%;
+  }
+  .motor-glass-panel {
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 14px;
+    inset: 10px;
+    position: absolute;
+  }
+  .motor-rail {
+    background: rgba(180, 225, 255, .3);
+    border-radius: 999px;
+    height: 2px;
+    left: 8%;
+    position: absolute;
+    right: 8%;
+  }
+  .motor-rail-top { top: 27%; }
+  .motor-rail-bottom { bottom: 23%; }
+  .motor-pulse {
+    animation: motorPulse 2.8s linear infinite;
+    background: linear-gradient(90deg, transparent, rgba(163, 244, 255, .98), transparent);
+    border-radius: 999px;
+    height: 3px;
+    left: 8%;
+    position: absolute;
+    width: 24%;
+  }
+  .motor-pulse-top { top: 26%; }
+  .motor-pulse-bottom {
+    animation-delay: -1.4s;
+    bottom: 22%;
+  }
+  .motor-wheel {
+    animation: motorSpin 1.8s linear infinite;
+    background:
+      radial-gradient(circle, rgba(5, 7, 10, .92) 0 16%, transparent 17%),
+      repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .84) 0 12deg, rgba(86, 118, 132, .58) 12deg 26deg),
+      radial-gradient(circle at 35% 30%, #ffffff, #6f7c82 46%, #161d22 72%);
+    border: 1px solid rgba(255, 255, 255, .34);
+    border-radius: 50%;
+    bottom: 23%;
+    box-shadow: 0 0 28px rgba(190, 255, 248, .34);
+    height: 40%;
+    position: absolute;
+    width: 17%;
+  }
+  .motor-wheel span {
+    border: 2px solid rgba(5, 7, 10, .35);
+    border-radius: 50%;
+    inset: 20%;
+    position: absolute;
+  }
+  .motor-wheel-left { left: 29%; }
+  .motor-wheel-right { right: 30%; }
+  .motor-belt {
+    border: 4px solid rgba(190, 255, 248, .7);
+    border-bottom-color: rgba(190, 255, 248, .18);
+    border-radius: 999px;
+    bottom: 30%;
+    height: 34%;
+    left: 23%;
+    position: absolute;
+    width: 55%;
+  }
+  .motor-control-unit {
+    background: rgba(5, 7, 10, .74);
+    border: 1px solid rgba(190, 255, 248, .2);
+    border-radius: 10px;
+    display: flex;
+    gap: 5px;
+    height: 28%;
+    padding: 9px;
+    position: absolute;
+    right: 9%;
+    top: 18%;
+    width: 20%;
+  }
+  .motor-control-unit i {
+    animation: motorBars 1.4s ease-in-out infinite;
+    align-self: end;
+    background: linear-gradient(180deg, #befff8, #3189ff);
+    border-radius: 999px;
+    flex: 1;
+    height: 38%;
+  }
+  .motor-control-unit i:nth-child(2) { animation-delay: -.46s; }
+  .motor-control-unit i:nth-child(3) { animation-delay: -.92s; }
+  .motor-bench {
+    background: linear-gradient(90deg, rgba(220, 230, 232, .28), rgba(5, 7, 10, .55));
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 10px;
+    bottom: 15%;
+    height: 8%;
+    left: 51%;
+    transform: skewX(-16deg);
+    width: 38%;
+  }
+  .motor-callouts {
+    display: grid;
+    gap: 14px;
+  }
+  .motor-callouts article {
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: var(--radius);
+    min-height: 0;
+    padding: 22px;
+  }
+  .motor-callouts span {
+    color: rgba(190, 255, 248, .76);
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .motor-callouts h3 {
+    color: #fff;
+    font-size: 22px;
+    line-height: 1.1;
+    margin-top: 28px;
+  }
+  .motor-callouts p {
+    color: rgba(255, 255, 255, .64);
+    font-size: 14px;
+    line-height: 1.58;
+    margin-top: 14px;
+  }
   .source-strategy-section {
     background:
       radial-gradient(circle at 12% 14%, rgba(159, 92, 255, .12), transparent 26%),
@@ -2070,6 +2356,19 @@ const coverageSlides = [
     0%, 16.65% { opacity: 1; clip-path: none; }
     16.66%, 100% { opacity: 0; clip-path: none; }
   }
+  @keyframes motorSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes motorPulse {
+    0% { opacity: 0; transform: translateX(-34%); }
+    12%, 72% { opacity: 1; }
+    100% { opacity: 0; transform: translateX(300%); }
+  }
+  @keyframes motorBars {
+    0%, 100% { height: 34%; opacity: .62; }
+    50% { height: 92%; opacity: 1; }
+  }
   @keyframes homepageScroll {
     0%, 8% { transform: translateY(0); }
     88%, 96% { transform: translateY(-88%); }
@@ -2384,7 +2683,8 @@ const coverageSlides = [
     .contribution-grid { grid-template-columns: repeat(2, 1fr); }
     .render-gallery { grid-template-columns: 1fr; }
     .render-main { grid-row: auto; }
-    .proof-grid, .flow-grid, .brand-map-grid, .usage-compare-grid, .coverage-layout, .brief-grid, .source-grid, .immersion-grid, .brand-story-grid { grid-template-columns: repeat(2, 1fr); }
+    .proof-grid, .flow-grid, .brand-map-grid, .usage-compare-grid, .coverage-layout, .brief-grid, .source-grid, .immersion-grid, .brand-story-grid, .motor-system-stage { grid-template-columns: repeat(2, 1fr); }
+    .motor-system-stage { grid-template-columns: 1fr; }
     .figma-screen-grid { grid-template-columns: 1fr; }
     .map-pan-track { height: min(62vh, 620px); }
     .interlude-poster { min-height: min(76vh, 720px); }
@@ -2404,7 +2704,7 @@ const coverageSlides = [
     .hero-copy, .contribution-section, .highlights, .result { grid-template-columns: minmax(0, 1fr); }
     .hero-copy > *, .section-copy > *, .result-copy > * { min-width: 0; max-width: 100%; }
     .hero-copy .eyebrow, .contribution-grid, .highlight-grid { grid-column: 1; }
-    .quick-grid, .contribution-grid, .segment-grid, .metric-grid, .dashboard-layout, .highlight-grid, .proof-grid, .flow-grid, .figma-screen-grid, .brand-map-grid, .usage-compare-grid, .coverage-layout, .interlude-section, .brief-grid, .source-grid, .immersion-grid, .brand-story-grid, .einsatz-layout { grid-template-columns: 1fr; }
+    .quick-grid, .contribution-grid, .segment-grid, .metric-grid, .dashboard-layout, .highlight-grid, .proof-grid, .flow-grid, .figma-screen-grid, .brand-map-grid, .usage-compare-grid, .coverage-layout, .interlude-section, .brief-grid, .source-grid, .immersion-grid, .brand-story-grid, .einsatz-layout, .motor-system-stage { grid-template-columns: 1fr; }
     .section-number { display: none; }
     .hero-media img, .wide-frame img { aspect-ratio: 4 / 3; }
     .context-frame img { aspect-ratio: 4 / 3; }
@@ -2424,6 +2724,8 @@ const coverageSlides = [
     .usage-stage-copy { max-width: calc(100% - 36px); }
     .usage-stage-copy strong { font-size: 28px; }
     .coverage-slider { aspect-ratio: 4 / 3; }
+    .motor-product-shell { min-height: 360px; }
+    .motor-callouts { grid-template-columns: 1fr; }
     .hero-3d { min-height: 560px; }
     #gymera-hero-canvas { height: 560px; min-height: 560px; }
     .hero-3d-copy { bottom: 48px; }

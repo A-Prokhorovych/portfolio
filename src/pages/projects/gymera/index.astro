@@ -284,56 +284,37 @@ const coverageSlides = [
         <section class="motor-system-section" aria-labelledby="motor-system-title">
           <div class="section-copy">
             <p class="eyebrow">AI resistance system</p>
-            <h2 id="motor-system-title">Der Motor musste sichtbar werden, ohne das Produkt zu zerlegen</h2>
+            <h2 id="motor-system-title">Der Motor musste als echtes Produktargument sichtbar werden</h2>
             <p>
-              Fuer die Produktstory habe ich eine technische Visualisierung geplant: Das Gehaeuse
-              wird halbtransparent, die Motorrollen werden sichtbar und Lichtimpulse zeigen, wie
-              der Widerstand digital gesteuert wird. So wird aus einer abstrakten AI-Funktion ein
-              verstaendliches Hardware-Versprechen.
+              In der Indiegogo-Kampagne gab es ein kurzes technisches Video, das die Motorrollen
+              und die digitale Widerstandssteuerung viel klarer zeigt als eine schematische Grafik.
+              Fuer den Case funktioniert dieser Clip als Beweis: Gymera ist nicht nur ein Screen,
+              sondern ein motorisiertes Trainingssystem mit adaptiver Last.
             </p>
           </div>
 
-          <div class="motor-system-stage" aria-label="Gymera motor system concept visualization">
-            <div class="motor-product-shell">
-              <div class="motor-frame-upright"></div>
-              <div class="motor-console"></div>
-              <div class="motor-tower"></div>
-              <div class="motor-base">
-                <div class="motor-glass-panel"></div>
-                <div class="motor-rail motor-rail-top"></div>
-                <div class="motor-rail motor-rail-bottom"></div>
-                <div class="motor-pulse motor-pulse-top"></div>
-                <div class="motor-pulse motor-pulse-bottom"></div>
-                <div class="motor-wheel motor-wheel-left">
-                  <span></span>
-                </div>
-                <div class="motor-wheel motor-wheel-right">
-                  <span></span>
-                </div>
-                <div class="motor-belt"></div>
-                <div class="motor-control-unit">
-                  <i></i>
-                  <i></i>
-                  <i></i>
-                </div>
-              </div>
-              <div class="motor-bench"></div>
-            </div>
+          <div class="motor-system-stage" aria-label="Gymera motor system video proof">
+            <figure class="motor-video-frame">
+              <video autoplay muted loop playsinline preload="auto" poster={`${media}/motor-demo/gymera-motor-indiegogo-poster.jpg`}>
+                <source src={`${media}/motor-demo/gymera-motor-indiegogo.mp4`} type="video/mp4" />
+              </video>
+              <figcaption>Campaign source · Motorrollen und adaptive assistance im Produktkern</figcaption>
+            </figure>
             <div class="motor-callouts">
               <article>
                 <span>01</span>
-                <h3>Semi-transparent base</h3>
-                <p>Das Gehaeuse wird als Glaslayer gedacht, damit die technische Logik sofort sichtbar ist.</p>
+                <h3>Real mechanism</h3>
+                <p>Der Clip zeigt echte Motorrollen statt einer abstrakten Illustration. Dadurch wird die Hardware glaubwuerdiger.</p>
               </article>
               <article>
                 <span>02</span>
-                <h3>Dual motor resistance</h3>
-                <p>Zwei Motorrollen visualisieren Kraft, Zugrichtung und adaptive Trainingslast.</p>
+                <h3>Adaptive assistance</h3>
+                <p>Das Interface macht sichtbar, dass Widerstand und Unterstuetzung digital gesteuert werden koennen.</p>
               </article>
               <article>
                 <span>03</span>
-                <h3>AI control signal</h3>
-                <p>Lichtimpulse verbinden Mechanik und Interface: der Widerstand reagiert digital auf das Training.</p>
+                <h3>Story bridge</h3>
+                <p>So entsteht die Bruecke zwischen Produkttechnik, AI-Versprechen und den spaeteren Website- und App-Screens.</p>
               </article>
             </div>
           </div>
@@ -1567,6 +1548,33 @@ const coverageSlides = [
     gap: 18px;
     grid-template-columns: minmax(0, 1.28fr) minmax(260px, .72fr);
     margin-top: 48px;
+  }
+  .motor-video-frame {
+    background:
+      linear-gradient(#071018, #05070a) padding-box,
+      linear-gradient(135deg, rgba(80, 237, 220, .6), rgba(159, 92, 255, .42), rgba(49, 137, 255, .5)) border-box;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    box-shadow: 0 34px 120px rgba(0, 0, 0, .34);
+    margin: 0;
+    overflow: hidden;
+    padding: 10px;
+  }
+  .motor-video-frame video {
+    aspect-ratio: 680 / 382;
+    background: #05070a;
+    border-radius: 5px;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+  .motor-video-frame figcaption {
+    background:
+      linear-gradient(90deg, rgba(5, 7, 10, .96), rgba(5, 7, 10, .68)),
+      radial-gradient(circle at 12% 50%, rgba(80, 237, 220, .18), transparent 28%);
+    border-radius: 0 0 5px 5px;
+    margin-top: 10px;
   }
   .motor-product-shell {
     aspect-ratio: 16 / 9;

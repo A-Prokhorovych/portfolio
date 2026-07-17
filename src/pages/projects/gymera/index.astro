@@ -238,6 +238,12 @@ const coverageSlides = [
               interessant sein koennte.
             </p>
           </div>
+          <figure class="brief-source-video">
+            <video autoplay muted loop playsinline preload="metadata" poster={`${media}/motor-demo/gymera-brief-source-poster.jpg`}>
+              <source src={`${media}/motor-demo/gymera-brief-source.mp4`} type="video/mp4" />
+            </video>
+            <figcaption>Original source material · funktional, aber noch nicht europaeisch inszeniert</figcaption>
+          </figure>
           <div class="brief-grid">
             {briefCards.map(([title, text]) => (
               <article>
@@ -1438,6 +1444,32 @@ const coverageSlides = [
   }
   .brief-section {
     background: #fff;
+  }
+  .brief-source-video {
+    background:
+      linear-gradient(#f7faff, #edf3fb) padding-box,
+      linear-gradient(135deg, rgba(5, 7, 10, .16), rgba(49, 137, 255, .18)) border-box;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(42, 59, 88, .1);
+    margin-top: 42px;
+    max-width: 820px;
+    overflow: hidden;
+    padding: 10px;
+  }
+  .brief-source-video video {
+    aspect-ratio: 680 / 382;
+    background: #05070a;
+    border-radius: 5px;
+    display: block;
+    filter: grayscale(1) contrast(.92) brightness(.86);
+    object-fit: cover;
+    width: 100%;
+  }
+  .brief-source-video figcaption {
+    background: transparent;
+    color: rgba(5, 7, 10, .56);
+    padding: 14px 8px 4px;
   }
   .brief-grid {
     display: grid;

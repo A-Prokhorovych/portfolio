@@ -189,8 +189,9 @@ const coverageSlides = [
           <a href="#ueberblick">01 Website</a>
           <a href="#beitrag">02 Beitrag</a>
           <a href="#produkt">03 Produkt</a>
-          <a href="#app">04 App UI</a>
-          <a href="#kit">05 Design Kit</a>
+          <a href="#technical-story">04 Technical Story</a>
+          <a href="#app">05 App UI</a>
+          <a href="#kit">06 Design Kit</a>
         </nav>
       </aside>
 
@@ -321,6 +322,74 @@ const coverageSlides = [
                 <span>03</span>
                 <h3>Story bridge</h3>
                 <p>So entsteht die Bruecke zwischen Produkttechnik, AI-Versprechen und den spaeteren Website- und App-Screens.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="technical-story" class="technical-story-section" aria-labelledby="technical-story-title">
+          <div class="section-copy">
+            <p class="eyebrow">Technical storytelling</p>
+            <h2 id="technical-story-title">Aus einer statischen Feature-Liste wurden zwei Kommunikationsformate</h2>
+            <p>
+              Fuer die technischen Details habe ich nicht nur einen Website-Block gestaltet, sondern
+              ein kleines Produktmodul entwickelt: zuerst eine Infografik mit sechs klaren Feature-Punkten,
+              danach ein 3D-Video, in dem eine Makrokamera die Details nacheinander abfliegt. So konnte
+              dieselbe Information fuer Website, Pitch, Social Motion und gedruckte Booklets genutzt werden.
+            </p>
+          </div>
+
+          <div class="technical-process-grid" aria-label="Technical data design process">
+            <figure class="technical-process-card technical-process-card-source">
+              <img
+                src={`${media}/technical-data-first-concept.png`}
+                alt="Erstes Ausgangsbild mit sechs Gymera Feature-Kreisen und englischen Beschriftungen"
+                loading="lazy"
+              />
+              <figcaption>
+                <strong>01 · Ausgangsmaterial</strong>
+                <span>Dieses erste Feature-Bild mit sechs getrennten Detailkreisen war die Grundlage fuer unsere eigene Infografik und das spaetere Motion-Video.</span>
+              </figcaption>
+            </figure>
+
+            <figure class="technical-process-card technical-process-card-infographic">
+              <img
+                src={`${media}/technical-data-infographic.jpg`}
+                alt="Gymera Technische Daten Infografik fuer Website und Booklet"
+                loading="lazy"
+              />
+              <figcaption>
+                <strong>02 · Infografik fuer Web und Print</strong>
+                <span>Die Infografik funktioniert als statischer Abschnitt auf der Website und als wiederverwendbares Motiv fuer Booklets.</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="technical-video-layout">
+            <figure class="technical-video-frame">
+              <video autoplay muted loop playsinline preload="metadata" poster={`${media}/blender-renders/macro-drone-open/storyboard-preview-scene2/contact-points.jpg`}>
+                <source src={`${media}/blender-renders/macro-drone-open/storyboard-preview-scene2/gymera-macro-drone-scene2-points.mp4`} type="video/mp4" />
+              </video>
+              <figcaption>03 · 3D macro drone video · feature points as motion module</figcaption>
+            </figure>
+
+            <div class="technical-format-notes">
+              <article>
+                <span>Website</span>
+                <h3>Motion erklaert die Details im Produktkontext</h3>
+                <p>
+                  Das Video fuehrt die Kamera zu Rollen, Klappmechanismus, Armen, Mikrofon, Kamera
+                  und Screen. Die technischen Punkte werden dadurch weniger abstrakt und mehr wie
+                  eine Premium-Produktdemo.
+                </p>
+              </article>
+              <article>
+                <span>Booklet</span>
+                <h3>Die Infografik bleibt ruhig und druckbar</h3>
+                <p>
+                  Fuer gedruckte Materialien braucht es ein klares Standbild: sechs Punkte, kurze
+                  Texte und ein heroisches Produktbild, das ohne Animation sofort verstanden wird.
+                </p>
               </article>
             </div>
           </div>
@@ -1819,6 +1888,137 @@ const coverageSlides = [
     line-height: 1.58;
     margin-top: 14px;
   }
+  .technical-story-section {
+    background:
+      radial-gradient(circle at 16% 10%, rgba(159, 92, 255, .18), transparent 30%),
+      radial-gradient(circle at 82% 18%, rgba(80, 237, 220, .14), transparent 28%),
+      linear-gradient(180deg, #05070a 0%, #0a1018 56%, #05070a 100%);
+    color: #fff;
+  }
+  .technical-story-section .section-copy > p:last-child {
+    color: rgba(255, 255, 255, .68);
+  }
+  .technical-process-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    margin-top: 48px;
+  }
+  .technical-process-card {
+    background:
+      linear-gradient(#070d14, #05070a) padding-box,
+      linear-gradient(135deg, rgba(255, 255, 255, .16), rgba(80, 237, 220, .28), rgba(159, 92, 255, .2)) border-box;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, .28);
+    margin: 0;
+    min-width: 0;
+    overflow: hidden;
+    padding: 10px;
+  }
+  .technical-process-card img {
+    aspect-ratio: 16 / 10;
+    border-radius: 5px;
+    background: #000;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+  }
+  .technical-process-card-source img {
+    background: #fff;
+    padding: clamp(14px, 2vw, 26px);
+  }
+  .technical-process-card-infographic img {
+    background: #000;
+    padding: clamp(8px, 1.5vw, 18px);
+  }
+  .technical-process-card figcaption {
+    background: transparent;
+    display: grid;
+    gap: 8px;
+    padding: 16px 8px 6px;
+  }
+  .technical-process-card figcaption strong {
+    color: #fff;
+    display: block;
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .technical-process-card figcaption span {
+    color: rgba(255, 255, 255, .62);
+    display: block;
+    font-size: 13px;
+    font-weight: 650;
+    letter-spacing: 0;
+    line-height: 1.5;
+    text-transform: none;
+  }
+  .technical-video-layout {
+    align-items: stretch;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+    margin-top: 18px;
+  }
+  .technical-video-frame {
+    background:
+      linear-gradient(#070d14, #05070a) padding-box,
+      linear-gradient(135deg, rgba(80, 237, 220, .48), rgba(159, 92, 255, .34), rgba(49, 137, 255, .38)) border-box;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    box-shadow: 0 34px 120px rgba(0, 0, 0, .34);
+    margin: 0;
+    overflow: hidden;
+    padding: 10px;
+  }
+  .technical-video-frame video {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 5px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .technical-video-frame figcaption {
+    background:
+      linear-gradient(90deg, rgba(5, 7, 10, .96), rgba(5, 7, 10, .62)),
+      radial-gradient(circle at 12% 50%, rgba(80, 237, 220, .16), transparent 28%);
+    border-radius: 0 0 5px 5px;
+    margin-top: 10px;
+  }
+  .technical-format-notes {
+    display: grid;
+    gap: 14px;
+  }
+  .technical-format-notes article {
+    align-content: end;
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: var(--radius);
+    display: grid;
+    min-height: 230px;
+    padding: 24px;
+  }
+  .technical-format-notes span {
+    color: rgba(190, 255, 248, .76);
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .technical-format-notes h3 {
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.08;
+    margin-top: 42px;
+  }
+  .technical-format-notes p {
+    color: rgba(255, 255, 255, .64);
+    font-size: 14px;
+    line-height: 1.58;
+    margin-top: 14px;
+  }
   .source-strategy-section {
     background:
       radial-gradient(circle at 12% 14%, rgba(159, 92, 255, .12), transparent 26%),
@@ -2723,8 +2923,8 @@ const coverageSlides = [
     .contribution-grid { grid-template-columns: repeat(2, 1fr); }
     .render-gallery { grid-template-columns: 1fr; }
     .render-main { grid-row: auto; }
-    .proof-grid, .flow-grid, .brand-map-grid, .usage-compare-grid, .coverage-layout, .brief-grid, .source-grid, .immersion-grid, .brand-story-grid, .motor-system-stage { grid-template-columns: repeat(2, 1fr); }
-    .motor-system-stage { grid-template-columns: 1fr; }
+    .proof-grid, .flow-grid, .brand-map-grid, .usage-compare-grid, .coverage-layout, .brief-grid, .source-grid, .immersion-grid, .brand-story-grid, .motor-system-stage, .technical-process-grid { grid-template-columns: repeat(2, 1fr); }
+    .motor-system-stage, .technical-video-layout { grid-template-columns: 1fr; }
     .figma-screen-grid { grid-template-columns: 1fr; }
     .map-pan-track { height: min(62vh, 620px); }
     .interlude-poster { min-height: min(76vh, 720px); }
@@ -2744,7 +2944,7 @@ const coverageSlides = [
     .hero-copy, .contribution-section, .highlights, .result { grid-template-columns: minmax(0, 1fr); }
     .hero-copy > *, .section-copy > *, .result-copy > * { min-width: 0; max-width: 100%; }
     .hero-copy .eyebrow, .contribution-grid, .highlight-grid { grid-column: 1; }
-    .quick-grid, .contribution-grid, .segment-grid, .metric-grid, .dashboard-layout, .highlight-grid, .proof-grid, .flow-grid, .figma-screen-grid, .brand-map-grid, .usage-compare-grid, .coverage-layout, .interlude-section, .brief-grid, .source-grid, .immersion-grid, .brand-story-grid, .einsatz-layout, .motor-system-stage { grid-template-columns: 1fr; }
+    .quick-grid, .contribution-grid, .segment-grid, .metric-grid, .dashboard-layout, .highlight-grid, .proof-grid, .flow-grid, .figma-screen-grid, .brand-map-grid, .usage-compare-grid, .coverage-layout, .interlude-section, .brief-grid, .source-grid, .immersion-grid, .brand-story-grid, .einsatz-layout, .motor-system-stage, .technical-process-grid, .technical-video-layout { grid-template-columns: 1fr; }
     .section-number { display: none; }
     .hero-media img, .wide-frame img { aspect-ratio: 4 / 3; }
     .context-frame img { aspect-ratio: 4 / 3; }
@@ -2766,6 +2966,7 @@ const coverageSlides = [
     .coverage-slider { aspect-ratio: 4 / 3; }
     .motor-product-shell { min-height: 360px; }
     .motor-callouts { grid-template-columns: 1fr; }
+    .technical-format-notes article { min-height: 190px; }
     .hero-3d { min-height: 560px; }
     #gymera-hero-canvas { height: 560px; min-height: 560px; }
     .hero-3d-copy { bottom: 48px; }

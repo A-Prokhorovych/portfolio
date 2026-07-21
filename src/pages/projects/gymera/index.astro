@@ -227,7 +227,7 @@ const coverageSlides = [
         <section class="brief-section" aria-labelledby="brief-title">
           <div class="section-copy">
             <p class="eyebrow">Real brief</p>
-            <h2 id="brief-title">Die eigentliche Aufgabe war nicht nur Design, sondern Produkt-Uebersetzung</h2>
+            <h2 id="brief-title">Was war die eigentliche Aufgabe?</h2>
             <p>
               Gymera war zu diesem Zeitpunkt weniger ein fertiger europaeischer Brand als eine
               Business-Idee: ein bestehendes AI-Trainingsgeraet sollte in Europa vertrieben werden.
@@ -242,6 +242,13 @@ const coverageSlides = [
             </video>
             <figcaption>Original source material · funktional, aber noch nicht europaeisch inszeniert</figcaption>
           </figure>
+        </section>
+
+        <section class="brief-constraints-section" aria-labelledby="brief-constraints-title">
+          <div class="section-copy">
+            <p class="eyebrow">Constraints</p>
+            <h2 id="brief-constraints-title">Welche Bedingungen haben den Designprozess bestimmt?</h2>
+          </div>
           <div class="brief-grid">
             {briefCards.map(([title, text]) => (
               <article>
@@ -255,13 +262,12 @@ const coverageSlides = [
         <section class="product-render-section" aria-labelledby="product-render-title">
           <div class="section-copy">
             <p class="eyebrow">Asset rescue</p>
-            <h2 id="product-render-title">Aus schwachen Quellen wurde eine praesentable Produktwelt</h2>
+            <h2 id="product-render-title">Welches Ausgangsmaterial konnte gerettet werden?</h2>
             <p>
-              Weil kein eigenes Produkt fuer Foto oder Video verfuegbar war, habe ich das vorhandene
-              Material wie ein Rohmaterial behandelt: recherchieren, auswaehlen, nachbauen, retuschieren
-              und in eine wertigere Bildsprache uebersetzen. 3D, Photobashing und AI-Erweiterungen
-              halfen zuerst, das Geraet selbst sauber zu zeigen: offen, geschlossen und seitlich,
-              ohne Modelle oder Lifestyle-Kontext.
+              Weil kein eigenes Produkt fuer Foto oder Video verfuegbar war, musste ich zuerst klaeren,
+              welche Quellen ueberhaupt tragfaehig waren: 3D-nahe Produktansichten, einzelne Hero-Motive
+              und Rohmaterial aus der chinesischen Kommunikation. Dieser Block zeigt bewusst nur die
+              Materialbasis, nicht schon die fertige Story.
             </p>
           </div>
 
@@ -273,7 +279,19 @@ const coverageSlides = [
             </div>
             <figcaption>Asset rescue · Blender-Preview und Originalmaterial als Grundlage fuer die neue Produktinszenierung</figcaption>
           </figure>
+        </section>
 
+        <section class="asset-method-section" aria-labelledby="asset-method-title">
+          <div class="section-copy">
+            <p class="eyebrow">Reconstruction method</p>
+            <h2 id="asset-method-title">Wie wurde daraus eine hochwertigere Produktwelt?</h2>
+            <p>
+              Erst danach begann die eigentliche Uebersetzung: vorhandene Assets wurden sortiert,
+              mit 3D und Retusche stabilisiert und in eine europaeische Fitness-Tech-Bildsprache
+              ueberfuehrt. So entstand ein visuelles System, das fuer Hero, Motion, Website und
+              Praesentationsmaterial funktionieren konnte.
+            </p>
+          </div>
           <div class="proof-grid product-proof">
             {productProof.map(([title, text], index) => (
               <article>
@@ -288,7 +306,7 @@ const coverageSlides = [
         <section class="motor-system-section" aria-labelledby="motor-system-title">
           <div class="section-copy">
             <p class="eyebrow">AI resistance system</p>
-            <h2 id="motor-system-title">Der Motor musste als echtes Produktargument verstanden werden</h2>
+            <h2 id="motor-system-title">Warum musste der Motor erklaert werden?</h2>
             <p>
               Viele Besucher verstehen ein AI-Fitnessgeraet zuerst ueber den grossen Screen.
               Fuer den Verkauf war aber wichtig, den Kern dahinter zu erklaeren: Motorrollen,
@@ -328,28 +346,39 @@ const coverageSlides = [
         <section id="technical-story" class="technical-story-section" aria-labelledby="technical-story-title">
           <div class="section-copy">
             <p class="eyebrow">Technical storytelling</p>
-            <h2 id="technical-story-title">Aus einer statischen Feature-Liste wurden zwei Kommunikationsformate</h2>
+            <h2 id="technical-story-title">Welches technische Ausgangsbild war vorhanden?</h2>
             <p>
-              Fuer die technischen Details habe ich nicht nur einen Website-Block gestaltet, sondern
-              ein kleines Produktmodul entwickelt: zuerst eine Infografik mit sechs klaren Feature-Punkten,
-              danach ein 3D-Video, in dem eine Makrokamera die Details nacheinander abfliegt. So konnte
-              dieselbe Information fuer Website, Pitch, Social Motion und gedruckte Booklets genutzt werden.
+              Die erste Grundlage war eine einfache Feature-Uebersicht mit sechs Detailkreisen.
+              Sie war inhaltlich brauchbar, aber visuell noch nicht stark genug fuer eine europaeische
+              Premium-Produktpraesentation.
             </p>
           </div>
 
-          <div class="technical-process-grid" aria-label="Technical data design process">
-            <figure class="technical-process-card technical-process-card-source">
-              <img
-                src={`${media}/technical-data-first-concept.png`}
-                alt="Erstes Ausgangsbild mit sechs Gymera Feature-Kreisen und englischen Beschriftungen"
-                loading="lazy"
-              />
-              <figcaption>
-                <strong>01 · Ausgangsmaterial</strong>
-                <span>Dieses erste Feature-Bild mit sechs getrennten Detailkreisen war die Grundlage fuer unsere eigene Infografik und das spaetere Motion-Video.</span>
-              </figcaption>
-            </figure>
+          <figure class="technical-process-card technical-process-card-source technical-source-single">
+            <img
+              src={`${media}/technical-data-first-concept.png`}
+              alt="Erstes Ausgangsbild mit sechs Gymera Feature-Kreisen und englischen Beschriftungen"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Ausgangsmaterial</strong>
+              <span>Dieses Feature-Bild war der Startpunkt fuer die spaetere Infografik und das Motion-Video.</span>
+            </figcaption>
+          </figure>
+        </section>
 
+        <section class="technical-infographic-section" aria-labelledby="technical-infographic-title">
+          <div class="section-copy">
+            <p class="eyebrow">Static format</p>
+            <h2 id="technical-infographic-title">Wie wurde daraus ein ruhiges Infografik-Modul?</h2>
+            <p>
+              Fuer Website, Pitch und Booklet brauchte es ein klares Standbild: kurze Texte,
+              eine starke Produktansicht und sechs technische Punkte, die ohne Animation sofort
+              verstanden werden.
+            </p>
+          </div>
+
+          <div class="technical-static-layout">
             <figure class="technical-process-card technical-process-card-infographic">
               <img
                 src={`${media}/technical-data-infographic.jpg`}
@@ -357,10 +386,22 @@ const coverageSlides = [
                 loading="lazy"
               />
               <figcaption>
-                <strong>02 · Infografik fuer Web und Print</strong>
+                <strong>Infografik fuer Web und Print</strong>
                 <span>Die Infografik funktioniert als statischer Abschnitt auf der Website und als wiederverwendbares Motiv fuer Booklets.</span>
               </figcaption>
             </figure>
+          </div>
+        </section>
+
+        <section class="technical-motion-section" aria-labelledby="technical-motion-title">
+          <div class="section-copy">
+            <p class="eyebrow">Motion format</p>
+            <h2 id="technical-motion-title">Wie wurde daraus ein 3D-Motion-Modul?</h2>
+            <p>
+              Fuer die Website habe ich dieselben Feature-Punkte als Makrokamera-Flug gedacht.
+              Die Kamera stoppt nacheinander bei Rollen, Klappmechanismus, Armen, Mikrofon, Kamera
+              und Screen, damit technische Details wie eine Premium-Produktdemo wirken.
+            </p>
           </div>
 
           <div class="technical-video-layout">
@@ -374,19 +415,18 @@ const coverageSlides = [
             <div class="technical-format-notes">
               <article>
                 <span>Website</span>
-                <h3>Motion erklaert die Details im Produktkontext</h3>
+                <h3>Motion erklaert Details im Produktkontext</h3>
                 <p>
-                  Das Video fuehrt die Kamera zu Rollen, Klappmechanismus, Armen, Mikrofon, Kamera
-                  und Screen. Die technischen Punkte werden dadurch weniger abstrakt und mehr wie
-                  eine Premium-Produktdemo.
+                  Das Video wurde als Website-Modul integriert, damit technische Features nicht
+                  wie eine Liste wirken, sondern wie ein gefuehrter Blick auf das Produkt.
                 </p>
               </article>
               <article>
-                <span>Booklet</span>
-                <h3>Die Infografik bleibt ruhig und druckbar</h3>
+                <span>System</span>
+                <h3>Ein Inhalt, zwei Formate</h3>
                 <p>
-                  Fuer gedruckte Materialien braucht es ein klares Standbild: sechs Punkte, kurze
-                  Texte und ein heroisches Produktbild, das ohne Animation sofort verstanden wird.
+                  Die statische Infografik und das Motion-Video nutzen dieselbe Logik, aber jeweils
+                  in dem Format, das fuer den Kanal besser funktioniert.
                 </p>
               </article>
             </div>
@@ -694,45 +734,14 @@ const coverageSlides = [
                   <span>GYMERA Control</span>
                   <h3>Training Dashboard</h3>
                 </div>
-                <button type="button">Live Session</button>
+                <span class="dashboard-prototype-label">App prototype</span>
               </div>
-              <div class="dashboard-layout">
-                <div class="panel session-panel">
-                  <p class="panel-label">Current program</p>
-                  <h4>Full Body AI</h4>
-                  <div class="progress-ring"><span>86</span></div>
-                  <p>Form score · adaptive resistance active</p>
-                </div>
-                <div class="panel chart-panel">
-                  <p class="panel-label">Weekly load</p>
-                  <div class="bars">
-                    <span style="height: 44%"></span>
-                    <span style="height: 62%"></span>
-                    <span style="height: 38%"></span>
-                    <span style="height: 74%"></span>
-                    <span style="height: 88%"></span>
-                    <span style="height: 57%"></span>
-                    <span style="height: 69%"></span>
-                  </div>
-                </div>
-                <div class="panel feed-panel">
-                  <p class="panel-label">AI Coaching</p>
-                  <ul>
-                    <li>Balance correction detected</li>
-                    <li>Resistance lowered for left shoulder</li>
-                    <li>Next block: controlled rotation</li>
-                  </ul>
-                </div>
-                <div class="panel control-panel">
-                  <p class="panel-label">Device</p>
-                  <h4>Gymera One</h4>
-                  <div class="device-lines">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
-              </div>
+              <figure class="dashboard-video-frame">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src={`${media}/gymera-control-training-dashboard.mp4`} type="video/mp4" />
+                </video>
+                <figcaption>GYMERA Control · Training Dashboard prototype</figcaption>
+              </figure>
             </div>
 
             <div class="phone-mock" aria-label="Gymera Mobile Mockup">
@@ -1512,6 +1521,9 @@ const coverageSlides = [
     gap: 28px;
     grid-template-columns: minmax(0, .92fr) minmax(360px, .8fr);
   }
+  .brief-constraints-section {
+    background: #f7faff;
+  }
   .brief-source-video {
     background:
       linear-gradient(#f7faff, #edf3fb) padding-box,
@@ -1539,11 +1551,10 @@ const coverageSlides = [
     padding: 14px 8px 4px;
   }
   .brief-grid {
-    grid-column: 1 / -1;
     display: grid;
     gap: 14px;
     grid-template-columns: repeat(4, 1fr);
-    margin-top: 46px;
+    margin-top: 44px;
   }
   .brief-grid article,
   .source-grid article,
@@ -1575,6 +1586,9 @@ const coverageSlides = [
     background:
       radial-gradient(circle at 82% 12%, rgba(49, 137, 255, .12), transparent 28%),
       linear-gradient(180deg, #fff 0%, #eef4fb 100%);
+  }
+  .asset-method-section {
+    background: #fff;
   }
   .rescue-showcase {
     background: #fff;
@@ -1897,7 +1911,22 @@ const coverageSlides = [
       linear-gradient(180deg, #05070a 0%, #0a1018 56%, #05070a 100%);
     color: #fff;
   }
-  .technical-story-section .section-copy > p:last-child {
+  .technical-infographic-section,
+  .technical-motion-section {
+    background:
+      radial-gradient(circle at 84% 16%, rgba(80, 237, 220, .12), transparent 28%),
+      linear-gradient(180deg, #05070a 0%, #0a1018 58%, #05070a 100%);
+    color: #fff;
+  }
+  .technical-motion-section {
+    background:
+      radial-gradient(circle at 16% 14%, rgba(159, 92, 255, .18), transparent 28%),
+      radial-gradient(circle at 84% 20%, rgba(80, 237, 220, .14), transparent 28%),
+      linear-gradient(180deg, #05070a 0%, #0a1018 58%, #05070a 100%);
+  }
+  .technical-story-section .section-copy > p:last-child,
+  .technical-infographic-section .section-copy > p:last-child,
+  .technical-motion-section .section-copy > p:last-child {
     color: rgba(255, 255, 255, .68);
   }
   .technical-process-grid {
@@ -1956,6 +1985,16 @@ const coverageSlides = [
     letter-spacing: 0;
     line-height: 1.5;
     text-transform: none;
+  }
+  .technical-source-single,
+  .technical-static-layout {
+    margin-top: 48px;
+  }
+  .technical-source-single {
+    max-width: 1180px;
+  }
+  .technical-static-layout {
+    display: grid;
   }
   .technical-video-layout {
     align-items: stretch;
@@ -2774,9 +2813,37 @@ const coverageSlides = [
     overflow: hidden;
     padding: 26px;
   }
-  .dashboard-top { align-items: center; display: flex; justify-content: space-between; margin-bottom: 24px; }
+  .dashboard-top { align-items: center; display: flex; gap: 20px; justify-content: space-between; margin-bottom: 24px; }
   .dashboard-top span, .panel-label { color: #8fa0b8; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
   .dashboard-top h3 { font-size: 32px; margin-top: 6px; }
+  .dashboard-prototype-label {
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, .72) !important;
+    flex: 0 0 auto;
+    padding: 10px 12px;
+  }
+  .dashboard-video-frame {
+    background: #08101a;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+    margin: 0;
+    overflow: hidden;
+    padding: 8px;
+  }
+  .dashboard-video-frame video {
+    aspect-ratio: 16 / 9;
+    background: #05070a;
+    border-radius: 7px;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+  }
+  .dashboard-video-frame figcaption {
+    background: transparent;
+    color: rgba(255, 255, 255, .54);
+    padding: 12px 4px 2px;
+  }
   .dashboard-top button, .component-card button {
     background: var(--accent);
     border: 0;

@@ -1,0 +1,645 @@
+---
+const base = import.meta.env.BASE_URL;
+const cover = `${base}projects/covers/2019-astratomat.jpg`;
+
+const projectStructure = [
+  ["01", "Hero section", "Ein markanter Einstieg mit Brand, Kampagnenidee und sofort erkennbarem visuellen Motiv."],
+  ["02", "Product story", "Produktbeschreibung, Katalog oder Nutzenargumente machen die Marke konkret und vergleichbar."],
+  ["03", "Articles & materials", "Redaktionelle Inhalte, Tipps und Wissenskarten geben der Kampagne mehr Tiefe als ein Banner."],
+  ["04", "Recipes", "Rezepte verbinden Produkt und Alltag: Nutzer sehen sofort, wie die Marke in der Kueche funktioniert."],
+  ["05", "Activity block", "Wettbewerbe, Mechaniken oder Aktionen verlaengern die Interaktion und schaffen Anlass zum Mitmachen."],
+];
+
+const brands = [
+  ["green ray.svg", "Green Ray", `${base}projects/green-ray/`, "Video, yellow visual direction, recipe modules"],
+  ["djadja vanja.svg", "Djadja Vanja", `${base}projects/djadja-vanja/`, "Interactive product world and recipe cards"],
+  ["panasonic.svg", "Panasonic", `${base}projects/panasonic/`, "Product guidance, recipes and appliance content"],
+  ["agama.svg", "Agama", `${base}projects/agama/`, "Seasonal seafood storytelling"],
+  ["kenwood.svg", "Kenwood", `${base}projects/kenwood/`, "Kitchen product campaigns"],
+  ["luminarc.svg", "Luminarc", `${base}projects/luminarc/`, "Tableware and seasonal content"],
+  ["hochland.svg", "Hochland", `${base}projects/hochland/`, "Food inspiration and branded recipes"],
+  ["dr.oetker.svg", "Dr. Oetker", `${base}projects/oetker/`, "Baking campaign modules"],
+];
+
+const bestProjects = [
+  {
+    title: "Green Ray Astratomat",
+    type: "Video-led food campaign",
+    href: `${base}projects/green-ray/`,
+    image: `${base}projects/green-ray/background-yellow.jpg`,
+    alt: "Green Ray yellow Astratomat visual background",
+    text: "Ein starker gelber Kampagnenraum, Produktvideo, Wissenskarten und Rezeptfotos machen aus Tomatenpaste eine kleine Content-Welt.",
+  },
+  {
+    title: "Djadja Vanja",
+    type: "Interactive branded product world",
+    href: `${base}projects/djadja-vanja/`,
+    image: `${base}projects/djadja-vanja/hero.jpg`,
+    alt: "Djadja Vanja campaign landing page",
+    text: "Produktgläser, Hover-Zustände und Rezeptkarten zeigen, wie Markenprodukte spielerisch und trotzdem nutzbar inszeniert werden.",
+  },
+  {
+    title: "Panasonic",
+    type: "Product campaign and guidance",
+    href: `${base}projects/panasonic/`,
+    image: `${base}projects/panasonic/hero.jpg`,
+    alt: "Panasonic product campaign hero",
+    text: "Technologie, Beratung und Rezeptinspiration werden zu einer klaren Nutzerreise vom Interesse bis zur Produktwahl.",
+  },
+  {
+    title: "Agama Seafood",
+    type: "Seasonal product storytelling",
+    href: `${base}projects/agama/`,
+    image: `${base}projects/agama/hero.jpg`,
+    alt: "Agama seafood campaign hero",
+    text: "Saisonale Themen, Produktwissen und Food-Visuals zeigen, wie eine Marke in mehrere Content-Anlässe uebersetzt wird.",
+  },
+];
+
+const modules = [
+  ["Hero", "Brand scene, product promise, campaign mood", `${base}projects/covers/2021-panasonic.jpg`],
+  ["Catalog", "Product line, benefits, usage occasions", `${base}projects/green-ray/natural-product.jpg`],
+  ["Articles", "Useful knowledge and editorial teasers", `${base}projects/green-ray/seven-myths.jpg`],
+  ["Recipes", "Food photography and practical application", `${base}projects/djadja-vanja/recipe-01.jpg`],
+  ["Contest", "Action mechanics and participation blocks", `${base}projects/covers/2021-dv.jpg`],
+];
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="EdimDoma Special Projects case hub by Andrii Prokhorovych: food campaign goals, reusable page structure, brand filter and best design modules."
+    />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>EdimDoma Special Projects - Andrii Prokhorovych</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Zum Inhalt springen</a>
+
+    <header class="site-header">
+      <a class="brand" href={base}>PROKHA</a>
+      <a class="back-link" href={`${base}#work`}><span aria-hidden="true">←</span> Zurueck zur Startseite</a>
+      <a class="archive-link" href={`${base}archive/`}>Archiv ansehen <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="content">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">EdimDoma · Food campaign systems</p>
+          <h1 id="hero-title">A reusable campaign structure for many food brands.</h1>
+          <p>
+            Meine Aufgabe auf EdimDoma war es, Marken nicht nur sichtbar zu machen, sondern
+            aus Produkt, Content und Aktivierung eine klare digitale Kampagnenseite zu bauen.
+            Jede Seite sollte schnell verstanden werden und gleichzeitig genug Material fuer
+            Rezepte, Artikel und Aktionen tragen.
+          </p>
+        </div>
+        <figure class="hero-media">
+          <img src={cover} alt="Green Ray Astratomat campaign preview on EdimDoma" width="1000" height="600" />
+          <figcaption>Special projects combined brand story, product content and recipe-driven interaction.</figcaption>
+        </figure>
+      </section>
+
+      <section class="goal-section" aria-labelledby="goal-title">
+        <p class="section-index">01 / Goal</p>
+        <div>
+          <h2 id="goal-title">From branded placement to useful food content.</h2>
+          <p>
+            EdimDoma hatte eine starke redaktionelle Umgebung. Meine Designaufgabe war, diese
+            Umgebung fuer kommerzielle Marken nutzbar zu machen: nicht als reine Werbung,
+            sondern als Seite, die Produktargumente, Inspiration und Interaktion logisch verbindet.
+          </p>
+        </div>
+        <div class="goal-facts" aria-label="EdimDoma project facts">
+          <article><span>70+</span><p>digital campaigns and special projects</p></article>
+          <article><span>5</span><p>repeatable content zones per project</p></article>
+          <article><span>Food</span><p>recipes, articles, products and contests</p></article>
+        </div>
+      </section>
+
+      <section class="structure-section" aria-labelledby="structure-title">
+        <div class="section-heading">
+          <p class="section-index">02 / Structure</p>
+          <h2 id="structure-title">Most projects followed one clear content system.</h2>
+        </div>
+        <div class="structure-grid">
+          {projectStructure.map(([number, title, text]) => (
+            <article>
+              <span>{number}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="module-section" aria-labelledby="modules-title">
+        <div class="section-heading">
+          <p class="section-index">03 / Modules</p>
+          <h2 id="modules-title">The same system could look different for each brand.</h2>
+        </div>
+        <div class="module-strip">
+          {modules.map(([title, text, image]) => (
+            <figure>
+              <img src={image} alt={`${title} module example from EdimDoma projects`} loading="lazy" />
+              <figcaption>
+                <strong>{title}</strong>
+                <span>{text}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section class="brand-section" aria-labelledby="brands-title">
+        <div class="section-heading">
+          <p class="section-index">04 / Brand filter</p>
+          <h2 id="brands-title">A logo filter made the archive feel browsable, not endless.</h2>
+          <p>
+            In the portfolio archive, logos work as a fast visual filter: a recruiter can jump
+            from a brand to relevant campaigns without reading a long list first.
+          </p>
+        </div>
+        <div class="logo-grid" aria-label="EdimDoma brand project filter">
+          {brands.map(([logo, name, href, text]) => (
+            <a href={href}>
+              <img src={`${base}brands/logotypes/${encodeURIComponent(logo)}`} alt={name} loading="lazy" />
+              <span>{name}</span>
+              <small>{text}</small>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="best-section" aria-labelledby="best-title">
+        <div class="section-heading">
+          <p class="section-index">05 / Best examples</p>
+          <h2 id="best-title">Selected projects and design elements.</h2>
+        </div>
+        <div class="best-grid">
+          {bestProjects.map((project) => (
+            <article>
+              <a href={project.href} class="best-media" aria-label={`${project.title} ansehen`}>
+                <img src={project.image} alt={project.alt} loading="lazy" />
+              </a>
+              <div>
+                <p>{project.type}</p>
+                <h3>{project.title}</h3>
+                <span>{project.text}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="result-section" aria-labelledby="result-title">
+        <p class="section-index">06 / Result</p>
+        <h2 id="result-title">This direction shows campaign design as a repeatable content system.</h2>
+        <p>
+          The EdimDoma work demonstrates art direction, modular page design, branded content,
+          recipe-focused UX and production thinking across many clients instead of one isolated landing page.
+        </p>
+        <a href={`${base}archive/`}>Alle Projekte im Archiv ansehen <span aria-hidden="true">→</span></a>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fffdf3;
+    --paper: #ffffff;
+    --ink: #101010;
+    --muted: #65604f;
+    --line: rgba(16, 16, 16, .14);
+    --yellow: #fee934;
+    --red: #de2b2b;
+    --green: #0c8b3e;
+    --display: "Archivo", Arial, sans-serif;
+    --body: "Space Grotesk", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  p, h1, h2, h3, figure { margin: 0; }
+
+  .skip-link {
+    background: var(--ink);
+    color: white;
+    left: 16px;
+    padding: 12px 16px;
+    position: fixed;
+    top: 16px;
+    transform: translateY(-180%);
+    z-index: 100;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  :focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+
+  .site-header {
+    align-items: center;
+    background: rgba(255, 253, 243, .92);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr auto 1fr;
+    min-height: 74px;
+    padding: 0 clamp(20px, 4vw, 64px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(16px);
+  }
+
+  .brand {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+  }
+  .back-link, .archive-link { font-size: 13px; font-weight: 700; }
+  .archive-link { justify-self: end; }
+  .back-link span { margin-right: 8px; }
+
+  main { overflow: hidden; }
+
+  .hero {
+    display: grid;
+    gap: clamp(28px, 5vw, 80px);
+    grid-template-columns: minmax(0, .95fr) minmax(360px, 1.05fr);
+    min-height: calc(100svh - 74px);
+    padding: clamp(48px, 7vw, 112px) clamp(20px, 4vw, 64px);
+  }
+
+  .hero-copy {
+    align-content: center;
+    display: grid;
+    gap: 32px;
+  }
+
+  .eyebrow, .section-index {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+  }
+
+  h1 {
+    font-size: clamp(58px, 8vw, 132px);
+    line-height: .9;
+    max-width: 1120px;
+  }
+
+  .hero-copy > p:last-child,
+  .goal-section > div > p,
+  .section-heading > p,
+  .result-section > p {
+    color: var(--muted);
+    font-size: clamp(18px, 1.6vw, 24px);
+    line-height: 1.55;
+    max-width: 720px;
+  }
+
+  .hero-media {
+    align-self: center;
+    background: var(--yellow);
+    border: 1px solid rgba(16, 16, 16, .18);
+    display: grid;
+    overflow: hidden;
+  }
+
+  .hero-media img {
+    aspect-ratio: 16 / 10;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .hero-media figcaption {
+    background: var(--ink);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    padding: 16px 18px;
+    text-transform: uppercase;
+  }
+
+  section:not(.hero) {
+    border-top: 1px solid var(--line);
+    padding: clamp(76px, 10vw, 150px) clamp(20px, 4vw, 64px);
+  }
+
+  .goal-section {
+    display: grid;
+    gap: clamp(28px, 5vw, 70px);
+    grid-template-columns: minmax(160px, .25fr) minmax(0, .95fr) minmax(280px, .55fr);
+  }
+
+  .goal-section h2,
+  .section-heading h2,
+  .result-section h2 {
+    font-size: clamp(40px, 5vw, 86px);
+    line-height: .98;
+    max-width: 1100px;
+  }
+
+  .goal-facts {
+    border-top: 1px solid var(--ink);
+    display: grid;
+  }
+
+  .goal-facts article {
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0;
+  }
+
+  .goal-facts span {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(32px, 4vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: .95;
+  }
+
+  .goal-facts p {
+    color: var(--muted);
+    line-height: 1.45;
+    margin-top: 8px;
+  }
+
+  .section-heading {
+    display: grid;
+    gap: 28px;
+    grid-template-columns: minmax(160px, .25fr) minmax(0, 1fr);
+    margin-bottom: clamp(44px, 7vw, 90px);
+  }
+
+  .structure-grid {
+    border-top: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .structure-grid article {
+    border-right: 1px solid var(--line);
+    min-height: 280px;
+    padding: 24px 20px 26px 0;
+  }
+
+  .structure-grid article:not(:first-child) { padding-left: 20px; }
+  .structure-grid article:last-child { border-right: 0; }
+  .structure-grid span {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .structure-grid h3 {
+    font-size: clamp(23px, 2vw, 34px);
+    line-height: 1;
+    margin: 72px 0 18px;
+  }
+  .structure-grid p { color: var(--muted); line-height: 1.55; }
+
+  .module-section { background: #101010; color: white; }
+  .module-section .section-index,
+  .module-section .section-heading > p { color: rgba(255, 255, 255, .62); }
+
+  .module-strip {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .module-strip figure {
+    background: #1c1c1c;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .module-strip img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .module-strip figcaption {
+    display: grid;
+    gap: 8px;
+    padding: 20px;
+  }
+
+  .module-strip strong {
+    font-family: var(--display);
+    font-size: 24px;
+    letter-spacing: -0.04em;
+  }
+
+  .module-strip span {
+    color: rgba(255, 255, 255, .68);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .logo-grid a {
+    border: 1px solid var(--line);
+    display: grid;
+    gap: 18px;
+    margin: 0 -1px -1px 0;
+    min-height: 230px;
+    padding: 28px;
+    transition: background 180ms ease, transform 180ms ease;
+  }
+
+  .logo-grid a:hover {
+    background: var(--yellow);
+    transform: translateY(-2px);
+  }
+
+  .logo-grid img {
+    filter: grayscale(1);
+    height: 48px;
+    max-width: 150px;
+    object-fit: contain;
+    object-position: left center;
+    opacity: .74;
+    width: 100%;
+  }
+
+  .logo-grid span {
+    align-self: end;
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 750;
+    letter-spacing: -0.04em;
+  }
+
+  .logo-grid small {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.45;
+  }
+
+  .best-grid {
+    display: grid;
+    gap: clamp(28px, 5vw, 70px);
+  }
+
+  .best-grid article {
+    display: grid;
+    gap: clamp(24px, 4vw, 56px);
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+  }
+
+  .best-grid article:nth-child(even) {
+    grid-template-columns: minmax(300px, .85fr) minmax(0, 1.15fr);
+  }
+
+  .best-grid article:nth-child(even) .best-media { grid-column: 2; }
+  .best-grid article:nth-child(even) > div { grid-column: 1; grid-row: 1; }
+
+  .best-media {
+    background: #e8e4d5;
+    display: block;
+    overflow: hidden;
+  }
+
+  .best-media img {
+    aspect-ratio: 16 / 9;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 260ms ease;
+    width: 100%;
+  }
+
+  .best-media:hover img { transform: scale(1.02); }
+
+  .best-grid article > div {
+    align-content: end;
+    border-top: 1px solid var(--ink);
+    display: grid;
+    gap: 18px;
+    padding-top: 18px;
+  }
+
+  .best-grid article p {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .best-grid h3 {
+    font-size: clamp(34px, 4vw, 64px);
+    line-height: .98;
+  }
+
+  .best-grid article span {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  .result-section {
+    background: var(--yellow);
+    display: grid;
+    gap: 32px;
+  }
+
+  .result-section .section-index,
+  .result-section > p { color: rgba(16, 16, 16, .68); }
+
+  .result-section a {
+    align-items: center;
+    border-bottom: 2px solid var(--ink);
+    display: inline-flex;
+    font-family: var(--display);
+    font-size: clamp(24px, 3vw, 46px);
+    font-weight: 800;
+    justify-content: space-between;
+    letter-spacing: -0.045em;
+    margin-top: 28px;
+    max-width: 900px;
+    padding-bottom: 16px;
+  }
+
+  @media (max-width: 1080px) {
+    .hero, .goal-section, .section-heading { grid-template-columns: 1fr; }
+    .structure-grid { grid-template-columns: repeat(2, 1fr); }
+    .structure-grid article { border-bottom: 1px solid var(--line); min-height: 230px; }
+    .structure-grid article:nth-child(2n) { border-right: 0; }
+    .structure-grid article:nth-child(2n + 1) { padding-left: 0; }
+    .module-strip { grid-template-columns: repeat(3, 1fr); }
+    .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 760px) {
+    .site-header {
+      gap: 14px;
+      grid-template-columns: 1fr auto;
+      min-height: 64px;
+      padding: 0 20px;
+    }
+    .archive-link { display: none; }
+    .hero { min-height: auto; padding-top: 46px; }
+    h1 { font-size: clamp(48px, 14vw, 70px); }
+    section:not(.hero) { padding: 72px 20px; }
+    .structure-grid, .module-strip, .logo-grid, .best-grid article, .best-grid article:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+    .structure-grid article,
+    .structure-grid article:nth-child(2n) {
+      border-right: 0;
+      min-height: 0;
+      padding: 22px 0 24px;
+    }
+    .structure-grid h3 { margin-top: 34px; }
+    .best-grid article:nth-child(even) .best-media,
+    .best-grid article:nth-child(even) > div {
+      grid-column: auto;
+      grid-row: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  }
+</style>

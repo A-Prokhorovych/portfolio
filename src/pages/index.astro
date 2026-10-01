@@ -1,43 +1,106 @@
 ---
 const base = import.meta.env.BASE_URL;
 
-const projects = [
+const focusSections = [
   {
     number: "01",
-    title: "Dr. Langhammer",
-    displayTitle: "Dr. Lang\u00ADhammer",
-    year: "2025",
-    type: "Healthcare Website",
-    image: `${base}projects/old-zahnarzt.jpg`,
-    width: 1000,
-    height: 1000,
+    kicker: "Healthcare Websites",
+    title: "Ärzte & medizinische Services",
+    image: `${base}projects/dr-langhammer/hero-current.jpg`,
+    width: 1800,
+    height: 1059,
+    summary: "Digitale Auftritte fuer Praxen und medizinische Angebote: ruhig, vertrauensbildend und klar strukturiert.",
+    proof: "Information Architecture · UX Audit · UI System · Responsive Website",
     href: `${base}projects/dr-langhammer/`,
-    summary: "Vertrauen, Orientierung und eine ruhige Nutzerführung für eine sensible Entscheidung.",
-    contribution: "UX Struktur · UI Design · Responsive Handoff",
+    cta: "Healthcare Case ansehen",
+    items: [
+      {
+        label: "Dr. Langhammer",
+        meta: "Website redesign · 2025",
+        href: `${base}projects/dr-langhammer/`,
+      },
+      {
+        label: "ADHS Website",
+        meta: "Healthcare Website · Webflow",
+        href: "https://prokha.webflow.io/works/adhs",
+        external: true,
+      },
+      {
+        label: "Dr. Zahnwerk Rehbein",
+        meta: "Figma concept · Praxis website",
+        href: "https://www.figma.com/design/WUMnNag6JdcwWOVmirWdVr/%F0%9F%9F%A5Dr.-Zahnwerk-Rehbein--FIGMA---Copy---Copy-?node-id=0-1&t=WE3e4KIG9clkGhmC-1",
+        external: true,
+      },
+      {
+        label: "Dr. Eichenberg",
+        meta: "Figma concept · Dental website",
+        href: "https://www.figma.com/design/h0FvmY70Lrpnw3vVir11cf/Dr.-Eichenberg-2.2?node-id=0-1&t=hjBsrNkmGnvPnFiZ-1",
+        external: true,
+      },
+    ],
   },
   {
     number: "02",
-    title: "Gymera",
-    year: "2025",
-    type: "Fitness Tech Product Experience",
-    image: `${base}projects/gymera/rehab-context.jpg`,
-    width: 3695,
-    height: 2000,
+    kicker: "Product Design",
+    title: "Gymera als Fitness-Tech-Produkt",
+    image: `${base}projects/gymera/customer-overview.png`,
+    width: 2880,
+    height: 1800,
+    summary: "Ein Produktcase fuer Website, App-Screens, Dashboard, mobile Experience und Design Kit.",
+    proof: "Product Thinking · Dashboard UI · Mobile Flow · Design Kit",
     href: `${base}projects/gymera/`,
-    summary: "Ein KI-Fitnesssystem als Hardware, Website, App-Logik und motionfähige Produktstory.",
-    contribution: "Product Thinking · Interactive UI · Motion · AI Interface",
+    cta: "Gymera Case ansehen",
+    items: [
+      {
+        label: "Product Website",
+        meta: "Story, Zielgruppen und Einsatzbereiche",
+        href: `${base}projects/gymera/`,
+      },
+      {
+        label: "Dashboard & App",
+        meta: "Trainer-Interface, Mobile Screens, AI Functions",
+        href: `${base}projects/gymera/`,
+      },
+      {
+        label: "Design Kit",
+        meta: "Brand tokens, UI components, responsive system",
+        href: `${base}projects/gymera/`,
+      },
+    ],
   },
   {
     number: "03",
-    title: "Panasonic",
-    year: "2021",
-    type: "Digital Product Campaign",
-    image: `${base}projects/panasonic/hero.jpg`,
+    kicker: "Food Campaigns",
+    title: "EdimDoma Special Projects",
+    image: `${base}projects/green-ray/background-yellow.jpg`,
     width: 1920,
-    height: 899,
-    href: `${base}projects/panasonic/`,
-    summary: "Technologie, Beratung und Rezeptinspiration in einer klaren digitalen Produktwelt.",
-    contribution: "Art Direction · Campaign Design · Handoff",
+    height: 1080,
+    summary: "Markenkampagnen auf einer grossen Food-Plattform: Landing Pages, Rezeptmodule, Videos und Content-Stories.",
+    proof: "Campaign Design · Art Direction · Food Content · Brand Storytelling",
+    href: `${base}projects/green-ray/`,
+    cta: "EdimDoma Case ansehen",
+    items: [
+      {
+        label: "Green Ray Astratomat",
+        meta: "Food campaign case · Video + recipe modules",
+        href: `${base}projects/green-ray/`,
+      },
+      {
+        label: "Djadja Vanja",
+        meta: "Interactive branded food project",
+        href: `${base}projects/djadja-vanja/`,
+      },
+      {
+        label: "Panasonic",
+        meta: "Product campaign with recipes and guidance",
+        href: `${base}projects/panasonic/`,
+      },
+      {
+        label: "Alle EdimDoma Projekte",
+        meta: "Vollständiges Projektarchiv",
+        href: `${base}archive/`,
+      },
+    ],
   },
 ];
 
@@ -48,10 +111,10 @@ const services = [
 ];
 
 const proofCases = [
-  ["Dr. Langhammer", "Information Architecture · Content Strategy · Healthcare UX"],
-  ["Gymera", "Product Thinking · Interactive UI · Motion · AI Interface"],
-  ["Panasonic / Kenwood", "Business Design · Landing Pages · Marketing · Conversion"],
-  ["MAKS", "Accessibility · Content-heavy Design · Design System"],
+  ["Healthcare", "Trust-first websites · klare Struktur · sensible Entscheidungen"],
+  ["Product Design", "App, Dashboard und Design Kit als skalierbare Produkterfahrung"],
+  ["EdimDoma", "Food-Kampagnen mit Content-Modulen, Video und Markenwelt"],
+  ["Archiv", "70+ weitere digitale Kampagnen und Websites bleiben auffindbar"],
 ];
 
 const brands = [
@@ -145,41 +208,51 @@ const brands = [
         <header class="section-heading">
           <p class="section-index">01 / Selected work</p>
           <div>
-            <h2 id="work-title">Drei Projekte.<br />Drei unterschiedliche Aufgaben.</h2>
+            <h2 id="work-title">Drei Bereiche.<br />Drei klare Schwerpunkte.</h2>
             <p>
-              Jeder Case soll eine andere professionelle Kompetenz beweisen: Struktur,
-              Produktdenken, Markenführung oder produktionsnahe Umsetzung.
+              Die Startseite zeigt jetzt die wichtigsten Kompetenzfelder: Healthcare-Websites,
+              Product Design und EdimDoma-Kampagnen. Einzelne Projekte bleiben direkt erreichbar.
             </p>
           </div>
         </header>
 
-        <div class="project-list">
-          {projects.map((project, index) => (
-            <article class={`project project-${index + 1}`}>
+        <div class="focus-list">
+          {focusSections.map((section, index) => (
+            <article class={`focus-section focus-${index + 1}`}>
               <a
-                class="project-media"
-                href={project.href}
-                target={project.external ? "_blank" : undefined}
-                rel={project.external ? "noreferrer" : undefined}
-                aria-label={`${project.title} Case Study ansehen`}
+                class="focus-media"
+                href={section.href}
+                aria-label={`${section.title} ansehen`}
               >
                 <img
-                  src={project.image}
-                  alt={`${project.title} Projektvorschau`}
-                  width={project.width}
-                  height={project.height}
+                  src={section.image}
+                  alt={`${section.title} Projektvorschau`}
+                  width={section.width}
+                  height={section.height}
                   loading="lazy"
                   decoding="async"
                 />
-                <span class="project-open" aria-hidden="true">Case ansehen ↗</span>
+                <span class="project-open" aria-hidden="true">{section.cta} ↗</span>
               </a>
-              <div class="project-info">
-                <p class="project-number">{project.number}</p>
+              <div class="focus-info">
+                <p class="project-number">{section.number}</p>
                 <div>
-                  <p class="project-meta">{project.year} · {project.type}</p>
-                  <h3>{project.displayTitle ?? project.title}</h3>
-                  <p class="project-summary">{project.summary}</p>
-                  <p class="project-contribution">{project.contribution}</p>
+                  <p class="project-meta">{section.kicker}</p>
+                  <h3>{section.title}</h3>
+                  <p class="project-summary">{section.summary}</p>
+                  <p class="project-contribution">{section.proof}</p>
+                  <div class="focus-links" aria-label={`Projekte in ${section.title}`}>
+                    {section.items.map((item) => (
+                      <a
+                        href={item.href}
+                        target={item.external ? "_blank" : undefined}
+                        rel={item.external ? "noreferrer" : undefined}
+                      >
+                        <span>{item.label}</span>
+                        <small>{item.meta}</small>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </article>
@@ -535,22 +608,31 @@ const brands = [
     max-width: 540px;
   }
 
-  .project-list { display: grid; gap: clamp(80px, 10vw, 160px); }
+  .focus-list { display: grid; gap: clamp(80px, 10vw, 150px); }
 
-  .project {
+  .focus-section {
     display: grid;
-    gap: 24px;
-    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.5fr);
+    gap: clamp(24px, 4vw, 56px);
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
   }
 
-  .project-2 { grid-template-columns: minmax(280px, 0.55fr) minmax(0, 1.45fr); }
-  .project-2 .project-media { grid-column: 2; }
-  .project-2 .project-info { grid-column: 1; grid-row: 1; }
+  .focus-2 { grid-template-columns: minmax(320px, 0.65fr) minmax(0, 1.35fr); }
+  .focus-2 .focus-media { grid-column: 2; }
+  .focus-2 .focus-info { grid-column: 1; grid-row: 1; }
 
-  .project-media { background: #e9e9ec; display: block; overflow: hidden; position: relative; }
-  .project-media img { aspect-ratio: 16 / 9; height: 100%; object-fit: cover; transition: transform 350ms ease; width: 100%; }
-  .project-1 .project-media img { aspect-ratio: 16 / 10; object-position: center 24%; }
-  .project-media:hover img { transform: scale(1.018); }
+  .focus-media { background: #e9e9ec; display: block; overflow: hidden; position: relative; }
+  .focus-media img {
+    aspect-ratio: 16 / 9;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+    transition: transform 350ms ease;
+    width: 100%;
+  }
+  .focus-1 .focus-media img { object-position: center 42%; }
+  .focus-2 .focus-media img { object-position: center 18%; }
+  .focus-3 .focus-media img { object-position: center; }
+  .focus-media:hover img { transform: scale(1.018); }
 
   .project-open {
     background: var(--accent);
@@ -565,14 +647,50 @@ const brands = [
     transition: transform 220ms ease;
   }
 
-  .project-media:hover .project-open, .project-media:focus-visible .project-open { transform: translateY(0); }
+  .focus-media:hover .project-open, .focus-media:focus-visible .project-open { transform: translateY(0); }
 
-  .project-info { border-top: 1px solid var(--ink); display: grid; gap: 20px; grid-template-columns: 44px 1fr; padding-top: 16px; }
-  .project-info > div { min-width: 0; }
+  .focus-info { border-top: 1px solid var(--ink); display: grid; gap: 20px; grid-template-columns: 44px 1fr; padding-top: 16px; }
+  .focus-info > div { min-width: 0; }
   .project-number, .project-meta, .project-contribution { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-  .project-info h3 { font-size: clamp(34px, 4vw, 64px); letter-spacing: -0.055em; line-height: 1; margin: 18px 0 24px; }
+  .focus-info h3 { font-size: clamp(34px, 4vw, 64px); letter-spacing: -0.055em; line-height: 1; margin: 18px 0 24px; }
   .project-summary { font-size: 17px; line-height: 1.55; max-width: 480px; }
   .project-contribution { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 14px; }
+
+  .focus-links {
+    border-top: 1px solid var(--line);
+    display: grid;
+    margin-top: 34px;
+  }
+
+  .focus-links a {
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 14px;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    min-height: 64px;
+    padding: 14px 0;
+    transition: color 180ms ease, padding-left 180ms ease;
+  }
+
+  .focus-links a:hover {
+    color: var(--accent);
+    padding-left: 8px;
+  }
+
+  .focus-links span {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 650;
+    letter-spacing: -0.03em;
+  }
+
+  .focus-links small {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
 
   .proof-cases {
     border-top: 1px solid var(--ink);
@@ -671,7 +789,7 @@ const brands = [
     .hero-intro { align-items: start; grid-template-columns: 1fr; }
     .hero-actions { justify-content: flex-start; }
     .section-heading > div { align-items: start; grid-template-columns: 1fr; }
-    .project, .project-2 { grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr); }
+    .focus-section, .focus-2 { grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr); }
     .proof-cases { grid-template-columns: repeat(2, 1fr); }
     .proof-cases article:nth-child(2) { border-right: 0; }
     .proof-cases article:nth-child(n + 3) { border-top: 1px solid var(--line); }
@@ -702,11 +820,13 @@ const brands = [
     .section-heading { margin-bottom: 56px; }
     .section-heading > div { gap: 22px; }
     h2 { font-size: clamp(38px, 11.5vw, 54px); }
-    .project, .project-2 { display: flex; flex-direction: column; }
-    .project-2 .project-media, .project-2 .project-info { grid-column: auto; grid-row: auto; }
-    .project-media { order: 1; }
-    .project-info { order: 2; }
-    .project-info h3 { font-size: 40px; }
+    .focus-section, .focus-2 { display: flex; flex-direction: column; }
+    .focus-2 .focus-media, .focus-2 .focus-info { grid-column: auto; grid-row: auto; }
+    .focus-media { order: 1; }
+    .focus-media img { min-height: 0; }
+    .focus-info { order: 2; }
+    .focus-info h3 { font-size: 40px; }
+    .focus-links a { grid-template-columns: 1fr; gap: 6px; }
     .project-open { transform: none; }
     .proof-cases { grid-template-columns: 1fr; }
     .proof-cases article,
